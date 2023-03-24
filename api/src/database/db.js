@@ -6,7 +6,7 @@ import {
   DB_PASSWORD,
   DB_PORT,
   DB_USERNAME,
-} from "../config/config";
+} from "../config/config.js";
 
 export const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
   dialect: DB_DIALECT,
