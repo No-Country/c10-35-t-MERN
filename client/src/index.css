@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[type='text'],
+[type='email'],
+[type='password'],
+[type='number'],
+[type='submit'] {
+	padding: 10px 5px;
+	border-radius: 5px;
+	border: 1px solid #1a1a1a;
+}
+[type='submit'] {
+	border: none;
+}

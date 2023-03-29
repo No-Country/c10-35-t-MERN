@@ -1,12 +1,10 @@
-import DashBoard from './components/DashBoard'
+import Login from './components/Login'
 
 function App() {
 	return (
-		<div className='App'>
+		<div className='App text-center'>
 			<h1 className='text-slate-400'>www.stoker.com</h1>
-			<h2>Sitio en construcción</h2>
-			<p>Próximamente...</p>
-			<DashBoard />
+			<Login />
 		</div>
 	)
 }
