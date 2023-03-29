@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from 'sequelize';
 import {
   DB_DIALECT,
   DB_HOST,
@@ -6,8 +6,9 @@ import {
   DB_PASSWORD,
   DB_PORT,
   DB_USERNAME,
-} from "../config/config.js";
+} from '../config/config.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
   dialect: DB_DIALECT,
   host: DB_HOST,
