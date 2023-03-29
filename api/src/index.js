@@ -1,5 +1,5 @@
-import app from './app';
-import { sequelize } from './database/db';
+import app from './app.js';
+import { sequelize } from './database/db.js';
 
 /* eslint-disable no-console */
 try {
