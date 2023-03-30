@@ -4,51 +4,92 @@ import TextScroll from '../textBox/TextScroll'
 
 const CreateProducts = () => {
 	return (
-		<figure className='bg-yellow-700 h-screen w-screen '>
-			<section className=' flex justify-end h-8 p-2'>
-				<VscChromeClose />
-			</section>
-			<div className='bg-slate-400 h-36 flex justify-center '>
-				<div className='m-2'>
-					<p className=' mb-2'>Crear Producto</p>
+		<div className=' h-screen w-screen '>
+			<div className='flex justify-end h-10 p-4 md:p-6 md:pb-8'>
+				<button>
+					<VscChromeClose />
+				</button>
+			</div>
+			<div className='h-36 md:h-56 flex justify-center items-center'>
+				<div className='m-2 '>
+					<p className=' mb-2 pl-2 md:text-xl text-slate-700 font-semibold'>
+						Crear Producto
+					</p>
 					<img
-						src='../../imagen/bee.jpg'
-						className='w-24 h-24 bg-red-400'
+						src='https://i.imgur.com/Tgt6TjG.jpeg'
+						className='w-32 h-28 md:w-40 md:h-40'
 					></img>
 				</div>
 			</div>
-			<figcaption className='bg-red-300  h-fit p-4'>
-				<div className='m-2 md:m-4'>
-					<div className='w-42 md:w-32 md:h-10 pl-2  border-2 rounded-lg  text-center text-sm md:text-lg flex justify-start items-center'>
+			<div className='h-fit  p-4 mt-2'>
+				<div className='m-2 mb-4 md:m-4 '>
+					<p className='pb-2 md:pl-2 text-xs md:text-base text-slate'>
+						Ingrese el nombre del producto
+					</p>
+					<div className='w-42 h-8 md:w-68 md:h-10 pl-2  border-2 rounded-lg  text-center text-sm md:text-lg flex justify-start items-center'>
 						Nombre del Producto
 					</div>
 				</div>
 				<div className='flex justify-center'>
-					<div className='grid grid-cols-2 gap-x-40'>
+					<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2 '>
+								ingrese la cantidad
+							</p>
+							<TextBox />
+						</div>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>
+								seleccione la unidad
+							</p>
+							<TextScroll />
+						</div>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>ingrese el costo</p>
+							<TextBox />
+						</div>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>
+								costo total
+							</p>
+							<TextBox />
+						</div>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>ingrese el precio</p>
+							
 						<TextBox />
+						</div>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>alertar en esta cantidad</p>
+							
+						<TextBox />
+						</div>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>nombre Provedor</p>
+							
+						<TextBox />
+						</div>
+						<div className='flex flex-col'>
+							<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>categoria personalizada</p>
+							
 						<TextScroll />
-						<TextBox />
-						<TextBox />
-						<TextBox />
-						<TextBox />
-						<TextBox />
-						<TextScroll />
+						</div>
 					</div>
 				</div>
-				<div className='flex justify-between'>
-					<div className='m-2 md:m-4'>
-						<div className='w-24 md:w-32 md:h-10 border-2 rounded-lg text-sm md:text-lg flex justify-center items-center'>
+				<div className='flex justify-between mt-4'>
+					<button className='m-2 md:m-4 '>
+						<div className='w-28 h-8 md:w-48 md:h-10 border-2 rounded-lg font-semibold text-slate-600 text-sm md:text-lg flex justify-center items-center '>
 							Cargar Excel
 						</div>
-					</div>
-					<div className='m-2 md:m-4'>
-						<div className='w-20 md:w-32 md:h-10  border-2 rounded-lg  text-sm md:text-lg flex justify-center items-center'>
+					</button>
+					<button className='m-2 md:m-4'>
+						<div className='w-28 h-8 md:w-48 md:h-10  border-2 rounded-lg  text-sm font-semibold text-slate-600 md:text-lg flex justify-center items-center'>
 							Continuar
 						</div>
-					</div>
+					</button>
 				</div>
-			</figcaption>
-		</figure>
+			</div>
+		</div>
 	)
 }
 export default CreateProducts
