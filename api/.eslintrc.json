@@ -11,6 +11,8 @@
         "sourceType": "module"
     },
     "rules": {
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "linebreak-style": "off", // regla de saltos de linea, por defecto activa el error con el tipo unix o LF
+        "no-unused-vars": "warn"
     }
 }

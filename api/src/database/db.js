@@ -8,9 +8,11 @@ import {
   DB_USERNAME,
 } from '../config/config.js';
 
-// eslint-disable-next-line import/prefer-default-export
-export const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
+const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
   dialect: DB_DIALECT,
   host: DB_HOST,
   port: Number(DB_PORT),
+  logging: false,
 });
+
+export default sequelize;
