@@ -1,10 +1,11 @@
 import { VscChromeClose } from 'react-icons/vsc'
 import TextBox from '../textBox/TextBox'
 import TextScroll from '../textBox/TextScroll'
+import TextBobxLg from '../textBox/TextBoxLg'
 
 const CreateProducts = () => {
 	return (
-		<div className=' h-screen w-screen '>
+		<form className=' h-screen w-screen '>
 			<div className='flex justify-end h-10 p-4 md:p-6 md:pb-8'>
 				<button>
 					<VscChromeClose />
@@ -15,6 +16,7 @@ const CreateProducts = () => {
 					<p className=' mb-2 pl-2 md:text-xl text-slate-700 font-semibold'>
 						Crear Producto
 					</p>
+
 					<img
 						src='https://i.imgur.com/Tgt6TjG.jpeg'
 						className='w-32 h-28 md:w-40 md:h-40'
@@ -23,12 +25,11 @@ const CreateProducts = () => {
 			</div>
 			<div className='h-fit  p-4 mt-2'>
 				<div className='m-2 mb-4 md:m-4 '>
-					<p className='pb-2 md:pl-2 text-xs md:text-base text-slate'>
+					<p className='pb-0 md:pl-2 text-xs md:text-base text-slate'>
 						Ingrese el nombre del producto
 					</p>
-					<div className='w-42 h-8 md:w-68 md:h-10 pl-2  border-2 rounded-lg  text-center text-sm md:text-lg flex justify-start items-center'>
-						Nombre del Producto
-					</div>
+					<TextBobxLg />
+									
 				</div>
 				<div className='flex justify-center'>
 					<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
@@ -45,7 +46,9 @@ const CreateProducts = () => {
 							<TextScroll />
 						</div>
 						<div className='flex flex-col'>
-							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>ingrese el costo</p>
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>
+								ingrese el costo
+							</p>
 							<TextBox />
 						</div>
 						<div className='flex flex-col'>
@@ -55,24 +58,32 @@ const CreateProducts = () => {
 							<TextBox />
 						</div>
 						<div className='flex flex-col'>
-							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>ingrese el precio</p>
-							
-						<TextBox />
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>
+								ingrese el precio
+							</p>
+
+							<TextBox />
 						</div>
 						<div className='flex flex-col'>
-							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>alertar en esta cantidad</p>
-							
-						<TextBox />
+							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>
+								alertar en esta cantidad
+							</p>
+
+							<TextBox />
 						</div>
 						<div className='flex flex-col'>
-							<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>nombre Provedor</p>
-							
-						<TextBox />
+							<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>
+								nombre Provedor
+							</p>
+
+							<TextBox />
 						</div>
 						<div className='flex flex-col'>
-							<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>categoria personalizada</p>
-							
-						<TextScroll />
+							<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>
+								categoria personalizada
+							</p>
+
+							<TextScroll />
 						</div>
 					</div>
 				</div>
@@ -89,7 +100,7 @@ const CreateProducts = () => {
 					</button>
 				</div>
 			</div>
-		</div>
+		</form>
 	)
 }
 export default CreateProducts
