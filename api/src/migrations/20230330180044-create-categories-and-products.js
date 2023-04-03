@@ -25,6 +25,35 @@ module.exports = {
       }
     });
 
+    await queryInterface.createTable('Suppliers', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      supplier_name: {
+        type: Sequelize.STRING
+      },
+      contact_phone: {
+        type: Sequelize.STRING
+      },
+      contact_email: {
+        type: Sequelize.STRING
+      },
+      isAvailable: {
+        type: Sequelize.BOOLEAN
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+
     await queryInterface.createTable('Products', {
       id: {
         allowNull: false,
@@ -82,5 +111,6 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Categories');
     await queryInterface.dropTable('Products');
+    await queryInterface.dropTable('Suppliers');
   }
 };
