@@ -6,12 +6,20 @@ import { useState } from 'react'
 
 const CreateProducts = () => {
 	const [visible, setVisible] = useState(true)
+	const [form, setForm] = useState({})
+
+	const handleChange = e => {
+		setForm({
+			...form,
+			[e.target.name]: [e.target.value],
+		})
+	}
+
+
 	return (
 		<form className=' h-screen w-screen '>
 			<div className='flex justify-end h-10 p-4 md:p-6 md:pb-8'>
-				<button>
-					<VscChromeClose />
-				</button>
+				<VscChromeClose className='bg-slate-300 rounded-xl h-6 w-6 p-0.5' />
 			</div>
 			<div className='h-36 md:h-56 flex justify-center items-center'>
 				<div className='m-2 '>
@@ -30,7 +38,7 @@ const CreateProducts = () => {
 					<p className='pb-0 md:pl-2 text-xs md:text-base text-slate'>
 						Ingrese el nombre del producto
 					</p>
-					<TextBobxLg />
+					<TextBobxLg handleChange={handleChange()} />
 				</div>
 				<div className='flex justify-center'>
 					<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
@@ -44,7 +52,7 @@ const CreateProducts = () => {
 							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>
 								seleccione la unidad
 							</p>
-							<TextScroll />
+							<TextScroll handleChange={handleChange}/>
 						</div>
 						<div className='flex flex-col'>
 							<p className='text-xs md:text-base md:pl-4 text-slate-400 pl-2'>
@@ -94,15 +102,29 @@ const CreateProducts = () => {
 							Cargar Excel
 						</div>
 					</button>
-					<button onClick={() => setVisible(false)} className='m-2 md:m-4'>
+					<button
+						type='submit'
+						onClick={
+							() => setVisible(false)
+							// aca tambien debe ir el agregar producto a base datos de la peticion POST
+					
+						}
+						className='m-2 md:m-4'
+					>
 						<div className='w-28 h-8 md:w-48 md:h-10  border-2 rounded-lg  text-sm font-semibold text-slate-600 md:text-lg flex justify-center items-center'>
 							Continuar
 						</div>
 					</button>
 
 					{visible && (
-						<section id='modal' className='bg-acentoGrey fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '>
-							<div id='modal-container'className='bg-acento w-11/12 m-auto max-w-96 h-60 rounded-lg '>
+						<section
+							id='modal'
+							className='bg-acentoGrey fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
+						>
+							<div
+								id='modal-container'
+								className='bg-secundario75 w-11/12 m-auto max-w-96 h-60 rounded-lg '
+							>
 								<div className=' flex justify-end'>
 									<button className=' pr-2 pt-2'>
 										<svg
@@ -117,8 +139,11 @@ const CreateProducts = () => {
 										</svg>
 									</button>
 								</div>
-							
-								<p id="modal-paragraph" className=' py-12 px-10 text-center font-secundaria'>
+
+								<p
+									id='modal-paragraph'
+									className=' py-12 px-10 text-center font-secundaria text-primario75'
+								>
 									el producto ha sido cargado exitosamente
 								</p>
 							</div>
