@@ -1,12 +1,16 @@
-import Login from './components/Login'
-import Reports from './components/Reports'
+import './App.css'
+// import ChangeProducts from './components/changeProducts/changeProducts'
+import CreateProducts from './components/createProducts/CreateProducts'
+
 
 function App() {
 	return (
 		<div className='App text-center'>
-			{/* <Login /> */}
-			<Reports />
+		
+		
 		</div>
+
+	
 	)
 }
 
