@@ -29,23 +29,23 @@ module.exports = {
 				secundaria: ['DM Sans', 'sans-serif'],
 			},
 			spacing: {
-				33: "33px",
-				41:"41px",
-				42:"42px",
-				left418:"418px",
-				ww343:"343px",
-				h70:"70px"
+				33: '33px',
+				41: '41px',
+				42: '42px',
+				left418: '418px',
+				ww343: '343px',
+				h70: '70px',
 			},
 			fontSize: {
-				f40: "40px",
-				f32:"32px"
-				
+				f40: '40px',
+				f32: '32px',
 			},
 			lineHeight: {
-				l48:"48px",
-				l42:"42px"
-			}
+				l48: '48px',
+				l42: '42px',
+			},
 		},
 	},
+
 	plugins: [],
 }

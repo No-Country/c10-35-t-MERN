@@ -5,14 +5,12 @@ import CreateProducts from './components/createProducts/CreateProducts'
 
 function App() {
 	return (
-		<>
-	
-		<div className='App'>
-			<CreateProducts/>
-			{/* <ChangeProducts/> */}
+		<div className='App text-center'>
+		
+		
 		</div>
 
-		</>
+	
 	)
 }
 
