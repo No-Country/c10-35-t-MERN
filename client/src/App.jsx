@@ -1,11 +1,9 @@
-import './App.css'
+import Login from './components/Login'
 
 function App() {
 	return (
-		<div className='App'>
-			<h1 className='text-yellow-300'>www.stoker.com</h1>
-			<h2>Sitio en construcción</h2>
-			<p>Próximamente...</p>
+		<div className='App text-center'>
+			<Login />
 		</div>
 	)
 }
