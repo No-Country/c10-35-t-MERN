@@ -2,8 +2,10 @@ import { VscChromeClose } from 'react-icons/vsc'
 import TextBox from '../textBox/TextBox'
 import TextScroll from '../textBox/TextScroll'
 import TextBobxLg from '../textBox/TextBoxLg'
+import { useState } from 'react'
 
 const CreateProducts = () => {
+	const [visible, setVisible] = useState(true)
 	return (
 		<form className=' h-screen w-screen '>
 			<div className='flex justify-end h-10 p-4 md:p-6 md:pb-8'>
@@ -29,7 +31,6 @@ const CreateProducts = () => {
 						Ingrese el nombre del producto
 					</p>
 					<TextBobxLg />
-									
 				</div>
 				<div className='flex justify-center'>
 					<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
@@ -93,11 +94,37 @@ const CreateProducts = () => {
 							Cargar Excel
 						</div>
 					</button>
-					<button className='m-2 md:m-4'>
+					<button onClick={() => setVisible(false)} className='m-2 md:m-4'>
 						<div className='w-28 h-8 md:w-48 md:h-10  border-2 rounded-lg  text-sm font-semibold text-slate-600 md:text-lg flex justify-center items-center'>
 							Continuar
 						</div>
 					</button>
+
+					{visible && (
+						<section id='modal' className='bg-acentoGrey fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '>
+							<div id='modal-container'className='bg-acento w-11/12 m-auto max-w-96 h-60 rounded-lg '>
+								<div className=' flex justify-end'>
+									<button className=' pr-2 pt-2'>
+										<svg
+											onClick={() => setVisible(false)}
+											className='h-8 p-0 m-0 fill-grey-400'
+											xmlns='http://www.w3.org/2000/svg'
+											width='30'
+											height='30'
+											viewBox='0 0 24 24'
+										>
+											<path d='M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.424 13.364 12 17.606 7.758z' />
+										</svg>
+									</button>
+								</div>
+							
+								<p id="modal-paragraph" className=' py-12 px-10 text-center font-secundaria'>
+									el producto ha sido cargado exitosamente
+								</p>
+							</div>
+						</section>
+					)}
+					{!visible && null}
 				</div>
 			</div>
 		</form>

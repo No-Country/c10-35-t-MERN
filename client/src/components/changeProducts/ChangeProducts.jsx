@@ -3,6 +3,9 @@ import TextBobxLg from "../textBox/TextBoxLg"
 import TextBox from "../textBox/TextBox"
 import TextScroll from "../textBox/TextScroll"
 
+
+
+
 const ChangeProducts=()=>{
     return(
 <form className=' h-screen w-screen '>
@@ -28,7 +31,7 @@ const ChangeProducts=()=>{
 					<p className='pb-0 md:pl-2 text-xs md:text-base text-slate'>
 						Ingrese el nombre del producto
 					</p>
-					<TextBobxLg/>
+					<TextBobxLg />
 									
 				</div>
 				<div className='flex justify-center'>
