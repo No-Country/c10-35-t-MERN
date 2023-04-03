@@ -1,8 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+export default (sequelize, DataTypes) => {
   class Product_Details extends Model {
     /**
      * Helper method for defining associations.
@@ -22,13 +20,41 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Product_Details.init({
-    id: DataTypes.INTEGER,
-    brandId: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER,
-    expirationDate: DataTypes.DATE,
-    isAvailable: DataTypes.BOOLEAN,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    brandId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'brandId',
+      references: {
+        model: 'Brand',
+        key: 'id'
+      }
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'productId',
+      references: {
+        model: 'Products',
+        key: 'id'
+      }
+    },
+    expirationDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    isAvailable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    }
   }, {
     sequelize,
     modelName: 'Product_Details',

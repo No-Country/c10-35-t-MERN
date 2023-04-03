@@ -9,11 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       productId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'productId',
+        references: {
+          model: 'Products',
+          key: 'id'
+        }
       },
       quantity: {
         type: Sequelize.INTEGER
@@ -29,12 +31,6 @@ module.exports = {
       },
       isAvailable: {
         type: Sequelize.BOOLEAN
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

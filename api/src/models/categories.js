@@ -1,8 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+export default (sequelize, DataTypes) => {
   class Categories extends Model {
     /**
      * Helper method for defining associations.
@@ -18,14 +16,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Categories.init({
-    id: DataTypes.INTEGER,
-    category_name: DataTypes.STRING,
-    isAvailable: DataTypes.BOOLEAN,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    category_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    isAvailable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    }
   }, {
     sequelize,
     modelName: 'Categories',
+    tableName: 'Categories',
   });
   return Categories;
 };

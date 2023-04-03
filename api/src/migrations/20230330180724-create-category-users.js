@@ -9,23 +9,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'userId',
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       categoryId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'categoryId',
+        references: {
+          model: 'Categories',
+          key: 'id'
+        }
       },
       isAvailable: {
         type: Sequelize.BOOLEAN
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

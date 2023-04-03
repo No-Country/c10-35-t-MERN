@@ -9,20 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       order_date: {
         type: Sequelize.DATE
       },
       isAvailable: {
         type: Sequelize.BOOLEAN
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

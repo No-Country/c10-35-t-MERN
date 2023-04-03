@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       supplier_name: {
         type: Sequelize.STRING
       },
@@ -23,12 +20,6 @@ module.exports = {
       },
       isAvailable: {
         type: Sequelize.BOOLEAN
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

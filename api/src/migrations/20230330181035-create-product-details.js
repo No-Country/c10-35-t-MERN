@@ -9,26 +9,27 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       brandId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'brandId',
+        references: {
+          model: 'Brands',
+          key: 'id'
+        }
       },
       productId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'productId',
+        references: {
+          model: 'Products',
+          key: 'id'
+        }
       },
       expirationDate: {
         type: Sequelize.DATE
       },
       isAvailable: {
         type: Sequelize.BOOLEAN
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

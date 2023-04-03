@@ -1,8 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+export default (sequelize, DataTypes) => {
   class Orders extends Model {
     /**
      * Helper method for defining associations.
@@ -18,11 +16,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Orders.init({
-    id: DataTypes.INTEGER,
-    order_date: DataTypes.DATE,
-    isAvailable: DataTypes.BOOLEAN,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    order_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    isAvailable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    }
   }, {
     sequelize,
     modelName: 'Orders',

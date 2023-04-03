@@ -1,8 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+export default (sequelize, DataTypes) => {
   class Tokens extends Model {
     /**
      * Helper method for defining associations.
@@ -18,13 +16,35 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Tokens.init({
-    id: DataTypes.INTEGER,
-    token: DataTypes.STRING,
-    expiratedAt: DataTypes.DATE,
-    userId: DataTypes.INTEGER,
-    isAvailable: DataTypes.BOOLEAN,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    token: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    expiratedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'userId',
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
+    },
+    isAvailable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    }
   }, {
     sequelize,
     modelName: 'Tokens',
