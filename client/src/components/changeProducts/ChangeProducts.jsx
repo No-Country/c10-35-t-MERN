@@ -1,7 +1,7 @@
 import { VscChromeClose } from "react-icons/vsc"
-import TextBobxLg from "../textBox/TextBoxLg"
-import TextBox from "../textBox/TextBox"
-import TextScroll from "../textBox/TextScroll"
+import TextBobxLg from "../TextBox/TextBoxLg"
+import TextBox from "../TextBox/TextBox"
+import TextScroll from "../TextBox/TextScroll"
 
 
 

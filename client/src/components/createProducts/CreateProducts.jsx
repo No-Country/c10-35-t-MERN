@@ -1,7 +1,7 @@
 import { VscChromeClose } from 'react-icons/vsc'
-import TextBox from '../textBox/TextBox'
-import TextScroll from '../textBox/TextScroll'
-import TextBobxLg from '../textBox/TextBoxLg'
+import TextBox from '../TextBox/TextBox'
+import TextScroll from '../TextBox/TextScroll'
+import TextBobxLg from '../TextBox/TextBoxLg'
 import { useState } from 'react'
 
 const CreateProducts = () => {
