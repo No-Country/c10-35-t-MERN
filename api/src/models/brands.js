@@ -1,7 +1,7 @@
 'use strict';
-import { Model } from 'sequelize';
-export default (sequelize, DataTypes) => {
-  class Brand extends Model {
+const { Model } = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Brands extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,13 +9,13 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Brand.hasMany(models.Products, {
+      Brands.hasMany(models.Products, {
         foreignKey: 'brandId',
         as: 'products'
       })
     }
   }
-  Brand.init({
+  Brands.init({
     brand_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -34,8 +34,8 @@ export default (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Brand',
-    tableName: 'Brand',
+    modelName: 'Brands',
+    tableName: 'Brands',
   });
-  return Brand;
+  return Brands;
 };

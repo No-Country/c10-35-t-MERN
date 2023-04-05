@@ -1,6 +1,6 @@
 'use strict';
-import { Model } from 'sequelize';
-export default (sequelize, DataTypes) => {
+const { Model } = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
   class Product_Details extends Model {
     /**
      * Helper method for defining associations.
@@ -13,7 +13,7 @@ export default (sequelize, DataTypes) => {
         foreignKey: 'productId',
         as: 'product'
       })
-      Product_Details.belongsTo(models.Brand, {
+      Product_Details.belongsTo(models.Brands, {
         foreignKey: 'brandId',
         as: 'brand'
       })
