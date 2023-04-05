@@ -23,7 +23,7 @@ module.exports = {
 				errors: '#EC3838',
 				acierto: '#58DB84',
 				tituloh1: '',
-				label: '#8F8F8F',
+				label: '#DADADA',
 			},
 			fontFamily: {
 				primaria: ['Bebas Neue', 'cursive'],
