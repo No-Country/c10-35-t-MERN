@@ -1,5 +1,5 @@
 const Brand = require('../models/index').Brands;
-const AppError = require('../utils/errors');
+const { AppError } = require('../utils/errors');
 
 const create = async (brand) => {
   if (!brand.brand_name) {
