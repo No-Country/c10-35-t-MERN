@@ -1,136 +1,63 @@
-const db = require("../models/index");
-const Brand = db.Brands;
-const Users = db.Users
+const service = require('../services/brands.service');
+const { errorHandler } = require('../utils/errors');
 
 // Create and Save a new Brand
-
-exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.name) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
+exports.create = async (req, res) => {
+  try {
+    return res.status(201).json(await service.create(req.body));
+  } catch (error) {
+    errorHandler(error, res);
   }
-
-  // Create a Brand
-  const brand = {
-    name: req.body.name,
-    description: req.body.description,
-    isAvailable: req.body.isAvailable ? req.body.isAvailable : false,
-  };
-
-  // Save Brand in the database
-  Brand.create(brand)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while creating the Brand.",
-      });
-    });
 };
 
 // Retrieve all Brands from the database.
-exports.findAll = (req, res) => {
-  const name = req.query.name;
-  var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
-
-  Brand.findAll({ where: condition })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving brands.",
-      });
-    });
+exports.findAll = async (req, res) => {
+  try {
+    return res.json(await service.getAll(req.query.name));
+  } catch (error) {
+    errorHandler(error, res);
+  }
 };
 
-exports.findOne = (req, res) => {
-    const id = req.params.id;
-    
-    Brand.findByPk(id)
-        .then((data) => {
-        res.send(data);
-        })
-        .catch((err) => {
-        res.status(500).send({
-            message: "Error retrieving Brand with id=" + id,
-        });
-        });
+exports.findById = async (req, res) => {
+  try {
+    return res.json(await service.get(Number(req.params.id)));
+  } catch (error) {
+    errorHandler(error, res);
+  }
 };
 
-exports.update = (req, res) => {
-    const id = req.params.id;
-    
-    Brand.update(req.body, {
-        where: { id: id },
-    })
-        .then((num) => {
-        if (num == 1) {
-            res.send({
-            message: "Brand was updated successfully.",
-            });
-        } else {
-            res.send({
-            message: `Cannot update Brand with id=${id}. Maybe Brand was not found or req.body is empty!`,
-            });
-        }
-        })
-        .catch((err) => {
-        res.status(500).send({
-            message: "Error updating Brand with id=" + id,
-        });
-        });
+exports.update = async (req, res) => {
+  try {
+    return res.json(await service.update(Number(req.params.id), req.body));
+  } catch (error) {
+    errorHandler(error, res);
+  }
 };
 
+exports.delete = async (req, res) => {
+  try {
+    return res.json(await service.remove(Number(req.params.id)));
+  } catch (error) {
+    errorHandler(error, res);
+  }
+};
 
-exports.delete = (req, res) => {
-    const id = req.params.id;
-    
-    Brand.update(
-{
-    isAvailable: false,
-    updatedAt: new Date(),
-}    ,
-    {
-        where: { id: id },
-    })
-        .then((num) => {
-        if (num == 1) {
-            res.send({
-            message: "Brand was deleted successfully!",
-            });
-        } else {
-            res.send({
-            message: `Cannot delete Brand with id=${id}. Maybe Brand was not found!`,
-            });
-        }
-        })
-        .catch((err) => {
-        res.status(500).send({
-            message: "Could not delete Brand with id=" + id,
-        });
-        });
-};  
-
-exports.register = ( async (req,res)=>{
-  const {user}=req.body
+exports.register = async (req, res) => {
+  const { user } = req.body;
   // console.log(user)
   const userNew = await Users.create({
     full_name: user,
     email: 'pablo@mail.com',
-    password_hash: 'dasdasbdiu', 
+    password_hash: 'dasdasbdiu',
     isAvailable: true,
-    createdAt: new Date() ,
-    updatedAt: new Date(), 
+    createdAt: new Date(),
+    updatedAt: new Date(),
   });
 
-  res.send(userNew)
-})
+  res.send(userNew);
+};
 
-exports.login = ((req,res)=>{
-  res.send('Login Route')
-})
+exports.login = (req, res) => {
+  res.send('Login Route');
+};
