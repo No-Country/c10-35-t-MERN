@@ -11,31 +11,27 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Brands.hasMany(models.Products, {
         foreignKey: 'brandId',
-        as: 'products'
-      })
+        as: 'products',
+      });
     }
   }
-  Brands.init({
-    brand_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  Brands.init(
+    {
+      brand_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isAvailable: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
     },
-    isAvailable: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
+    {
+      sequelize,
+      timestamps: true,
+      modelName: 'Brands',
+      tableName: 'Brands',
     }
-  }, {
-    sequelize,
-    modelName: 'Brands',
-    tableName: 'Brands',
-  });
+  );
   return Brands;
 };

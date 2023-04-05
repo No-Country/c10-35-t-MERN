@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const brandRoute = require('./routes/brands');
-const { PORT } = require('./config/config');
+const brandRoute = require('./routes/brands.routes');
+const { PORT, API_PATH } = require('./config/config');
 
 const app = express();
 
@@ -17,6 +17,6 @@ app.use(
 );
 
 // Mount routers
-app.use('/api/v1/brands', brandRoute);
+app.use(`${API_PATH}/brands`, brandRoute);
 
 module.exports = app;
