@@ -5,10 +5,11 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout'
 import Dashboard from './components/Dashboard/Dashboard'
+import { Inventary } from './pages/inventary'
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Layout />,
+		element: <Inventary />,
 		children:[
 			{
 				path:'/dashboard',
