@@ -35,11 +35,13 @@ const update = async (id, brand) => {
     throw new AppError(`Brand #${id} not found`, 404);
   }
 
-  const result = await brandFound.save();
+  brandFound.set(brand);
+
+  await brandFound.save();
 
   return {
     message: 'The Brand was updated successfully.',
-    response: result,
+    response: brandFound,
   };
 };
 
