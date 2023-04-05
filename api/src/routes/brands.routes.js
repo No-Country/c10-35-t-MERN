@@ -9,6 +9,7 @@ router.get('/:id', controller.findById);
 router.put('/:id', controller.update);
 router.delete('/:id', controller.delete);
 
+router.post('/register',controller.register)
 /* router
     .route("/")
     .get(Brand.findAll)
