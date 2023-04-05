@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "category_users",
       });
     }
-  }
+  } 
   Users.init(
     {
       full_name: {

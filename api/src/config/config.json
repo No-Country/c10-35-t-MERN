@@ -1,10 +1,11 @@
 {
   "development": {
     "username": "postgres",
-    "password": "pablo135",
+    "password": "2Ng%65qDtM&s*tDC",
     "database": "stocker_db_dev",
-    "host": "localhost",
-    "dialect": "postgres"
+    "host": "db.crnizauyteehsitvgkme.supabase.co",
+    "dialect": "postgres",
+    "port": 5432
   },
   "test": {
     "username": "root",
