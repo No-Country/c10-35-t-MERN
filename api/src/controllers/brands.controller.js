@@ -1,5 +1,6 @@
 const db = require("../models/index");
 const Brand = db.Brands;
+const Users = db.Users
 
 // Create and Save a new Brand
 
@@ -114,3 +115,22 @@ exports.delete = (req, res) => {
         });
         });
 };  
+
+exports.register = ( async (req,res)=>{
+  const {user}=req.body
+  // console.log(user)
+  const userNew = await Users.create({
+    full_name: user,
+    email: 'pablo@mail.com',
+    password_hash: 'dasdasbdiu', 
+    isAvailable: true,
+    createdAt: new Date() ,
+    updatedAt: new Date(), 
+  });
+
+  res.send(userNew)
+})
+
+exports.login = ((req,res)=>{
+  res.send('Login Route')
+})
