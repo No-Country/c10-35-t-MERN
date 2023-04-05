@@ -7,7 +7,7 @@ class AppError extends Error {
 
 function errorHandler(error, res) {
   if (error instanceof AppError) {
-    return res.status(error.code).json({ message: error.message });
+    return res.status(error.codeStatus).json({ message: error.message });
   }
 
   return res.status(500).json({ error: error.message });
