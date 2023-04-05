@@ -6,10 +6,7 @@ const create = async (brand) => {
     throw new AppError('Content can not be empty!', 400);
   }
 
-  const newBrand = { ...brand };
-  newBrand.isAvailable = brand.isAvailable ? brand.isAvailable : false;
-
-  return await Brand.create(newBrand);
+  return await Brand.create(brand);
 };
 
 const getAll = async (name) => {
