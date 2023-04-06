@@ -1,5 +1,5 @@
 import Login from './components/Login'
-import Reports from './components/Reports'
+import Reports from './components/Reports/Reports'
 import { Route, Routes } from 'react-router'
 
 function App() {
