@@ -20,10 +20,10 @@ const categories = [
 
 export const Inventary = () => {
 	return (
-		<div className='flex flex-col bg-orange-400 w-full'>
+		<div className='flex flex-col w-full'>
 			<h2>Categorías</h2>
             
-			<div className='flex'>
+			<div className='flex w-full'>
 				{categories.map(category => {
 					return (
 						<CategoryCard
@@ -34,10 +34,16 @@ export const Inventary = () => {
 					)
 				})}
 			</div>
-            <h2 className='w-full'>Lista de productos</h2>
-            <div>
+
+			<div className='w-full'>
+				<h2 className='w-full'>Lista de productos</h2>
+			</div>
+
+            
+            <div className='w-full'>
                 <ProductStockCard />
             </div>
+			
 
 		</div>
 	)

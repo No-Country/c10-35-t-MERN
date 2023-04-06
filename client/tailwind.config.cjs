@@ -19,6 +19,7 @@ module.exports = {
 				acentoBlue: '#469ED8',
 				acentoBlu75: 'rgba(70, 158, 216, 0.75)',
 				acentroBlue50: 'rgba(70, 158, 216, 0.5)',
+				blueCard: 'rgba(56, 88, 164, 1)',
 				acentoGrey: '#DADADA',
 				errors: '#EC3838',
 				acierto: '#58DB84',
