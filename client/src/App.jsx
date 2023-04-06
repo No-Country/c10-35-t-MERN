@@ -1,11 +1,14 @@
-import Login from './components/Login'
-import Reports from './components/Reports/Reports'
 import { Route, Routes } from 'react-router'
+import Login from './components/Login/Login'
+import Reports from './components/Reports/Reports'
 
 function App() {
 	return (
 		<div className='App text-center'>
 			<Routes>
+				<Route path='/' element={<Login />} />
+				<Route path='/reportes' element={<Reports />} />
+
 				<Route path='/*' element={<h1>not found</h1>} />
 				<Route path='/' element={<h1>Home</h1>} />
 				<Route path='/' element={<h1>home</h1>} />
