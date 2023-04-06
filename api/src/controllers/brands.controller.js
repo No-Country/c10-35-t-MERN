@@ -1,10 +1,5 @@
 const service = require('../services/brands.service');
-const { errorHandler, AppError } = require('../utils/errors');
-
-const bcrypt = require('bcrypt');
-
-
-
+const { errorHandler } = require('../utils/errors');
 
 // Create and Save a new Brand
 exports.create = async (req, res) => {
@@ -46,35 +41,6 @@ exports.delete = async (req, res) => {
   } catch (error) {
     errorHandler(error, res);
   }
-};
-
-exports.register = async (req, res) => {
-  const { full_name, email, password, repeatedPassword } = req.body;  
-  // validaciones
-  if(!full_name || !email || !password || !repeatedPassword){
-    throw new AppError( 'Mandatory data is missing', 400);
-  }
-  if (password !== repeatedPassword){
-    throw new AppError('Passwords do not match', 400);
-  }
-  // hash password
-    let password_hash = await bcrypt.hash(password, 8);
-  
-  // Creamos el usuario
-  try {
-     // const userNew = await Users.create({
-  //   full_name: full_name,
-  //   email: email,
-  //   password_hash: password_hash,
-  // });
-  res.status(201).json('User successfully created');
-  } catch (error) {
-    // console.log(error)
-    res.status(400).json(error)
-  }  
- 
-
-  
 };
 
 exports.login = (req, res) => {

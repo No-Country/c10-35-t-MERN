@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     password_hash: {
       type: DataTypes.STRING,
@@ -34,18 +35,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     isAvailable: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
+      defaultValue: true
     }
+    //,
+    // rol:{
+    //   type: DataTypes.ENUM('ADMIN', 'EMPLOYEE'),
+    //   defaultValue: 'ADMIN'
+    // }
   }, {
     sequelize,
+    timestamps: true,
     modelName: 'Users',
   });
   return Users;
