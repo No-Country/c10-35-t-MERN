@@ -1,15 +1,16 @@
+import { GrGoogle, GrFacebook } from 'react-icons/gr'
 function Login() {
 	return (
-		<section className='flex flex-col h-screen'>
-			<h1 className='text-slate-400'>www.stoker.com</h1>
-			<h1>Inicia sesión</h1>
-
+		<section className='flex flex-col h-screen py-7 text-center '>
+			<p className='font-secundaria font-normal'>Bienvenidos a</p>
+			<h1>STOKER</h1>
+			<h6>Inicia sesión</h6>
 			<form
 				action=''
-				className='flex flex-col items-center w-full h-full gap-y-2'
+				className=' flex flex-col items-center w-full h-full gap-y-2'
 			>
 				<div className='flex flex-col  w-4/5 justify-between gap-y-1'>
-					<label htmlFor='user' className='text-left text-xs text-slate-400'>
+					<label htmlFor='user' className='text-left text-xs'>
 						Usuario:
 					</label>
 					<input
@@ -20,10 +21,7 @@ function Login() {
 					/>
 				</div>
 				<div className='flex flex-col w-4/5 justify-between gap-y-1'>
-					<label
-						htmlFor='password'
-						className='text-left text-xs text-slate-400'
-					>
+					<label htmlFor='password' className='text-left text-xs'>
 						Contraseña:
 					</label>
 					<input
@@ -33,18 +31,21 @@ function Login() {
 						placeholder='Ingrese contraseña'
 					/>
 				</div>
-				<div className=' mt-auto w-4/5 relative before:block before:h-1 before:w-14  before:absolute before:-inset-1 before:mt-auto before:mb-auto before:ml-auto before:bg-secondary after:block after:h-1 after:w-14  after:absolute after:-inset-1 after:mt-auto after:mb-auto after:mr-auto after:bg-secondary'>
-					<h3>O ingresa con</h3>
+				<div className='flex h-32 justify-center text-center mt-auto w-4/5 relative border-t-2 gap-4'>
+					<p className='text-f12 bg-white absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-2'>
+						O ingresa con
+					</p>
+					<GrFacebook className='mt-6 text-label text-3xl' />
+					<GrGoogle className='mt-6 text-label text-3xl' />
 				</div>
-
 				<input
 					type='submit'
 					name=''
 					id='submit'
-					value='Login'
-					className='bg-secondary w-4/5 font-bold'
+					value='Iniciar sesión'
+					className='bg-gray-300 py-3 rounded-xl w-4/5 font-bold'
 				/>
-				<p className=''>¿Aún no tienes cuenta?</p>
+				<p className='text-f12'>¿Aún no tienes cuenta?</p>
 			</form>
 		</section>
 	)

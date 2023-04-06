@@ -24,6 +24,7 @@ module.exports = {
 				errors: '#EC3838',
 				acierto: '#58DB84',
 				tituloh1: '',
+				label: '#8F8F8F',
 			},
 			fontFamily: {
 				primaria: ['Bebas Neue', 'cursive'],
@@ -40,18 +41,20 @@ module.exports = {
 			fontSize: {
 				f40: '40px',
 				f32: '32px',
-				f8: '8px'
+				f16: '16px',
+				f12: '12px',
+				f8: '8px',
 			},
 			lineHeight: {
 				l48: '48px',
 				l42: '42px',
 			},
 			width: {
-				w343: '343px'
+				w343: '343px',
 			},
 			height: {
-				h72: '72px'
-			}
+				h72: '72px',
+			},
 		},
 	},
 

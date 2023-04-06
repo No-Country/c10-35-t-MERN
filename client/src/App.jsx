@@ -1,10 +1,9 @@
-import CreateProducts from './components/CreateProducts/CreateProducts'
-// import ListRoutes from './components/Routes/ListRoutes'
-
+import Login from './components/Login'
+import Reports from './components/Reports'
+import { Route, Routes } from 'react-router'
 
 function App() {
 	return (
-<<<<<<< HEAD
 		<div className='App text-center'>
 			<Routes>
 				<Route path='/*' element={<h1>not found</h1>} />
@@ -24,16 +23,7 @@ function App() {
 				<Route path='/logout' element={<h1>Cerrar sesión</h1>} />
 				<Route path='/Ingreso' element={<h1>Cerrar sesión</h1>} />
 			</Routes>
-=======
-		<>
-		<div >
-			
-	
-		<CreateProducts/>
-      
->>>>>>> 967207f2d7da72cf75de9ff669f371d6962ad5f3
 		</div>
-		</>
 	)
 }
 
