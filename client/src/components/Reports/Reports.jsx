@@ -1,13 +1,14 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import BarChart from './BarChart'
 import CakeChart from './CakeChart'
-// import CakeChart from './CakeChart';
 import CircleChart from './CircleChart'
+import NavBar from '../NavBar/NavBar'
 
 function Reports({ charData }) {
 	return (
 		<>
-			{/* <NavBar navBarTile='Reportes' /> */}
+			<NavBar navBarTile='Reportes' />
 			<div className='flex flex-col justify-center items-center w-full py-5 '>
 				<div className='flex flex-col px-4 py-3 rounded-lg border-solid border-2 border-secondary mw-32 mb-5 text-center'>
 					<h3 className='font-bold '>Stock total</h3>
