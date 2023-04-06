@@ -1,7 +1,9 @@
 const User = require('../models/index').Users;
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
 const { AppError } = require('../utils/errors');
+
+const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || 'stocker_3ko1osja';
 
 const register = async (user) => {
   const { full_name, email, password, repeatedPassword } = user;
@@ -24,7 +26,32 @@ const register = async (user) => {
 const findAll = async () => {
   return await User.findAll();
 };
+
+const login = async (user) => {
+  const { email, password } = user;
+  if (!email || !password) {
+    throw new AppError('Email and password are required', 400);
+  }
+  const userFound = await User.findOne({ where: { email } });
+  if (!userFound) {
+    throw new AppError('The user is not registered', 400);
+  }
+  const isPasswordValid = await bcrypt.compare(
+    password,
+    userFound.password_hash
+  );
+  if (!isPasswordValid) {
+    throw new AppError('Incorrect credentials', 400);
+  }
+  const accessToken = jwt.sign({ userId: user.id }, accessTokenSecret, {
+    expiresIn: '15m',
+  });
+
+  return { token: accessToken };
+};
+
 module.exports = {
   register,
   findAll,
+  login,
 };

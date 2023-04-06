@@ -17,7 +17,14 @@ const getAll = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {};
+const login = async (req, res) => {
+  try {
+    return res.status(200).json(await service.login(req.body));
+  } catch (error) {
+    console.log(error);
+    errorHandler(error, res);
+  }
+};
 module.exports = {
   register,
   getAll,
