@@ -2,18 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap'); */
-
 h1 {
-	@apply font-primaria w-33 h-12 not-italic font-normal text-f40 leading-l48 
+	@apply font-primaria text-4xl not-italic font-normal text-f40 leading-l48 
+	/* @apply font-primaria w-33 h-12 not-italic font-normal text-f40 leading-l48  */
 
 	/* absolute left-left418 top-32 */
 	/* left: 418px;
        top: 128px; */;
 }
 h2 {
-	@apply font-secundaria w-41 h-42 not-italic font-bold text-f32  leading-l42 
+	@apply font-secundaria text-2xl not-italic font-bold text-f32 leading-l42 
+	/* @apply font-secundaria w-41 h-42 not-italic font-bold text-f32 leading-l42  */
 	/* absolute left-left418 top-48 */
 
 /* left: 418px;
@@ -21,23 +20,39 @@ top: 192px; */;
 }
 
 h3 {
-	@apply font-secundaria w-42 h-42 not-italic font-bold text-f32 leading-l42 
+	@apply font-secundaria text-xl not-italic font-bold leading-l42 
+	/* @apply font-secundaria w-42 h-42 not-italic font-bold text-f32 leading-l42  */
 
 	/* absolute left-left418 top-64 */
 	/* left: 418px;
-       top: 256px; */
-
-	
+       top: 256px; */;
 }
-h4{
-	@apply font-secundaria w-11 h-42 not-italic font-bold text-f32 leading-l42
+h4 {
+	@apply font-secundaria text-base not-italic font-bold text-f32 leading-l42
+	/* @apply font-secundaria w-11 h-42 not-italic font-bold text-f32 leading-l42 */
 
 	 /* absolute left-left418 top-80 */
 
 		/* left: 418px;
-	top: 320px; */
-
+	top: 320px; */;
+}
+p {
+	@apply font-secundaria;
 }
 
 /* left: 418px;
 top: 256px; */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='tel'] {
+	border: 1px solid #000000;
+	padding: 6px;
+	border-radius: 12px;
+}
+label {
+	@apply text-label;
+}
+input::placeholder {
+	@apply text-label;
+}
