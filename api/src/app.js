@@ -1,17 +1,23 @@
-import express from 'express';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import morgan from 'morgan';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const appRoutes = require('./routes/app.routes');
 
-import { PORT } from './config/config.js';
-import router from './routes/index.js';
+const { PORT, API_PATH } = require('./config/config');
 
 const app = express();
 
-app.set('port', PORT);
+app.set('port', Number(PORT));
 
 app.use(morgan('dev'));
 app.use(cors());
-app.use('/', router);
+app.use(
+  express.json({
+    limit: '20mb',
+  })
+);
 
-export default app;
+// Mount routers
+app.use(`${API_PATH}`, appRoutes);
+
+module.exports = app;
