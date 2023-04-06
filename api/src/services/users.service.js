@@ -20,7 +20,15 @@ const register = async (user) => {
   // agregar verificacion que el email sea en formato email
   const password_hash = await bcrypt.hash(password, 8);
   user.password_hash = password_hash;
-  return await User.create(user);
+  const userCreated = await User.create(user);
+  return [
+    { message: 'User successfully created' },
+    {
+      id: userCreated.id,
+      full_name: userCreated.full_name,
+      email: userCreated.email,
+    },
+  ];
 };
 
 const findAll = async () => {
