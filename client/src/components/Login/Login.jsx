@@ -35,12 +35,8 @@ function Login() {
 					<p className='text-f12 bg-white absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-2'>
 						O ingresa con
 					</p>
-					{/* <div> */}
 					<GrFacebook className='mt-6 text-label text-3xl' />
 					<GrGoogle className='mt-6 text-label text-3xl' />
-					{/* <div></div>
-						<div></div> */}
-					{/* </div> */}
 				</div>
 				<input
 					type='submit'
