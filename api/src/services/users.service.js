@@ -3,6 +3,12 @@ const bcrypt = require('bcrypt');
 
 const { AppError } = require('../utils/errors');
 
+const validateEmail = (email) => {
+  const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  console.log(re.test(email));
+  return re.test(email);
+};
+
 const register = async (user) => {
   const { full_name, email, password, repeatedPassword } = user;
   if (!full_name || !email || !password || !repeatedPassword) {
@@ -16,6 +22,9 @@ const register = async (user) => {
     throw new AppError('Passwords do not match', 400);
   }
   // agregar verificacion que el email sea en formato email
+  if (!validateEmail(email)) {
+    throw new AppError('Email is not valid', 400);
+  } 
   const password_hash = await bcrypt.hash(password, 8);
   user.password_hash = password_hash;
   return await User.create(user);
