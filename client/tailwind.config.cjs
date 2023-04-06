@@ -16,9 +16,10 @@ module.exports = {
 				acentoLB: '#41BEDC',
 				acentoLB75: 'rgba(65, 190, 220, 0.75)',
 				acentoLB50: 'rgba(65, 190, 220, 0.5)',
-				acentoBlue: '#469ED8',
+				acentoBlue: '#3858A4',
 				acentoBlu75: 'rgba(70, 158, 216, 0.75)',
 				acentroBlue50: 'rgba(70, 158, 216, 0.5)',
+				blueCard: 'rgba(56, 88, 164, 1)',
 				acentoGrey: '#DADADA',
 				errors: '#EC3838',
 				acierto: '#58DB84',
@@ -39,11 +40,18 @@ module.exports = {
 			fontSize: {
 				f40: '40px',
 				f32: '32px',
+				f8: '8px'
 			},
 			lineHeight: {
 				l48: '48px',
 				l42: '42px',
 			},
+			width: {
+				w343: '343px'
+			},
+			height: {
+				h72: '72px'
+			}
 		},
 	},
 
