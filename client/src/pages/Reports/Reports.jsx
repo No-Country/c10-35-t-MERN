@@ -3,7 +3,7 @@
 import BarChart from './BarChart'
 import CakeChart from './CakeChart'
 import CircleChart from './CircleChart'
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../../components/NavBar/NavBar'
 
 function Reports({ charData }) {
 	return (
