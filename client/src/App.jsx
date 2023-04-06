@@ -21,6 +21,7 @@ function App() {
 				<Route path='/configuracion' element={<h1>configuración</h1>} />
 				<Route path='/detalles' element={<h1>detalles</h1>} />
 				<Route path='/logout' element={<h1>Cerrar sesión</h1>} />
+				<Route path='/Ingreso' element={<h1>Cerrar sesión</h1>} />
 			</Routes>
 		</div>
 	)
