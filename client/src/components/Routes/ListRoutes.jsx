@@ -1,12 +1,12 @@
 import React from 'react'
-import { Router, Routes, Route } from 'react-router'
-import CreateProducts from '../CreateProducts/CreateProducts'
+import { Routes, Route } from 'react-router'
+import CreateProducts from '../../pages/CreateProducts/CreateProducts'
 
 const ListRoutes = () => {
 	return (
 		<>
 			<div>
-				<Router>
+				
 					<Routes>
 						<Route path='/*' element={<h1>not found</h1>} />
 						<Route path='/' element={<h1>home</h1>} />
@@ -23,7 +23,7 @@ const ListRoutes = () => {
 						<Route path='/detalles' element={<h1>detalles</h1>} />
 						<Route path='/logout' element={<h1>Cerrar sesión</h1>} />
 					</Routes>
-				</Router>
+				
 			</div>
 		</>
 	)

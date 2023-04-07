@@ -1,7 +1,7 @@
 import React from 'react'
-import { CategoryCard } from '../components/CategoryCard/CategoryCard'
-import { ProductStockCard } from '../components/ProductStockCard/ProductStockCard'
-import TextBobxLg from '../components/textBox/TextBoxLg'
+import { CategoryCard } from '../../components/CategoryCard/CategoryCard'
+import { ProductStockCard } from '../../components/ProductStockCard/ProductStockCard'
+// import TextBobxLg from '../../components/TextBox/TextBoxLg'
 
 const categories = [
 	{
@@ -22,11 +22,12 @@ export const Inventary = () => {
 	return (
 		<div className='flex flex-col w-full'>
 			<h2>Categorías</h2>
-            
+
 			<div className='flex w-full'>
 				{categories.map(category => {
 					return (
 						<CategoryCard
+							key={category.id}
 							title={category.title}
 							price={category.price}
 							stock={category.stock}
@@ -39,12 +40,9 @@ export const Inventary = () => {
 				<h2 className='w-full'>Lista de productos</h2>
 			</div>
 
-            
-            <div className='w-full'>
-                <ProductStockCard />
-            </div>
-			
-
+			<div className='w-full'>
+				<ProductStockCard />
+			</div>
 		</div>
 	)
 }
