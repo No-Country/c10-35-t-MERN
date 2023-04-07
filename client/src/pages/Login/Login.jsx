@@ -1,5 +1,10 @@
 import { GrGoogle, GrFacebook } from 'react-icons/gr'
+import { useNavigate } from 'react-router'
 function Login() {
+	const navigate = useNavigate()
+	const handleSubmit = () => {
+		navigate('/dashboard')
+	}
 	return (
 		<section className='flex flex-col h-screen py-7 text-center '>
 			<p className='font-secundaria font-normal'>Bienvenidos a</p>
@@ -43,6 +48,7 @@ function Login() {
 					name=''
 					id='submit'
 					value='Iniciar sesión'
+					onClick={handleSubmit}
 					className='bg-gray-300 py-3 rounded-xl w-4/5 font-bold'
 				/>
 				<p className='text-f12'>¿Aún no tienes cuenta?</p>

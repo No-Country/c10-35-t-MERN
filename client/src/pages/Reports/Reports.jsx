@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
-import BarChart from './BarChart'
-import CakeChart from './CakeChart'
-import CircleChart from './CircleChart'
+import BarChart from '../Reports/BarChart'
+import CakeChart from '../Reports/CakeChart'
+import CircleChart from '../Reports/CircleChart'
 import NavBar from '../../components/NavBar/NavBar'
 
 function Reports({ charData }) {
