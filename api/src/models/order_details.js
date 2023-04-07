@@ -53,18 +53,13 @@ module.exports = (sequelize, DataTypes) => {
     isAvailable: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
+      defaultValue: true
     }
   }, {
     sequelize,
     modelName: 'Order_Details',
+    tableName: 'Order_Details',
+    timestamps: true,
   });
   return Order_Details;
 };
