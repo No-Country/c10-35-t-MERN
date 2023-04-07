@@ -1,5 +1,5 @@
-import DashboardMenu from './DashboardMenu'
-import DashboardResume from './DashboardResume'
+import DashboardMenu from '../../components/Dashboard/DashboardMenu'
+import DashboardResume from '../../components/Dashboard/DashboardResume'
 
 export default function Dashboard() {
     return (
