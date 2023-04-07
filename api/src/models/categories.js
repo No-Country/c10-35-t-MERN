@@ -23,19 +23,13 @@ module.exports = (sequelize, DataTypes) => {
     isAvailable: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
+      defaultValue: true
     }
   }, {
     sequelize,
     modelName: 'Categories',
     tableName: 'Categories',
+    timestamps: true,
   });
   return Categories;
 };

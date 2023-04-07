@@ -14,14 +14,34 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Product_Users.init({
-    userId: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER,
-    isAvailable: DataTypes.BOOLEAN,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'userId',
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: 'productId',
+      references: {
+        model: 'Products',
+        key: 'id'
+      }
+    },
+    isAvailable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    },
   }, {
     sequelize,
     modelName: 'Product_Users',
+    tableName: 'Product_Users',
+    timestamps: true,
   });
   return Product_Users;
 };
