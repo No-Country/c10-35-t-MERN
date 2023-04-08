@@ -66,12 +66,14 @@ module.exports = (sequelize, DataTypes) => {
       isAvailable: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-      },
+        defaultValue: true,
+      }
     },
     {
       sequelize,
+      modelName: "Products",
+      tableName: "Products",
       timestamps: true,
-      modelName: 'Products',
     }
   );
   return Products;

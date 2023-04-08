@@ -41,19 +41,13 @@ module.exports = (sequelize, DataTypes) => {
     isAvailable: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
+      defaultValue: true
     }
   }, {
     sequelize,
     modelName: 'Category_Users',
     tableName: 'Category_Users',
+    timestamps: true,
   });
   return Category_Users;
 };

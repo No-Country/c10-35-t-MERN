@@ -3,7 +3,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const appRoutes = require('./routes/app.routes');
 
-
 const { PORT, API_PATH } = require('./config/config');
 
 const app = express();
