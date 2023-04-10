@@ -2,8 +2,11 @@ import { GrGoogle, GrFacebook } from 'react-icons/gr'
 import { useNavigate } from 'react-router'
 function Login() {
 	const navigate = useNavigate()
-	const handleSubmit = () => {
-		navigate('/dashboard')
+	const handleSubmit = e => {
+		e.preventDefault()
+		if (form.user.value === '' || form.password.value === '')
+			return alert("campos vacios")
+		navigate('/inicio')
 	}
 	return (
 		<section className='flex flex-col h-screen py-7 text-center '>
@@ -11,6 +14,7 @@ function Login() {
 			<h1>STOKER</h1>
 			<h6>Inicia sesión</h6>
 			<form
+				id='form'
 				action=''
 				className=' flex flex-col items-center w-full h-full gap-y-2'
 			>
