@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { GrGoogle, GrFacebook } from 'react-icons/gr'
 import { useNavigate } from 'react-router'
 function Login() {
@@ -5,7 +6,7 @@ function Login() {
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (form.user.value === '' || form.password.value === '')
-			return alert("campos vacios")
+			return alert('campos vacios')
 		navigate('/inicio')
 	}
 	return (
