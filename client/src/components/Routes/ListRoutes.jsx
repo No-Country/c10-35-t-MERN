@@ -6,6 +6,7 @@ import Login from '../../pages/Login/Login'
 import { data } from '../../data'
 import { Inventary } from '../../pages/Inventary/inventary'
 import Dashboard from '../../pages/Dashboard/Dashboard'
+import DashboardPopup from '../Dashboard/DashboardPopup'
 
 const ListRoutes = () => {
 	return (
@@ -17,10 +18,7 @@ const ListRoutes = () => {
 					<Route path='/inicio' element={<Dashboard/>} />
 					<Route path='/inventario' element={<Inventary/>} />
 					<Route path='/crear-producto' element={<CreateProducts />} />
-					<Route
-						path='/registro-de-movimientos'
-						element={<h1>registro-de-movimientos</h1>}
-					/>
+					<Route path='/registro-de-movimientos' element={<DashboardPopup />} />
 					<Route path='/reportes' element={<Reports charData={data} />} />
 					<Route path='/perfil' element={<h1>perfil</h1>} />
 					<Route path='/configuracion' element={<h1>configuración</h1>} />

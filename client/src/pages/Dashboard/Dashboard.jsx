@@ -1,13 +1,15 @@
 import DashboardMenu from '../../components/Dashboard/DashboardMenu'
 import DashboardResume from '../../components/Dashboard/DashboardResume'
+import NavBar from '../../components/NavBar/NavBar'
+import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 
 export default function Dashboard() {
     return (
         <div className='text-secundario'>
-            {/* Colocar Navbar superior */}
+            <NavBar navBarTile='Inicio' />
             <DashboardMenu />
             <DashboardResume />
-            {/* Colocar Navbar inferior */}
+            <NavbarMobile />
         </div>
     )
 }
