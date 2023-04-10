@@ -1,21 +1,54 @@
 import { VscChromeClose } from 'react-icons/vsc'
 import TextBox from '../../components/TextBox/TextBox'
-import TextScroll from '../../components/TextBox/TextScroll'
+import TextScroll from '../../components/TextBoX/TextScroll'
 import TextBobxLg from '../../components/TextBox/TextBoxLg'
 import { useState } from 'react'
+import Parragraph from '../../components/Parragraph/Parragraph'
 
 const CreateProducts = () => {
-	const [visible, setVisible] = useState(true)
-	const [name, setName] = useState('')
-	const [quantity, setQuantity] = useState('')
-	const [cost, setCost] = useState('')
-	const [total, setTotal] = useState('')
-	const [price, setPrice] = useState('')
-	const [alert, setAlert] = useState('')
+	const [visible, setVisible] = useState(false)
+	const [name, setName] = useState({ campo: '', valid: null })
+	const [quantity, setQuantity] = useState({ campo: '', valid: null })
+	const [cost, setCost] = useState({ campo: '', valid: null })
+	const [total, setTotal] = useState({ campo: '', valid: null })
+	const [price, setPrice] = useState({ campo: '', valid: null })
+	const [alert, setAlert] = useState({ campo: '', valid: null })
+
 
 	const onSubmit = e => {
 		e.prevent.default()
 	}
+
+
+	
+	const Expression = {
+		name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+		number: /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/,
+	}
+
+	
+	// ${props=>props.valido==="true" && css `
+	// text-error text-xs
+	// `}
+
+	// esto {width: 198px;
+	// height: 16px;
+
+	// /* Texto Form Verifica */
+
+	// font-family: 'DM Sans';
+	// font-style: normal;
+	// font-weight: 400;
+	// font-size: 12px;
+	// line-height: 16px;
+	/* identical to box height */
+	/* Error */
+	// color: #F16A6A;
+	/* Inside auto layout */
+	// flex: none;
+	// order: 2;
+	// flex-grow: 0;}
+	// es el <p cuando da error
 
 	return (
 		<>
@@ -35,14 +68,15 @@ const CreateProducts = () => {
 						></img>
 					</div>
 				</div>
-				<div className='h-fit  p-4 mt-2 bg-primario75'>
+				<div className=' p-4 mt-2 bg-primario75'>
 					<div className='m-2 mb-4 md:m-4 '>
 						<TextBobxLg
 							label='ingrese la cantidad'
-							type='price'
-							name='quantity'
-							state={name}
-							setState={setName}
+							type='text'
+							name='name'
+							estado={name}
+							cambiarEstado={setName}
+							regularExp={Expression.name}
 						/>
 					</div>
 					<div className='flex justify-center'>
@@ -50,54 +84,60 @@ const CreateProducts = () => {
 							<div className='flex flex-col'>
 								<TextBox
 									label='ingrese la cantidad'
-									type='price'
+									type='number'
 									name='quantity'
-									state={quantity}
-									setState={setQuantity}
+									estado={quantity}
+									cambiarEstado={setQuantity}
+									regularExp={Expression.number}
+								
 								/>
 							</div>
 
 							<div className='flex flex-col'>
 								<TextBox
 									label='ingrese el costo'
-									type='price'
+									type='number'
 									name='cost'
-									state={cost}
-									setState={setCost}
+									estado={cost}
+									cambiarEstado={setCost}
+									regExp={Expression.number}
 								/>
 							</div>
 							<div className='flex flex-col'>
 								<TextBox
 									label='costo total'
-									type='price'
+									type='number'
 									name='total'
-									state={total}
-									setState={setTotal}
+									estado={total}
+									cambiarEstado={setTotal}
+									regExp={Expression.number}
 								/>
 							</div>
 							<div className='flex flex-col'>
 								<TextBox
 									label='ingrese el precio'
-									type='price'
+									type='number'
 									name='price'
-									state={price}
-									setState={setPrice}
+									estado={price}
+									cambiarEstado={setPrice}
+									regExp={Expression.number}
 								/>
 							</div>
 							<div className='flex flex-col'>
 								<TextBox
 									label='alertar en esta cantidad'
-									type='price'
+									type='number'
 									name='alert'
-									state={alert}
-									setState={setAlert}
+									estado={alert}
+									cambiarEstado={setAlert}
+									regExp={Expression.number}
 								/>
 							</div>
 
 							<div className='flex flex-col'>
-								<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>
+								<label className='text-sm md:text-base md:pl-4  text-slate-400 pl-2'>
 									categoria personalizada
-								</p>
+								</label>
 								<TextScroll />
 							</div>
 						</div>
@@ -110,7 +150,7 @@ const CreateProducts = () => {
 						</button>
 						<button
 							onClick={
-								() => setVisible(false)
+								() => setVisible(true)
 								// aca tambien debe ir el agregar producto a base datos de la peticion POST
 							}
 							className='m-2 md:m-4'
@@ -125,11 +165,11 @@ const CreateProducts = () => {
 						{visible && (
 							<section
 								id='modal'
-								className='bg-acentoGrey fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
+								className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
 							>
 								<div
 									id='modal-container'
-									className='bg-secundario75 w-11/12 m-auto max-w-96 h-60 rounded-lg '
+									className='bg-secundario3 w-11/12 m-auto max-w-96 h-60 rounded-lg '
 								>
 									<div className=' flex justify-end'>
 										<button className=' pr-2 pt-2'>

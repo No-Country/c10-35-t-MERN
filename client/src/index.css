@@ -42,19 +42,3 @@ p {
 	@apply font-secundaria text-xs;
 }
 
-/* left: 418px;
-top: 256px; */
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='tel'] {
-	border: 1px solid #000000;
-	padding: 6px;
-	border-radius: 12px;
-}
-label {
-	@apply text-label;
-}
-input::placeholder {
-	@apply text-label;
-}
