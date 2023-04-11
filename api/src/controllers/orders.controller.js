@@ -25,8 +25,17 @@ const remove = async (req, res) => {
   }
 };
 
+const addDetail = async (req, res) => {
+  try {
+    return res.status(201).json(await service.addDetail(req.body));
+  } catch (error) {
+    errorHandler(error, res);
+  }
+};
+
 module.exports = {
   register,
   getAll,
   remove,
+  addDetail,
 };

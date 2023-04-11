@@ -26,8 +26,19 @@ const remove = async (id) => {
   return await orderFound.save();
 };
 
+const addDetail = async (orderDetail) => {
+  const { orderId, productId, quantity, price, discount } = orderDetail;
+
+  if (!orderId || !productId || !quantity || !price || !discount) {
+    throw new AppError('the fields are required!', 400);
+  }
+
+  return await OrderDetail.create(orderDetail);
+};
+
 module.exports = {
   create,
   getAll,
   remove,
+  addDetail,
 };
