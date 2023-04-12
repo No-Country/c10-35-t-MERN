@@ -2,7 +2,11 @@ import React from 'react'
 import verdura from '../../assets/verdura.png'
 import verdura0 from '../../assets/verdura-0.png'
 
-export const CategoryCard = ({title, price, stock, type}) => {
+export const CategoryCard = ({id ,title, price, stock, type, setFilter, filter}) => {
+
+	const filterCategory = () =>{
+		setFilter({ ...filter, category:id });
+	}
 	
 	const bgColorCard = type===1? 'bg-secundario': 'white';
 	const textColor = type===1? 'text-white':'text-secundario';
@@ -10,7 +14,7 @@ export const CategoryCard = ({title, price, stock, type}) => {
 
 
 	return (
-		<div className={`${bgColorCard} h-44 w-36 border-2 rounded-3xl p-3`}>
+		<div className={`${bgColorCard} h-44 w-36 border-2 rounded-3xl p-3`} onClick = {filterCategory} >
 			<div className='w-full h-full flex justify-center items-center flex-col gap-2'>
 				
 			<div className='w-full'>
