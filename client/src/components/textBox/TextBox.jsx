@@ -2,10 +2,22 @@
 /* eslint-disable react/prop-types */
 
 const TextBox = props => {
-	const { label, type, name, estado, cambiarEstado, regularExp } = props
+	const {
+		label,
+		type,
+		name,
+		estado,
+		cambiarEstado,
+		regularExp,
+		form,
+		setForm,
+	} = props
 
 	const onChange = e => {
-		cambiarEstado({ ...estado, campo: e.target.value })
+		setForm(
+			...form,
+			cambiarEstado({ ...estado, campo: e.target.value })
+		)
 	}
 	const validation = () => {
 		if (regularExp) {
@@ -15,11 +27,11 @@ const TextBox = props => {
 				cambiarEstado({ ...estado, valid: 'false' })
 			}
 		}
-		if (estado.valid.lenght !== 0) {
-			cambiarEstado({ ...estado, valid: 'true' })
-		} else {
-			cambiarEstado({ ...estado, valid: 'false' })
-		}
+		// if (estado.valid.lenght !== 0) {
+		// 	cambiarEstado({ ...estado, valid: 'true' })
+		// } else {
+		// 	cambiarEstado({ ...estado, valid: 'false' })
+		// }
 	}
 
 	return (
@@ -29,7 +41,7 @@ const TextBox = props => {
 			</label>
 			<input
 				name={name}
-				id={name}
+				// id={name}
 				type={type}
 				value={estado.campo}
 				onChange={onChange}

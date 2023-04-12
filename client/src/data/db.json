@@ -1,0 +1,67 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "nombre": "yerba mate",
+      "cantidad": 500,
+      "costo": 600,
+      "total": 625,
+      "precio": 675,
+      "alerta": 20
+    },
+    {
+      "id": 2,
+      "nombre": "cafe",
+      "cantidad": 750,
+      "costo": 850,
+      "total": 875,
+      "precio": 100,
+      "alerta": 30
+    },
+    {
+      "id": 3,
+      "nombre": "sal",
+      "cantidad": 750,
+      "costo": 850,
+      "total": 875,
+      "precio": 100,
+      "alerta": 30
+    },
+    {
+      "id": 4,
+      "nombre": "harina",
+      "cantidad": 200,
+      "costo": 100,
+      "total": 125,
+      "precio": 180,
+      "alerta": 35
+    },
+    {
+      "id": 5,
+      "nombre": "saquitosTe",
+      "cantidad": 150,
+      "costo": 75,
+      "total": 80,
+      "precio": 95,
+      "alerta": 10
+    }
+  ],
+  "unidades": [
+    {
+      "id": 1,
+      "unit": "Kg"
+    },
+    {
+      "id": 2,
+      "unit": "M"
+    },
+    {
+      "id": 3,
+      "unit": "Kg"
+    },
+    {
+      "id": 4,
+      "unit": "units"
+    }
+  ]
+}
