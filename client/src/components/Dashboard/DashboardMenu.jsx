@@ -29,4 +29,5 @@ export default function DashboardMenu() {
             }
         </nav>
     )
+>>>>>>> 5c3d507 (Refactor: Style modification, create components (Cards, Modals, Buttons), create pages (Ingresos, Egresos, Productos a mover))
 }

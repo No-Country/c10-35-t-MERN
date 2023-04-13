@@ -30,3 +30,5 @@ export const data = [
 		money: 2000,
 	},
 ]
+
+
