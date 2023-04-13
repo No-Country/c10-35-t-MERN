@@ -7,60 +7,108 @@ import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
 // import useForm from '../../components/helpers/useForm'
 
+const initialForm = {
+	id: Date.now(),
+	nombre: '',
+	cantidad: '',
+	costo: '',
+	total: '',
+	precio: '',
+	alerta: '',
+}
 
-// const initialForm = {
-// nombre: '',
-// 	cantidad: '',
-// 	costo: '',
-// 	total: '',
-// 	pricio: '',
-// 	alerta: '',
-// }
-
-const validationsForm = form => {
+const validationsForm = (form, name) => {
 	let errors = {}
 
 	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
 	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
+	const { nombre, cantidad, precio, costo, total, alerta } = form
 
-	if (!form.nombre.trim()) {
+	if ((nombre === '') & (name === 'nombre')) {
 		errors.nombre = 'El campo nombre es requerido'
-	} else if (!letters.test(form.nombre.trim())) {
-		errors.nombre = 'el campo nombre solo acepta letras'
+		return errors
+	} else if (!letters.test(cantidad) & (name === 'nombre')) {
+		errors.nombre = 'el campo nombre solo acepta numeros'
+		return errors
 	}
 
-	if (!form.cantidad.trim()) {
-		errors.cantidad = 'El campo es requerido'
-	} else if (!number.test(form.cantidad.trim())) {
-		errors.cantidad = 'el campo nombre solo acepta letras'
+	if ((cantidad === '') & (name === 'cantidad')) {
+		errors.cantidad = 'El campo cantidad es requerido'
+		return errors
+	} else if (!number.test(cantidad) & (name === 'cantidad')) {
+		errors.cantidad = 'el campo nombre solo acepta numeros'
+		return errors
 	}
-	if (!form.costo.trim()) {
-		errors.costo = 'El campo es requerido'
-	} else if (!number.test(form.costo.trim())) {
-		errors.costo = 'el campo nombre solo acepta numeros'
-	}
-	if (!form.total.trim()) {
-		errors.total = 'El campo es requerido'
-	} else if (!number.test(form.total.trim())) {
-		errors.total = 'el campo nombre solo acepta numeros'
-	}
-	if (!form.precio.trim()) {
-		errors.precio = 'El campo es requerido'
-	} else if (!number.test(form.precio.trim())) {
+
+	if ((precio === '') & (name === 'precio')) {
+		errors.precio = 'El campo cantidad es requerido'
+		return errors
+	} else if (!number.test(precio) & (name === 'precio')) {
 		errors.precio = 'el campo nombre solo acepta numeros'
+
+		return errors
 	}
-	if (!form.alerta.trim()) {
-		errors.alerta = 'El campo es requerido'
-	} else if (!number.test(form.alerta.trim())) {
+
+	if ((costo === '') & (name === 'costo')) {
+		errors.costo = 'El campo cantidad es requerido'
+		return errors
+	} else if (!number.test(costo) & (name === 'costo')) {
+		errors.costo = 'el campo nombre solo acepta numeros'
+		return errors
+	}
+
+	if ((total === '') & (name === 'total')) {
+		errors.total = 'El campo cantidad es requerido'
+		return errors
+	} else if (!number.test(total) & (name === 'total')) {
+		errors.total = 'el campo nombre solo acepta numeros'
+		return errors
+	}
+
+	if ((alerta === '') & (name === 'alerta')) {
+		errors.alerta = 'El campo cantidad es requerido'
+		return errors
+	} else if (!number.test(alerta) & (name === 'alerta')) {
 		errors.alerta = 'el campo nombre solo acepta numeros'
+		return errors
 	}
+	// if (!form.nombre) {
+	// 	errors.nombre = 'El campo nombre es requerido'
+	// } else if (!letters.test(form.nombre)) {
+	// 	errors.nombre = 'el campo nombre solo acepta letras'
+	// }
+
+	// if (form.cantidad==="") {
+	// 	errors.cantidad = 'El campo es requerido'
+	// } else if (!number.test(form.cantidad)) {
+	// 	errors.cantidad = 'el campo nombre solo acepta letras'
+	// }
+	// if (!form.costo) {
+	// 	errors.costo = 'El campo es requerido'
+	// } else if (!number.test(form.costo)) {
+	// 	errors.costo = 'el campo nombre solo acepta numeros'
+	// }
+	// if (!form.total) {
+	// 	errors.total = 'El campo es requerido'
+	// } else if (!number.test(form.total)) {
+	// 	errors.total = 'el campo nombre solo acepta numeros'
+	// }
+	// if (!form.precio) {
+	// 	errors.precio = 'El campo es requerido'
+	// } else if (!number.test(form.precio)) {
+	// 	errors.precio = 'el campo nombre solo acepta numeros'
+	// }
+	// if (!form.alerta) {
+	// 	errors.alerta = 'El campo es requerido'
+	// } else if (!number.test(form.alerta)) {
+	// 	errors.alerta = 'el campo nombre solo acepta numeros'
+	// }
 	return errors
 }
 
-
 const CreateProducts2 = () => {
 	const [visible, setVisible] = useState(false)
-	const [form, setForm] = useState({})
+	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
 	const [db, setDb] = useState({})
 	const [dataToEdit, setDataToEdit] = useState(null)
@@ -81,15 +129,17 @@ const CreateProducts2 = () => {
 	}, [url])
 
 	const handleChange = e => {
+		console.log(e.target.value)
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
-		});
-	};
+		})
+	}
 
 	const handleBlur = e => {
-		handleChange()
-		setErrors(validationsForm(form))
+		console.log(e.target.name)
+
+		setErrors(validationsForm(form, e.target.name))
 	}
 
 	const handleSubmit = e => {
@@ -97,29 +147,29 @@ const CreateProducts2 = () => {
 		setErrors(validationsForm(form))
 
 		if (Object.keys(errors).length === 0) {
-			alert("Enviando Formulario");
-			
+			alert('Enviando Formulario')
+
 			helpFetch()
-			  .post("http://localhost:3000/data", {
-				body: form,
-				headers: {
-				  "Content-Type": "application/json",
-				  Accept: "application/json",
-				},
-			  })
-			  .then((res) => {
-				
-				setForm({});
-			
-			  });
-		  } else {
-			return;
-		  }
+				.post('http://localhost:3000/data', {
+					body: form,
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+				})
+				.then(res => {
+					console.log(res)
+					setForm(res)
+				})
+				return
+		} 
 
 		if (form.id === null) {
-			createData(form)
+			return createData(form)
+			
 		} else {
-			updateData(form)
+			console.log("updateData")
+			return updateData(form)
 		}
 
 		// handleReset()
@@ -131,8 +181,7 @@ const CreateProducts2 = () => {
 	// }
 
 	const createData = data => {
-		data.id = Date.now
-
+		
 		crud
 			.post(url, {
 				body: data,
