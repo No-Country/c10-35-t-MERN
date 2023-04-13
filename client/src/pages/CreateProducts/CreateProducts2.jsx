@@ -1,91 +1,183 @@
+/* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
 import { VscChromeClose } from 'react-icons/vsc'
 import { useState } from 'react'
 import { data, unidades } from '../../data/db.json'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
+// import useForm from '../../components/helpers/useForm'
 
-const initialForm = {
-	id: null,
-	nombre: '',
-	cantidad: '',
-	costo: '',
-	total: '',
-	precio: '',
-	alerta: '',
 
+// const initialForm = {
+// nombre: '',
+// 	cantidad: '',
+// 	costo: '',
+// 	total: '',
+// 	pricio: '',
+// 	alerta: '',
+// }
+
+const validationsForm = form => {
+	let errors = {}
+
+	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
+	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
+
+	if (!form.nombre.trim()) {
+		errors.nombre = 'El campo nombre es requerido'
+	} else if (!letters.test(form.nombre.trim())) {
+		errors.nombre = 'el campo nombre solo acepta letras'
+	}
+
+	if (!form.cantidad.trim()) {
+		errors.cantidad = 'El campo es requerido'
+	} else if (!number.test(form.cantidad.trim())) {
+		errors.cantidad = 'el campo nombre solo acepta letras'
+	}
+	if (!form.costo.trim()) {
+		errors.costo = 'El campo es requerido'
+	} else if (!number.test(form.costo.trim())) {
+		errors.costo = 'el campo nombre solo acepta numeros'
+	}
+	if (!form.total.trim()) {
+		errors.total = 'El campo es requerido'
+	} else if (!number.test(form.total.trim())) {
+		errors.total = 'el campo nombre solo acepta numeros'
+	}
+	if (!form.precio.trim()) {
+		errors.precio = 'El campo es requerido'
+	} else if (!number.test(form.precio.trim())) {
+		errors.precio = 'el campo nombre solo acepta numeros'
+	}
+	if (!form.alerta.trim()) {
+		errors.alerta = 'El campo es requerido'
+	} else if (!number.test(form.alerta.trim())) {
+		errors.alerta = 'el campo nombre solo acepta numeros'
+	}
+	return errors
 }
 
-const initialDb = {
-	data,
-	
-}
 
 const CreateProducts2 = () => {
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState({})
-	const [db, setDb] = useState(initialDb)
+	const [errors, setErrors] = useState({})
+	const [db, setDb] = useState({})
+	const [dataToEdit, setDataToEdit] = useState(null)
 
-    const crud = helpFetch()
-    let url="http://localhost:3000/data";
+	const crud = helpFetch()
+	let url = 'http://localhost:3000/data'
 
-    useEffect(() => {
-
-helpFetch()
-
-crud.get(url)
-   .then((res)=>{
-    if(!res.err){
-        setDb(res);
-        setError(res);
-    }
-   })
-  }) ;  
-      
-    },[]),
-    
-
+	useEffect(() => {
+		crud.get(url).then(res => {
+			if (!res.err) {
+				setDb(res)
+				setErrors({})
+			} else {
+				setDb(null)
+				setErrors(res)
+			}
+		})
+	}, [url])
 
 	const handleChange = e => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
-		})
+		});
+	};
+
+	const handleBlur = e => {
+		handleChange()
+		setErrors(validationsForm(form))
 	}
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		if (
-			!form.nombre ||
-			!form.cantidad ||
-			!form.costo ||
-			!form.total ||
-			!form.precio ||
-			!form.alerta 
-		
-		) {
-			alert('debes ingresar todos los campos')
-			return
-		}
+		setErrors(validationsForm(form))
+
+		if (Object.keys(errors).length === 0) {
+			alert("Enviando Formulario");
+			
+			helpFetch()
+			  .post("http://localhost:3000/data", {
+				body: form,
+				headers: {
+				  "Content-Type": "application/json",
+				  Accept: "application/json",
+				},
+			  })
+			  .then((res) => {
+				
+				setForm({});
+			
+			  });
+		  } else {
+			return;
+		  }
+
 		if (form.id === null) {
-			createData()
+			createData(form)
+		} else {
+			updateData(form)
 		}
+
+		// handleReset()
 	}
+
+	// 	const handleReset = e => {
+	// 	setForm({})
+	// 	setDataToEdit(null)
+	// }
 
 	const createData = data => {
 		data.id = Date.now
 
-        crud.post(url,{body:data}).then((res)=>{
+		crud
+			.post(url, {
+				body: data,
+				headers: { 'content-type': 'application/json' },
+			})
+			.then(res => {
+				console.log(res)
+				if (!res.err) {
+					setDb([...db, res])
+				}
+			})
+	}
 
-            console.log(res);
-            if(!res.err){
+	const updateData = data => {
+		let endpoint = `${url}/${data.id}`
 
-                setDb([...db,
-                    res
-                ]);
-            }
-        })
+		crud
+			.put(endpoint, {
+				body: data,
+				headers: { 'content-type': 'application/json' },
+			})
+			.then(res => {
+				if (!res.err) {
+					let newData = db.map(el => (el.id === data.id ? data : el))
+					setDb(newData)
+				}
+			})
+	}
 
+	const deleteData = id => {
+		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
+
+		if (isDelete) {
+			let endpoint = `${url}/${id}`
+
+			crud
+				.del(endpoint, { headers: { 'content-type': 'application/json' } })
+				.then(res => {
+					if (!res.err) {
+						let newData = db.filter(el => el.id !== id)
+
+						setDb(newData)
+					}
+				})
+		}
 	}
 
 	return (
@@ -110,7 +202,7 @@ crud.get(url)
 
 			<form
 				onSubmit={handleSubmit}
-				className=' h-screen w-screen  bg-yellow-300'
+				className=' h-screen w-screen  bg-primario3'
 			>
 				<div className='  p-4 mt-2 bg-primario75'>
 					<label className='m-2 mb-4 md:m-4 '>nombre</label>
@@ -119,86 +211,93 @@ crud.get(url)
 						id='textonombre'
 						name='nombre'
 						value={form.nombre}
+						onBlur={handleBlur}
 						onChange={handleChange}
+						required
 						className=' w-80 h-6 pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
 					></input>
+					{errors.nombre && <p>{errors.nombre}</p>}
 				</div>
 				<div className='flex justify-cente'>
 					<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
 						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>
-								{' '}
-								cantidad
-								<input
-									type='number'
-									id='cantidad'
-									name='cantidad'
-									value={form.cantidad}
-									onChange={handleChange}
-									className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-								></input>
-							</label>
+							<label htmlFor=''>cantidad</label>
+							<input
+								type='number'
+								id='cantidad'
+								name='cantidad'
+								value={form.cantidad}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+							></input>
+							{errors.cantidad && <p>{errors.cantidad}</p>}
 						</div>
 						<div className='flex flex-col'>
 							<label htmlFor='' className='m-2 p-2'>
-								{' '}
 								costo
-								<input
-									type='number'
-									id='costo '
-									name='costo'
-									value={form.costo}
-									onChange={handleChange}
-									className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-								></input>
 							</label>
+							<input
+								type='number'
+								id='costo '
+								name='costo'
+								value={form.costo}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+							></input>
+							{errors.costo && <p>{errors.costo}</p>}
 						</div>
 						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>
-								{' '}
-								costoTotal
-								<input
-									type='number'
-									id='costoTotal'
-									name='total'
-									value={form.total}
-									onChange={handleChange}
-									className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-								></input>
-							</label>
+							<label htmlFor=''>costoTotal</label>
+							<input
+								type='number'
+								id='costoTotal'
+								name='total'
+								value={form.total}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+							></input>
+							{errors.total && <p>{errors.total}</p>}
 						</div>
 						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>
-								precio
-								<input
-									type='number'
-									id='precio'
-									name='precio'
-									value={form.precio}
-									onChange={handleChange}
-									className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-								></input>
-							</label>
+							<label htmlFor=''>precio</label>
+							<input
+								type='number'
+								id='precio'
+								name='precio'
+								value={form.precio}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+							></input>
+							{errors.precio && <p>{errors.precio}</p>}
 						</div>
 						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>
-								alerta
-								<input
-									type='number'
-									id='alerta'
-									name='alerta'
-									value={form.alerta}
-									onChange={handleChange}
-									className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-								></input>
-							</label>
+							<label htmlFor=''>alerta</label>
+							<input
+								type='number'
+								id='alerta'
+								name='alerta'
+								value={form.alerta}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+							></input>
+							{errors.alerta && <p>{errors.alerta}</p>}
 						</div>
 						{/* <div className='flex flex-col m-2 p-2'>
 							
 							unidades
 							<label className='m-2 md:m-4 flex justify-between'> </label>
 							<select
-								name='units'
+								name='unidades'
 								defaultValue={unidades[3].unit}
 								onChange={handleChange}
 								required
@@ -212,6 +311,7 @@ crud.get(url)
 									)
 								})}
 							</select>
+							{errors.unidades && <p>{errors.unidades}</p>}
 						</div> */}
 					</div>
 
@@ -224,10 +324,7 @@ crud.get(url)
 						<button
 							type='submit'
 							value='send'
-							onClick={
-								() => setVisible(true)
-								// aca tambien debe ir el agregar producto a base datos de la peticion POST
-							}
+							onClick={() => setVisible(true)}
 							className='m-2 md:m-4 mt-80'
 						>
 							<div className='bg-secundario text-primario w-28 h-8   border-2 rounded-lg  text-sm font-semibold  md:text-lg flex justify-center items-center'>

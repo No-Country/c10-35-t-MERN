@@ -44,6 +44,33 @@
       "total": 80,
       "precio": 95,
       "alerta": 10
+    },
+    {
+      "nombre": "salmuera",
+      "cantidad": "78",
+      "costo": "120",
+      "total": "125",
+      "precio": "130",
+      "alerta": "15",
+      "id": 6
+    },
+    {
+      "nombre": "sal",
+      "cantidad": "45",
+      "costo": "70",
+      "total": "75",
+      "precio": "80",
+      "alerta": "15",
+      "id": 7
+    },
+    {
+      "nombre": "fideos",
+      "cantidad": "7",
+      "costo": "89",
+      "total": "75",
+      "precio": "76",
+      "alerta": "10",
+      "id": 8
     }
   ],
   "unidades": [

@@ -33,7 +33,7 @@ const CreateProducts = () => {
 	// 	initialForm
 	// }
 
-	const [form, setForm] = useState(initialForm)
+	const [form, setForm] = useState({})
 	const [db, setDb] = useState(initialDb)
 
 	const createData =(data)=> {
@@ -44,28 +44,13 @@ const CreateProducts = () => {
 			data
 		})
 	}
-	// const handleChange= e =>{
-	// 	setForm({
-	// 		...name,
-	// 		...quantity,
-	// 		...cost,
-	// 		...total,
-	// 		...price,
-	// 		...alert,
-	// 		setName,setQuantity,setCost,setTotal,setPrice,setAlert
-	// 	})
-
-	// }
-
+	
 	const handleSubmit = e => {
 		e.preventDefault()
 		createData()
 	}
 
-	const Expression = {
-		leters: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-		number: /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/,
-	}
+	
 
 	return (
 		<>
@@ -126,7 +111,7 @@ const CreateProducts = () => {
 									regExp={Expression.number}
 									form={form.costo}
 									setForm={setForm} */}
-								/>
+								{/* /> */}
 							</div>
 							<div className='flex flex-col'>
 								{/* <TextBox
