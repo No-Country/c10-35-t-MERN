@@ -94,7 +94,7 @@ const createProduct = async (product) => {
       categoryId,
     },
   });
-  
+
   const [productUser, RelationCreated] = await Product_Users.findOrCreate({
     where: { userId, productId: productFound.id, isAvailable: true },
   });
@@ -102,6 +102,7 @@ const createProduct = async (product) => {
   return {
     message: `The product ${productName} has been successfully created  `,
     product: productFound,
+    productUser: productUser,
   };
 };
 
