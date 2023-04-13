@@ -27,7 +27,7 @@ const validationsForm = (form, name) => {
 	if ((nombre === '') & (name === 'nombre')) {
 		errors.nombre = 'El campo nombre es requerido'
 		return errors
-	} else if (!letters.test(cantidad) & (name === 'nombre')) {
+	} else if (!letters.test(nombre) & (name === 'nombre')) {
 		errors.nombre = 'el campo nombre solo acepta numeros'
 		return errors
 	}
@@ -72,37 +72,8 @@ const validationsForm = (form, name) => {
 		errors.alerta = 'el campo nombre solo acepta numeros'
 		return errors
 	}
-	// if (!form.nombre) {
-	// 	errors.nombre = 'El campo nombre es requerido'
-	// } else if (!letters.test(form.nombre)) {
-	// 	errors.nombre = 'el campo nombre solo acepta letras'
-	// }
 
-	// if (form.cantidad==="") {
-	// 	errors.cantidad = 'El campo es requerido'
-	// } else if (!number.test(form.cantidad)) {
-	// 	errors.cantidad = 'el campo nombre solo acepta letras'
-	// }
-	// if (!form.costo) {
-	// 	errors.costo = 'El campo es requerido'
-	// } else if (!number.test(form.costo)) {
-	// 	errors.costo = 'el campo nombre solo acepta numeros'
-	// }
-	// if (!form.total) {
-	// 	errors.total = 'El campo es requerido'
-	// } else if (!number.test(form.total)) {
-	// 	errors.total = 'el campo nombre solo acepta numeros'
-	// }
-	// if (!form.precio) {
-	// 	errors.precio = 'El campo es requerido'
-	// } else if (!number.test(form.precio)) {
-	// 	errors.precio = 'el campo nombre solo acepta numeros'
-	// }
-	// if (!form.alerta) {
-	// 	errors.alerta = 'El campo es requerido'
-	// } else if (!number.test(form.alerta)) {
-	// 	errors.alerta = 'el campo nombre solo acepta numeros'
-	// }
+
 	return errors
 }
 
@@ -147,7 +118,7 @@ const CreateProducts2 = () => {
 		setErrors(validationsForm(form))
 
 		if (Object.keys(errors).length === 0) {
-			alert('Enviando Formulario')
+			// alert('Enviando Formulario')
 
 			helpFetch()
 				.post('http://localhost:3000/data', {
@@ -162,7 +133,7 @@ const CreateProducts2 = () => {
 					setForm(res)
 				})
 				return
-		} 
+		} ;
 
 		if (form.id === null) {
 			return createData(form)
@@ -170,15 +141,17 @@ const CreateProducts2 = () => {
 		} else {
 			console.log("updateData")
 			return updateData(form)
-		}
+		};
 
-		// handleReset()
+		handleReset()
+	};
+
+		const handleReset = e => {
+		
+		setForm(initialForm)
+		// setDataToEdit(null)
 	}
-
-	// 	const handleReset = e => {
-	// 	setForm({})
-	// 	setDataToEdit(null)
-	// }
+	
 
 	const createData = data => {
 		
@@ -268,7 +241,7 @@ const CreateProducts2 = () => {
 					{errors.nombre && <p>{errors.nombre}</p>}
 				</div>
 				<div className='flex justify-cente'>
-					<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
+					<div className='grid grid-cols-2 gap-x-40 md:gap-x-96'>
 						<div className='flex flex-col m-2 p-2'>
 							<label htmlFor=''>cantidad</label>
 							<input
@@ -364,9 +337,9 @@ const CreateProducts2 = () => {
 						</div> */}
 					</div>
 
-					<div className='flex justify-between mt-4'>
-						{/* <button className='m-2 md:m-4 '>
-							<div className='w-28 h-8 md:w-48 md:h-10 border-2 rounded-lg font-semibold text-slate-600 text-sm md:text-lg flex justify-center items-center '>
+					<div className='flex justify-between p-0 mt-4'>
+						{/* <button className='m-2 mt-80'>
+							<div className='w-28 h-8 mr-10 border-2 rounded-lg font-semibold text-slate-600 text-sm md:text-lg flex justify-center items-center '>
 								Cargar Excel
 							</div>
 						</button> */}
