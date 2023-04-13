@@ -1,21 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+html,
+body,
+.App {
+	@apply min-h-full;
+}
 h1 {
-	@apply font-primaria text-4xl font-normal
+	@apply font-primaria text-4xl font-normal;
 }
 h2 {
-	@apply font-secundaria text-2xl font-bold
+	@apply font-secundaria text-2xl font-bold;
 }
 h3 {
-	@apply font-secundaria text-xl font-bold 
+	@apply font-secundaria text-xl font-bold;
 }
 h4 {
-	@apply font-secundaria text-base font-bold
+	@apply font-secundaria text-base font-bold;
 }
 h5 {
-	@apply font-secundaria text-sm font-bold
+	@apply font-secundaria text-sm font-bold;
 }
 p {
 	@apply font-secundaria;
@@ -42,3 +46,12 @@ p {
 	@apply font-secundaria text-xs;
 }
 
+.swiper-pagination {
+	@apply max-w-fit;
+}
+.swiper-pagination-bullet {
+	@apply bg-secundario transition-[width] opacity-100;
+}
+.swiper-pagination-bullet-active {
+	@apply w-7 bg-yellow-500 rounded-lg;
+}
