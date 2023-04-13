@@ -1,25 +1,60 @@
 import { VscChromeClose } from 'react-icons/vsc'
-import TextBox from '../../components/TextBox/TextBox'
-import TextScroll from '../../components/TextBox/TextScroll'
-import TextBobxLg from '../../components/TextBox/TextBoxLg'
+// import TextBox from '../../components/TextBox/TextBox'
+// import TextScroll from '../../components/TextBoX/TextScroll'
+// import TextBobxLg from '../../components/TextBox/TextBoxLg'
 import { useState } from 'react'
+import { data } from '../../data/db.json'
+// import Parragraph from '../../components/Parragraph/Parragraph'
+
+const initialDb = {
+	data,
+}
+
+// const initialForm = {
+// name: '',
+// 	quantity: '',
+// 	cost: '',
+// 	total: '',
+// 	price: '',
+// 	alert: '',
+// }
 
 const CreateProducts = () => {
-	const [visible, setVisible] = useState(true)
-	const [name, setName] = useState('')
-	const [quantity, setQuantity] = useState('')
-	const [cost, setCost] = useState('')
-	const [total, setTotal] = useState('')
-	const [price, setPrice] = useState('')
-	const [alert, setAlert] = useState('')
+	const [visible, setVisible] = useState(false)
+	// const [title, setTitle] = useState({ campo: '', valid: null })
+	// const [quantity, setQuantity] = useState({ campo: '', valid: null })
+	// const [cost, setCost] = useState({ campo: '', valid: null })
+	// const [total, setTotal] = useState({ campo: '', valid: null })
+	// const [price, setPrice] = useState({ campo: '', valid: null })
+	// const [alert, setAlert] = useState({ campo: '', valid: null })
 
-	const onSubmit = e => {
-		e.prevent.default()
+	// state={
+	// 	initialDb,
+	// 	initialForm
+	// }
+
+	const [form, setForm] = useState({})
+	const [db, setDb] = useState(initialDb)
+
+	const createData =(data)=> {
+		data.id = Date.now()
+
+		setDb({
+			...db,
+			data
+		})
 	}
+	
+	const handleSubmit = e => {
+		e.preventDefault()
+		createData()
+	}
+
+	
 
 	return (
 		<>
-			<form onSubmit={onSubmit} className=' h-screen w-screen '>
+			<div>
 				<div className='flex justify-end h-10 p-4 md:p-6 md:pb-8'>
 					<VscChromeClose className='bg-slate-300 rounded-xl h-6 w-6 p-0.5' />
 				</div>
@@ -35,71 +70,95 @@ const CreateProducts = () => {
 						></img>
 					</div>
 				</div>
-				<div className='h-fit  p-4 mt-2 bg-primario75'>
+			</div>
+
+			<form onSubmit={handleSubmit} className=' h-screen w-screen bg-primario'>
+				<div className=' p-4 mt-2 bg-primario75'>
 					<div className='m-2 mb-4 md:m-4 '>
-						<TextBobxLg
-							label='ingrese la cantidad'
-							type='price'
-							name='quantity'
-							state={name}
-							setState={setName}
-						/>
+						{/* <TextBobxLg
+							label='ingrese el nombre'
+							type='text'
+							name='name'
+							estado={title}
+							cambiarEstado={setTitle}
+							regularExp={Expression.leters}
+							form={form.nombre}
+							setForm={setForm}
+						/> */}
 					</div>
 					<div className='flex justify-center'>
 						<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
 							<div className='flex flex-col'>
-								<TextBox
+								{/* <TextBox
 									label='ingrese la cantidad'
-									type='price'
+									type='number'
 									name='quantity'
-									state={quantity}
-									setState={setQuantity}
-								/>
+									estado={quantity}
+									cambiarEstado={setQuantity}
+									regularExp={Expression.number}
+									form={form.cantidad}
+									setForm={setForm}
+								/> */}
 							</div>
 
 							<div className='flex flex-col'>
-								<TextBox
+								{/* <TextBox
 									label='ingrese el costo'
-									type='price'
+									type='number'
 									name='cost'
-									state={cost}
-									setState={setCost}
-								/>
+									estado={cost}
+									cambiarEstado={setCost}
+									regExp={Expression.number}
+									form={form.costo}
+									setForm={setForm} */}
+								{/* /> */}
 							</div>
 							<div className='flex flex-col'>
-								<TextBox
+								{/* <TextBox
 									label='costo total'
-									type='price'
+									type='number'
 									name='total'
-									state={total}
-									setState={setTotal}
-								/>
+									estado={total}
+									cambiarEstado={setTotal}
+									regExp={Expression.number}
+									form={form.costoTotal}
+									setForm={setForm}
+								/> */}
 							</div>
 							<div className='flex flex-col'>
-								<TextBox
+								{/* <TextBox
 									label='ingrese el precio'
-									type='price'
+									type='number'
 									name='price'
-									state={price}
-									setState={setPrice}
-								/>
+									estado={price}
+									cambiarEstado={setPrice}
+									regExp={Expression.number}
+									form={form.precio}
+									setForm={setForm}
+								/> */}
 							</div>
 							<div className='flex flex-col'>
-								<TextBox
+								{/* <TextBox
 									label='alertar en esta cantidad'
-									type='price'
+									type='number'
 									name='alert'
-									state={alert}
-									setState={setAlert}
-								/>
+									estado={alert}
+									cambiarEstado={setAlert}
+									regExp={Expression.number}
+									form={form.alertar}
+									setForm={setForm}
+								/> */}
 							</div>
 
-							<div className='flex flex-col'>
-								<p className='text-xs md:text-base md:pl-4  text-slate-400 pl-2'>
+							{/* <div className='flex flex-col'>
+								<label className='text-sm md:text-base md:pl-4  text-slate-400 pl-2'>
 									categoria personalizada
-								</p>
-								<TextScroll />
-							</div>
+								</label>
+								<TextScroll 
+								form={form}
+								setForm={setForm}
+								/>
+							</div> */}
 						</div>
 					</div>
 					<div className='flex justify-between mt-4'>
@@ -109,27 +168,27 @@ const CreateProducts = () => {
 							</div>
 						</button>
 						<button
+							type='submit'
+							value='send'
 							onClick={
-								() => setVisible(false)
+								() => setVisible(true)
 								// aca tambien debe ir el agregar producto a base datos de la peticion POST
 							}
 							className='m-2 md:m-4'
 						>
-							<imput type='submit' value='send'>
-								<div className='bg-secundario text-primario w-28 h-8 md:w-48 md:h-10  border-2 rounded-lg  text-sm font-semibold  md:text-lg flex justify-center items-center'>
-									Continuar
-								</div>
-							</imput>
+							<div className='bg-secundario text-primario w-28 h-8 md:w-48 md:h-10  border-2 rounded-lg  text-sm font-semibold  md:text-lg flex justify-center items-center'>
+								Continuar
+							</div>
 						</button>
 
 						{visible && (
 							<section
 								id='modal'
-								className='bg-acentoGrey fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
+								className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
 							>
 								<div
 									id='modal-container'
-									className='bg-secundario75 w-11/12 m-auto max-w-96 h-60 rounded-lg '
+									className='bg-secundario3 w-11/12 m-auto max-w-96 h-60 rounded-lg '
 								>
 									<div className=' flex justify-end'>
 										<button className=' pr-2 pt-2'>
