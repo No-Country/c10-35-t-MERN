@@ -33,6 +33,15 @@ const consumerProduct = async (product) => {
 
   const [productFound, productCreated] = await Products.findOrCreate({
     where: { product_name: productName, isAvailable: true },
+    defaults: {
+      product_name: productName,
+      image,
+      price,
+      cost,
+      minimum_stock,
+      supplierId,
+      categoryId,
+    },
   });
 
   const [productUser, RelationCreated] = await Product_Users.findOrCreate({
@@ -74,15 +83,25 @@ const createProduct = async (product) => {
 
   const [productFound, productCreated] = await Products.findOrCreate({
     where: { product_name: productName },
+    defaults: {
+      product_name: productName,
+      description,
+      image,
+      price,
+      cost,
+      minimum_stock,
+      supplierId,
+      categoryId,
+    },
   });
-  //aca salta un error =>  "error": "column \"brandId\" does not exist"
-  if (productFound) {
-    throw new AppError('the product already exists', 404);
-  }
+  
+  const [productUser, RelationCreated] = await Product_Users.findOrCreate({
+    where: { userId, productId: productFound.id, isAvailable: true },
+  });
 
   return {
-    message: `The product ${productCreated.name} has been successfully created  `,
-    product: productCreated,
+    message: `The product ${productName} has been successfully created  `,
+    product: productFound,
   };
 };
 
