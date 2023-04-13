@@ -6,6 +6,9 @@ import Login from '../../pages/Login/Login'
 import { Inventary } from '../../pages/Inventary/inventary'
 import Dashboard from '../../pages/Dashboard/Dashboard'
 import CreateProducts2 from '../../pages/CreateProducts/CreateProducts2'
+import Ingresos from '../../pages/Ingresos/Ingresos'
+import Egresos from '../../pages/Egresos/Egresos'
+import ProductosMover from '../../pages/ProductosMover/ProductosMover'
 
 const ListRoutes = () => {
 	return (
@@ -26,8 +29,9 @@ const ListRoutes = () => {
 					<Route path='/configuracion' element={<h1>configuración</h1>} />
 					<Route path='/detalles' element={<h1>detalles</h1>} />
 					<Route path='/logout' element={<h1>Cerrar sesión</h1>} />
-					<Route path='/ingresos' element={<h1>Ingresos</h1>} />
-					<Route path='/egresos' element={<h1>Egresos</h1>} />
+					<Route path='/ingresos' element={<Ingresos/>} />
+					<Route path='/egresos' element={<Egresos/>} />
+					<Route path='/productoMover' element={<ProductosMover/>} />
 				</Routes>
 			</div>
 		</>
