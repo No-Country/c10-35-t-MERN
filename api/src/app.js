@@ -3,6 +3,9 @@ const cors = require('cors');
 const morgan = require('morgan');
 const appRoutes = require('./routes/app.routes');
 
+const swaggerUI = require('swagger-ui-express');
+const swaggerSpec = require('./utils/swagger');
+
 const { PORT, API_PATH } = require('./config/config');
 
 const app = express();
@@ -19,5 +22,8 @@ app.use(
 
 // Mount routers
 app.use(`${API_PATH}`, appRoutes);
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+
 
 module.exports = app;

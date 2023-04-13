@@ -22,7 +22,6 @@ const create = async (category) => {
 
     const categoryNameUpperCase = category_name.toUpperCase();
     
-    
     // find or create
     const [categoryFound, CategoryCreated] = await Category.findOrCreate({
         where: { category_name: categoryNameUpperCase , isAvailable: true },
