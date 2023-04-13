@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const TextBox = props => {
 	const { label, type, name, state, setState } = props
 

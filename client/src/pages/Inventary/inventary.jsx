@@ -1,48 +1,83 @@
-import React from 'react'
-import { CategoryCard } from '../../components/CategoryCard/CategoryCard'
-import { ProductStockCard } from '../../components/ProductStockCard/ProductStockCard'
-// import TextBobxLg from '../../components/TextBox/TextBoxLg'
+import React, { useState } from 'react'
+
+import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
+import Navbar from '../../components/NavBar/NavBar'
+import { TextBoxWithIcon } from '../../components/textBox/TextBoxWithIcon'
+import { CategoryListContainer } from '../../components/CategoryProducts/CategoryListContainer'
+import { ProductsContainer } from '../../components/Product/ProductsContainer'
 
 const categories = [
 	{
 		id: 1,
-		title: 'Bebidas',
+		title: 'Verduras',
 		stock: '12',
-		price: '16000',
+		price: '1600',
 	},
 	{
 		id: 2,
 		title: 'Bebidas',
 		stock: '13',
-		price: '15000',
+		price: '1500',
+	},
+]
+
+const products = [
+	{
+		id: 1,
+		title: 'Leche',
+		stock: '12',
+		price: '1600',
+		idCategory: 2,
+	},
+	{
+		id: 2,
+		title: 'Lechuga',
+		stock: '10',
+		price: '20',
+		idCategory: 1,
+	},
+	{
+		id: 3,
+		title: 'Lechuga-1',
+		stock: '10',
+		price: '20',
+		idCategory: 1,
+	},
+	{
+		id: 4,
+		title: 'Lechuga-2',
+		stock: '10',
+		price: '20',
+		idCategory: 1,
+	},
+	{
+		id: 5,
+		title: 'Lechuga-3',
+		stock: '10',
+		price: '20',
+		idCategory: 1,
 	},
 ]
 
 export const Inventary = () => {
+	const [filter, setFilter] = useState({
+		search: '',
+		category: '',
+	})
+
+
+
 	return (
-		<div className='flex flex-col w-full'>
+		<div className='flex flex-col w-full gap-5'>
+			<Navbar navBarTile='Inventario' />
+			<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
+
 			<h2>Categorías</h2>
+			<CategoryListContainer categoriesList={categories} setFilter={setFilter} filter={{ ...filter }}/>
 
-			<div className='flex w-full'>
-				{categories.map(category => {
-					return (
-						<CategoryCard
-							key={category.id}
-							title={category.title}
-							price={category.price}
-							stock={category.stock}
-						/>
-					)
-				})}
-			</div>
+			<ProductsContainer productsList={products} filterProduct={{ ...filter }}/>
 
-			<div className='w-full'>
-				<h2 className='w-full'>Lista de productos</h2>
-			</div>
-
-			<div className='w-full'>
-				<ProductStockCard />
-			</div>
+			<NavbarMobile />
 		</div>
 	)
 }
