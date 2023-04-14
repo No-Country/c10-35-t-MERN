@@ -7,7 +7,8 @@
       "costo": 600,
       "total": 625,
       "precio": 675,
-      "alerta": 20
+      "alerta": 20,
+      "unidades": "unidades"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "costo": 850,
       "total": 875,
       "precio": 100,
-      "alerta": 30
+      "alerta": 30,
+      "unidades": "unidades"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "costo": 850,
       "total": 875,
       "precio": 100,
-      "alerta": 30
+      "alerta": 30,
+      "unidades": "unidades"
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "costo": 100,
       "total": 125,
       "precio": 180,
-      "alerta": 35
+      "alerta": 35,
+      "unidades": "unidades"
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "costo": 75,
       "total": 80,
       "precio": 95,
-      "alerta": 10
+      "alerta": 10,
+      "unidades": "unidades"
     },
     {
       "nombre": "fideos",
@@ -70,55 +75,17 @@
       "total": "56",
       "precio": "57",
       "alerta": "10",
-      "id": 10
+      "id": 10,
+      "unidades": "unidades"
     },
     {
-      "id": 1681419396959,
-      "nombre": "detergente",
+      "id": 1681493315585,
+      "nombre": "polenta",
       "cantidad": "78",
-      "costo": "7",
-      "total": "96",
-      "precio": "87",
-      "alerta": "3"
-    },
-    {
-      "id": 1681419662905,
-      "nombre": "jabon",
-      "cantidad": "31",
-      "costo": "54",
-      "total": "96",
-      "precio": "32",
-      "alerta": "0"
-    },
-    {
-      "err": true,
-      "status": 500,
-      "statusText": "Internal Server Error",
-      "nombre": "alcohol",
-      "cantidad": "8",
-      "costo": "96",
+      "costo": "95",
       "total": "7",
-      "precio": "85",
-      "alerta": "9",
-      "id": 1681419662906
-    }
-  ],
-  "unidades": [
-    {
-      "id": 1,
-      "unit": "Kg"
-    },
-    {
-      "id": 2,
-      "unit": "M"
-    },
-    {
-      "id": 3,
-      "unit": "Kg"
-    },
-    {
-      "id": 4,
-      "unit": "units"
+      "precio": "5",
+      "alerta": "10"
     }
   ]
 }

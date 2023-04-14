@@ -41,4 +41,9 @@ p {
 .form-verificacion {
 	@apply font-secundaria text-xs;
 }
-
+  #errorp {
+	@apply font-secundaria text-xs font-normal text-error w-48 h-4 flex-none grow-0 order-2
+ }
+#labelInput{
+	@apply font-secundaria h-18 w-116 text-sm font-normal text-labeltexto flex-none grow-0 order-none
+}
