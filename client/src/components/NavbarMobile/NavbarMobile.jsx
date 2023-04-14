@@ -3,7 +3,7 @@ import { RiDashboardLine, RiFileTextLine, RiNotification3Line } from 'react-icon
 
 export default function NavbarMobile() {
     return (
-        <nav className='fixed h-91 bottom-0 left-0 z-50 flex justify-between w-full px-4 py-2 text-secundario bg-white'>
+        <nav className='fixed h-91 bottom-0 left-0 z-50 flex justify-between w-full px-4 py-2 text-secundario bg-white lg:hidden'>
             <NavLink to='/inicio' className={({ isActive }) =>
                 isActive ? "w-16 h-16 rounded-md bg-secundario text-acento [&>button>span]:text-white" : ""
             }>
