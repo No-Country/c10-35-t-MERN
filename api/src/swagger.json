@@ -5,7 +5,7 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/brands": {
+    "/api/v1/brands": {
       "post": {
         "summary": "Create a new brand",
         "tags": ["Marcas"],
@@ -95,7 +95,7 @@
         }
       }
     },
-    "/brands/{brandId}": {
+    "/api/v1/brands/{brandId}": {
       "get": {
         "summary": "Returns brand by the ID",
         "tags": ["Marcas"],
