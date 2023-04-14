@@ -2,9 +2,8 @@ import ListRoutes from './components/Routes/ListRoutes'
 
 function App() {
 	return (
-		<div className='App text-center'>
-			
-			<ListRoutes/>
+		<div className='min-h-full text-center'>
+			<ListRoutes />
 		</div>
 	)
 }

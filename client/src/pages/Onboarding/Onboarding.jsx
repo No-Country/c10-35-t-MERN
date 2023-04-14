@@ -13,7 +13,7 @@ import SwiperNavButtons from './SwiperNavButtons'
 
 function Onboarding() {
 	const [index, setIndex] = useState(0)
-	const handleSkip = () => {
+	const handldeSkip = () => {
 		const onBoarding = document.getElementById('onboarding')
 		const login = document.getElementById('login')
 		onBoarding.classList.add('hidden')
@@ -21,21 +21,21 @@ function Onboarding() {
 	}
 
 	return (
-		<section id='onboarding' className='w-10/12 ml-auto mr-auto h-screen'>
+		<section id='onboarding' className='w-10/12 ml-auto mr-auto min-h-full'>
 			<header className='flex flex-row-reverse mb-12'>
 				<button
-					onClick={handleSkip}
+					onClick={handldeSkip}
 					className='bg-secundario py-2 px-4 rounded-xl text-primario'
 				>
 					Saltar
 				</button>
 			</header>
-			<main className='h-full'>
+			<main className='min-h-full'>
 				<div className='flex justify-center mb-8'>
 					<img src={logo} alt='Stocker logo' />
 				</div>
 				<Swiper
-					className=' h-full pb-10 '
+					className='pb-10 '
 					modules={[Navigation, Pagination, Scrollbar, A11y]}
 					spaceBetween={20}
 					slidesPerView={1}
