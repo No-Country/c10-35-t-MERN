@@ -5,8 +5,14 @@ import movimientosUrl from './icon-movimientos.svg'
 import reportesUrl from './icon-reportes.svg'
 
 export default function DashboardMenu() {
+	
 	const dashboardCategories = [
-		{ id: 1, img: inventarioUrl, name: 'Inventario', route: 'inventario' },
+		{ 
+			id: 1, 
+			img: inventarioUrl, 
+			name: 'Inventario', 
+			route: 'inventario' 
+		},
 		{
 			id: 2,
 			img: crearProductoUrl,
@@ -19,11 +25,16 @@ export default function DashboardMenu() {
 			name: 'Movimientos',
 			route: 'registro-de-movimientos',
 		},
-		{ id: 4, img: reportesUrl, name: 'Reportes', route: 'reportes' },
+		{ 
+			id: 4, 
+			img: reportesUrl, 
+			name: 'Reportes', 
+			route: 'reportes' 
+		},
 	]
 
 	return (
-		<nav className='grid grid-cols-2 grid-rows-2 gap-x-6 gap-y-8 mt-8 mx-4 font-secundaria'>
+		<nav className='grid grid-cols-2 grid-rows-2 gap-x-6 gap-y-8 mt-7 mx-4 font-secundaria'>
 			{dashboardCategories ? (
 				dashboardCategories.map(category => (
 					<Link to={`/${category.route}`} key={category.id}>
