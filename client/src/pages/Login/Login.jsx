@@ -29,7 +29,7 @@ function Login() {
 		await handlePost(URL, userData, e)
 	}
 	useEffect(() => {
-		if ((responseData !== null) & (responseData?.message === ''))
+		if ((responseData !== null) & (responseData?.message !== ''))
 			return window.alert(responseData.message)
 		if ((responseData !== null) & (error !== null))
 			return window.alert(error.toString())
