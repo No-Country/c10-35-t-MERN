@@ -9,14 +9,4 @@ router.get('/:id', controller.findById);
 router.put('/:id', controller.update);
 router.delete('/:id', controller.delete);
 
-
-/* router
-    .route("/")
-    .get(Brand.findAll)
-    .post(Brand.create)
-router.route('/register')
-    .post(Brand.register)
-router.route('/login')
-    .post(Brand.login) */
-
 module.exports = router;
