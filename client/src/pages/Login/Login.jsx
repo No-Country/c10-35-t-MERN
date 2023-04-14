@@ -3,22 +3,33 @@ import { GrGoogle, GrFacebook } from 'react-icons/gr'
 import { useNavigate } from 'react-router'
 import Onboarding from '../Onboarding/Onboarding'
 import usePostData from '../../hooks/UseFetch/UsePostData'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 function Login() {
 	const URL = 'https://stocker-api.fly.dev/api/v1/users/login'
 	const { error, isLoading, responseData, handlePost } = usePostData()
 	const navigate = useNavigate()
+	const data = {}
+	const [verify, setVerify] = useState(false)
+	const handleChange = e => {
+		data[e.target.name] = e.target.value
+	}
+	const handleEmailBLur = e => {
+		if (e.target.value === '') setVerify(false)
+		const emailFormatTest = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
+		const verifiedEmail = data[e.target.name]
+		if (!emailFormatTest.test(verifiedEmail)) setVerify(false)
+	}
+	const handlePassBLur = e => {
+		if (e.target.value === '') setVerify(false)
+	}
+	const handleRepeatPassBLur = e => {
+		if (e.target.value === '') setVerify(false)
+		if (data.pass !== e.target.value) setVerify(false)
+	}
 	const handleSubmit = async e => {
 		e.preventDefault()
-		const email = form.email.value
-		const password = form.password.value
-		const repeatedPassword = form.repeat.value
-		if (
-			form.email.value === '' ||
-			form.password.value === '' ||
-			form.repeat.value === ''
-		)
-			return alert('campos vacios')
+		if (!verify) return window.alert('arregle errores')
+		// return alert('campos vacios')
 		if (password !== repeatedPassword)
 			return alert('Las contraseñas no coinciden')
 		const userData = {
@@ -51,7 +62,7 @@ function Login() {
 				<h1>STOKER</h1>
 				<h6>Inicia sesión</h6>
 				<form
-					id='form'
+					id='Form'
 					action=''
 					className=' flex flex-col items-center w-full h-full gap-y-2'
 				>
@@ -63,6 +74,8 @@ function Login() {
 							type='email'
 							name='email'
 							id='email'
+							onChange={handleChange}
+							onBlur={handleEmailBLur}
 							placeholder='Ingrese usuario'
 						/>
 					</div>
@@ -74,6 +87,8 @@ function Login() {
 							type='password'
 							name='password'
 							id='password'
+							onChange={handleChange}
+							onBlur={handlePassBLur}
 							placeholder='Ingrese contraseña'
 						/>
 					</div>
@@ -85,6 +100,8 @@ function Login() {
 							type='password'
 							name='repeated_assword'
 							id='repeat'
+							onChange={handleChange}
+							onBlur={handleRepeatPassBLur}
 							placeholder='Ingrese contraseña'
 						/>
 					</div>
