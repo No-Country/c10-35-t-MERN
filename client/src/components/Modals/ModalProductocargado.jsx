@@ -8,7 +8,7 @@ const ModalProductocargado = () => {
 						>
 							<div
 								id='modal-container'
-								className='bg-primario w-295 h-273 inset-16 rounded-xl flex flex-col items-center p-6 gap-4 relative '
+								className='bg-primario w-295 h-273 inset-16 rounded-xl flex flex-col items-center pr-20 p-6 mt-24 gap-4 relative  '
 							>
 								<h3
 									id='modal-paragraph'

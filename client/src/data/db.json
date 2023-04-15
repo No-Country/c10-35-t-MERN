@@ -86,6 +86,15 @@
       "total": "7",
       "precio": "5",
       "alerta": "10"
+    },
+    {
+      "id": 1681576115603,
+      "nombre": "tomate",
+      "cantidad": "600",
+      "costo": "540",
+      "total": "560",
+      "precio": "700",
+      "alerta": "10"
     }
   ]
 }

@@ -213,9 +213,8 @@ const CreateProducts2 = () => {
 			<div className=''>
 				{/* --------contenedor general de barra superior -------- */}
 				<div className='flex-none order-1 grow-0'>
-
 					{/* --------contenedor de items h1 y botones------- */}
-					<div className='w-373 h-43 top-31  left-0 px-0 py-4 gap-3 flex flex-row  items-center '>
+					<div className='w-373 h-43 top-31  left-0 px-0 py-4 gap-3 flex flex-row items-center  flex-none order-1 grow-0 '>
 						<Link
 							to={'/inicio'}
 							className='flex-none order-0 grow-0 w-6 h-6 top-2.5 left-4'
@@ -233,127 +232,67 @@ const CreateProducts2 = () => {
 					</div>
 				</div>
 			</div>
-			<img
-				src={producto}
-				className='w-250 h-180 p-0 top-28 left-16 border-7 rounded-xl gap-22 border-solid border-acento2 box-border flex flex-row justify-center items-center absolute'
-			></img>
-
-			<form
-				onSubmit={handleSubmit}
-
-			>
+			<div className='flex-none'>
+				<img
+					src={producto}
+					className='w-250 h-180 p-0 top-28 left-16 border-7 rounded-xl gap-22 border-solid border-acento2 box-border flex flex-row justify-center items-center absolute '
+				></img>
+				<p className='text-xs font-secundaria font-normal text-secundario absolute w-72 h-18 left-56 top-297 mt-2'>
+					cargar foto
+				</p>
+			</div>
+			<form onSubmit={handleSubmit}>
 				{/* -------contenerdor de inputs----- */}
-				<div className='w-375 h-469 top-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl'>
+				<div className='w-375 h-469 mt-80 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl'>
 					{/* ------desde aca empiezan los inputs---- */}
 
-					<div className='w-343 h-48 left-0 top-0 flex flex-col items-start p-0 gap-1'>
-						<label id='labelInput' className='w-203 h-18'>
+					<div className='w-341 h-70 top-3 left-4 absolute flex flex-col items-start p-0 gap-1'>
+						<label id='labelInput' className='w-40 h-18'>
 							nombre
 						</label>
 						<input
-							className=' w-343 h-h48  border-1 border-solid bg-white border-secundario3 rounded-xl  box-border  inset-x-0 top-31.43 botton-0 absolute'
 							type='text'
-							id='inputForm'
+							id='nombre'
 							name='nombre'
 							value={form.nombre}
 							onBlur={handleBlur}
 							onChange={handleChange}
 							required
+							className='w-341 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border
+						}'
 						></input>
 						{errors.nombre && <p id='errorp'>{errors.nombre}</p>}
 					</div>
-					<div id='divInput' className='left-4 top-443'>
-						<label id='labelInput' htmlFor='' className='w-122 h-18'>
-							cantidad
-						</label>
-						<input
-							type='number'
-							id='inputForm'
-							name='cantidad'
-							value={form.cantidad}
-							onBlur={handleBlur}
-							onChange={handleChange}
-							required
-							// className='w-28  h-6  pl-2  border-2 border-solid rounded-lg text-sm  flex justify-start items-center'
-						></input>
-						{errors.cantidad && <p id='errorp'>{errors.cantidad}</p>}
-					</div>
-					<div id='divInput' className='left-4 top-537'>
-						<label id='labelInput' htmlFor='' className='w-102'>
-							costo
-						</label>
-						<input
-							type='number'
-							id='inputForm'
-							name='costo'
-							value={form.costo}
-							onBlur={handleBlur}
-							onChange={handleChange}
-							required
-							// className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-						></input>
-						{errors.costo && <p id='errorp'>{errors.costo}</p>}
-					</div>
-					<div id='divInput' className='top-537 left-199.47'>
-						<label id='labelInput' htmlFor='' className='w-107'>
-							costoTotal
-						</label>
-						<input
-							type='number'
-							id='inputForm'
-							name='total'
-							value={form.total}
-							onBlur={handleBlur}
-							onChange={handleChange}
-							required
-							// className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-						></input>
-						{errors.total && <p id='errorp'>{errors.total}</p>}
-					</div>
-					<div id='divInput' className='left-4 top-631'>
-						<label id='labelInput' className='w-107' htmlFor=''>
-							precio
-						</label>
-						<input
-							type='number'
-							id='inputForm'
-							name='precio'
-							value={form.precio}
-							onBlur={handleBlur}
-							onChange={handleChange}
-							required
-							// className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-						></input>
-						{errors.precio && <p id='errorp'>{errors.precio}</p>}
-					</div>
-					<div id='divInput' className='top-631 left-200'>
-						<label id='labelInput' className='w-156' htmlFor=''>
-							alerta
-						</label>
-						<input
-							type='number'
-							id='inputForm'
-							name='alerta'
-							value={form.alerta}
-							onBlur={handleBlur}
-							onChange={handleChange}
-							required
-							// className='w-28 md:w-44 h-6 md:h-10  pl-2 border-2 border-solid rounded-lg text-sm flex justify-start items-center'
-						></input>
-						{errors.alerta && <p id='errorp'>{errors.alerta}</p>}
-					</div>
-					<div id='divInput' className='left-200 top-443'>
-						<label id='labelInput' className='w-133'>
-							unidades{' '}
-						</label>
-						<select
-							id='inputForm'
-							name='unidades'
-							onChange={handleChange}
 
-							// className='w-28 md:w-44 md:h-10 pl-2  border-2 rounded-lg text-sm md:text-lg flex justify-start items-center box-content '
-						>
-							{/* <option id='unidades' value={form.unidades.unidades}>
+					{/* ----------------aca va el primer grupo-------- */}
+					<div className=''>
+						<div id='divInput' className='left-4 top-24'>
+							<label id='labelInput' htmlFor='' className='w-122 h-18'>
+								cantidad
+							</label>
+
+							<input
+								type='number'
+								id='inputForm'
+								name='cantidad'
+								value={form.cantidad}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+							></input>
+						</div>
+						{errors.cantidad && <p id='errorp'>{errors.cantidad}</p>}
+						<div id='divInput' className='left-200 top-24'>
+							<label id='labelInput' className='w-133'>
+								unidades{' '}
+							</label>
+							<select
+								id='inputForm'
+								name='unidades'
+								onChange={handleChange}
+
+							>
+								{/* <option id='unidades' value={form.unidades.unidades}>
 									Unidades
 								</option>
 								<option id='Kg' value={form.unidades.kg}>
@@ -365,60 +304,129 @@ const CreateProducts2 = () => {
 								<option id='Lts' value={form.unidades.lts}>
 									Lts
 								</option> */}
-						</select>
-						{errors.unidades && <p id='errorp'>{errors.unidades}</p>}
+							</select>
+							{errors.unidades && <p id='errorp'>{errors.unidades}</p>}
+						</div>
+					</div>
+					{/* ---------------aca va el segundo grupo---------- */}
+					<div>
+						<div id='divInput' className='left-4 top-178'>
+							<label id='labelInput' htmlFor='' className='w-102'>
+								costo
+							</label>
+							<input
+								type='number'
+								id='inputForm'
+								name='costo'
+								value={form.costo}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+							></input>
+							{errors.costo && <p id='errorp'>{errors.costo}</p>}
+						</div>
+						<div id='divInput' className='top-178 left-200'>
+							<label id='labelInput' htmlFor='' className='w-107'>
+								costo Total
+							</label>
+							<input
+								type='number'
+								id='inputForm'
+								name='total'
+								value={form.total}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+							></input>
+							{errors.total && <p id='errorp'>{errors.total}</p>}
+						</div>
 					</div>
 
-					<button
-						className='w-40 h-h48 top-733 left-4 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
-						onClick={() => setModal(true)}
-					>
-						<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
-							Cargar Excel
+					{/* ----------aca va el tercer grupo----------- */}
+					<div>
+						<div id='divInput' className='left-4 top-266'>
+							<label id='labelInput' className='w-107' htmlFor=''>
+								precio
+							</label>
+							<input
+								type='number'
+								id='inputForm'
+								name='precio'
+								value={form.precio}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+							></input>
+							{errors.precio && <p id='errorp'>{errors.precio}</p>}
 						</div>
-					</button>
-
-					<button
-						type='submit'
-						value='send'
-						onClick={() => setVisible(true)}
-						className='w-40 h-h48 top-733 left-200 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
-					>
-						<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0'>
-							Continuar
+						<div id='divInput' className='top-266 left-200'>
+							<label id='labelInput' className='w-156' htmlFor=''>
+								alerta
+							</label>
+							<input
+								type='number'
+								id='inputForm'
+								name='alerta'
+								value={form.alerta}
+								onBlur={handleBlur}
+								onChange={handleChange}
+								required
+							></input>
+							{errors.alerta && <p id='errorp'>{errors.alerta}</p>}
 						</div>
-					</button>
-					{visible ? <ModalProductocargado /> : null}
-
-					{modal && (
-						<section
-							id='modalExcel'
-							className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
+					</div>
+					{/* -------------aca va el 4 grupo----------------- */}
+					<div className='flex-flex-col'>
+						<button
+							className='w-40 h-h48 top-96 left-4 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
+							onClick={() => setModal(true)}
 						>
-							<div
-								id='modal-containerExcel'
-								className='bg-primario3 w-11/12 m-auto max-w-96 h-60 rounded-lg '
-							>
-								<div className=' flex justify-end mb-8'>
-									<button
-										className=' pr-2 pt-2'
-										onClick={() => setModal(false)}
-									>
-										<RiCloseCircleLine className='w-6 h-6 fill-secundario bottom-4' />
-									</button>
-								</div>
-
-								<p
-									id='modal-paragraph'
-									className=' py-12 px-10 text-center font-secundaria text-error top-4'
-								>
-									Disponible solo en version Premiun
-								</p>
+							<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
+								Cargar Excel
 							</div>
-						</section>
-					)}
-					{!modal && null}
-					{/* {visible && (
+						</button>
+
+						<button
+							type='submit'
+							value='send'
+							onClick={() => setVisible(true)}
+							className='w-40 h-h48 top-96 left-200 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
+						>
+							<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0'>
+								Continuar
+							</div>
+						</button>
+						{visible ? <ModalProductocargado /> : null}
+
+						{modal && (
+							<section
+								id='modalExcel'
+								className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
+							>
+								<div
+									id='modal-containerExcel'
+									className='bg-primario3 m-auto w-371 h-60 rounded-lg pr-14'
+								>
+									<div className=' flex justify-end mb-8'>
+										<button
+											className=' pr-2 pt-2'
+											onClick={() => setModal(false)}
+										>
+											<RiCloseCircleLine className='w-6 h-6 fill-secundario bottom-4' />
+										</button>
+									</div>
+
+									<p
+										id='modal-paragraph'
+										className=' py-12 px-10 text-center font-secundaria text-error top-4'
+									>
+										Disponible solo en version Premiun
+									</p>
+								</div>
+							</section>
+						)}
+						{!modal && null}
+						{/* {visible && (
 						// <section
 						// 	id='modal'
 						// 	className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
@@ -451,6 +459,7 @@ const CreateProducts2 = () => {
 						// </section>
 					)}
 					{!visible && null} */}
+					</div>
 				</div>
 			</form>
 		</>
