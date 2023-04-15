@@ -10,6 +10,7 @@ import Ingresos from '../../pages/Ingresos/Ingresos'
 import Egresos from '../../pages/Egresos/Egresos'
 import ProductosMover from '../../pages/ProductosMover/ProductosMover'
 import { data } from '../../data'
+import RegistroUsuario from '../../pages/Registro-usuario/RegistroUsuario'
 const ListRoutes = () => {
 	return (
 		<>
@@ -17,6 +18,7 @@ const ListRoutes = () => {
 				<Routes>
 					<Route path='/*' element={<h1>not found</h1>} />
 					<Route path='/' element={<Login />} />
+					<Route path='/registro-usuario' element={<RegistroUsuario />} />
 					<Route path='/inicio' element={<Dashboard />} />
 					<Route path='/inventario' element={<Inventary />} />
 					<Route path='/crear-producto' element={<CreateProducts2 />} />
