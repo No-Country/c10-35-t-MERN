@@ -68,7 +68,7 @@ const consumerProduct = async (product) => {
 };
 
 const createProduct = async (product) => {
-  const {
+  let {
     product_name,
     description,
     image,
@@ -98,10 +98,23 @@ const createProduct = async (product) => {
 
   const productName = product_name.toUpperCase();
 
+  if (!image) {
+    image =
+      'https://th.bing.com/th/id/R.711dad5b8a1d5177174fbb45c238396d?rik=o9djzgLOunL93Q&pid=ImgRaw&r=0';
+  }
+
   const [productFound, productCreated] = await Products.findOrCreate({
     where: { product_name: productName },
     defaults: {
       product_name: productName,
+    },
+  });
+
+  const [productUser, RelationCreated] = await Product_Users.findOrCreate({
+    where: { userId, productId: productFound.id, isAvailable: true },
+    default: {
+      userId,
+      productId: productFound.id,
       description,
       image,
       price,
@@ -109,12 +122,8 @@ const createProduct = async (product) => {
       minimum_stock,
       supplierId,
       categoryId,
-      stock
+      stock,
     },
-  });
-
-  const [productUser, RelationCreated] = await Product_Users.findOrCreate({
-    where: { userId, productId: productFound.id, isAvailable: true },
   });
 
   return {
@@ -125,19 +134,19 @@ const createProduct = async (product) => {
 };
 
 const add = async (product) => {
-  const { product_name, price, stockAdd, stockSubstract, userId } = product;
+  const { productId, userId, price, stockAdd, stockSubstract } = product;
 
-  if (!product_name || !stockAdd || !userId) {
+  if (!product_name || !stockAdd || !userId || !productId) {
     throw new AppError('Mandatory data is missing', 400);
   }
   const productName = product_name.toUpperCase();
 
-  const userProducts = await Product_Users.findAll({
-    where: { userId: userId },
-    include: {
-      model: Products,
-    },
-  });
+  // const userProducts = await Product_Users.findAll({
+  //   where: { userId: userId },
+  //   include: {
+  //     model: Products,
+  //   },
+  // });
 
   // const userFindAll = await User.findAll({
   //   include: {
@@ -146,16 +155,20 @@ const add = async (product) => {
   // });
 
   const productFound = await Products.findOne({
-    where: { product_name: productName },
-    include: {
-      model: Product_Users,
-    },
+    where: { id: productId },
+    include: [
+      {
+        model: Product_Users,
+        as: 'productUser',
+        where: { userId: userId, isAvailable: true },
+      },
+    ],
   });
 
   return {
     message: 'Successfully modified product',
     product: productFound,
-    productUser: userProducts,
+    // productUser: userProducts,
     // user: userFindAll,
   };
 };
