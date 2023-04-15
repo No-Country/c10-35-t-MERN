@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router'
 import logo from '../../assets/logo_Stocker.png'
 import usePostData from '../../hooks/UseFetch/usePostData'
@@ -11,20 +11,22 @@ function RegistroUsuario() {
 	const [nameCheck, setNameCheck] = useState(false)
 	const [mailCheck, setMailCheck] = useState(false)
 	const [passCheck, setPassCheck] = useState(false)
-	const [repeatPassCheck, setrepeatPassCheck] = useState(false)
+	const [repeatPassCheck, setrepeatPassCheck] = useState(true)
+	const [isActive, setIsActive] = useState(false)
 	const handleChange = e => {
 		setData({ ...data, [e.target.name]: e.target.value })
 	}
-	if (!nameCheck & !mailCheck & !passCheck & !repeatPassCheck) {
-		btnSubmit.disabled = false
-	} else {
-		btnSubmit.disabled = true
-	}
+	useEffect(() => {
+		if (nameCheck || mailCheck || passCheck || repeatPassCheck)
+			setIsActive(true)
+		if (!nameCheck & !mailCheck & !passCheck & !repeatPassCheck)
+			setIsActive(false)
+	}, [nameCheck, mailCheck, passCheck, repeatPassCheck])
 
 	const handleNameBLur = e => {
 		const nameFormatTest = /^[A-Z]+$/i
 		const verifiedName = data[e.target.name]
-		if (!nameFormatTest.test(verifiedName)) {
+		if (!nameFormatTest.test(verifiedName) || e.target.value === '') {
 			errorName.classList.remove('hidden')
 			setNameCheck(true)
 		} else {
@@ -35,10 +37,10 @@ function RegistroUsuario() {
 	const handleEmailBLur = e => {
 		const emailFormatTest = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 		const verifiedEmail = data[e.target.name]
-		if (!emailFormatTest.test(verifiedEmail) || e.target.value === '') {
+		if (!emailFormatTest.test(verifiedEmail) || e.target.value === '')
 			errorMail.classList.remove('hidden')
-			setMailCheck(true)
-		} else {
+		setMailCheck(true)
+		if (emailFormatTest.test(verifiedEmail) & (e.target.value !== '')) {
 			errorMail.classList.add('hidden')
 			setMailCheck(false)
 		}
@@ -54,20 +56,17 @@ function RegistroUsuario() {
 	}
 	const handleRepeatPassBLur = e => {
 		if (data.password !== e.target.value || e.target.value === '') {
-			errorRepeatedPassword.classList.remove('hidden')
 			setrepeatPassCheck(true)
-		} else {
-			errorRepeatedPassword.classList.add('hidden')
+			errorRepeatedPassword.classList.remove('hidden')
+		}
+		if ((data.password === e.target.value) & (e.target.value !== '')) {
 			setrepeatPassCheck(false)
+			errorRepeatedPassword.classList.add('hidden')
 		}
 	}
 	const handleSubmit = async e => {
 		e.preventDefault()
-		console.log(verify)
-		// if (verify === '') return window.alert(verify)
-		// if (password !== repeatedPassword) console.log(password, repeatedPassword)
-
-		// await handlePost(URL, data, e)
+		await handlePost(URL, data, e)
 	}
 
 	useEffect(() => {
@@ -194,7 +193,7 @@ function RegistroUsuario() {
 					<input
 						type='submit'
 						name=''
-						id='btnSubmit'
+						disabled={isActive}
 						value='Crear cuenta'
 						onClick={handleSubmit}
 						className='bg-secundario disabled:bg-desactivado disabled:text-secundario3 text-primario py-3 rounded-xl w-full font-bold mt-auto'
