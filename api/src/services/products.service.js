@@ -75,6 +75,7 @@ const createProduct = async (product) => {
     price,
     cost,
     minimum_stock,
+    stock,
     supplierId,
     categoryId,
     userId,
@@ -90,6 +91,11 @@ const createProduct = async (product) => {
   if (!userFound) {
     throw new AppError('User not found', 404);
   }
+
+  if (stock == 0) {
+    throw new AppError('The stock of the product cannot be 0', 400);
+  }
+
   const productName = product_name.toUpperCase();
 
   const [productFound, productCreated] = await Products.findOrCreate({
@@ -103,6 +109,7 @@ const createProduct = async (product) => {
       minimum_stock,
       supplierId,
       categoryId,
+      stock
     },
   });
 
