@@ -6,19 +6,17 @@ const { where } = require('sequelize');
 const { AppError } = require('../utils/errors');
 
 const findAll = async (idUser) => {
-  return Products.findAll(
-    {
-      where: { isAvailable: true },
-      include: [
-        {
-          model: Product_Users,
-          as: 'productUser',
-          where: { userId: idUser, isAvailable: true },
-          attributes: ['id', 'userId', 'productId'],
-        },
-      ],
-    }
-  ); //agregar where con el idUser
+  return Products.findAll({
+    where: { isAvailable: true },
+    include: [
+      {
+        model: Product_Users,
+        as: 'productUser',
+        where: { userId: idUser, isAvailable: true },
+        attributes: ['id', 'userId', 'productId'],
+      },
+    ],
+  });
 };
 
 // this is for those products that are for consumption (arroz, frijoles, etc.)
