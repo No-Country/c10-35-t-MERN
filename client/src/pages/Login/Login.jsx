@@ -2,42 +2,38 @@
 import { GrGoogle, GrFacebook } from 'react-icons/gr'
 import { useNavigate } from 'react-router'
 import Onboarding from '../Onboarding/Onboarding'
-import usePostData from '../../hooks/UseFetch/UsePostData'
+import usePostData from '../../hooks/UseFetch/usePostData'
 import { useEffect, useState } from 'react'
 function Login() {
 	const URL = 'https://stocker-api.fly.dev/api/v1/users/login'
 	const { error, isLoading, responseData, handlePost } = usePostData()
 	const navigate = useNavigate()
-	const data = {}
-	const [verify, setVerify] = useState(false)
+	const [data, setData] = useState({})
+	const [verify, setVerify] = useState('')
 	const handleChange = e => {
-		data[e.target.name] = e.target.value
+		setData({ ...data, [e.target.name]: e.target.value })
 	}
 	const handleEmailBLur = e => {
-		if (e.target.value === '') setVerify(false)
+		if (e.target.value === '') setVerify('campo vacio')
 		const emailFormatTest = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 		const verifiedEmail = data[e.target.name]
-		if (!emailFormatTest.test(verifiedEmail)) setVerify(false)
+		if (!emailFormatTest.test(verifiedEmail)) setVerify('email')
 	}
 	const handlePassBLur = e => {
-		if (e.target.value === '') setVerify(false)
+		if (e.target.value === '') setVerify('pass vacio')
 	}
 	const handleRepeatPassBLur = e => {
-		if (e.target.value === '') setVerify(false)
-		if (data.pass !== e.target.value) setVerify(false)
+		if (e.target.value === '') setVerify('rep pass vacio')
+		if (data.password !== e.target.value) setVerify(false)
 	}
 	const handleSubmit = async e => {
 		e.preventDefault()
-		if (!verify) return window.alert('arregle errores')
-		// return alert('campos vacios')
-		if (password !== repeatedPassword)
-			return alert('Las contraseñas no coinciden')
-		const userData = {
-			email,
-			password,
-			repeatedPassword,
-		}
-		await handlePost(URL, userData, e)
+		console.log(data)
+		console.log(isLoading)
+		if (verify === '') return window.alert(verify)
+		if (password !== repeatedPassword) console.log(password, repeatedPassword)
+
+		await handlePost(URL, data, e)
 	}
 	useEffect(() => {
 		if ((responseData !== null) & (responseData?.message !== ''))
@@ -52,13 +48,13 @@ function Login() {
 	return (
 		<>
 			<Onboarding />
-			{responseData === null && <h1>CARGANDO...</h1>}
 
 			<section
 				id='login'
 				className='hidden flex flex-col h-screen py-7 text-center '
 			>
-				<p className='font-secundaria font-normal'>Bienvenidos a</p>
+				{isLoading && <h1>Cargando...</h1>}
+				<h2 className='font-secundaria font-normal'>Bienvenidos a</h2>
 				<h1>STOKER</h1>
 				<h6>Inicia sesión</h6>
 				<form
@@ -98,8 +94,8 @@ function Login() {
 						</label>
 						<input
 							type='password'
-							name='repeated_assword'
-							id='repeat'
+							name='repeatedPassword'
+							id='repeatedPassword'
 							onChange={handleChange}
 							onBlur={handleRepeatPassBLur}
 							placeholder='Ingrese contraseña'
