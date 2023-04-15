@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product_Users extends Model {
     /**
@@ -10,38 +8,48 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Product_Users.belongsTo(models.Products, {
+        foreignKey: 'productId',
+        // as: 'product',
+      });
+      Product_Users.belongsTo(models.Users, {
+        foreignKey: 'userId',
+        // as: 'user',
+      });
     }
   }
-  Product_Users.init({
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: 'userId',
-      references: {
-        model: 'Users',
-        key: 'id'
-      }
+  Product_Users.init(
+    {
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'userId',
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+      },
+      productId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'productId',
+        references: {
+          model: 'Products',
+          key: 'id',
+        },
+      },
+      isAvailable: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
     },
-    productId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: 'productId',
-      references: {
-        model: 'Products',
-        key: 'id'
-      }
-    },
-    isAvailable: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
-    },
-  }, {
-    sequelize,
-    modelName: 'Product_Users',
-    tableName: 'Product_Users',
-    timestamps: true,
-  });
+    {
+      sequelize,
+      modelName: 'Product_Users',
+      tableName: 'Product_Users',
+      timestamps: true,
+    }
+  );
   return Product_Users;
 };

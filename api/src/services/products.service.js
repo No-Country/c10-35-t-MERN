@@ -1,5 +1,6 @@
 const Products = require('../models/index').Products;
 const Product_Users = require('../models/index').Product_Users;
+const Product_Details = require('../models/index').Product_Details;
 const User = require('../models/index').Users;
 const { where } = require('sequelize');
 const { AppError } = require('../utils/errors');
@@ -106,7 +107,44 @@ const createProduct = async (product) => {
   };
 };
 
+const add = async (product) => {
+  const { product_name, price, stockAdd, stockSubstract, userId } = product;
+
+  if (!product_name || !stockAdd || !userId) {
+    throw new AppError('Mandatory data is missing', 400);
+  }
+  const productName = product_name.toUpperCase();
+
+  const userProducts = await Product_Users.findAll({
+    where: { userId: userId },
+    include: {
+      model: Products,
+    },
+  });
+
+  // const userFindAll = await User.findAll({
+  //   include: {
+  //     model: category_user,
+  //   },
+  // });
+
+  const productFound = await Products.findOne({
+    where: { product_name: productName },
+    include: {
+      model: Product_Users,
+    },
+  });
+
+  return {
+    message: 'Successfully modified product',
+    product: productFound,
+    productUser: userProducts,
+    // user: userFindAll,
+  };
+};
+
 module.exports = {
   findAll,
   createProduct,
+  add,
 };

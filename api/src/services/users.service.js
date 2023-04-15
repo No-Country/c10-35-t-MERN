@@ -64,7 +64,7 @@ const login = async (user) => {
     expiresIn: '15m',
   });
 
-  return { token: accessToken, userId: userFound.id };
+  return { token: accessToken, userId: userFound.id, status: 200 };
 };
 
 module.exports = {
