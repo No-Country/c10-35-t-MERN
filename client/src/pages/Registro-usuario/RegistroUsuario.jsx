@@ -44,6 +44,7 @@ function RegistroUsuario() {
 			errorMail.classList.add('hidden')
 			setMailCheck(false)
 		}
+		setMailCheck(false)
 	}
 	const handlePassBLur = e => {
 		if (e.target.value === '') {
@@ -66,18 +67,16 @@ function RegistroUsuario() {
 	}
 	const handleSubmit = async e => {
 		e.preventDefault()
-		console.log(data)
 		await handlePost(URL, data, e)
 	}
 
 	useEffect(() => {
-		if ((responseData !== null) & (responseData?.message !== ''))
-			return window.alert(responseData.message)
+		if ((responseData !== null) & (responseData?.length > 0))
+			return window.alert(responseData[0].message)
 		if ((responseData !== null) & (error !== null))
-			return window.alert(error.toString())
-		if ((responseData !== null) & (responseData?.token !== undefined)) {
-			sessionStorage.setItem('token', responseData.token)
-			navigate('/inicio')
+			return window.alert('error: ' + error.toString())
+		if ((responseData !== null) & (responseData?.message !== '')) {
+			return window.alert(responseData.message)
 		}
 	}, [responseData, error])
 	return (
