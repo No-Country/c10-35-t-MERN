@@ -36,6 +36,9 @@ function Login() {
 
 		await handlePost(URL, data, e)
 	}
+	const handleRegister = () => {
+		navigate('/registro-usuario')
+	}
 	useEffect(() => {
 		if ((responseData !== null) & (responseData?.message !== ''))
 			return window.alert(responseData.message)
@@ -122,7 +125,9 @@ function Login() {
 						onClick={handleSubmit}
 						className='bg-secundario text-primario py-3 rounded-xl w-full font-bold mt-auto'
 					/>
-					<p className='text-f12'>¿Aún no tienes cuenta?</p>
+					<button onClick={handleRegister} className='text-f12'>
+						¿Aún no tienes cuenta?
+					</button>
 				</form>
 			</main>
 		</>
