@@ -29,48 +29,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      description: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      price: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      cost: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      minimum_stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      supplierId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'supplierId',
-        references: {
-          model: 'Suppliers',
-          key: 'id',
-        },
-      },
-      categoryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'categoryId',
-        references: {
-          model: 'Categories',
-          key: 'id',
-        },
-      },
       isAvailable: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
