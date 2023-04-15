@@ -9,13 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Products.belongsTo(models.Suppliers, {
-        foreignKey: 'supplierId',
-        as: 'supplier',
-      });
-      Products.belongsTo(models.Categories, {
-        foreignKey: 'categoryId',
-        as: 'category',
+      Products.hasMany(models.Product_Users, {
+        foreignKey: 'productId',
+        as: 'productUser',
       });
     }
   }
@@ -24,44 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       product_name: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      description: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      price: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      cost: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      minimum_stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      supplierId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'supplierId',
-        references: {
-          model: 'Suppliers',
-          key: 'id',
-        },
-      },
-      categoryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'categoryId',
-        references: {
-          model: 'Categories',
-          key: 'id',
-        },
       },
       isAvailable: {
         type: DataTypes.BOOLEAN,

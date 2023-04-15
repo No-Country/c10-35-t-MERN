@@ -12,11 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Users.hasMany(models.Tokens, {
         foreignKey: 'userId',
         as: 'tokens'
-      })
-      Users.hasMany(models.Category_Users, {
-        foreignKey: 'userId',
-        as: 'category_users'
-      })
+      });
     }
   }
   Users.init({
