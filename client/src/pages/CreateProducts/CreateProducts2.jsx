@@ -1,13 +1,14 @@
 /* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
-import { RiCloseCircleLine } from 'react-icons/ri'
+import { RiCloseCircleFill, RiCloseCircleLine } from 'react-icons/ri'
 import { RiArrowLeftSLine } from 'react-icons/ri'
 import { useState } from 'react'
 import { data } from '../../data/db.json'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
-
-// import useForm from '../../components/helpers/useForm'
+import producto from '../../assets/ProdXDefecto.png'
+import { Link } from 'react-router-dom'
+import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 
 const initialForm = {
 	id: Date.now(),
@@ -16,7 +17,7 @@ const initialForm = {
 	costo: '',
 	total: '',
 	precio: '',
-	alerta: ''
+	alerta: '',
 
 	// unidades:{
 	// 	unidades:'',
@@ -209,129 +210,150 @@ const CreateProducts2 = () => {
 
 	return (
 		<>
-			<div className='h-373 w-78 px-1 py-0 gap-1.5 bg-white flex flex-col justify-center item absolute left-0 top-0'>
-				<div className='w-375 h-43 top-8 px-0 py-4 gap-3 flex flex-row items-center'>
-					<div className='flex justify-end h-10 p-4 md:p-6 md:pb-8'>
-						<RiArrowLeftSLine />
-						{/* className='bg-slate-300 rounded-xl h-6 w-6 p-0.5' /> */}
-					</div>
+			<div className=''>
+				{/* --------contenedor general de barra superior -------- */}
+				<div className='flex-none order-1 grow-0'>
 
-					<h1 className=' mb-2 pl-2 md:text-xl text-slate-700 font-semibold'>
-						Crear Producto
-					</h1>
-					<div className='w-6 h-6 top-2.5 left-335 flex-none order-2 grow-0'>
-						<RiCloseCircleLine className=' h-5 w-5 inset-8.3 absolute bg-secundario fill-white' />
+					{/* --------contenedor de items h1 y botones------- */}
+					<div className='w-373 h-43 top-31  left-0 px-0 py-4 gap-3 flex flex-row  items-center '>
+						<Link
+							to={'/inicio'}
+							className='flex-none order-0 grow-0 w-6 h-6 top-2.5 left-4'
+						>
+							<RiArrowLeftSLine />
+						</Link>
+
+						<h1 className='w-271 h-43 left-l52 flex items-end'>
+							Crear Producto
+						</h1>
+
+						<Link to={'/inicio'}>
+							<RiCloseCircleFill className='w-6 h-6 top-2.5 left-335 flex-none order-2 grow-0' />
+						</Link>
 					</div>
 				</div>
 			</div>
 			<img
-				src='https://i.imgur.com/Tgt6TjG.jpeg'
-				className='w-250 h-180 p-0 top-28 left-16 border-5 rounded-xl gap-22 border-solid border-acento2 box-border flex flex-row justify-center items-center absolute'
+				src={producto}
+				className='w-250 h-180 p-0 top-28 left-16 border-7 rounded-xl gap-22 border-solid border-acento2 box-border flex flex-row justify-center items-center absolute'
 			></img>
 
 			<form
 				onSubmit={handleSubmit}
-				className=' w-375 h-812 top-577 border-black box-border relative bg-white border-solid '
+
 			>
-				<div className='flex justify-center'>
-					<div className=' grid grid-cols-2  gap-x-20 md:gap-x-96'>
-						<div className='absolute w-343 h-432 left-4 top-349 bg-primario'>
-							<label id='labelInput' >nombre</label>
-							<input
-								className=' w-80 h-6 pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-								type='text'
-								id='textonombre'
-								name='nombre'
-								value={form.nombre}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-							></input>
-							{errors.nombre && <p id='errorp'>{errors.nombre}</p>}
-						</div>
-						<div className='flex flex-col m-2 p-2'>
-							<label id='labelInput' htmlFor=''>cantidad</label>
-							<input
-								type='number'
-								id='cantidad'
-								name='cantidad'
-								value={form.cantidad}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.cantidad && <p id='errorp'>{errors.cantidad}</p>}
-						</div>
-						<div className='flex flex-col'>
-							<label id='labelInput' htmlFor='' className='m-2 p-2'>
-								costo
-							</label>
-							<input
-								type='number'
-								id='costo '
-								name='costo'
-								value={form.costo}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.costo && <p id='errorp'>{errors.costo}</p>}
-						</div>
-						<div className='flex flex-col m-2 p-2'>
-							<label id='labelInput' htmlFor=''>costoTotal</label>
-							<input
-								type='number'
-								id='costoTotal'
-								name='total'
-								value={form.total}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.total && <p id='errorp'>{errors.total}</p>}
-						</div>
-						<div className='flex flex-col m-2 p-2'>
-							<label id='labelInput' htmlFor=''>precio</label>
-							<input
-								type='number'
-								id='precio'
-								name='precio'
-								value={form.precio}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.precio && <p id='errorp'>{errors.precio}</p>}
-						</div>
-						<div className='flex flex-col m-2 p-2'>
-							<label  id='labelInput' htmlFor=''>alerta</label>
-							<input
-								type='number'
-								id='alerta'
-								name='alerta'
-								value={form.alerta}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm flex justify-start items-center'
-							></input>
-							{errors.alerta && <p id='errorp'>{errors.alerta}</p>}
-						</div>
-						{/* <div className='flex flex-col m-2 p-2 text-sm  pl-2'>
-							unidades
-							<label  id='labelInput' className='mb-4 flex justify-between'> </label>
-							<select
-							name='unidades'
-							 
+				{/* -------contenerdor de inputs----- */}
+				<div className='w-375 h-469 top-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl'>
+					{/* ------desde aca empiezan los inputs---- */}
+
+					<div className='w-343 h-48 left-0 top-0 flex flex-col items-start p-0 gap-1'>
+						<label id='labelInput' className='w-203 h-18'>
+							nombre
+						</label>
+						<input
+							className=' w-343 h-h48  border-1 border-solid bg-white border-secundario3 rounded-xl  box-border  inset-x-0 top-31.43 botton-0 absolute'
+							type='text'
+							id='inputForm'
+							name='nombre'
+							value={form.nombre}
+							onBlur={handleBlur}
 							onChange={handleChange}
-							
-							className='w-28 md:w-44 md:h-10 pl-2  border-2 rounded-lg text-sm md:text-lg flex justify-start items-center box-content '
-							>
-								<option id='unidades' value={form.unidades.unidades}>
+							required
+						></input>
+						{errors.nombre && <p id='errorp'>{errors.nombre}</p>}
+					</div>
+					<div id='divInput' className='left-4 top-443'>
+						<label id='labelInput' htmlFor='' className='w-122 h-18'>
+							cantidad
+						</label>
+						<input
+							type='number'
+							id='inputForm'
+							name='cantidad'
+							value={form.cantidad}
+							onBlur={handleBlur}
+							onChange={handleChange}
+							required
+							// className='w-28  h-6  pl-2  border-2 border-solid rounded-lg text-sm  flex justify-start items-center'
+						></input>
+						{errors.cantidad && <p id='errorp'>{errors.cantidad}</p>}
+					</div>
+					<div id='divInput' className='left-4 top-537'>
+						<label id='labelInput' htmlFor='' className='w-102'>
+							costo
+						</label>
+						<input
+							type='number'
+							id='inputForm'
+							name='costo'
+							value={form.costo}
+							onBlur={handleBlur}
+							onChange={handleChange}
+							required
+							// className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+						></input>
+						{errors.costo && <p id='errorp'>{errors.costo}</p>}
+					</div>
+					<div id='divInput' className='top-537 left-199.47'>
+						<label id='labelInput' htmlFor='' className='w-107'>
+							costoTotal
+						</label>
+						<input
+							type='number'
+							id='inputForm'
+							name='total'
+							value={form.total}
+							onBlur={handleBlur}
+							onChange={handleChange}
+							required
+							// className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+						></input>
+						{errors.total && <p id='errorp'>{errors.total}</p>}
+					</div>
+					<div id='divInput' className='left-4 top-631'>
+						<label id='labelInput' className='w-107' htmlFor=''>
+							precio
+						</label>
+						<input
+							type='number'
+							id='inputForm'
+							name='precio'
+							value={form.precio}
+							onBlur={handleBlur}
+							onChange={handleChange}
+							required
+							// className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
+						></input>
+						{errors.precio && <p id='errorp'>{errors.precio}</p>}
+					</div>
+					<div id='divInput' className='top-631 left-200'>
+						<label id='labelInput' className='w-156' htmlFor=''>
+							alerta
+						</label>
+						<input
+							type='number'
+							id='inputForm'
+							name='alerta'
+							value={form.alerta}
+							onBlur={handleBlur}
+							onChange={handleChange}
+							required
+							// className='w-28 md:w-44 h-6 md:h-10  pl-2 border-2 border-solid rounded-lg text-sm flex justify-start items-center'
+						></input>
+						{errors.alerta && <p id='errorp'>{errors.alerta}</p>}
+					</div>
+					<div id='divInput' className='left-200 top-443'>
+						<label id='labelInput' className='w-133'>
+							unidades{' '}
+						</label>
+						<select
+							id='inputForm'
+							name='unidades'
+							onChange={handleChange}
+
+							// className='w-28 md:w-44 md:h-10 pl-2  border-2 rounded-lg text-sm md:text-lg flex justify-start items-center box-content '
+						>
+							{/* <option id='unidades' value={form.unidades.unidades}>
 									Unidades
 								</option>
 								<option id='Kg' value={form.unidades.kg}>
@@ -342,100 +364,93 @@ const CreateProducts2 = () => {
 								</option>
 								<option id='Lts' value={form.unidades.lts}>
 									Lts
-								</option>
-							</select>
-							{errors.unidades && <p id='errorp'>{errors.unidades}</p>}
-						</div> */}
+								</option> */}
+						</select>
+						{errors.unidades && <p id='errorp'>{errors.unidades}</p>}
 					</div>
 
-					<div className='flex justify-between p-0 mt-4'>
-						<button className='m-2 mt-80' onClick={() => setModal(true)}>
-							<div className='bg-secundario text-primario w-28 h-8 md:w-48 md:h-10  border-2 rounded-lg  text-sm font-semibold  md:text-lg flex justify-center items-center '>
-								Cargar Excel
-							</div>
-						</button>
+					<button
+						className='w-40 h-h48 top-733 left-4 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
+						onClick={() => setModal(true)}
+					>
+						<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
+							Cargar Excel
+						</div>
+					</button>
 
-						<button
-							type='submit'
-							value='send'
-							onClick={() => setVisible(true)}
-							className='m-2 md:m-4 mt-80'
+					<button
+						type='submit'
+						value='send'
+						onClick={() => setVisible(true)}
+						className='w-40 h-h48 top-733 left-200 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
+					>
+						<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0'>
+							Continuar
+						</div>
+					</button>
+					{visible ? <ModalProductocargado /> : null}
+
+					{modal && (
+						<section
+							id='modalExcel'
+							className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
 						>
-							<div className='bg-secundario text-primario w-28 h-8 md:w-48 md:h-10  border-2 rounded-lg  text-sm font-semibold  md:text-lg flex justify-center items-center'>
-								Continuar
+							<div
+								id='modal-containerExcel'
+								className='bg-primario3 w-11/12 m-auto max-w-96 h-60 rounded-lg '
+							>
+								<div className=' flex justify-end mb-8'>
+									<button
+										className=' pr-2 pt-2'
+										onClick={() => setModal(false)}
+									>
+										<RiCloseCircleLine className='w-6 h-6 fill-secundario bottom-4' />
+									</button>
+								</div>
+
+								<p
+									id='modal-paragraph'
+									className=' py-12 px-10 text-center font-secundaria text-error top-4'
+								>
+									Disponible solo en version Premiun
+								</p>
 							</div>
-						</button>
-
-						{modal && (
-							<section
-								id='modalExcel'
-								className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
-							>
-								<div
-									id='modal-containerExcel'
-									className='bg-secundario3 w-11/12 m-auto max-w-96 h-60 rounded-lg '
-								>
-									<div className=' flex justify-end'>
-										<button className=' pr-2 pt-2'>
-											<svg
-												onClick={() => setModal(false)}
-												className='h-8 p-0 m-0 fill-grey-400'
-												xmlns='http://www.w3.org/2000/svg'
-												width='30'
-												height='30'
-												viewBox='0 0 24 24'
-											>
-												<path d='M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.424 13.364 12 17.606 7.758z' />
-											</svg>
-										</button>
-									</div>
-
-									<p
-										id='modal-paragraph'
-										className=' py-12 px-10 text-center font-secundaria text-red-500'
-									>
-										Disponible solo en version Premiun
-									</p>
-								</div>
-							</section>
-						)}
-						{!modal && null}
-
-						{visible && (
-							<section
-								id='modal'
-								className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
-							>
-								<div
-									id='modal-container'
-									className='bg-secundario3 w-11/12 m-auto max-w-96 h-60 rounded-lg '
-								>
-									<div className=' flex justify-end'>
-										<button className=' pr-2 pt-2'>
-											<svg
-												onClick={() => setVisible(false)}
-												className='h-8 p-0 m-0 fill-grey-400'
-												xmlns='http://www.w3.org/2000/svg'
-												width='30'
-												height='30'
-												viewBox='0 0 24 24'
-											>
-												<path d='M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.424 13.364 12 17.606 7.758z' />
-											</svg>
-										</button>
-									</div>
-
-									<p
-										id='modal-paragraph'
-										className=' py-12 px-10 text-center font-secundaria text-primario75'
-									>
-										el producto ha sido cargado exitosamente
-									</p>
-								</div>
-							</section>
-						)}
-						{!visible && null}
-					</div>
+						</section>
+					)}
+					{!modal && null}
+					{/* {visible && (
+						// <section
+						// 	id='modal'
+						// 	className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
+						// >
+						// 	<div
+						// 		id='modal-container'
+						// 		className='bg-primario w-295 h-273 inset-16 rounded-xl flex flex-col items-center p-6 gap-4 relative '
+						// 	>
+						// 		<h3
+						// 			id='modal-paragraph'
+						// 			className='w-247 h-52 top-6 left-6 not-italic text-center items-center text-exito flex-none order-none grow-0'
+						// 		>
+						// 			¡Productos cargados exitosamente!
+						// 		</h3>
+						// 		<img
+						// 			src={pollo}
+						// 			alt='imagenEc¿xitosa'
+						// 			className='w-16 h-93 flex-none order-1 grow-0'
+						// 		/>
+						// 		<Link to={'/inicio'} className='flex-none order-2 grow-0'>
+								
+						// 			<button className='w-40 h-h48 top-200 left-67 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center'>
+						// 				<div className='text-white w-16 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0 order-none '>
+						// 					aceptar
+						// 				</div>
+						// 			</button>
+								
+						// 		</Link>
+						// 	</div>
+						// </section>
+					)}
+					{!visible && null} */}
 				</div>
 			</form>
 		</>

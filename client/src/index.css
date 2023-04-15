@@ -45,5 +45,11 @@ p {
 	@apply font-secundaria text-xs font-normal text-error w-48 h-4 flex-none grow-0 order-2
  }
 #labelInput{
-	@apply font-secundaria h-18 w-116 text-sm font-normal text-labeltexto flex-none grow-0 order-none
+	@apply  h-18 font-secundaria  text-sm font-normal text-labeltexto flex-none grow-0 order-none
+}
+#inputForm{
+	@apply w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border
+}
+#divInput{
+	@apply w-40 h-70  gap-1 flex flex-col items-start p-0 absolute  
 }
