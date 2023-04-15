@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import logo from '../../assets/logo_Stocker.png'
 import usePostData from '../../hooks/UseFetch/usePostData'
 function RegistroUsuario() {
-	const URL = 'https://stocker-api.fly.dev/api/v1/users/login'
+	const URL = 'https://stocker-api.fly.dev/api/v1/users/register'
 	const { error, isLoading, responseData, handlePost } = usePostData()
 	const navigate = useNavigate()
 	const [data, setData] = useState({})
@@ -66,6 +66,7 @@ function RegistroUsuario() {
 	}
 	const handleSubmit = async e => {
 		e.preventDefault()
+		console.log(data)
 		await handlePost(URL, data, e)
 	}
 
