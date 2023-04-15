@@ -3,10 +3,12 @@ const {
   getAll,
   createProduct,
   modifyProduct,
+  getByCategoryId,
 } = require('../controllers/products.controller');
 
 router.get('/:idUser', getAll); // ruta para pedir los productos del usuario
-router.get('filter/:category'); //ruta para enviar productos filtrados por categoria
+
+router.get('/filter/:categoryId/:userId', getByCategoryId); //ruta para enviar productos filtrados por categoria
 
 router.post('/create', createProduct); //ruta para crear producto
 

@@ -9,6 +9,16 @@ const getAll = async (req, res) => {
   }
 };
 
+const getByCategoryId = async (req, res) => {
+  try {
+    return res
+      .status(200)
+      .json(await service.findByCategoryId(req.params.categoryId, req.params.userId));
+  } catch (error) {
+    errorHandler(error, res);
+  }
+};
+
 const createProduct = async (req, res) => {
   try {
     return res.status(200).json(await service.createProduct(req.body));
@@ -20,9 +30,9 @@ const createProduct = async (req, res) => {
 const modifyProduct = async (req, res) => {
   try {
     const { stockAdd, stockSubstract } = req.body;
-    if (stockAdd) {
-      return res.status(200).json(await service.add(req.body));
-    }
+    
+    return res.status(200).json(await service.updateStock(req.body));
+    
     // if(stockSubstract){
     //   return res.status(200).json(await service.substract(req.body))
     // }
@@ -34,4 +44,5 @@ module.exports = {
   getAll,
   createProduct,
   modifyProduct,
+  getByCategoryId
 };
