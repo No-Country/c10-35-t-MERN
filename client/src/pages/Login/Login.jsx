@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
-import { GrGoogle, GrFacebook } from 'react-icons/gr'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { GrGoogle, GrFacebook } from 'react-icons/gr'
+import logo from '../../assets/logo_Stocker.png'
 import Onboarding from '../Onboarding/Onboarding'
 import usePostData from '../../hooks/UseFetch/usePostData'
-import { useEffect, useState } from 'react'
 function Login() {
 	const URL = 'https://stocker-api.fly.dev/api/v1/users/login'
 	const { error, isLoading, responseData, handlePost } = usePostData()
@@ -49,24 +50,27 @@ function Login() {
 		<>
 			<Onboarding />
 
-			<section
+			<main
 				id='login'
-				className='hidden flex flex-col h-screen py-7 text-center '
+				className='flex flex-col justify-start h-screen w-full px-4 pt-90 pb-4 text-center box-border'
 			>
 				{isLoading && <h1>Cargando...</h1>}
-				<h2 className='font-secundaria font-normal'>Bienvenidos a</h2>
-				<h1>STOKER</h1>
-				<h6>Inicia sesión</h6>
+				<div className='w-238.33 h-fit flex flex-col items-center'>
+					<h2>Bienvenidos a</h2>
+					<img className='my-8' src={logo} alt='Stocker Logo' />
+					<h2>Inicia sesión</h2>
+				</div>
 				<form
 					id='Form'
 					action=''
-					className=' flex flex-col items-center w-full h-full gap-y-2'
+					className=' flex flex-col items-center w-full min-h-full gap-y-2'
 				>
-					<div className='flex flex-col  w-4/5 justify-between gap-y-1'>
-						<label htmlFor='user' className='text-left text-xs'>
-							Email:
+					<div className='flex flex-col w-full justify-between gap-y-1'>
+						<label htmlFor='user' className='text-left text-xs text-labeltexto'>
+							Ingresa tu correo
 						</label>
 						<input
+							className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
 							type='email'
 							name='email'
 							id='email'
@@ -75,11 +79,15 @@ function Login() {
 							placeholder='Ingrese usuario'
 						/>
 					</div>
-					<div className='flex flex-col w-4/5 justify-between gap-y-1'>
-						<label htmlFor='password' className='text-left text-xs'>
-							Contraseña:
+					<div className='flex flex-col w-full justify-between gap-y-1'>
+						<label
+							htmlFor='password'
+							className='text-left text-xs text-labeltexto'
+						>
+							Ingresa tu contraseña
 						</label>
 						<input
+							className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
 							type='password'
 							name='password'
 							id='password'
@@ -88,11 +96,15 @@ function Login() {
 							placeholder='Ingrese contraseña'
 						/>
 					</div>
-					<div className='flex flex-col w-4/5 justify-between gap-y-1'>
-						<label htmlFor='password' className='text-left text-xs'>
-							repetir Contraseña:
+					<div className='flex flex-col w-full justify-between gap-y-1'>
+						<label
+							htmlFor='password'
+							className='text-left text-xs text-labeltexto'
+						>
+							Repite tu contraseña:
 						</label>
 						<input
+							className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
 							type='password'
 							name='repeatedPassword'
 							id='repeatedPassword'
@@ -101,24 +113,18 @@ function Login() {
 							placeholder='Ingrese contraseña'
 						/>
 					</div>
-					<div className='flex h-32 justify-center text-center mt-auto w-4/5 relative border-t-2 gap-4'>
-						<p className='text-f12 bg-white absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-2'>
-							O ingresa con
-						</p>
-						<GrFacebook className='mt-6 text-label text-3xl' />
-						<GrGoogle className='mt-6 text-label text-3xl' />
-					</div>
+
 					<input
 						type='submit'
 						name=''
 						id='submit'
 						value='Iniciar sesión'
 						onClick={handleSubmit}
-						className='bg-gray-300 py-3 rounded-xl w-4/5 font-bold'
+						className='bg-secundario text-primario py-3 rounded-xl w-full font-bold mt-auto'
 					/>
 					<p className='text-f12'>¿Aún no tienes cuenta?</p>
 				</form>
-			</section>
+			</main>
 		</>
 	)
 }

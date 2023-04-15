@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html,
-body,
-.App {
-	@apply min-h-full;
+html {
+	@apply h-full;
 }
+body {
+	@apply h-full;
+}
+
 h1 {
 	@apply font-primaria text-4xl font-normal;
 }
