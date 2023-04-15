@@ -3,7 +3,7 @@ const { errorHandler } = require('../utils/errors');
 
 const getAll = async (req, res) => {
   try {
-    return res.status(200).json(await service.findAll());
+    return res.status(200).json(await service.findAll(req.params.idUser));
   } catch (error) {
     errorHandler(error, res);
   }

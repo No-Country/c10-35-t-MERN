@@ -5,7 +5,7 @@ const {
   modifyProduct,
 } = require('../controllers/products.controller');
 
-router.get('/', getAll);
+router.get('/:idUser', getAll);
 router.post('/create', createProduct);
 //por hacer
 router.put('/modify', modifyProduct);
