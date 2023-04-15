@@ -64,29 +64,6 @@ module.exports = {
       product_name: {
         type: Sequelize.STRING
       },
-      description: {
-        type: Sequelize.STRING
-      },
-      image: {
-        type: Sequelize.STRING
-      },
-      price: {
-        type: Sequelize.DECIMAL
-      },
-      cost: {
-        type: Sequelize.DECIMAL
-      },
-      minimum_stock: {
-        type: Sequelize.INTEGER
-      },
-      categoryId: {
-        type: Sequelize.INTEGER,
-        field: 'categoryId',
-        references: {
-          model: 'Categories',
-          key: 'id'
-        }
-      },
       supplierId: {
         type: Sequelize.INTEGER,
         field: 'supplierId',

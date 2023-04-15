@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         // as: 'user',
       });
+      Product_Users.belongsTo(models.Categories, {
+        foreignKey: 'categoryId',
+        // as: 'category',
+      });
+
     }
   }
   Product_Users.init(
@@ -35,6 +40,39 @@ module.exports = (sequelize, DataTypes) => {
         field: 'productId',
         references: {
           model: 'Products',
+          key: 'id',
+        },
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      price: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+      },
+      cost: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+      },
+      minimum_stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      categoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'categoryId',
+        references: {
+          model: 'Categories',
           key: 'id',
         },
       },
