@@ -3,7 +3,6 @@
 import React from 'react'
 
 // -------- Components
-import BtnContinuar from '../../components/Botons/BtnContinuar';
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile';
 import BtnConfirmarMovimiento from '../../components/Botons/BtnConfirmarMovimiento';
 import ProductConfirmarMovimi from '../../components/ProductCount/ProductConfirmarMovimi';
@@ -43,7 +42,10 @@ function ProductosMover() {
 
 
 			{/* --------------------------------- Btn Confirmar movimiento */}
-			<BtnConfirmarMovimiento/>
+			<div className='fixed bottom-0 right-0 bg-white p-4 w-full h-20 flex items-center mb-20'>
+
+				<BtnConfirmarMovimiento/>
+			</div>
 
 
 
