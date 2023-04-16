@@ -18,13 +18,7 @@ const initialForm = {
 	total: '',
 	precio: '',
 	alerta: '',
-
-	// unidades:{
-	// 	unidades:'',
-	// 	kg:'',
-	// 	mts:'',
-	// 	lts:''
-	// }
+	unidades:""
 }
 
 const validationsForm = (form, name) => {
@@ -90,9 +84,12 @@ const CreateProducts2 = () => {
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
+	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState({})
+
 	const [dataToEdit, setDataToEdit] = useState(null)
 	const [modal, setModal] = useState(false)
+	
 
 	const crud = helpFetch()
 	let url = 'http://localhost:3000/data'
@@ -110,16 +107,14 @@ const CreateProducts2 = () => {
 	}, [url])
 
 	const handleChange = e => {
-		console.log(e.target.value)
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
 		})
 	}
 
-	const handleBlur = e => {
-		console.log(e.target.name)
 
+	const handleBlur = e => {
 		setErrors(validationsForm(form, e.target.name))
 	}
 
@@ -127,9 +122,11 @@ const CreateProducts2 = () => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
 
-		if (Object.keys(errors).length === 0) {
-			// alert('Enviando Formulario')
-
+// if(Object.keys(errors).length !==0){
+//  return alert('debes completar todos los campos')
+// }else 
+if (Object.keys(errors).length === 0 ){
+			
 			helpFetch()
 				.post('http://localhost:3000/data', {
 					body: form,
@@ -138,10 +135,12 @@ const CreateProducts2 = () => {
 						Accept: 'application/json',
 					},
 				})
-				.then(res => {
-					console.log(res)
-					setForm(res)
-				})
+				.then((res) => {
+					// setForm(res);
+					setResponse(true);
+					setForm(initialForm)
+				});
+				
 			return
 		}
 
@@ -151,14 +150,9 @@ const CreateProducts2 = () => {
 			console.log('updateData')
 			return updateData(form)
 		}
-
-		handleReset()
 	}
 
-	const handleReset = e => {
-		setForm(initialForm)
-		// setDataToEdit(null)
-	}
+	
 
 	const createData = data => {
 		crud
@@ -207,6 +201,13 @@ const CreateProducts2 = () => {
 				})
 		}
 	}
+
+	// const voidForm = () => {
+	// 	if (setForm.length >= 6)
+	// 		if (setForm.length < 6) {
+	// 			console.warn('debes ingresar todos los campos')
+	// 		}
+	// }
 
 	return (
 		<>
@@ -282,28 +283,25 @@ const CreateProducts2 = () => {
 							></input>
 						</div>
 						{errors.cantidad && <p id='errorp'>{errors.cantidad}</p>}
-						<div id='divInput' className='left-200 top-24'>
-							<label id='labelInput' className='w-133'>
-								unidades{' '}
+						
+						<div  id='divInput' className='left-200 top-24'>
+							<label id='labelInput' className='w-133' >
+								unidades
 							</label>
-							<select
-								id='inputForm'
-								name='unidades'
-								onChange={handleChange}
-
-							>
-								{/* <option id='unidades' value={form.unidades.unidades}>
+							<select className='w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border' 
+							name='unidades' onChange={handleChange}>
+								<option id='unidades' value="unidades">
 									Unidades
 								</option>
-								<option id='Kg' value={form.unidades.kg}>
+								<option id='Kg' value="Kg">
 									Kg
 								</option>
-								<option id='Mts' value={form.unidades.mts}>
+								<option id='Mts' value="Mts">
 									Mts
 								</option>
-								<option id='Lts' value={form.unidades.lts}>
+								<option id='Lts' value="Lts">
 									Lts
-								</option> */}
+								</option>
 							</select>
 							{errors.unidades && <p id='errorp'>{errors.unidades}</p>}
 						</div>
@@ -390,12 +388,16 @@ const CreateProducts2 = () => {
 							type='submit'
 							value='send'
 							onClick={() => setVisible(true)}
+							// onFocus={()=>setForm.length >6 ? handleSubmit() : <p id='errorp'>debes completar todos los campos</p>}
+
 							className='w-40 h-h48 top-96 left-200 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
 						>
 							<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0'>
 								Continuar
+						
 							</div>
 						</button>
+						
 						{visible ? <ModalProductocargado /> : null}
 
 						{modal && (
@@ -426,39 +428,7 @@ const CreateProducts2 = () => {
 							</section>
 						)}
 						{!modal && null}
-						{/* {visible && (
-						// <section
-						// 	id='modal'
-						// 	className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
-						// >
-						// 	<div
-						// 		id='modal-container'
-						// 		className='bg-primario w-295 h-273 inset-16 rounded-xl flex flex-col items-center p-6 gap-4 relative '
-						// 	>
-						// 		<h3
-						// 			id='modal-paragraph'
-						// 			className='w-247 h-52 top-6 left-6 not-italic text-center items-center text-exito flex-none order-none grow-0'
-						// 		>
-						// 			¡Productos cargados exitosamente!
-						// 		</h3>
-						// 		<img
-						// 			src={pollo}
-						// 			alt='imagenEc¿xitosa'
-						// 			className='w-16 h-93 flex-none order-1 grow-0'
-						// 		/>
-						// 		<Link to={'/inicio'} className='flex-none order-2 grow-0'>
-								
-						// 			<button className='w-40 h-h48 top-200 left-67 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center'>
-						// 				<div className='text-white w-16 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0 order-none '>
-						// 					aceptar
-						// 				</div>
-						// 			</button>
-								
-						// 		</Link>
-						// 	</div>
-						// </section>
-					)}
-					{!visible && null} */}
+				
 					</div>
 				</div>
 			</form>
