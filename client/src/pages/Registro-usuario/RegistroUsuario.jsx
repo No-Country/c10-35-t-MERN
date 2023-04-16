@@ -24,7 +24,7 @@ function RegistroUsuario() {
 	}, [nameCheck, mailCheck, passCheck, repeatPassCheck])
 
 	const handleNameBLur = e => {
-		const nameFormatTest = /^[A-Z]+$/i
+		const nameFormatTest = /^[a-zA-Z\s]+$/
 		const verifiedName = data[e.target.name]
 		if (!nameFormatTest.test(verifiedName) || e.target.value === '') {
 			errorName.classList.remove('hidden')
