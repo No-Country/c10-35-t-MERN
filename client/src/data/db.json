@@ -143,6 +143,52 @@
       "precio": "3",
       "alerta": "2",
       "unidades": "Kg"
+    },
+    {
+      "id": 1681661602412,
+      "nombre": "pururu",
+      "cantidad": "78",
+      "costo": "78",
+      "total": "",
+      "precio": "78",
+      "alerta": "2",
+      "unidades": "Kg",
+      "categorias": "",
+      "categoria": "96"
+    },
+    {
+      "id": 1681664863991,
+      "nombre": "pan dulce",
+      "cantidad": "78",
+      "costo": "9",
+      "total": "",
+      "precio": "9",
+      "alerta": "3",
+      "unidades": "",
+      "categorias": "",
+      "categoria": "2"
+    },
+    {
+      "id": 1681665960110,
+      "nombre": "budin",
+      "cantidad": "78",
+      "costo": "78",
+      "total": "",
+      "precio": "23",
+      "alerta": "10",
+      "unidades": "Kg",
+      "categorias": "3"
+    },
+    {
+      "id": 1681673055513,
+      "nombre": "proba",
+      "cantidad": "96",
+      "costo": "96",
+      "total": "",
+      "precio": "213",
+      "alerta": "56",
+      "unidades": "Lts",
+      "categorias": "pintura"
     }
   ]
 }
