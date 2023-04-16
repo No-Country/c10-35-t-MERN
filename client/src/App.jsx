@@ -1,10 +1,27 @@
-import ListRoutes from './components/Routes/ListRoutes'
-
+import Reports from './pages/Reports/Reports'
+import { Route, Routes } from 'react-router'
+import { data } from './data'
 function App() {
 	return (
 		<div className='App text-center'>
-			
-			<ListRoutes/>
+			<Routes>
+				<Route path='/*' element={<h1>not found</h1>} />
+				<Route path='/' element={<h1>Home</h1>} />
+				<Route path='/' element={<h1>home</h1>} />
+				<Route path='/inicio' element={<h1>inicio</h1>} />
+				<Route path='/inventario' element={<h1>inventario</h1>} />
+				<Route path='/crear-producto' element={<h1>crear-producto</h1>} />
+				<Route
+					path='/registro-de-movimientos'
+					element={<h1>registro-de-movimientos</h1>}
+				/>
+				<Route path='/reportes' element={<Reports charData={data} />} />
+				<Route path='/perfil' element={<h1>perfil</h1>} />
+				<Route path='/configuracion' element={<h1>configuración</h1>} />
+				<Route path='/detalles' element={<h1>detalles</h1>} />
+				<Route path='/logout' element={<h1>Cerrar sesión</h1>} />
+				<Route path='/Ingreso' element={<h1>Cerrar sesión</h1>} />
+			</Routes>
 		</div>
 	)
 }
