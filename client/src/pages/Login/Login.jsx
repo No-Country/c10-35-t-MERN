@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { GrGoogle, GrFacebook } from 'react-icons/gr'
 import logo from '../../assets/logo_Stocker.png'
 import Onboarding from '../Onboarding/Onboarding'
 import usePostData from '../../hooks/UseFetch/usePostData'
