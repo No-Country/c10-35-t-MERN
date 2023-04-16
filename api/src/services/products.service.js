@@ -1,8 +1,7 @@
-const Products = require('../models/index').Products;
-const Product_Users = require('../models/index').Product_Users;
-const Product_Details = require('../models/index').Product_Details;
-const User = require('../models/index').Users;
-const { where } = require('sequelize');
+const db = require('../models/index');
+const Products = db.Products;
+const Product_Users = db.Product_Users;
+const User = db.Users;
 const { AppError } = require('../utils/errors');
 
 const findAll = async (idUser) => {
@@ -13,7 +12,18 @@ const findAll = async (idUser) => {
         model: Product_Users,
         as: 'productUser',
         where: { userId: idUser, isAvailable: true },
-        attributes: ['id', 'userId', 'productId', 'description', 'image', 'price', 'cost', 'minimum_stock', 'stock', 'categoryId'],
+        attributes: [
+          'id',
+          'userId',
+          'productId',
+          'description',
+          'image',
+          'price',
+          'cost',
+          'minimum_stock',
+          'stock',
+          'categoryId',
+        ],
       },
     ],
   });
@@ -27,135 +37,185 @@ const findByCategoryId = async (categoryId, idUser) => {
         model: Product_Users,
         as: 'productUser',
         where: { userId: idUser, categoryId: categoryId, isAvailable: true },
-        attributes: ['id', 'userId', 'productId', 'description', 'image', 'price', 'cost', 'minimum_stock', 'stock', 'categoryId'],
+        attributes: [
+          'id',
+          'userId',
+          'productId',
+          'description',
+          'image',
+          'price',
+          'cost',
+          'minimum_stock',
+          'stock',
+          'categoryId',
+        ],
       },
     ],
   });
 };
 
-const createProduct = async (product) => {
-  let {
-    product_name,
-    image,
-    price,
-    cost,
-    minimum_stock,
-    stock,
-    categoryId,
-    userId,
-  } = product;
+const createProduct = async (products) => {
+  let transaction;
 
-  if (!product_name || !userId || !price) {
-    throw new AppError('Mandatory data is missing', 400);
-  }
-  const userFound = await User.findOne({
-    where: { id: userId, isAvailable: true },
-  });
-  // console.log(userFound.dataValues);
-  if (!userFound) {
-    throw new AppError('User not found', 404);
-  }
+  try {
+    transaction = await db.sequelize.transaction();
 
-  if (stock == 0) {
-    throw new AppError('The stock of the product cannot be 0', 400);
-  }
+    const createdProducts = [];
 
-  const productName = product_name.toUpperCase();
+    for (const product of products) {
+      let {
+        product_name,
+        image,
+        price,
+        cost,
+        minimum_stock,
+        stock,
+        categoryId,
+        userId,
+      } = product;
 
-  if (!image) {
-    image =
-      'https://th.bing.com/th/id/R.711dad5b8a1d5177174fbb45c238396d?rik=o9djzgLOunL93Q&pid=ImgRaw&r=0';
-  }
+      if (!product_name || !userId || !price) {
+        throw new AppError('Mandatory data is missing', 400);
+      }
 
-  const [productFound, productCreated] = await Products.findOrCreate({
-    where: { product_name: productName },
-    defaults: {
-      product_name: productName,
-    },
-  });
+      const userFound = await User.findOne({
+        where: { id: userId, isAvailable: true },
+        transaction,
+      });
 
-  const [productUser, RelationCreated] = await Product_Users.findOrCreate({
-    where: { userId, productId: productFound.id },
-    defaults: {
-      userId: userId,
-      productId: productFound.id,
-      categoryId: categoryId,
-      stock: stock,
-      minimum_stock: minimum_stock,
-      cost: cost,
-      price: price,
-      image: image,
-    },
+      if (!userFound) {
+        throw new AppError('User not found', 404);
+      }
 
-  });
+      if (stock == 0) {
+        throw new AppError('The stock of the product cannot be 0', 400);
+      }
 
-  return {
-    message: `The product ${productName} has been successfully created  `,
-    product: productFound,
-    productUser: productUser,
-  };
-};
+      const productName = product_name.toUpperCase();
 
-const updateStock = async (product) => {
-  const { productId, userId, quantity } = product;
+      if (!image) {
+        image =
+          'https://th.bing.com/th/id/R.711dad5b8a1d5177174fbb45c238396d?rik=o9djzgLOunL93Q&pid=ImgRaw&r=0';
+      }
 
-  console.log("entrando al servicio")
+      const [productFound, productCreated] = await Products.findOrCreate({
+        where: { product_name: productName },
+        defaults: {
+          product_name: productName,
+        },
+        transaction,
+      });
 
-  if (!quantity || !userId || !productId) {
-    throw new AppError('Mandatory data is missing', 400);
-  }
+      const [productUser, relationCreated] = await Product_Users.findOrCreate({
+        where: { userId, productId: productFound.id },
+        defaults: {
+          userId: userId,
+          productId: productFound.id,
+          categoryId: categoryId,
+          stock: stock,
+          minimum_stock: minimum_stock,
+          cost: cost,
+          price: price,
+          image: image,
+        },
+        transaction,
+      });
 
-  const userFound = await User.findOne({
-    where: { id: userId, isAvailable: true },
-  });
-
-  if (!userFound) {
-    throw new AppError('User not found', 404);
-  }
-
-  const productFound = await Products.findOne({
-    where: { id: productId, isAvailable: true },
-  });
-
-  if (!productFound) {
-    throw new AppError('Product not found', 404);
-  }
-
-  const userProducts = await Product_Users.findOne({
-    where: { userId, productId, isAvailable: true },
-  });
-
-  console.log("quantity", quantity)
-  const newStock = userProducts.stock + quantity;
-
-  console.log("nuevo stock", newStock)
-
-  if (newStock < 0) {
-    throw new AppError('The stock of the product cannot be less than 0', 400);
-  }
-
-  console.log("a punto de actualizar")
-
-  userProducts.stock = newStock;
-
-  await userProducts.save();
-
-  return {
-    message: 'Successfully modified product',
-    product: {
-      id: productFound.id,
-      product_name: productFound.product_name,
-      userProducts
+      createdProducts.push({
+        message: `The product ${productName} has been successfully created  `,
+        product: productFound,
+        productUser: productUser,
+      });
     }
 
-    // productUser: userProducts,
-    // user: userFindAll,
-  };
+    await transaction.commit();
+
+    return createdProducts;
+  } catch (error) {
+    if (transaction) await transaction.rollback();
+
+    throw error;
+  }
+};
+
+const updateStock = async (products) => {
+  if (!products || !Array.isArray(products)) {
+    throw new AppError('Products data is missing or not an array', 400);
+  }
+
+  // Iniciar la transacción
+  const transaction = await db.sequelize.transaction();
+
+  try {
+    const results = await Promise.all(
+      products.map(async (product) => {
+        const { productId, userId, quantity } = product;
+
+        if (!quantity || !userId || !productId) {
+          throw new AppError('Mandatory data is missing', 400);
+        }
+
+        const userFound = await User.findOne({
+          where: { id: userId, isAvailable: true },
+          transaction,
+        });
+
+        if (!userFound) {
+          throw new AppError('User not found', 404);
+        }
+
+        const productFound = await Products.findOne({
+          where: { id: productId, isAvailable: true },
+          transaction,
+        });
+
+        if (!productFound) {
+          throw new AppError('Product not found', 404);
+        }
+
+        const userProducts = await Product_Users.findOne({
+          where: { userId, productId, isAvailable: true },
+          transaction,
+        });
+
+        const newStock = userProducts.stock + quantity;
+
+        if (newStock < 0) {
+          throw new AppError(
+            'The stock of the product cannot be less than 0',
+            400
+          );
+        }
+
+        userProducts.stock = newStock;
+
+        await userProducts.save({ transaction });
+
+        return {
+          id: productFound.id,
+          product_name: productFound.product_name,
+          userProducts,
+        };
+      })
+    );
+
+    // Confirmar la transacción
+    await transaction.commit();
+
+    return {
+      message: 'Successfully modified products',
+      products: results,
+    };
+  } catch (error) {
+    // Deshacer la transacción en caso de error
+    await transaction.rollback();
+    throw error;
+  }
 };
 
 module.exports = {
   findAll,
   createProduct,
   updateStock,
-  findByCategoryId
+  findByCategoryId,
 };
