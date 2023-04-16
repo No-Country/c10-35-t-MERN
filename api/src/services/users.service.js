@@ -30,14 +30,15 @@ const register = async (user) => {
   const password_hash = await bcrypt.hash(password, 8);
   user.password_hash = password_hash;
   const userCreated = await User.create(user);
-  return [
-    { message: 'User successfully created' },
-    {
+  return {
+    message: 'User successfully created',
+    status: 200,
+    response: {
       id: userCreated.id,
       full_name: userCreated.full_name,
       email: userCreated.email,
     },
-  ];
+  };
 };
 
 const findAll = async () => {
