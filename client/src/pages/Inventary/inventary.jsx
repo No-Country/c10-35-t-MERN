@@ -72,7 +72,7 @@ export const Inventary = () => {
 			<Navbar navBarTile='Inventario' />
 			<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
 
-			<h2>Categorías</h2>
+			<h2 className='w-full text-left ml-4 text-secundario'>Categorías</h2>
 			<CategoryListContainer categoriesList={categories} setFilter={setFilter} filter={{ ...filter }}/>
 
 			<ProductsContainer productsList={products} filterProduct={{ ...filter }}/>

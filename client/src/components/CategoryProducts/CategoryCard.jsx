@@ -14,34 +14,34 @@ export const CategoryCard = ({id ,title, price, stock, type, setFilter, filter})
 
 
 	return (
-		<div className={`${bgColorCard} h-44 w-36 border-2 rounded-3xl p-3 shadow-sm`} onClick = {filterCategory} >
-			<div className='w-full h-full flex justify-center items-center flex-col gap-2'>
+		<div className={`${bgColorCard} h-176 w-140 rounded-12 p-3 shadow-sombra`} onClick = {filterCategory} >
+			<div className='w-full h-full flex justify-center items-center flex-col'>
 				
-			<div className='w-full'>
-				<h3 className={`text-xl ${colorTitle}`}>{title}</h3>
+			<div className='w-full mt-4 mb-4'>
+				<h3 className={` ${colorTitle}`}>{title}</h3>
 			</div>	
 			
 			<div>
-				<img src={type===1? verdura : verdura0} alt="img"/>
+				<img src={type===1? verdura : verdura0} alt="img" className='mb-12 w-46.03 h-50'/>
 			</div>
 
 			
 
-			<div className='w-full grid grid-cols-3 grid-rows-2 gap-1 '>
-				<div className='col-span-1 row-span-1 text-sm'>
+			<div className='w-full grid grid-cols-3 grid-rows-2 mb-4'>
+				<div className='col-span-1 row-span-1'>
 					<h5 className='text-acento font-bold'>Und:</h5>
 				</div>
 
-				<div className='col-span-2 row-span-1 text-sm'>
-					<p className={`font-bold ${textColor}`}>{stock}</p>
+				<div className='col-span-2 row-span-1 text-right'>
+					<h5 className={`font-bold ${textColor}`}>{stock}</h5>
 				</div>
 
-				<div className='col-span-1  row-span-1 text-sm'>
+				<div className='col-span-1  row-span-1'>
 					<h5 className='text-acento font-bold'>Total:</h5>
 				</div>
 
-				<div className='col-span-2  row-span-1 text-sm'>
-					<p className={`font-bold ${textColor}`}>${price}</p>
+				<div className='col-span-2  row-span-1 text-right'>
+					<h5 className={`font-bold ${textColor}`}>${price}</h5>
 				</div>
 			</div>
 			</div>
