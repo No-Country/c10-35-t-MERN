@@ -42,13 +42,14 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 			</div>
 
 			<div className='w-full'>
-				{filteredProduct().map(product => {
+				{filteredProduct().map((product, i) => {
 					return (
 						<ProductStockCard
 							key={product.id}
 							title={product.title}
 							price={product.price}
 							stock={product.stock}
+							type={i === 0 ? 1 : 0}
 						/>
 					)
 				})}

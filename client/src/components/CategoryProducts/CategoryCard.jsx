@@ -15,7 +15,7 @@ export const CategoryCard = ({
 		setFilter({ ...filter, category: id })
 	}
 
-	const bgColorCard = type === 1 ? 'bg-secundario' : 'white'
+	const bgColorCard = type === 1 ? 'bg-secundario' : 'bg-white'
 	const textColor = type === 1 ? 'text-white' : 'text-secundario'
 	const colorTitle = type === 1 ? 'text-acento' : 'text-secundario'
 
