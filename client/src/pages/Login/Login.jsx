@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { NavLink } from 'react-router-dom'
 import logo from '../../assets/logo_Stocker.png'
 import Onboarding from '../Onboarding/Onboarding'
 import usePostData from '../../hooks/UseFetch/usePostData'
@@ -9,8 +10,8 @@ function Login() {
 	const { error, isLoading, responseData, handlePost } = usePostData()
 	const navigate = useNavigate()
 	const [data, setData] = useState({})
-	const [mailCheck, setMailCheck] = useState(false)
-	const [passCheck, setPassCheck] = useState(false)
+	const [mailCheck, setMailCheck] = useState(true)
+	const [passCheck, setPassCheck] = useState(true)
 	const [repeatPassCheck, setrepeatPassCheck] = useState(true)
 	const [isActive, setIsActive] = useState(false)
 	const handleChange = e => {
@@ -161,8 +162,10 @@ function Login() {
 						disabled={isActive}
 						className='bg-secundario text-primario  disabled:bg-desactivado disabled:text-secundario3 py-3 rounded-xl w-full font-bold mt-auto'
 					/>
-					<p className='text-f12'>¿Aún no tienes cuenta?</p>
 				</form>
+				<NavLink to='/reportes'>
+					<p className='text-f12'>¿Aún no tienes cuenta?</p>
+				</NavLink>
 			</main>
 		</>
 	)
