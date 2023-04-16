@@ -1,194 +1,100 @@
 {
-  "data": [
-    {
-      "id": 1,
-      "nombre": "yerba mate",
-      "cantidad": 500,
-      "costo": 600,
-      "total": 625,
-      "precio": 675,
-      "alerta": 20,
-      "unidades": "unidades"
-    },
-    {
-      "id": 2,
-      "nombre": "cafe",
-      "cantidad": 750,
-      "costo": 850,
-      "total": 875,
-      "precio": 100,
-      "alerta": 30,
-      "unidades": "unidades"
-    },
-    {
-      "id": 3,
-      "nombre": "sal",
-      "cantidad": 750,
-      "costo": 850,
-      "total": 875,
-      "precio": 100,
-      "alerta": 30,
-      "unidades": "unidades"
-    },
-    {
-      "id": 4,
-      "nombre": "harina",
-      "cantidad": 200,
-      "costo": 100,
-      "total": 125,
-      "precio": 180,
-      "alerta": 35,
-      "unidades": "unidades"
-    },
-    {
-      "id": 5,
-      "nombre": "saquitosTe",
-      "cantidad": 150,
-      "costo": 75,
-      "total": 80,
-      "precio": 95,
-      "alerta": 10,
-      "unidades": "unidades"
-    },
-    {
-      "nombre": "fideos",
-      "cantidad": "7",
-      "costo": "89",
-      "total": "75",
-      "precio": "76",
-      "alerta": "10",
-      "id": 8
-    },
-    {
-      "nombre": "pasta dental",
-      "cantidad": "75",
-      "costo": "75",
-      "total": "78",
-      "precio": "65",
-      "alerta": "10",
-      "id": 9
-    },
-    {
-      "nombre": "pan lactal",
-      "cantidad": "50",
-      "costo": "54",
-      "total": "56",
-      "precio": "57",
-      "alerta": "10",
-      "id": 10,
-      "unidades": "unidades"
-    },
-    {
-      "id": 1681493315585,
-      "nombre": "polenta",
-      "cantidad": "78",
-      "costo": "95",
-      "total": "7",
-      "precio": "5",
-      "alerta": "10"
-    },
-    {
-      "id": 1681576115603,
-      "nombre": "tomate",
-      "cantidad": "600",
-      "costo": "540",
-      "total": "560",
-      "precio": "700",
-      "alerta": "10"
-    },
-    {
-      "id": 1681594588830,
-      "nombre": "cerdo",
-      "cantidad": "78",
-      "costo": "7",
-      "total": "62",
-      "precio": "7",
-      "alerta": "3"
-    },
-    {
-      "id": 1681598944120,
-      "nombre": "carne",
-      "cantidad": "89",
-      "costo": "614",
-      "total": "5",
-      "precio": "7",
-      "alerta": "3"
-    },
-    {
-      "id": 1681601305621,
-      "nombre": "eto",
-      "cantidad": "1",
-      "costo": "1000000",
-      "total": "9000000",
-      "precio": "87222",
-      "alerta": "2",
-      "unidades": "inputForm"
-    },
-    {
-      "id": 1681601455268,
-      "nombre": "pipi",
-      "cantidad": "9",
-      "costo": "975",
-      "total": "45",
-      "precio": "94",
-      "alerta": "20",
-      "unidades": ""
-    },
-    {
-      "id": 1681605929513,
-      "nombre": "pipito",
-      "cantidad": "78",
-      "costo": "78",
-      "total": "96",
-      "precio": "3",
-      "alerta": "2",
-      "unidades": "Kg"
-    },
-    {
-      "id": 1681661602412,
-      "nombre": "pururu",
-      "cantidad": "78",
-      "costo": "78",
-      "total": "",
-      "precio": "78",
-      "alerta": "2",
-      "unidades": "Kg",
-      "categorias": "",
-      "categoria": "96"
-    },
-    {
-      "id": 1681664863991,
-      "nombre": "pan dulce",
-      "cantidad": "78",
-      "costo": "9",
-      "total": "",
-      "precio": "9",
-      "alerta": "3",
-      "unidades": "",
-      "categorias": "",
-      "categoria": "2"
-    },
-    {
-      "id": 1681665960110,
-      "nombre": "budin",
-      "cantidad": "78",
-      "costo": "78",
-      "total": "",
-      "precio": "23",
-      "alerta": "10",
-      "unidades": "Kg",
-      "categorias": "3"
-    },
-    {
-      "id": 1681673055513,
-      "nombre": "proba",
-      "cantidad": "96",
-      "costo": "96",
-      "total": "",
-      "precio": "213",
-      "alerta": "56",
-      "unidades": "Lts",
-      "categorias": "pintura"
-    }
-  ]
+	"data": [
+		{
+			"id": 1,
+			"nombre": "yerba mate",
+			"cantidad": 500,
+			"costo": 600,
+			"total": 625,
+			"precio": 675,
+			"alerta": 20,
+			"unidades": "unidades"
+		},
+		{
+			"id": 2,
+			"nombre": "cafe",
+			"cantidad": 750,
+			"costo": 850,
+			"total": 875,
+			"precio": 100,
+			"alerta": 30,
+			"unidades": "unidades"
+		},
+		{
+			"id": 3,
+			"nombre": "sal",
+			"cantidad": 750,
+			"costo": 850,
+			"total": 875,
+			"precio": 100,
+			"alerta": 30,
+			"unidades": "unidades"
+		},
+		{
+			"id": 4,
+			"nombre": "harina",
+			"cantidad": 200,
+			"costo": 100,
+			"total": 125,
+			"precio": 180,
+			"alerta": 35,
+			"unidades": "unidades"
+		},
+		{
+			"id": 5,
+			"nombre": "saquitosTe",
+			"cantidad": 150,
+			"costo": 75,
+			"total": 80,
+			"precio": 95,
+			"alerta": 10,
+			"unidades": "unidades"
+		},
+		{
+			"nombre": "fideos",
+			"cantidad": "7",
+			"costo": "89",
+			"total": "75",
+			"precio": "76",
+			"alerta": "10",
+			"id": 8
+		},
+		{
+			"nombre": "pasta dental",
+			"cantidad": "75",
+			"costo": "75",
+			"total": "78",
+			"precio": "65",
+			"alerta": "10",
+			"id": 9
+		},
+		{
+			"nombre": "pan lactal",
+			"cantidad": "50",
+			"costo": "54",
+			"total": "56",
+			"precio": "57",
+			"alerta": "10",
+			"id": 10,
+			"unidades": "unidades"
+		},
+		{
+			"id": 1681493315585,
+			"nombre": "polenta",
+			"cantidad": "78",
+			"costo": "95",
+			"total": "7",
+			"precio": "5",
+			"alerta": "10"
+		},
+		{
+			"id": 1681576115603,
+			"nombre": "tomate",
+			"cantidad": "600",
+			"costo": "540",
+			"total": "560",
+			"precio": "700",
+			"alerta": "10"
+		}
+	]
 }

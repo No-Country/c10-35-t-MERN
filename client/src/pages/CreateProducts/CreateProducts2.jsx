@@ -3,12 +3,13 @@
 import { RiCloseCircleFill, RiCloseCircleLine } from 'react-icons/ri'
 import { RiArrowLeftSLine } from 'react-icons/ri'
 import { useState } from 'react'
-import { data } from '../../data/db.json'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
-import producto from '../../assets/ProdXDefecto.png'
+import data from '../../data/db.json'
 import { Link } from 'react-router-dom'
 import ModalProductocargado from '../../components/Modals/ModalProductocargado'
+import Subtitles from '../../components/CreateProducts/Subtitles'
+import { BoxImage } from '../../components/CreateProducts/BoxImage'
 
 const initialForm = {
 	id: Date.now(),
@@ -27,7 +28,16 @@ const validationsForm = (form, name) => {
 
 	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
 	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
-	const { nombre, cantidad, precio, costo, total, alerta, categorias } = form
+	const {
+		nombre,
+		cantidad,
+		precio,
+		costo,
+		total,
+		alerta,
+		categorias
+		
+	} = form
 
 	if ((nombre === '') & (name === 'nombre')) {
 		errors.nombre = 'El campo nombre es requerido'
@@ -77,13 +87,14 @@ const validationsForm = (form, name) => {
 		errors.alerta = 'el campo solo acepta numeros'
 		return errors
 	}
-	if ((categorias === '') & (categorias === 'categorias')) {
+	if ((categorias === '') & (name === 'categorias')) {
 		errors.categorias = 'El campo categoria es requerido'
 		return errors
 	} else if (!letters.test(categorias) & (name === 'categorias')) {
 		errors.categorias = 'el campo solo acepta letras'
 		return errors
 	}
+	
 	return errors
 }
 
@@ -244,6 +255,8 @@ const CreateProducts2 = () => {
 						</div>
 					</div>
 					{/* -----------contenedor de subtitulos en desktop----------- */}
+{/* 
+					<Subtitles formdata={form}/> */}
 
 					<div className='hidden md:w-566 md:h-52 md:left-494 md:top-178 md:flex  md:flex:row md:justify-between md:p-0 md:ml-14 md:pb-2 md:mt-5 md:items-center md:gap-11 '>
 						<div className='md:flex md:flex-col md:justify-center md:items-center md:h-9'>
@@ -262,20 +275,14 @@ const CreateProducts2 = () => {
 							<h3 className='text-acento md:h-5 md:flex md:items-center'>
 								valor total
 							</h3>
-							<div className='text-secundario md:h-4'> {costoTotal}</div>
+							<div className='text-secundario md:h-4'> {}</div>
 						</div>
 					</div>
 
 					{/* ----------------contendor de imagen------------ */}
-					<div className='flex-none '>
-						<img
-							src={producto}
-							className='w-250 h-180 p-0 top-28 left-16 border-7 rounded-xl gap-22 border-solid border-acento2 box-border flex flex-row justify-center items-center absolute md:mt-14 md:w-300 md:h-221 md:left-198 md:rounded-10  md:gap-2.5 md:border-secundario md:border-2'
-						></img>
-						<p className='text-xs font-secundaria font-normal text-secundario absolute w-72 h-18 left-133 top-297 mt-0 md:text-acento2 md:w-28 md:h-5 md:left-386 md:top-375  md:font-bold md:text-base md:mt-3 md:mb-1'>
-							cargar foto
-						</p>
-					</div>
+
+					<BoxImage/>
+					
 					{/* --------------contenedor de fomulario--------------- */}
 					<div className=''>
 						<form onSubmit={handleSubmit}>
@@ -342,10 +349,13 @@ const CreateProducts2 = () => {
 											unidades
 										</label>
 										<select
-											className='w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-2 gap-2.5 box-border text-base font-secundaria font-base text-secundario items-center  md:w-266'
+											className='w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-2 gap-2.5 box-border text-base font-secundaria  text-secundario items-center  md:w-266'
 											name='unidades'
 											onChange={handleChange}
 										>
+											<option id='' value=''>
+												Seleciona unidad
+											</option>
 											<option id='unidades' value='unidades'>
 												Unidades
 											</option>
@@ -359,7 +369,7 @@ const CreateProducts2 = () => {
 												Lts
 											</option>
 										</select>
-										{errors.unidades && <p id='errorp'>{errors.unidades}</p>}
+									
 									</div>
 								</div>
 								{/* ---------------aca va el segundo grupo---------- */}
