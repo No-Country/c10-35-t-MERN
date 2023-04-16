@@ -14,7 +14,7 @@ export const CategoryCard = ({id ,title, price, stock, type, setFilter, filter})
 
 
 	return (
-		<div className={`${bgColorCard} h-44 w-36 border-2 rounded-3xl p-3`} onClick = {filterCategory} >
+		<div className={`${bgColorCard} h-44 w-36 border-2 rounded-3xl p-3 shadow-sm`} onClick = {filterCategory} >
 			<div className='w-full h-full flex justify-center items-center flex-col gap-2'>
 				
 			<div className='w-full'>

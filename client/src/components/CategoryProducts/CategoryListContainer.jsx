@@ -7,7 +7,7 @@ export const CategoryListContainer = ({
 	filter,
 }) => {
 	return (
-		<div className='flex w-full'>
+		<div className='flex w-full gap-4'>
 			{categoriesList.map((category, i) => {
 				return (
 					<CategoryCard
