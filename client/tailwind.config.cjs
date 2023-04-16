@@ -106,6 +106,11 @@ module.exports = {
 			}
 		},
 	},
+	variants: {
+		textColor: ['responsive', 'hover', 'group-hover'], 
+		backgroundColor:['responsive', 'hover', 'group-hover']
+		
+	},
 
 	plugins: [],
 }
