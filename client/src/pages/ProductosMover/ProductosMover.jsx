@@ -1,18 +1,15 @@
-
-
 import React from 'react'
 
 // -------- Components
-import BtnContinuar from '../../components/Botons/BtnContinuar';
-import NavbarMobile from '../../components/NavbarMobile/NavbarMobile';
-import BtnConfirmarMovimiento from '../../components/Botons/BtnConfirmarMovimiento';
-import ProductConfirmarMovimi from '../../components/ProductCount/ProductConfirmarMovimi';
 import NavBar from '../../components/NavBar/NavBar'
+import CardProductConfirmMovimiento from '../../components/Cards/CardProductConfirmMovimiento';
+import BtnConfirmarMovimiento from '../../components/Buttons/BtnConfirmarMovimiento';
+import NavbarMobile from '../../components/NavbarMobile/NavbarMobile';
 
 
 // -------- Icons
 import { FiChevronLeft } from 'react-icons/fi';
-
+// -------- 
 
 
 
@@ -31,24 +28,24 @@ function ProductosMover() {
 				navBarTile="Productos a mover"
 			/>
 
-			<div className='p-4 mb-40'>
-				<ProductConfirmarMovimi/>
-				<ProductConfirmarMovimi/>
-				<ProductConfirmarMovimi/>
-				<ProductConfirmarMovimi/>
-				<ProductConfirmarMovimi/>
 
+
+			{/* --------------------------------- Cards de movimiento */}
+			<div className='flex flex-col items-center gap-y-5 mb-2'>
+				<CardProductConfirmMovimiento/>
+				<CardProductConfirmMovimiento/>
+				<CardProductConfirmMovimiento/>
+				<CardProductConfirmMovimiento/>
+				<CardProductConfirmMovimiento/>
+				<CardProductConfirmMovimiento/>
 			</div>
 
 
 
-			{/* --------------------------------- Btn Confirmar movimiento */}
 			<BtnConfirmarMovimiento/>
-
-
-
-			{/* --------------------------------- Lower Navegator */}
 			<NavbarMobile/>
+
+
 
         </>
     )
