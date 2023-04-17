@@ -10,16 +10,7 @@
       "alerta": 20,
       "unidades": "unidades"
     },
-    {
-      "id": 2,
-      "nombre": "cafe",
-      "cantidad": 750,
-      "costo": 850,
-      "total": 875,
-      "precio": 100,
-      "alerta": 30,
-      "unidades": "unidades"
-    },
+   
     {
       "id": 3,
       "nombre": "sal",
@@ -96,61 +87,8 @@
       "precio": "700",
       "alerta": "10"
     },
-    {
-      "id": 1681688779278,
-      "nombre": "",
-      "cantidad": "",
-      "costo": "",
-      "total": "",
-      "precio": "",
-      "alerta": "",
-      "unidades": "",
-      "categorias": ""
-    },
-    {
-      "id": 1681689090505,
-      "nombre": "",
-      "cantidad": "",
-      "costo": "",
-      "total": "",
-      "precio": "",
-      "alerta": "",
-      "unidades": "",
-      "categorias": ""
-    },
-    {
-      "id": 1681690738429,
-      "nombre": "",
-      "cantidad": "",
-      "costo": "",
-      "total": "",
-      "precio": "",
-      "alerta": "",
-      "unidades": "",
-      "categorias": ""
-    },
-    {
-      "id": 1681691746374,
-      "nombre": "",
-      "cantidad": "",
-      "costo": "",
-      "total": "",
-      "precio": "",
-      "alerta": "",
-      "unidades": "",
-      "categorias": ""
-    },
-    {
-      "id": 1681749411009,
-      "nombre": "perrito",
-      "cantidad": "78",
-      "costo": "96",
-      "total": "32",
-      "precio": "78",
-      "alerta": "5",
-      "unidades": "unidades",
-      "categorias": ""
-    },
+   
+    
     {
       "id": 1681761274675,
       "nombre": "prueba",
@@ -195,27 +133,18 @@
       "unidades": "Kg",
       "categorias": ""
     },
+    
+    
     {
-      "id": 1681766897491,
-      "nombre": "etocin",
-      "cantidad": "1",
-      "costo": "78",
+      "id": 1681770488253,
+      "nombre": "cafe",
+      "cantidad": "750",
+      "costo": "850",
       "total": "",
-      "precio": "78",
-      "alerta": "3",
-      "unidades": "Lts",
-      "categorias": "perrito"
-    },
-    {
-      "id": 1681767599181,
-      "nombre": "",
-      "cantidad": "",
-      "costo": "",
-      "total": "",
-      "precio": "",
-      "alerta": "",
-      "unidades": "",
-      "categorias": ""
+      "precio": "100",
+      "alerta": "30",
+      "unidades": "Kg",
+      "categorias": "almacen"
     }
   ]
 }

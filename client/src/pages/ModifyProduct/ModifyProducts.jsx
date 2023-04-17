@@ -88,29 +88,29 @@ const ModifyProducts = () => {
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
-	const [db, setDb] = useState({})
+	const [db, setDb] = useState(null)
 
 	const [dataToEdit, setDataToEdit] = useState(null)
 	const [modal, setModal] = useState(false)
 
-	const costoUNit = form.costo
-	const unidadesTotales = form.unidades
-	const costoTotal = costoUNit * unidadesTotales
+	// const costoUNit = form.costo
+	// const unidadesTotales = form.unidades
+	// const costoTotal = costoUNit * unidadesTotales
 
 	const crud = helpFetch()
-	let url = 'http://localhost:3000/data'
+	let urlGet = 'http://localhost:3000/data'
 
 	useEffect(() => {
-		crud.get(url).then(res => {
+		fetch(urlGet).then(res => {
 			if (!res.err) {
 				setDb(res)
-				setErrors({})
+				setResponse(res)
 			} else {
 				setDb(null)
-				setErrors(res)
+				setResponse(res)
 			}
 		})
-	}, [url])
+	}, [urlGet])
 
 	const handleChange = e => {
 		setForm({
@@ -127,12 +127,10 @@ const ModifyProducts = () => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
 
-		// if(Object.keys(errors).length !==0){
-		//  return alert('debes completar todos los campos')
-		// }else
+	
 		if (Object.keys(errors).length === 0) {
 			helpFetch()
-				.post('http://localhost:3000/data', {
+				.post(urlGet, {
 					body: form,
 					headers: {
 						'Content-Type': 'application/json',
@@ -151,15 +149,15 @@ const ModifyProducts = () => {
 		if (form.id === null) {
 			return createData(form)
 		} else {
-			console.log('updateData')
+			
 			return updateData(form)
 		}
-        // handleReset()
+    //   handleReset()
 	}
 
 	const createData = data => {
 		crud
-			.post(url, {
+			.post(urlGet, {
 				body: data,
 				headers: { 'content-type': 'application/json' },
 			})
@@ -167,12 +165,14 @@ const ModifyProducts = () => {
 				console.log(res)
 				if (!res.err) {
 					setDb([...db, res])
-				}
+				}else(
+					setResponse(res)
+				)
 			})
 	}
 
 	const updateData = data => {
-		let endpoint = `${url}/${data.id}`
+		let endpoint = `${urlGet}/${data.id}`	
 
 		crud
 			.put(endpoint, {
@@ -183,6 +183,8 @@ const ModifyProducts = () => {
 				if (!res.err) {
 					let newData = db.map(el => (el.id === data.id ? data : el))
 					setDb(newData)
+				}else{
+					setResponse(res);
 				}
 			})
 	}
@@ -191,15 +193,16 @@ const ModifyProducts = () => {
 		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
 
 		if (isDelete) {
-			let endpoint = `${url}/${id}`
+			let endpoint = `${urlGet}/${id}`
 
 			crud
 				.del(endpoint, { headers: { 'content-type': 'application/json' } })
 				.then(res => {
 					if (!res.err) {
 						let newData = db.filter(el => el.id !== id)
-
 						setDb(newData)
+					}else{
+						setResponse(res);
 					}
 				})
 		}
@@ -397,21 +400,20 @@ const ModifyProducts = () => {
 								</div>
 								{/* -------------aca va el 4 grupo----------------- */}
 								<div className=''>
-									<Link to={'/inventario'}>
-										<button
-											// onFocus={()=>setForm.length >6 ? handleSubmit() : <p id='errorp'>debes completar todos los campos</p>}
-
+									
+										<button				
+                                           onClick={()=>deleteData()}
 											className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
 										>
 											<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0 '>
 												Eliminar
 											</div>
 										</button>
-									</Link>
+								
 									<button
 										type='submit'
 										value='send'
-										onClick={() => setVisible(true)}
+										onClick={() => updateData()}
 										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
 									>
 										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>

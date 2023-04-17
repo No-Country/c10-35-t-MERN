@@ -149,7 +149,6 @@ const CreateProducts2 = () => {
 					},
 				})
 				.then(res => {
-					// setForm(res);
 					setResponse(true)
 					setForm(initialForm)
 				})
@@ -159,9 +158,10 @@ const CreateProducts2 = () => {
 		if (form.id === null) {
 			return createData(form)
 		} else {
-			console.log('updateData')
+			
 			return updateData(form)
 		}
+		// handleReset()
 	}
 
 	const createData = data => {
@@ -198,7 +198,7 @@ const CreateProducts2 = () => {
 	}
 
 	const deleteData = id => {
-		let isDelete =confirm('¿Estas seguro que quieres eliminar el producto?')
+		let isDelete =confirm(`¿Estas seguro que quieres eliminar ${id}?`)
 
 		if (isDelete) {
 			let endpoint = `${urlGet}/${id}`
@@ -208,13 +208,16 @@ const CreateProducts2 = () => {
 				.then(res => {
 					if (!res.err) {
 						let newData = db.filter(el => el.id !== id)
-
 						setDb(newData)
 					}else{
 						setResponse(res);
 					}
 				})
 		}
+	}
+	const handleReset = e => {
+		setForm(initialForm);
+        setDataToEdit(null);
 	}
 
 	return (
