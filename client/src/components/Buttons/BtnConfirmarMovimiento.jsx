@@ -25,7 +25,8 @@ function BtnConfirmarMovimiento() {
 
     return (
         <>
-            <button onClick={openModal} className='bg-secundario text-white rounded-md w-full py-2'>Confirmar movimiento</button>
+        
+            <button onClick={openModal} className='bg-secundario text-white rounded-xl w-full py-2'>Confirmar movimientos</button>
             <Modal
                 isOpen={modal}
                 onRequestClose={closeModal}
