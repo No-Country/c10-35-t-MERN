@@ -41,6 +41,18 @@ p {
 .form-verificacion {
 	@apply font-secundaria text-xs;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
   #errorp {
 	@apply font-secundaria text-xs font-normal text-error w-48 h-4 flex-none grow-0 order-2 
  }
