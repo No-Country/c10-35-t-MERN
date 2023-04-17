@@ -36,11 +36,29 @@ function CircleChart({ charData }) {
 				label: 'user amount of money',
 				data: charData.map(el => el.money),
 				responsive: false,
+				backgroundColor: ['#F47E34', '#C331E3', '#5507E0'],
 			},
 		],
 	})
 	const options = {
 		maintainAspectRatio: false,
+		plugins: {
+			legend: {
+				display: false,
+			},
+		},
+		scales: {
+			y: {
+				ticks: {
+					display: false,
+				},
+			},
+			x: {
+				ticks: {
+					display: false,
+				},
+			},
+		},
 	}
 	return <Doughnut data={userData} options={options} />
 }
