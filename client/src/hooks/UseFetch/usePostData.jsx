@@ -21,7 +21,7 @@ const usePostData = () => {
 			.then(res => res.json())
 			.then(res => setResponseData(res))
 			.catch(err => setError(err))
-			.finally(setIsLoading(false))
+			.finally(() => setIsLoading(false))
 	}
 
 	return {

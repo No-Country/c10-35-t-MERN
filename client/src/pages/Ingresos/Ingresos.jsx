@@ -1,6 +1,3 @@
-
-
-
 import React from 'react'
 
 // -------- Components
@@ -65,4 +62,3 @@ export default function Ingresos() {
 		</>
 	)
 }
-

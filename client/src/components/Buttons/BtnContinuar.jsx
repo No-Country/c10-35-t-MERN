@@ -1,16 +1,14 @@
 
 
 
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 function BtnContinuar() {
     return (
-        <div className='sticky bottom-20 left-0 z-50 flex p-2 bg-white md:hidden'>
-            <Link 
-                to={'/productoMover'} 
-                className='bg-label py-2 w-full rounded-xl'
-            >Continuar (0)</Link>
+        <div className='fixed bottom-0 right-0 bg-white p-4 w-full h-20 flex items-center mb-20 md:hidden'>
+            <Link to={'/productoMover'} type="submit" className=' bg-label rounded-md w-full py-2'>Continuar (0)</Link>
         </div>
     )
 }

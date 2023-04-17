@@ -33,13 +33,40 @@ function BarChart({ charData }) {
 		labels: charData.map(el => el.name),
 		datasets: [
 			{
-				label: 'user amount of money',
+				label: '',
 				data: charData.map(el => el.money),
+				backgroundColor: '#5507E0',
+				barPercentaje: '0.2',
+				borderWidth: '0',
+			},
+			{
+				label: '',
+				data: charData.map(el => el.money),
+				backgroundColor: '#C331E3',
+				barPercentaje: '0.2',
+				borderWidth: '0',
 			},
 		],
 	})
 	const options = {
 		maintainAspectRatio: false,
+		plugins: {
+			legend: {
+				display: false,
+			},
+		},
+		scales: {
+			y: {
+				ticks: {
+					display: false,
+				},
+			},
+			x: {
+				ticks: {
+					display: false,
+				},
+			},
+		},
 	}
 	return <Bar data={userData} options={options} plugins={plugins} />
 }
