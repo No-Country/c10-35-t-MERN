@@ -73,7 +73,7 @@ function Login() {
 			<Onboarding />
 			<main
 				id='login'
-				className='flex flex-col justify-start h-screen w-full px-4 pt-90 pb-4 text-center box-border'
+				className='hidden flex flex-col justify-start h-screen w-full px-4 pt-90 pb-4 text-center box-border'
 			>
 				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>

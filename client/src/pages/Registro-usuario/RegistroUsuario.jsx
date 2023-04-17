@@ -198,7 +198,6 @@ function RegistroUsuario() {
 						onClick={handleSubmit}
 						className='bg-secundario disabled:bg-desactivado disabled:text-secundario3 text-primario py-3 rounded-xl w-full font-bold mt-auto'
 					/>
-					<p className='text-f12'>¿Aún no tienes cuenta?</p>
 				</form>
 			</main>
 		</>
