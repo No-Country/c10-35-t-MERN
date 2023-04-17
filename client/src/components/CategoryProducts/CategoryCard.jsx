@@ -6,15 +6,14 @@ export const CategoryCard = ({
 	title,
 	price,
 	stock,
-	type,
 	setFilter,
 	filter,
+	filterCategory,
+	type,
 }) => {
-	const filterCategory = () => {
-		setFilter({ ...filter, category: id })
-	}
+	
 
-	const bgColorCard = type === 1 ? 'bg-secundario' : 'bg-white'
+	const bgColorCard = type === 1 ? 'bg-secundario' : 'white'
 	const textColor = type === 1 ? 'text-white' : 'text-secundario'
 	const colorTitle = type === 1 ? 'text-acento' : 'text-secundario'
 
@@ -22,7 +21,9 @@ export const CategoryCard = ({
 		<div className='group'>
 			<div
 				className={`${bgColorCard} h-176 w-140 rounded-12 p-3 shadow-sombra group-hover:bg-secundario`}
-				onClick={filterCategory}
+				onClick={() => {
+					filterCategory(id)
+				}}
 			>
 				<div className='w-full h-full flex justify-center items-center flex-col'>
 					<div className='w-full mt-4 mb-4'>

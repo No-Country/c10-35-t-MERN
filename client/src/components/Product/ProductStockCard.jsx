@@ -49,7 +49,7 @@ export const ProductStockCard = ({ title, price, stock, type }) => {
 						
 					</div>
 					<div className={`w-full rounded-xl ${barColor}`}>
-							<div className='w-80 bg-acento h-7 mt-13 rounded-xl	'></div>
+							<div className='w-80 bg-acento h-w7 mt-13 rounded-xl	'></div>
 					</div>
 					<div className='text-left mt-px4'>
 						<p className={`${textColor} text-f9`}>Stock</p>

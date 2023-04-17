@@ -72,20 +72,30 @@ export const Inventary = () => {
 		<div className='flex flex-col w-full gap-5'>
 			<Navbar navBarTile='Inventario' />
 
-			<div className='flex px-4 w-full'>
-				<div className='w-full lg:w-pr80'>
+			<div className='grid grid-cols-6 grid-rows-1 gap-1 px-4 w-full'>
+				<div className='col-span-5 row-span-1 w-full h-48 lg:w-pr80'>
 					<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
-					<CategoryData categoryNumber={8} totalUnits={960} totalPrice={580000}/>
+					<CategoryData
+						categoryNumber={8}
+						totalUnits={960}
+						totalPrice={580000}
+					/>
 				</div>
-				<div className='h-48 flex justify-center items-center pl-3.5 pr-3 lg:w-pr10'>
-					<RiFilter2Fill />
+				<div className='col-span-1 row-span-1'>
+					<div className='h-48 w-full flex justify-center items-center pl-3.5 pr-3 lg:w-pr10'>
+						<RiFilter2Fill />
+					</div>
 				</div>
-				<div className='invisible lg:visible'>
+
+				<div className='hidden lg:block '>
 					<BtnAddProduct />
 				</div>
 			</div>
 
-			<h2 className='w-full text-left ml-4 text-secundario'>Categorías</h2>
+			<div className='ml-4'>
+				<h2 className='w-full text-left  text-secundario'>Categorías</h2>
+			</div>
+
 			<CategoryListContainer
 				categoriesList={categories}
 				setFilter={setFilter}

@@ -25,13 +25,13 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 					<div>
 						<h2 className='w-full text-secundario'>Lista de productos</h2>
 					</div>
-					<div className='flex h-24 items-center'>
+					<div className='flex h-w24 items-center'>
 						<div className='h-full'>
 							<p className='w-full text-secundario text-left text-f14'>
 								Orden de ingreso
 							</p>
 						</div>
-						<div className='flex text-f14  items-center w-24 h-24 ml-16 text-f20'>
+						<div className='flex items-center w-w24 h-w24 ml-4 '>
 							<RiArrowDownSFill className='text-secundario '/>
 						</div>
 					</div>
