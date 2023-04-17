@@ -33,7 +33,9 @@ function ProductosMover() {
 
 
 			{/* --------------------------------- Cards de movimiento */}
-			<div className='p-4 mb-40'>
+			<div className='flex flex-col items-center gap-y-5 mb-2'>
+				<CardProductConfirmMovimiento/>
+				<CardProductConfirmMovimiento/>
 				<CardProductConfirmMovimiento/>
 				<CardProductConfirmMovimiento/>
 				<CardProductConfirmMovimiento/>
@@ -42,15 +44,10 @@ function ProductosMover() {
 
 
 
-			{/* --------------------------------- Btn Confirmar movimiento */}
-			<div className='fixed bottom-0 right-0 bg-white p-4 w-full h-20 flex items-center mb-20'>
-				<BtnConfirmarMovimiento/>
-			</div>
-
-
-
-			{/* --------------------------------- Lower Navegator */}
+			<BtnConfirmarMovimiento/>
 			<NavbarMobile/>
+
+
 
         </>
     )

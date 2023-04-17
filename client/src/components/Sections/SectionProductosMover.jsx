@@ -15,6 +15,9 @@ function SectionProductosMover() {
             <div className='px-4 flex flex-col gap-y-5'>
                 <CardProductConfirmMovimiento/>
                 <CardProductConfirmMovimiento/>
+                <CardProductConfirmMovimiento/>
+                <CardProductConfirmMovimiento/>
+                <CardProductConfirmMovimiento/>
             </div>
 
             <div className='w-80 mx-auto py-8'>
