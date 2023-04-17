@@ -5,6 +5,9 @@ import Navbar from '../../components/NavBar/NavBar'
 import { TextBoxWithIcon } from '../../components/textBox/TextBoxWithIcon'
 import { CategoryListContainer } from '../../components/CategoryProducts/CategoryListContainer'
 import { ProductsContainer } from '../../components/Product/ProductsContainer'
+import { RiFilter2Fill } from 'react-icons/ri'
+import { CategoryData } from '../../components/CategoryCard/CategoryData'
+import { BtnAddProduct } from '../../components/Botons/BtnAddProduct'
 
 const categories = [
 	{
@@ -65,17 +68,34 @@ export const Inventary = () => {
 		category: '',
 	})
 
-
-
 	return (
 		<div className='flex flex-col w-full gap-5'>
 			<Navbar navBarTile='Inventario' />
-			<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
 
-			<h2>Categorías</h2>
-			<CategoryListContainer categoriesList={categories} setFilter={setFilter} filter={{ ...filter }}/>
+			<div className='flex px-4 w-full'>
+				<div className='w-full lg:w-pr80'>
+					<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
+					<CategoryData categoryNumber={8} totalUnits={960} totalPrice={580000}/>
+				</div>
+				<div className='h-48 flex justify-center items-center pl-3.5 pr-3 lg:w-pr10'>
+					<RiFilter2Fill />
+				</div>
+				<div className='invisible lg:visible'>
+					<BtnAddProduct />
+				</div>
+			</div>
 
-			<ProductsContainer productsList={products} filterProduct={{ ...filter }}/>
+			<h2 className='w-full text-left ml-4 text-secundario'>Categorías</h2>
+			<CategoryListContainer
+				categoriesList={categories}
+				setFilter={setFilter}
+				filter={{ ...filter }}
+			/>
+
+			<ProductsContainer
+				productsList={products}
+				filterProduct={{ ...filter }}
+			/>
 
 			<NavbarMobile />
 		</div>

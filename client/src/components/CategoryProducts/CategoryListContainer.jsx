@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CategoryCard } from './CategoryCard'
 
 export const CategoryListContainer = ({
@@ -6,8 +6,27 @@ export const CategoryListContainer = ({
 	setFilter,
 	filter,
 }) => {
+
+	const [idCard, setIdCard] = useState(0);
+
+
+	const filterCategory = (id) =>{
+
+		if(id===idCard){
+			setIdCard(0)
+			setFilter({ ...filter, category:"" });
+		}else{
+			setIdCard(id)
+			setFilter({ ...filter, category:id });
+		}
+
+		
+		
+	}
+
+
 	return (
-		<div className='flex w-full'>
+		<div className='flex w-full gap-4 my-4 px-4'>
 			{categoriesList.map((category, i) => {
 				return (
 					<CategoryCard
@@ -16,9 +35,10 @@ export const CategoryListContainer = ({
 						title={category.title}
 						price={category.price}
 						stock={category.stock}
-						type={i === 0 ? 1 : 0}
 						setFilter={setFilter}
 						filter={{ ...filter }}
+						filterCategory={filterCategory}
+						type={idCard === category.id? 1:0}
 					/>
 				)
 			})}
