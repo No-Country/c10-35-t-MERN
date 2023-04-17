@@ -8,7 +8,7 @@ export default function NavBar({iconBack, navBarTile }) {
 	const [navbar, setNavbar] = useState(false)
 
 	return (
-		<nav className='sticky h-16 w-full top-0 left-0 z-50 bg-white text-secundario'>
+		<nav className='sticky h-16 w-full top-0 left-0 z-40 bg-white text-secundario'>
 			<div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8'>
 
 
