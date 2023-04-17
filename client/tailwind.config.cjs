@@ -47,10 +47,12 @@ module.exports = {
 				41: '41px',
 				42: '42px',
 				43:'43px',
+				45: '45px',
 				46.03: '46.03px',
 				48: '48px',
 				49: '49px',
 				50: '50px',
+				pr50: '50%', 
 				60: '60px',
 				62: '62px',
 				72: '72px',
@@ -60,7 +62,8 @@ module.exports = {
 				80:'80%',
 				85:'85px',
 				90: '90px',
-				pr90: '80%', 
+				pr80: '80%', 
+				pr90: '90%', 
 				130: '130px',
 				140: '140px', 
 				156: '156px',
@@ -110,7 +113,10 @@ module.exports = {
 	},
 	variants: {
 		textColor: ['responsive', 'hover', 'group-hover'], 
-		backgroundColor:['responsive', 'hover', 'group-hover']
+		backgroundColor:['responsive', 'hover', 'group-hover'],
+		input:['responsive'],
+		div:['responsive']
+
 		
 	},
 

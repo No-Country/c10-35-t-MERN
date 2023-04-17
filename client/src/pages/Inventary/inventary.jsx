@@ -6,6 +6,7 @@ import { TextBoxWithIcon } from '../../components/textBox/TextBoxWithIcon'
 import { CategoryListContainer } from '../../components/CategoryProducts/CategoryListContainer'
 import { ProductsContainer } from '../../components/Product/ProductsContainer'
 import { RiFilter2Fill } from 'react-icons/ri'
+import { CategoryData } from '../../components/CategoryCard/CategoryData'
 
 const categories = [
 	{
@@ -73,6 +74,7 @@ export const Inventary = () => {
 			<div className='flex px-4 w-full'>
 				<div className='w-full'>
 					<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
+					<CategoryData categoryNumber={8} totalUnits={960} totalPrice={580000}/>
 				</div>
 				<div className='h-48  flex justify-center items-center pl-3.5 pr-3'>
 					<RiFilter2Fill />
