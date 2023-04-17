@@ -1,60 +1,75 @@
 /* eslint-disable no-undef */
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router'
-import { NavLink } from 'react-router-dom'
 import logo from '../../assets/logo_Stocker.png'
-import Onboarding from '../Onboarding/Onboarding'
 import usePostData from '../../hooks/UseFetch/usePostData'
-function Login() {
+function RegistroUsuario() {
 	const URL = 'https://stocker-api.fly.dev/api/v1/users/login'
 	const { error, isLoading, responseData, handlePost } = usePostData()
 	const navigate = useNavigate()
 	const [data, setData] = useState({})
-	const [mailCheck, setMailCheck] = useState(true)
-	const [passCheck, setPassCheck] = useState(true)
+	const [nameCheck, setNameCheck] = useState(false)
+	const [mailCheck, setMailCheck] = useState(false)
+	const [passCheck, setPassCheck] = useState(false)
 	const [repeatPassCheck, setrepeatPassCheck] = useState(true)
 	const [isActive, setIsActive] = useState(false)
 	const handleChange = e => {
 		setData({ ...data, [e.target.name]: e.target.value })
 	}
 	useEffect(() => {
-		if (mailCheck || passCheck || repeatPassCheck) setIsActive(true)
-		if (!mailCheck & !passCheck & !repeatPassCheck) setIsActive(false)
-	}, [mailCheck, passCheck, repeatPassCheck])
+		if (nameCheck || mailCheck || passCheck || repeatPassCheck)
+			setIsActive(true)
+		if (!nameCheck & !mailCheck & !passCheck & !repeatPassCheck)
+			setIsActive(false)
+	}, [nameCheck, mailCheck, passCheck, repeatPassCheck])
+
+	const handleNameBLur = e => {
+		const nameFormatTest = /^[A-Z]+$/i
+		const verifiedName = data[e.target.name]
+		if (!nameFormatTest.test(verifiedName) || e.target.value === '') {
+			errorName.classList.remove('hidden')
+			setNameCheck(true)
+		} else {
+			errorName.classList.add('hidden')
+			setNameCheck(false)
+		}
+	}
 	const handleEmailBLur = e => {
 		const emailFormatTest = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 		const verifiedEmail = data[e.target.name]
 		if (!emailFormatTest.test(verifiedEmail) || e.target.value === '')
-			errorUserName.classList.remove('hidden')
+			errorMail.classList.remove('hidden')
 		setMailCheck(true)
 		if (emailFormatTest.test(verifiedEmail) & (e.target.value !== '')) {
-			errorUserName.classList.add('hidden')
+			errorMail.classList.add('hidden')
 			setMailCheck(false)
 		}
 	}
 	const handlePassBLur = e => {
 		if (e.target.value === '') {
-			errorUserPass.classList.remove('hidden')
+			errorPassword.classList.remove('hidden')
 			setPassCheck(true)
 		} else {
-			errorUserPass.classList.add('hidden')
+			errorPassword.classList.add('hidden')
 			setPassCheck(false)
 		}
 	}
 	const handleRepeatPassBLur = e => {
 		if (data.password !== e.target.value || e.target.value === '') {
 			setrepeatPassCheck(true)
-			errorRepeatedPass.classList.remove('hidden')
+			errorRepeatedPassword.classList.remove('hidden')
 		}
 		if ((data.password === e.target.value) & (e.target.value !== '')) {
 			setrepeatPassCheck(false)
-			errorRepeatedPass.classList.add('hidden')
+			errorRepeatedPassword.classList.add('hidden')
 		}
 	}
 	const handleSubmit = async e => {
 		e.preventDefault()
+
 		await handlePost(URL, data, e)
 	}
+
 	useEffect(() => {
 		if ((responseData !== null) & (responseData?.message !== ''))
 			return window.alert(responseData.message)
@@ -67,23 +82,45 @@ function Login() {
 	}, [responseData, error])
 	return (
 		<>
-			<Onboarding />
-
+			/{' '}
 			<main
 				id='login'
-				className='hidden flex flex-col justify-start h-screen w-full px-4 pt-90 pb-4 text-center box-border'
+				className='flex flex-col flex-grow-2 justify-start w-full px-4 pb-4 text-center box-border h-full min-h-full '
 			>
 				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>
-					<h2>Bienvenidos a</h2>
-					<img className='my-8' src={logo} alt='Stocker Logo' />
-					<h2>Inicia sesión</h2>
+					<img className='' src={logo} alt='Stocker Logo' />
+					<h2>Crear tu cuenta</h2>
 				</div>
 				<form
 					id='Form'
 					action=''
 					className=' flex flex-col items-center w-full min-h-full gap-y-2'
 				>
+					<div className='flex flex-col w-full justify-between gap-y-1'>
+						<label
+							htmlFor='user'
+							className='text-left text-f14 text-labeltexto'
+						>
+							Ingresa tu nombre
+						</label>
+						<input
+							className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
+							type='text'
+							name='full_name'
+							id='full_name'
+							onChange={handleChange}
+							onBlur={handleNameBLur}
+							placeholder='Ingrese usuario'
+							required
+						/>
+						<span
+							id='errorName'
+							className='hidden text-f12 text-error text-left'
+						>
+							El nombre no puede incluir números ni símbolos
+						</span>
+					</div>
 					<div className='flex flex-col w-full justify-between gap-y-1'>
 						<label htmlFor='user' className='text-left text-xs text-labeltexto'>
 							Ingresa tu correo
@@ -95,20 +132,20 @@ function Login() {
 							id='email'
 							onChange={handleChange}
 							onBlur={handleEmailBLur}
-							placeholder='Ingrese usuario'
+							placeholder='Ingrese corroe electónico'
 							required
 						/>
 						<span
-							id='errorUserName'
+							id='errorMail'
 							className='hidden text-f12 text-error text-left'
 						>
-							Ingrese dirección de correo válida
+							Ingrese un correo válido
 						</span>
 					</div>
 					<div className='flex flex-col w-full justify-between gap-y-1'>
 						<label
 							htmlFor='password'
-							className='text-left text-xs text-labeltexto'
+							className='text-left text-f14 text-labeltexto'
 						>
 							Ingresa tu contraseña
 						</label>
@@ -123,16 +160,16 @@ function Login() {
 							required
 						/>
 						<span
-							id='errorUserPass'
+							id='errorPassword'
 							className='hidden text-f12 text-error text-left'
 						>
-							Formato de contraseña incorrecto
+							Ingrese una contraseña válida
 						</span>
 					</div>
 					<div className='flex flex-col w-full justify-between gap-y-1'>
 						<label
 							htmlFor='password'
-							className='text-left text-xs text-labeltexto'
+							className='text-left text-f14 text-labeltexto'
 						>
 							Repite tu contraseña:
 						</label>
@@ -143,10 +180,11 @@ function Login() {
 							id='repeatedPassword'
 							onChange={handleChange}
 							onBlur={handleRepeatPassBLur}
-							placeholder='Ingrese contraseña'
+							placeholder='confirme contraseña'
+							required
 						/>
 						<span
-							id='errorRepeatedPass'
+							id='errorRepeatedPassword'
 							className='hidden text-f12 text-error text-left'
 						>
 							Las contraseñas no coinciden
@@ -156,19 +194,16 @@ function Login() {
 					<input
 						type='submit'
 						name=''
-						id='submit'
-						value='Iniciar sesión'
-						onClick={handleSubmit}
 						disabled={isActive}
-						className='bg-secundario text-primario  disabled:bg-desactivado disabled:text-secundario3 py-3 rounded-xl w-full font-bold mt-auto'
+						value='Crear cuenta'
+						onClick={handleSubmit}
+						className='bg-secundario disabled:bg-desactivado disabled:text-secundario3 text-primario py-3 rounded-xl w-full font-bold mt-auto'
 					/>
-				</form>
-				<NavLink to='/reportes'>
 					<p className='text-f12'>¿Aún no tienes cuenta?</p>
-				</NavLink>
+				</form>
 			</main>
 		</>
 	)
 }
 
-export default Login
+export default RegistroUsuario

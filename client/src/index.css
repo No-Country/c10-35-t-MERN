@@ -1,21 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html {
+	@apply h-full;
+}
+body {
+	@apply h-full;
+}
 
 h1 {
-	@apply font-primaria text-4xl font-normal
+	@apply font-primaria text-4xl font-normal;
 }
 h2 {
-	@apply font-secundaria text-2xl font-bold
+	@apply font-secundaria text-2xl font-bold;
 }
 h3 {
-	@apply font-secundaria text-xl font-bold 
+	@apply font-secundaria text-xl font-bold;
 }
 h4 {
-	@apply font-secundaria text-base font-bold
+	@apply font-secundaria text-base font-bold;
 }
 h5 {
-	@apply font-secundaria text-sm font-bold
+	@apply font-secundaria text-sm font-bold;
 }
 p {
 	@apply font-secundaria;
@@ -42,6 +48,16 @@ p {
 	@apply font-secundaria text-xs;
 }
 
+<<<<<<< HEAD
+.swiper-pagination {
+	@apply max-w-fit;
+}
+.swiper-pagination-bullet {
+	@apply bg-secundario transition-[width] opacity-100;
+}
+.swiper-pagination-bullet-active {
+	@apply w-7 bg-yellow-500 rounded-lg;
+=======
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -64,4 +80,5 @@ p {
 }
 #divInput{
 	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute  
+>>>>>>> 048601fd1538c64883d023a14eb6b476ba7ced4b
 }
