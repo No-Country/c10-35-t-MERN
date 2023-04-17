@@ -77,7 +77,7 @@ p {
 	@apply w-40 h-18 text-start  md:h-8 md:pt-8  font-secundaria  text-sm md:text-lg font-normal text-labeltexto flex-none grow-0 order-none
 }
 #inputForm{
-	@apply  w-40 h-h48 md:w-266 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border
+	@apply w-40 h-h48 md:w-266 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border
 }
 #divInput{
 	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute  
