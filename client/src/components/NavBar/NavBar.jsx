@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { IoMenuOutline, IoCloseSharp } from 'react-icons/io5'
-import { BiChevronLeft } from 'react-icons/bi';
+import { IoCloseSharp } from 'react-icons/io5'
+import { RiMenuLine } from 'react-icons/ri'
 
 export default function NavBar({iconBack, navBarTile }) {
 	const [navbar, setNavbar] = useState(false)
 
 	return (
-		<nav className='w-full'>
+		<nav className='sticky h-16 w-full top-0 left-0 z-50 bg-white text-secundario'>
 			<div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8'>
 
 
@@ -24,7 +24,7 @@ export default function NavBar({iconBack, navBarTile }) {
 					</div>
 					<div className='md:hidden'>
 						<button className='text-2xl' onClick={() => setNavbar(!navbar)}>
-							{navbar ? <IoCloseSharp /> : <IoMenuOutline />}
+							{navbar ? <IoCloseSharp /> : <RiMenuLine />}
 						</button>
 					</div>
 				</div>
@@ -69,7 +69,7 @@ export default function NavBar({iconBack, navBarTile }) {
 									to='/configuracion'
 									onClick={() => setNavbar(!navbar)}
 								>
-									configuración
+									Configuración
 								</NavLink>
 							</li>
 							<li className='text-gray-600 hover:text-blue-600'>
