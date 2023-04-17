@@ -10,7 +10,6 @@
       "alerta": 20,
       "unidades": "unidades"
     },
-   
     {
       "id": 3,
       "nombre": "sal",
@@ -87,8 +86,6 @@
       "precio": "700",
       "alerta": "10"
     },
-   
-    
     {
       "id": 1681761274675,
       "nombre": "prueba",
@@ -133,8 +130,6 @@
       "unidades": "Kg",
       "categorias": ""
     },
-    
-    
     {
       "id": 1681770488253,
       "nombre": "cafe",
@@ -145,6 +140,28 @@
       "alerta": "30",
       "unidades": "Kg",
       "categorias": "almacen"
+    },
+    {
+      "id": 1681774545901,
+      "nombre": "tele",
+      "cantidad": "7",
+      "costo": "96",
+      "total": "74",
+      "precio": "78",
+      "alerta": "3",
+      "unidades": "unidades",
+      "categorias": ""
+    },
+    {
+      "id": 1681774756781,
+      "nombre": "mani",
+      "cantidad": "78",
+      "costo": "96",
+      "total": "7",
+      "precio": "7",
+      "alerta": "3",
+      "unidades": "Mts",
+      "categorias": ""
     }
   ]
 }

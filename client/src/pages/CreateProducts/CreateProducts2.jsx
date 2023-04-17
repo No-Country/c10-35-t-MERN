@@ -99,9 +99,6 @@ const CreateProducts2 = () => {
 	const [dataToEdit, setDataToEdit] = useState(null)
 	const [modal, setModal] = useState(false)
 
-	// const costoUNit = form.costo
-	// const unidadesTotales = form.unidades
-	// const costoTotal = costoUNit * unidadesTotales
 
 	const crud = helpFetch()
 	const urlGet = 'http://localhost:3000/data'
@@ -134,11 +131,7 @@ const CreateProducts2 = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
-
-		// if(Object.keys(errors).lenght !==0){
-		// 	alert('Debes completar todos los campos');
-		// 	return
-		// }
+		
 		if (Object.keys(errors).length === 0) {
 			helpFetch()
 				.post(urlGet, {
@@ -149,6 +142,7 @@ const CreateProducts2 = () => {
 					},
 				})
 				.then(res => {
+					console.log(res)
 					setResponse(true)
 					setForm(initialForm)
 				})

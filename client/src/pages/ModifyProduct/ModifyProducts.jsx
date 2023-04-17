@@ -89,13 +89,9 @@ const ModifyProducts = () => {
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState(null)
-
 	const [dataToEdit, setDataToEdit] = useState(null)
-	const [modal, setModal] = useState(false)
+	
 
-	// const costoUNit = form.costo
-	// const unidadesTotales = form.unidades
-	// const costoTotal = costoUNit * unidadesTotales
 
 	const crud = helpFetch()
 	let urlGet = 'http://localhost:3000/data'
@@ -126,10 +122,10 @@ const ModifyProducts = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
-
 	
 		if (Object.keys(errors).length === 0) {
-			helpFetch()
+			
+				helpFetch()
 				.post(urlGet, {
 					body: form,
 					headers: {
