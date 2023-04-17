@@ -1,6 +1,5 @@
 /* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
-import { RiCloseCircleLine } from 'react-icons/ri'
 import { useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
@@ -9,6 +8,8 @@ import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 import Subtitles from '../../components/CreateProducts/Subtitles'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import Headings from '../../components/CreateProducts/Headings'
+import ModalExcel from '../../components/Modals/ModalExcel'
+import Modal from 'react-modal'
 
 const initialForm = {
 	id: Date.now(),
@@ -93,29 +94,31 @@ const CreateProducts2 = () => {
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
-	const [db, setDb] = useState({})
+	const [db, setDb] = useState(null)
 
 	const [dataToEdit, setDataToEdit] = useState(null)
 	const [modal, setModal] = useState(false)
 
-	const costoUNit = form.costo
-	const unidadesTotales = form.unidades
-	const costoTotal = costoUNit * unidadesTotales
+	// const costoUNit = form.costo
+	// const unidadesTotales = form.unidades
+	// const costoTotal = costoUNit * unidadesTotales
 
 	const crud = helpFetch()
-	let url = 'http://localhost:3000/data'
+	const urlGet = 'http://localhost:3000/daa'
 
 	useEffect(() => {
-		crud.get(url).then(res => {
+
+		 fetch(urlGet).then(res => {
+
 			if (!res.err) {
 				setDb(res)
-				setErrors({})
+				setResponse(res)
 			} else {
 				setDb(null)
-				setErrors(res)
+				setResponse(res)
 			}
-		})
-	}, [url])
+	})
+	}, [urlGet])
 
 	const handleChange = e => {
 		setForm({
@@ -132,12 +135,13 @@ const CreateProducts2 = () => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
 
-		// if(Object.keys(errors).length !==0){
-		//  return alert('debes completar todos los campos')
-		// }else
+		// if(Object.keys(errors).lenght !==0){
+		// 	alert('Debes completar todos los campos');
+		// 	return
+		// }
 		if (Object.keys(errors).length === 0) {
 			helpFetch()
-				.post('http://localhost:3000/data', {
+				.post(urlGet, {
 					body: form,
 					headers: {
 						'Content-Type': 'application/json',
@@ -152,7 +156,6 @@ const CreateProducts2 = () => {
 
 			return
 		}
-
 		if (form.id === null) {
 			return createData(form)
 		} else {
@@ -163,20 +166,21 @@ const CreateProducts2 = () => {
 
 	const createData = data => {
 		crud
-			.post(url, {
+			.post(urlGet, {
 				body: data,
 				headers: { 'content-type': 'application/json' },
 			})
 			.then(res => {
-				console.log(res)
 				if (!res.err) {
 					setDb([...db, res])
-				}
+				}else(
+					setResponse(res)
+				)
 			})
 	}
 
 	const updateData = data => {
-		let endpoint = `${url}/${data.id}`
+		let endpoint = `${urlGet}/${data.id}`
 
 		crud
 			.put(endpoint, {
@@ -186,16 +190,18 @@ const CreateProducts2 = () => {
 			.then(res => {
 				if (!res.err) {
 					let newData = db.map(el => (el.id === data.id ? data : el))
-					setDb(newData)
+					setDb(newData);
+				}else{
+					setResponse(res);
 				}
 			})
 	}
 
 	const deleteData = id => {
-		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
+		let isDelete =confirm('¿Estas seguro que quieres eliminar el producto?')
 
 		if (isDelete) {
-			let endpoint = `${url}/${id}`
+			let endpoint = `${urlGet}/${id}`
 
 			crud
 				.del(endpoint, { headers: { 'content-type': 'application/json' } })
@@ -204,49 +210,22 @@ const CreateProducts2 = () => {
 						let newData = db.filter(el => el.id !== id)
 
 						setDb(newData)
+					}else{
+						setResponse(res);
 					}
 				})
 		}
 	}
 
-	// const voidForm = () => {
-	// 	if (setForm.length >= 6)
-	// 		if (setForm.length < 6) {
-	// 			console.warn('debes ingresar todos los campos')
-	// 		}
-	// }
-
 	return (
 		<>
 			<div className='w-373 h-812  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'>
 				<div className='md:absolute md:w-714 md:h-920 md:top-52 md:left-297 bg-white '>
-					{/* ---------------Headings---------- */}
 					<Headings />
 
-					{/* -----------contenedor de subtitulos en desktop----------- */}
-					{/* 
-					<Subtitles formdata={form}/> */}
+					{/* -----------subtitulos en desktop----------- */}
 
-					<div className='hidden md:w-566 md:h-52 md:left-494 md:top-178 md:flex  md:flex:row md:justify-between md:p-0 md:ml-14 md:pb-2 md:mt-5 md:items-center md:gap-11 '>
-						<div className='md:flex md:flex-col md:justify-center md:items-center md:h-9'>
-							<h3 className='text-acento md:flex md:flex-col md:justify-center  md:h-5  md:items-center '>
-								categorias
-							</h3>
-							<div className='text-secundario md:h-4'>{form.categorias}</div>
-						</div>
-						<div className='md:flex md:flex-col md:justify-center md:items-center md:h-9'>
-							<h3 className='text-acento md:flex-none md:h-5 md:flex md:items-center'>
-								total unidades
-							</h3>
-							<div className='text-secundario md:h-4 '>{form.cantidad}</div>
-						</div>
-						<div className='md:flex md:flex-col md:justify-center md:items-center md:h-9'>
-							<h3 className='text-acento md:h-5 md:flex md:items-center'>
-								valor total
-							</h3>
-							<div className='text-secundario md:h-4'> {}</div>
-						</div>
-					</div>
+					<Subtitles formData={form} />
 
 					{/* ----------------contendor de imagen------------ */}
 
@@ -256,7 +235,7 @@ const CreateProducts2 = () => {
 					<div className=''>
 						<form onSubmit={handleSubmit}>
 							{/* -------contenerdor de inputs----- */}
-							<div className='w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'>
+							<div className='w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4  md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'>
 								{/* ------desde aca empiezan los inputs---- */}
 
 								<div className='w-341 h-70 top-0 left-4 absolute flex flex-col items-start p-0 gap-1 md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
@@ -274,7 +253,7 @@ const CreateProducts2 = () => {
 										onBlur={handleBlur}
 										onChange={handleChange}
 										required
-										className='w-341 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border md:w-556
+										className='w-341 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl order-1 grow-0 px-3 py-4 gap-2.5 box-border md:w-556
 						'
 									></input>
 									{errors.nombre && (
@@ -284,7 +263,7 @@ const CreateProducts2 = () => {
 									)}
 								</div>
 
-								{/* ----------------aca va el primer grupo-------- */}
+								{/* ---------------- primer grupo-------- */}
 								<div className='md:w-72 '>
 									<div id='divInput' className='left-4 top-24  md:top-84'>
 										<label id='labelInput' htmlFor='' className='w-122 h-18'>
@@ -309,8 +288,7 @@ const CreateProducts2 = () => {
 											{errors.cantidad}
 										</p>
 									)}
-
-									<div
+<div
 										id='divInput'
 										className='left-200 top-24 md:left-305 md:top-84 '
 									>
@@ -339,8 +317,9 @@ const CreateProducts2 = () => {
 											</option>
 										</select>
 									</div>
+									
 								</div>
-								{/* ---------------aca va el segundo grupo---------- */}
+								{/* --------------- segundo grupo---------- */}
 								<div>
 									<div id='divInput' className='left-4 top-178'>
 										<label id='labelInput' htmlFor='' className='w-102'>
@@ -385,7 +364,7 @@ const CreateProducts2 = () => {
 										<div className='md:text-start'>
 											<label
 												htmlFor=''
-												className='md:w-200 md:text-start md:h-8 md:pt-8  md:font-secundaria md:text-lg md:font-normal md:text-labeltexto md:flex-none md:grow-0 md:order-none'
+												className='md:w-200 md:text-start md:h-8 md:pt-8  md:font-secundaria md:text-lg md:font-normal md:text-labeltexto  md:grow-0 md:order-none'
 											>
 												categoria
 											</label>
@@ -397,10 +376,10 @@ const CreateProducts2 = () => {
 												onChange={handleChange}
 												className='md:w-266
 											md:h-h48 
-											md:bg-white md:border-solid md:border-1 md:border-secundario3 md:rounded-xl md:flex-none md:order-1 md:grow-0 md:px-3 md:py-4 md:gap-2.5 md:box-border'
+											md:bg-white md:border-solid md:border-1 md:border-secundario3 md:rounded-xl  md:order-1 md:grow-0 md:px-3 md:py-4 md:gap-2.5 md:box-border'
 											></input>
 											{<errors className='categoria'></errors> && (
-												<p className='md:font-secundaria md:text-xs md:font-normalmd: text-error md:w-48 md:h-4 md:flex-none md:grow-0 md:order-2'>
+												<p className='md:font-secundaria md:text-xs md:font-normalmd: text-error md:w-48 md:h-4  md:grow-0 md:order-2'>
 													{errors.categorias}
 												</p>
 											)}
@@ -408,7 +387,7 @@ const CreateProducts2 = () => {
 									</div>
 								</div>
 
-								{/* ----------aca va el tercer grupo----------- */}
+								{/* ----------tercer grupo----------- */}
 								<div>
 									<div id='divInput' className='left-4 top-266'>
 										<label id='labelInput' className='w-107' htmlFor=''>
@@ -450,13 +429,13 @@ const CreateProducts2 = () => {
 										)}
 									</div>
 								</div>
-								{/* -------------aca va el 4 grupo----------------- */}
+								{/* -------------cuarto grupo----------------- */}
 								<div className=''>
 									<button
 										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
 										onClick={() => setModal(true)}
 									>
-										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
+										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base  grow-0order-0 '>
 											Cargar Excel
 										</div>
 									</button>
@@ -465,45 +444,15 @@ const CreateProducts2 = () => {
 										type='submit'
 										value='send'
 										onClick={() => setVisible(true)}
-										// onFocus={()=>setForm.length >6 ? handleSubmit() : <p id='errorp'>debes completar todos los campos</p>}
-
 										className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
 									>
-										<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0 '>
+										<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  order-0 grow-0 '>
 											Continuar
 										</div>
 									</button>
 
-									{visible ? <ModalProductocargado /> : null}
-
-									{modal && (
-										<section
-											id='modalExcel'
-											className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
-										>
-											<div
-												id='modal-containerExcel'
-												className='bg-primario3 m-auto w-371 h-60 rounded-lg pr-14'
-											>
-												<div className=' flex justify-end mb-8 mr-2'>
-													<button
-														className=' pr-2 pt-2'
-														onClick={() => setModal(false)}
-													>
-														<RiCloseCircleLine className='w-6 h-6 fill-secundario bottom-4' />
-													</button>
-												</div>
-
-												<p
-													id='modal-paragraph'
-													className=' w-82 h-52 left-6 not-italic  items-center flex-none order-none grow-0 py-12 px-10 text-center font-secundaria text-error top-4 text-xl'
-												>
-													Disponible solo en version Premiun
-												</p>
-											</div>
-										</section>
-									)}
-									{!modal && null}
+									{visible ? <ModalProductocargado texto={"Productos cargados exitosamente!"}/> : null}
+									{modal ? <ModalExcel setModal={setModal} /> : null}
 								</div>
 							</div>
 						</form>

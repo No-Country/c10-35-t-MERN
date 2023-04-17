@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
 import pollo from '../../assets/pollo.png'
-const ModalProductocargado = () => {
+const ModalProductocargado = ({texto}) => {
 	return (
 		<section
 			id='modal'
@@ -14,7 +15,7 @@ const ModalProductocargado = () => {
 					id='modal-paragraph'
 					className='w-247 h-52 ml-14 top-6 left-6 not-italic text-center items-center text-exito flex-none order-none grow-0'
 				>
-					¡Productos cargados exitosamente!
+						{texto}
 				</h3>
 				<img
 					src={pollo}

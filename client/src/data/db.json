@@ -139,6 +139,72 @@
       "alerta": "",
       "unidades": "",
       "categorias": ""
+    },
+    {
+      "id": 1681749411009,
+      "nombre": "perrito",
+      "cantidad": "78",
+      "costo": "96",
+      "total": "32",
+      "precio": "78",
+      "alerta": "5",
+      "unidades": "unidades",
+      "categorias": ""
+    },
+    {
+      "id": 1681761274675,
+      "nombre": "prueba",
+      "cantidad": "78",
+      "costo": "96",
+      "total": "31",
+      "precio": "453",
+      "alerta": "9",
+      "unidades": "Mts",
+      "categorias": ""
+    },
+    {
+      "id": 1681761622372,
+      "nombre": "yegvc",
+      "cantidad": "78",
+      "costo": "788",
+      "total": "96",
+      "precio": "63",
+      "alerta": "4",
+      "unidades": "unidades",
+      "categorias": ""
+    },
+    {
+      "id": 1681761645941,
+      "nombre": "PRUEBITA",
+      "cantidad": "78",
+      "costo": "78",
+      "total": "96",
+      "precio": "36",
+      "alerta": "7",
+      "unidades": "Kg",
+      "categorias": ""
+    },
+    {
+      "id": 1681762408160,
+      "nombre": "pruebados",
+      "cantidad": "78",
+      "costo": "96",
+      "total": "74",
+      "precio": "96",
+      "alerta": "1",
+      "unidades": "Kg",
+      "categorias": ""
+    },
+    {
+      "id": 1681766897491,
+      "nombre": "etocin",
+      "cantidad": "1",
+      "costo": "78",
+      "total": "",
+      "precio": "78",
+      "alerta": "3",
+      "unidades": "Lts",
+      "categorias": "perrito"
     }
   ]
 }
