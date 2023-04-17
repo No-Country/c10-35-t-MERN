@@ -1,11 +1,15 @@
 /* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
-import { VscChromeClose } from 'react-icons/vsc'
+import { RiCloseCircleFill, RiCloseCircleLine } from 'react-icons/ri'
+import { RiArrowLeftSLine } from 'react-icons/ri'
 import { useState } from 'react'
-import { data, unidades } from '../../data/db.json'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
-// import useForm from '../../components/helpers/useForm'
+import data from '../../data/db.json'
+import { Link } from 'react-router-dom'
+import ModalProductocargado from '../../components/Modals/ModalProductocargado'
+import Subtitles from '../../components/CreateProducts/Subtitles'
+import { BoxImage } from '../../components/CreateProducts/BoxImage'
 
 const initialForm = {
 	id: Date.now(),
@@ -15,6 +19,8 @@ const initialForm = {
 	total: '',
 	precio: '',
 	alerta: '',
+	unidades: '',
+	categorias: '',
 }
 
 const validationsForm = (form, name) => {
@@ -22,13 +28,22 @@ const validationsForm = (form, name) => {
 
 	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
 	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
-	const { nombre, cantidad, precio, costo, total, alerta } = form
+	const {
+		nombre,
+		cantidad,
+		precio,
+		costo,
+		total,
+		alerta,
+		categorias
+		
+	} = form
 
 	if ((nombre === '') & (name === 'nombre')) {
 		errors.nombre = 'El campo nombre es requerido'
 		return errors
-	} else if (!letters.test(cantidad) & (name === 'nombre')) {
-		errors.nombre = 'el campo nombre solo acepta numeros'
+	} else if (!letters.test(nombre) & (name === 'nombre')) {
+		errors.nombre = 'el campo solo acepta letras'
 		return errors
 	}
 
@@ -36,73 +51,50 @@ const validationsForm = (form, name) => {
 		errors.cantidad = 'El campo cantidad es requerido'
 		return errors
 	} else if (!number.test(cantidad) & (name === 'cantidad')) {
-		errors.cantidad = 'el campo nombre solo acepta numeros'
+		errors.cantidad = 'el campo solo acepta numeros'
 		return errors
 	}
 
 	if ((precio === '') & (name === 'precio')) {
-		errors.precio = 'El campo cantidad es requerido'
+		errors.precio = 'El campo precio es requerido'
 		return errors
 	} else if (!number.test(precio) & (name === 'precio')) {
-		errors.precio = 'el campo nombre solo acepta numeros'
+		errors.precio = 'el campo solo acepta numeros'
 
 		return errors
 	}
 
 	if ((costo === '') & (name === 'costo')) {
-		errors.costo = 'El campo cantidad es requerido'
+		errors.costo = 'El campo costo es requerido'
 		return errors
 	} else if (!number.test(costo) & (name === 'costo')) {
-		errors.costo = 'el campo nombre solo acepta numeros'
+		errors.costo = 'el campo solo acepta numeros'
 		return errors
 	}
 
 	if ((total === '') & (name === 'total')) {
-		errors.total = 'El campo cantidad es requerido'
+		errors.total = 'El campo total es requerido'
 		return errors
 	} else if (!number.test(total) & (name === 'total')) {
-		errors.total = 'el campo nombre solo acepta numeros'
+		errors.total = 'el campo solo acepta numeros'
 		return errors
 	}
 
 	if ((alerta === '') & (name === 'alerta')) {
-		errors.alerta = 'El campo cantidad es requerido'
+		errors.alerta = 'El campo alerta es requerido'
 		return errors
 	} else if (!number.test(alerta) & (name === 'alerta')) {
-		errors.alerta = 'el campo nombre solo acepta numeros'
+		errors.alerta = 'el campo solo acepta numeros'
 		return errors
 	}
-	// if (!form.nombre) {
-	// 	errors.nombre = 'El campo nombre es requerido'
-	// } else if (!letters.test(form.nombre)) {
-	// 	errors.nombre = 'el campo nombre solo acepta letras'
-	// }
-
-	// if (form.cantidad==="") {
-	// 	errors.cantidad = 'El campo es requerido'
-	// } else if (!number.test(form.cantidad)) {
-	// 	errors.cantidad = 'el campo nombre solo acepta letras'
-	// }
-	// if (!form.costo) {
-	// 	errors.costo = 'El campo es requerido'
-	// } else if (!number.test(form.costo)) {
-	// 	errors.costo = 'el campo nombre solo acepta numeros'
-	// }
-	// if (!form.total) {
-	// 	errors.total = 'El campo es requerido'
-	// } else if (!number.test(form.total)) {
-	// 	errors.total = 'el campo nombre solo acepta numeros'
-	// }
-	// if (!form.precio) {
-	// 	errors.precio = 'El campo es requerido'
-	// } else if (!number.test(form.precio)) {
-	// 	errors.precio = 'el campo nombre solo acepta numeros'
-	// }
-	// if (!form.alerta) {
-	// 	errors.alerta = 'El campo es requerido'
-	// } else if (!number.test(form.alerta)) {
-	// 	errors.alerta = 'el campo nombre solo acepta numeros'
-	// }
+	if ((categorias === '') & (name === 'categorias')) {
+		errors.categorias = 'El campo categoria es requerido'
+		return errors
+	} else if (!letters.test(categorias) & (name === 'categorias')) {
+		errors.categorias = 'el campo solo acepta letras'
+		return errors
+	}
+	
 	return errors
 }
 
@@ -110,8 +102,15 @@ const CreateProducts2 = () => {
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
+	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState({})
+
 	const [dataToEdit, setDataToEdit] = useState(null)
+	const [modal, setModal] = useState(false)
+
+	const costoUNit = form.costo
+	const unidadesTotales = form.unidades
+	const costoTotal = costoUNit * unidadesTotales
 
 	const crud = helpFetch()
 	let url = 'http://localhost:3000/data'
@@ -129,7 +128,6 @@ const CreateProducts2 = () => {
 	}, [url])
 
 	const handleChange = e => {
-		console.log(e.target.value)
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
@@ -137,8 +135,6 @@ const CreateProducts2 = () => {
 	}
 
 	const handleBlur = e => {
-		console.log(e.target.name)
-
 		setErrors(validationsForm(form, e.target.name))
 	}
 
@@ -146,9 +142,10 @@ const CreateProducts2 = () => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
 
+		// if(Object.keys(errors).length !==0){
+		//  return alert('debes completar todos los campos')
+		// }else
 		if (Object.keys(errors).length === 0) {
-			alert('Enviando Formulario')
-
 			helpFetch()
 				.post('http://localhost:3000/data', {
 					body: form,
@@ -158,30 +155,23 @@ const CreateProducts2 = () => {
 					},
 				})
 				.then(res => {
-					console.log(res)
-					setForm(res)
+					// setForm(res);
+					setResponse(true)
+					setForm(initialForm)
 				})
-				return
-		} 
+
+			return
+		}
 
 		if (form.id === null) {
 			return createData(form)
-			
 		} else {
-			console.log("updateData")
+			console.log('updateData')
 			return updateData(form)
 		}
-
-		// handleReset()
 	}
 
-	// 	const handleReset = e => {
-	// 	setForm({})
-	// 	setDataToEdit(null)
-	// }
-
 	const createData = data => {
-		
 		crud
 			.post(url, {
 				body: data,
@@ -229,195 +219,329 @@ const CreateProducts2 = () => {
 		}
 	}
 
+	// const voidForm = () => {
+	// 	if (setForm.length >= 6)
+	// 		if (setForm.length < 6) {
+	// 			console.warn('debes ingresar todos los campos')
+	// 		}
+	// }
+
 	return (
 		<>
-			<div>
-				<div className='flex justify-end h-10 p-4 md:p-6 md:pb-8'>
-					<VscChromeClose className='bg-slate-300 rounded-xl h-6 w-6 p-0.5' />
-				</div>
-				<div className='h-36 md:h-56 flex justify-center items-center'>
-					<div className='m-2 '>
-						<p className=' mb-2 pl-2 md:text-xl text-slate-700 font-semibold'>
-							Crear Producto
-						</p>
+			<div className='w-373 h-812  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'>
+				<div className='md:absolute md:w-714 md:h-920 md:top-52 md:left-297 bg-white '>
+					<div className=''>
+						{/* --------contenedor general de barra superior -------- */}
+						<div className='flex-none order-1 grow-0 md:mt-3'>
+							{/* --------contenedor de items h1 y botones------- */}
+							<div className='w-373 h-43  mt-2 top-31 left-0 px-0 py-4 gap-3 flex flex-row items-center  flex-none order-1 grow-0 md:pt-8  '>
+								<Link
+									to={'/inicio'}
+									className='flex-none order-0 grow-0 w-6 h-6 top-2.5 left-4 md:hidden'
+								>
+									<RiArrowLeftSLine className='w-7 h-7 ' />
+								</Link>
 
-						<img
-							src='https://i.imgur.com/Tgt6TjG.jpeg'
-							className='w-32 h-28 md:w-40 md:h-40'
-						></img>
+								<h1 className='w-221 h-43 left-l52 flex items-end md:top-0.5 md:w-178 md:h-31 md:flex-none md:order-none md:grow-0  md:font-secundaria md:text-2xl md:font-bold md:ml-64 md:mt-0'>
+									Crear Producto
+								</h1>
+
+								<Link to={'/inicio'}>
+									<div className='ml-14 mr-3'>
+										<RiCloseCircleFill className='w-6 h-6 top-2.5 left-335 flex-none order-2 grow-0 ml-6 md:w-9 md:h-9 md:order-1 md:ml-156 md:mb-2 ' />
+									</div>
+								</Link>
+							</div>
+						</div>
+					</div>
+					{/* -----------contenedor de subtitulos en desktop----------- */}
+{/* 
+					<Subtitles formdata={form}/> */}
+
+					<div className='hidden md:w-566 md:h-52 md:left-494 md:top-178 md:flex  md:flex:row md:justify-between md:p-0 md:ml-14 md:pb-2 md:mt-5 md:items-center md:gap-11 '>
+						<div className='md:flex md:flex-col md:justify-center md:items-center md:h-9'>
+							<h3 className='text-acento md:flex md:flex-col md:justify-center  md:h-5  md:items-center '>
+								categorias
+							</h3>
+							<div className='text-secundario md:h-4'>{form.categorias}</div>
+						</div>
+						<div className='md:flex md:flex-col md:justify-center md:items-center md:h-9'>
+							<h3 className='text-acento md:flex-none md:h-5 md:flex md:items-center'>
+								total unidades
+							</h3>
+							<div className='text-secundario md:h-4 '>{form.cantidad}</div>
+						</div>
+						<div className='md:flex md:flex-col md:justify-center md:items-center md:h-9'>
+							<h3 className='text-acento md:h-5 md:flex md:items-center'>
+								valor total
+							</h3>
+							<div className='text-secundario md:h-4'> {}</div>
+						</div>
+					</div>
+
+					{/* ----------------contendor de imagen------------ */}
+
+					<BoxImage/>
+					
+					{/* --------------contenedor de fomulario--------------- */}
+					<div className=''>
+						<form onSubmit={handleSubmit}>
+							{/* -------contenerdor de inputs----- */}
+							<div className='w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'>
+								{/* ------desde aca empiezan los inputs---- */}
+
+								<div className='w-341 h-70 top-0 left-4 absolute flex flex-col items-start p-0 gap-1 md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
+									<label
+										id='labelInput'
+										className='w-40 h-18 md:h-20 md:mb-4 md:pb-1'
+									>
+										nombre
+									</label>
+									<input
+										type='text'
+										id='nombre'
+										name='nombre'
+										value={form.nombre}
+										onBlur={handleBlur}
+										onChange={handleChange}
+										required
+										className='w-341 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border md:w-556
+						'
+									></input>
+									{errors.nombre && (
+										<p className='md:mb-1 mr-2' id='errorp'>
+											{errors.nombre}
+										</p>
+									)}
+								</div>
+
+								{/* ----------------aca va el primer grupo-------- */}
+								<div className='md:w-72 '>
+									<div id='divInput' className='left-4 top-24  md:top-84'>
+										<label id='labelInput' htmlFor='' className='w-122 h-18'>
+											cantidad
+										</label>
+
+										<input
+											type='number'
+											id='inputForm'
+											name='cantidad'
+											value={form.cantidad}
+											onBlur={handleBlur}
+											onChange={handleChange}
+											required
+										></input>
+									</div>
+									{errors.cantidad && (
+										<p
+											id='errorp'
+											className='md:mt-195 md:ml-2 mt-164 ml-3 pt-1'
+										>
+											{errors.cantidad}
+										</p>
+									)}
+
+									<div
+										id='divInput'
+										className='left-200 top-24 md:left-305 md:top-84 '
+									>
+										<label id='labelInput' className='w-133'>
+											unidades
+										</label>
+										<select
+											className='w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-2 gap-2.5 box-border text-base font-secundaria  text-secundario items-center  md:w-266'
+											name='unidades'
+											onChange={handleChange}
+										>
+											<option id='' value=''>
+												Seleciona unidad
+											</option>
+											<option id='unidades' value='unidades'>
+												Unidades
+											</option>
+											<option id='Kg' value='Kg'>
+												Kg
+											</option>
+											<option id='Mts' value='Mts'>
+												Mts
+											</option>
+											<option id='Lts' value='Lts'>
+												Lts
+											</option>
+										</select>
+									
+									</div>
+								</div>
+								{/* ---------------aca va el segundo grupo---------- */}
+								<div>
+									<div id='divInput' className='left-4 top-178'>
+										<label id='labelInput' htmlFor='' className='w-102'>
+											costo
+										</label>
+										<input
+											type='number'
+											id='inputForm'
+											name='costo'
+											value={form.costo}
+											onBlur={handleBlur}
+											onChange={handleChange}
+											required
+										></input>
+										{errors.costo && (
+											<p className=' md:ml-2 pr-6' id='errorp'>
+												{errors.costo}
+											</p>
+										)}
+									</div>
+									<div className='md:hidden'>
+										<div id='divInput' className='top-178 left-200 md:left-305'>
+											<label id='labelInput' htmlFor='' className='w-107'>
+												costo Total
+											</label>
+											<input
+												type='number'
+												id='inputForm'
+												name='total'
+												value={form.total}
+												onBlur={handleBlur}
+												onChange={handleChange}
+											></input>
+											{errors.total && (
+												<p className='pr-6' id='errorp'>
+													{errors.total}
+												</p>
+											)}
+										</div>
+									</div>
+									<div className='hidden md:left-305 md:w-555  md:h-52 md:top-214 md:gap-8 md:flex md:flex-col md:p-0 md:absolute'>
+										<div className='md:text-start'>
+											<label
+												htmlFor=''
+												className='md:w-200 md:text-start md:h-8 md:pt-8  md:font-secundaria md:text-lg md:font-normal md:text-labeltexto md:flex-none md:grow-0 md:order-none'
+											>
+												categoria
+											</label>
+											<input
+												type='text'
+												name='categorias'
+												value={form.categorias}
+												onBlur={handleBlur}
+												onChange={handleChange}
+												className='md:w-266
+											md:h-h48 
+											md:bg-white md:border-solid md:border-1 md:border-secundario3 md:rounded-xl md:flex-none md:order-1 md:grow-0 md:px-3 md:py-4 md:gap-2.5 md:box-border'
+											></input>
+											{<errors className='categoria'></errors> && (
+												<p className='md:font-secundaria md:text-xs md:font-normalmd: text-error md:w-48 md:h-4 md:flex-none md:grow-0 md:order-2'>
+													{errors.categorias}
+												</p>
+											)}
+										</div>
+									</div>
+								</div>
+
+								{/* ----------aca va el tercer grupo----------- */}
+								<div>
+									<div id='divInput' className='left-4 top-266'>
+										<label id='labelInput' className='w-107' htmlFor=''>
+											precio
+										</label>
+										<input
+											type='number'
+											id='inputForm'
+											name='precio'
+											value={form.precio}
+											onBlur={handleBlur}
+											onChange={handleChange}
+											required
+										></input>
+										{errors.precio && (
+											<p className='pr-6' id='errorp'>
+												{errors.precio}
+											</p>
+										)}
+									</div>
+
+									<div id='divInput' className='top-266 left-200 md:left-305'>
+										<label id='labelInput' className='w-156' htmlFor=''>
+											alerta
+										</label>
+										<input
+											type='number'
+											id='inputForm'
+											name='alerta'
+											value={form.alerta}
+											onBlur={handleBlur}
+											onChange={handleChange}
+											required
+										></input>
+										{errors.alerta && (
+											<p className='pr-6' id='errorp'>
+												{errors.alerta}
+											</p>
+										)}
+									</div>
+								</div>
+								{/* -------------aca va el 4 grupo----------------- */}
+								<div className=''>
+									<button
+										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
+										onClick={() => setModal(true)}
+									>
+										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
+											Cargar Excel
+										</div>
+									</button>
+
+									<button
+										type='submit'
+										value='send'
+										onClick={() => setVisible(true)}
+										// onFocus={()=>setForm.length >6 ? handleSubmit() : <p id='errorp'>debes completar todos los campos</p>}
+
+										className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
+									>
+										<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0 '>
+											Continuar
+										</div>
+									</button>
+
+									{visible ? <ModalProductocargado /> : null}
+
+									{modal && (
+										<section
+											id='modalExcel'
+											className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
+										>
+											<div
+												id='modal-containerExcel'
+												className='bg-primario3 m-auto w-371 h-60 rounded-lg pr-14'
+											>
+												<div className=' flex justify-end mb-8 mr-2'>
+													<button
+														className=' pr-2 pt-2'
+														onClick={() => setModal(false)}
+													>
+														<RiCloseCircleLine className='w-6 h-6 fill-secundario bottom-4' />
+													</button>
+												</div>
+
+												<p
+													id='modal-paragraph'
+													className=' w-82 h-52 left-6 not-italic  items-center flex-none order-none grow-0 py-12 px-10 text-center font-secundaria text-error top-4 text-xl'
+												>
+													Disponible solo en version Premiun
+												</p>
+											</div>
+										</section>
+									)}
+									{!modal && null}
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-
-			<form
-				onSubmit={handleSubmit}
-				className=' h-screen w-screen  bg-primario3'
-			>
-				<div className='  p-4 mt-2 bg-primario75'>
-					<label className='m-2 mb-4 md:m-4 '>nombre</label>
-					<input
-						type='text'
-						id='textonombre'
-						name='nombre'
-						value={form.nombre}
-						onBlur={handleBlur}
-						onChange={handleChange}
-						required
-						className=' w-80 h-6 pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-					></input>
-					{errors.nombre && <p>{errors.nombre}</p>}
-				</div>
-				<div className='flex justify-cente'>
-					<div className='grid grid-cols-2 gap-x-20 md:gap-x-96'>
-						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>cantidad</label>
-							<input
-								type='number'
-								id='cantidad'
-								name='cantidad'
-								value={form.cantidad}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.cantidad && <p>{errors.cantidad}</p>}
-						</div>
-						<div className='flex flex-col'>
-							<label htmlFor='' className='m-2 p-2'>
-								costo
-							</label>
-							<input
-								type='number'
-								id='costo '
-								name='costo'
-								value={form.costo}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.costo && <p>{errors.costo}</p>}
-						</div>
-						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>costoTotal</label>
-							<input
-								type='number'
-								id='costoTotal'
-								name='total'
-								value={form.total}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.total && <p>{errors.total}</p>}
-						</div>
-						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>precio</label>
-							<input
-								type='number'
-								id='precio'
-								name='precio'
-								value={form.precio}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.precio && <p>{errors.precio}</p>}
-						</div>
-						<div className='flex flex-col m-2 p-2'>
-							<label htmlFor=''>alerta</label>
-							<input
-								type='number'
-								id='alerta'
-								name='alerta'
-								value={form.alerta}
-								onBlur={handleBlur}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 h-6 md:h-10  pl-2  border-2 border-solid rounded-lg text-sm md:text-lg flex justify-start items-center'
-							></input>
-							{errors.alerta && <p>{errors.alerta}</p>}
-						</div>
-						{/* <div className='flex flex-col m-2 p-2'>
-							
-							unidades
-							<label className='m-2 md:m-4 flex justify-between'> </label>
-							<select
-								name='unidades'
-								defaultValue={unidades[3].unit}
-								onChange={handleChange}
-								required
-								className='w-28 md:w-44 md:h-10 pl-2  border-2 rounded-lg text-sm md:text-lg flex justify-start items-center box-content '
-							>
-								{unidades.map(function (el) {
-									return (
-										<option value={el.unit} key={el.id}>
-											{el.unit}
-										</option>
-									)
-								})}
-							</select>
-							{errors.unidades && <p>{errors.unidades}</p>}
-						</div> */}
-					</div>
-
-					<div className='flex justify-between mt-4'>
-						{/* <button className='m-2 md:m-4 '>
-							<div className='w-28 h-8 md:w-48 md:h-10 border-2 rounded-lg font-semibold text-slate-600 text-sm md:text-lg flex justify-center items-center '>
-								Cargar Excel
-							</div>
-						</button> */}
-						<button
-							type='submit'
-							value='send'
-							onClick={() => setVisible(true)}
-							className='m-2 md:m-4 mt-80'
-						>
-							<div className='bg-secundario text-primario w-28 h-8   border-2 rounded-lg  text-sm font-semibold  md:text-lg flex justify-center items-center'>
-								Continuar
-							</div>
-						</button>
-
-						{visible && (
-							<section
-								id='modal'
-								className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
-							>
-								<div
-									id='modal-container'
-									className='bg-secundario3 w-11/12 m-auto max-w-96 h-60 rounded-lg '
-								>
-									<div className=' flex justify-end'>
-										<button className=' pr-2 pt-2'>
-											<svg
-												onClick={() => setVisible(false)}
-												className='h-8 p-0 m-0 fill-grey-400'
-												xmlns='http://www.w3.org/2000/svg'
-												width='30'
-												height='30'
-												viewBox='0 0 24 24'
-											>
-												<path d='M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.424 13.364 12 17.606 7.758z' />
-											</svg>
-										</button>
-									</div>
-
-									<p
-										id='modal-paragraph'
-										className=' py-12 px-10 text-center font-secundaria text-primario75'
-									>
-										el producto ha sido cargado exitosamente
-									</p>
-								</div>
-							</section>
-						)}
-						{!visible && null}
-					</div>
-				</div>
-			</form>
 		</>
 	)
 }

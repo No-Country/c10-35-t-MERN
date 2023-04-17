@@ -1,184 +1,100 @@
 {
-  "data": [
-    {
-      "id": 1,
-      "nombre": "yerba mate",
-      "cantidad": 500,
-      "costo": 600,
-      "total": 625,
-      "precio": 675,
-      "alerta": 20
-    },
-    {
-      "id": 2,
-      "nombre": "cafe",
-      "cantidad": 750,
-      "costo": 850,
-      "total": 875,
-      "precio": 100,
-      "alerta": 30
-    },
-    {
-      "id": 3,
-      "nombre": "sal",
-      "cantidad": 750,
-      "costo": 850,
-      "total": 875,
-      "precio": 100,
-      "alerta": 30
-    },
-    {
-      "id": 4,
-      "nombre": "harina",
-      "cantidad": 200,
-      "costo": 100,
-      "total": 125,
-      "precio": 180,
-      "alerta": 35
-    },
-    {
-      "id": 5,
-      "nombre": "saquitosTe",
-      "cantidad": 150,
-      "costo": 75,
-      "total": 80,
-      "precio": 95,
-      "alerta": 10
-    },
-    {
-      "nombre": "salmuera",
-      "cantidad": "78",
-      "costo": "120",
-      "total": "125",
-      "precio": "130",
-      "alerta": "15",
-      "id": 6
-    },
-    {
-      "nombre": "sal",
-      "cantidad": "45",
-      "costo": "70",
-      "total": "75",
-      "precio": "80",
-      "alerta": "15",
-      "id": 7
-    },
-    {
-      "nombre": "fideos",
-      "cantidad": "7",
-      "costo": "89",
-      "total": "75",
-      "precio": "76",
-      "alerta": "10",
-      "id": 8
-    },
-    {
-      "nombre": "pasta dental",
-      "cantidad": "75",
-      "costo": "75",
-      "total": "78",
-      "precio": "65",
-      "alerta": "10",
-      "id": 9
-    },
-    {
-      "nombre": "pan lactal",
-      "cantidad": "50",
-      "costo": "54",
-      "total": "56",
-      "precio": "57",
-      "alerta": "10",
-      "id": 10
-    },
-    {
-      "nombre": "idhfn",
-      "cantidad": "78",
-      "costo": "97",
-      "total": "7",
-      "precio": "87",
-      "alerta": "96",
-      "id": 11
-    },
-    {
-      "nombre": "yebdjc",
-      "cantidad": "78",
-      "costo": "98",
-      "total": "87",
-      "precio": "12",
-      "alerta": "10",
-      "id": 12
-    },
-    {
-      "nombre": "teyev",
-      "cantidad": "78",
-      "costo": "9",
-      "total": "8",
-      "precio": "78",
-      "alerta": "4",
-      "id": 13
-    },
-    {
-      "nombre": "teyfdvccu",
-      "cantidad": "78",
-      "costo": "94",
-      "total": "78",
-      "precio": "8",
-      "alerta": "1",
-      "id": 14
-    },
-    {
-      "id": 1681354382037,
-      "nombre": "yeufb",
-      "cantidad": "79965",
-      "costo": "611",
-      "total": "36",
-      "precio": "85",
-      "alerta": "10"
-    },
-    {
-      "id": 1681354610558,
-      "nombre": "yrurb",
-      "cantidad": "75",
-      "costo": "87",
-      "total": "95",
-      "precio": "7",
-      "alerta": "6"
-    },
-    {
-      "id": 1681354789342,
-      "nombre": "teurfb",
-      "cantidad": "78",
-      "costo": "9",
-      "total": "65",
-      "precio": "78",
-      "alerta": "3"
-    },
-    {
-      "id": 1681354941357,
-      "nombre": "woe",
-      "cantidad": "366",
-      "costo": "4",
-      "total": "9",
-      "precio": "5",
-      "alerta": "3"
-    }
-  ],
-  "unidades": [
-    {
-      "id": 1,
-      "unit": "Kg"
-    },
-    {
-      "id": 2,
-      "unit": "M"
-    },
-    {
-      "id": 3,
-      "unit": "Kg"
-    },
-    {
-      "id": 4,
-      "unit": "units"
-    }
-  ]
+	"data": [
+		{
+			"id": 1,
+			"nombre": "yerba mate",
+			"cantidad": 500,
+			"costo": 600,
+			"total": 625,
+			"precio": 675,
+			"alerta": 20,
+			"unidades": "unidades"
+		},
+		{
+			"id": 2,
+			"nombre": "cafe",
+			"cantidad": 750,
+			"costo": 850,
+			"total": 875,
+			"precio": 100,
+			"alerta": 30,
+			"unidades": "unidades"
+		},
+		{
+			"id": 3,
+			"nombre": "sal",
+			"cantidad": 750,
+			"costo": 850,
+			"total": 875,
+			"precio": 100,
+			"alerta": 30,
+			"unidades": "unidades"
+		},
+		{
+			"id": 4,
+			"nombre": "harina",
+			"cantidad": 200,
+			"costo": 100,
+			"total": 125,
+			"precio": 180,
+			"alerta": 35,
+			"unidades": "unidades"
+		},
+		{
+			"id": 5,
+			"nombre": "saquitosTe",
+			"cantidad": 150,
+			"costo": 75,
+			"total": 80,
+			"precio": 95,
+			"alerta": 10,
+			"unidades": "unidades"
+		},
+		{
+			"nombre": "fideos",
+			"cantidad": "7",
+			"costo": "89",
+			"total": "75",
+			"precio": "76",
+			"alerta": "10",
+			"id": 8
+		},
+		{
+			"nombre": "pasta dental",
+			"cantidad": "75",
+			"costo": "75",
+			"total": "78",
+			"precio": "65",
+			"alerta": "10",
+			"id": 9
+		},
+		{
+			"nombre": "pan lactal",
+			"cantidad": "50",
+			"costo": "54",
+			"total": "56",
+			"precio": "57",
+			"alerta": "10",
+			"id": 10,
+			"unidades": "unidades"
+		},
+		{
+			"id": 1681493315585,
+			"nombre": "polenta",
+			"cantidad": "78",
+			"costo": "95",
+			"total": "7",
+			"precio": "5",
+			"alerta": "10"
+		},
+		{
+			"id": 1681576115603,
+			"nombre": "tomate",
+			"cantidad": "600",
+			"costo": "540",
+			"total": "560",
+			"precio": "700",
+			"alerta": "10"
+		}
+	]
 }
