@@ -6,39 +6,39 @@ import { data } from '../../data/db.json'
 
 
  export const useForm = (validationsForm) => {
-	const [form, setForm] = useState({})
-	const [errors, setErrors] = useState({})
-	const [db, setDb] = useState({})
-	const [dataToEdit, setDataToEdit] = useState(null)
+	// const [form, setForm] = useState({})
+	// const [errors, setErrors] = useState({})
+	// const [db, setDb] = useState({})
+	// const [dataToEdit, setDataToEdit] = useState(null)
 
-	const crud = helpFetch()
-	let url = 'http://localhost:3000/data'
+	// const crud = helpFetch()
+	// let url = 'http://localhost:3000/data'
 
-	useEffect(() => {
-		crud.get(url).then(res => {
-			if (!res.err) {
-				setDb(res)
-			} else {
-				setDb(null)
-			}
-		})
-	}, [url])
+	// useEffect(() => {
+	// 	crud.get(url).then(res => {
+	// 		if (!res.err) {
+	// 			setDb(res)
+	// 		} else {
+	// 			setDb(null)
+	// 		}
+	// 	})
+	// }, [url])
 
-	const handleChange = e => {
-		setForm({
-			...form,
-			[e.target.name]: e.target.value,
-		})
-	}
+	// const handleChange = e => {
+	// 	setForm({
+	// 		...form,
+	// 		[e.target.name]: e.target.value,
+	// 	})
+	// }
 
-	const handleBlur = e => {
-		handleChange()
-		setErrors(validationsForm(form))
-	}
+	// const handleBlur = e => {
+	// 	handleChange()
+	// 	setErrors(validationsForm(form))
+	// }
 
-	const handleSubmit = e => {
-		e.preventDefault()
-		setErrors(validationsForm(form))
+	// const handleSubmit = e => {
+	// 	e.preventDefault()
+	// 	setErrors(validationsForm(form))
 
 		//         if(Object.keys(errors).length===0){
 		// setLoading(true);
@@ -56,17 +56,6 @@ import { data } from '../../data/db.json'
 		// });
 		//         }else{}
 
-		// if (
-		// 	!form.nombre ||
-		// 	!form.cantidad ||
-		// 	!form.costo ||
-		// 	!form.total ||
-		// 	!form.precio ||
-		// 	!form.alerta
-		// ) {
-		// 	alert('debes ingresar todos los campos')
-		// 	return
-		// }
 		if (form.id === null) {
 			createData(form)
 		} else {

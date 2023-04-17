@@ -11,6 +11,7 @@ import Egresos from '../../pages/Egresos/Egresos'
 import ProductosMover from '../../pages/ProductosMover/ProductosMover'
 import { data } from '../../data'
 import RegistroUsuario from '../../pages/Registro-usuario/RegistroUsuario'
+import ModifyProducts from '../../pages/ModifyProduct/ModifyProducts'
 const ListRoutes = () => {
 	return (
 		<>
@@ -31,6 +32,7 @@ const ListRoutes = () => {
 					<Route path='/ingresos' element={<Ingresos />} />
 					<Route path='/egresos' element={<Egresos />} />
 					<Route path='/productoMover' element={<ProductosMover />} />
+					<Route path='/modificar-productos' element={<ModifyProducts />} />
 				</Routes>
 			</div>
 		</>
