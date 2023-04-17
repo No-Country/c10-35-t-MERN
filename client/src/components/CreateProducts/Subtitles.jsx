@@ -1,7 +1,7 @@
 
 
 const Subtitles = (formData) => {
-const{categorias,cantidad}=formData
+let {categorias,cantidad}=formData
 
   return (
     <div className='hidden md:w-566 md:h-52 md:left-494 md:top-178 md:flex  md:flex:row md:justify-between md:p-0 md:ml-14 md:pb-2 md:mt-5 md:items-center md:gap-11 '>

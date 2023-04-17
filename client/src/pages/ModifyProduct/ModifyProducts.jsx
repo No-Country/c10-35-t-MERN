@@ -1,14 +1,9 @@
-/* eslint-disable import/no-duplicates */
-/* eslint-disable prefer-const */
-import { RiCloseCircleLine } from 'react-icons/ri'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
-import { useEffect } from 'react'
-import data from '../../data/db.json'
-import ModalProductocargado from '../../components/Modals/ModalProductocargado'
-import Subtitles from '../../components/CreateProducts/Subtitles'
+import { Link } from 'react-router-dom'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
-import Headings from '../../components/CreateProducts/Headings'
+import ModalProductoModificado from '../../components/Modals/ModalProductoModificado'
+import HeadingsModify from '../../components/ModifyProduct/HeadingsModify'
 
 const initialForm = {
 	id: Date.now(),
@@ -87,8 +82,7 @@ const validationsForm = (form, name) => {
 
 	return errors
 }
-
-const CreateProducts2 = () => {
+const ModifyProducts = () => {
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
@@ -159,6 +153,7 @@ const CreateProducts2 = () => {
 			console.log('updateData')
 			return updateData(form)
 		}
+        // handleReset()
 	}
 
 	const createData = data => {
@@ -208,22 +203,19 @@ const CreateProducts2 = () => {
 				})
 		}
 	}
-
-	// const voidForm = () => {
-	// 	if (setForm.length >= 6)
-	// 		if (setForm.length < 6) {
-	// 			console.warn('debes ingresar todos los campos')
-	// 		}
-	// }
-
+	const handleReset = e => {
+		setForm(initialForm);
+        setDataToEdit(null);
+	}
+    
 	return (
 		<>
 			<div className='w-373 h-812  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'>
 				<div className='md:absolute md:w-714 md:h-920 md:top-52 md:left-297 bg-white '>
-					{/* ---------------Headings---------- */}
-					<Headings />
+					{/* ----------------headings------------ */}
+					<HeadingsModify />
 
-					{/* -----------contenedor de subtitulos en desktop----------- */}
+					{/* -----------contenedor de subtittles desktop----------- */}
 					{/* 
 					<Subtitles formdata={form}/> */}
 
@@ -255,9 +247,9 @@ const CreateProducts2 = () => {
 					{/* --------------contenedor de fomulario--------------- */}
 					<div className=''>
 						<form onSubmit={handleSubmit}>
-							{/* -------contenerdor de inputs----- */}
+							{/* -------contenedor de inputs----- */}
 							<div className='w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'>
-								{/* ------desde aca empiezan los inputs---- */}
+								{/* ------aca empiezan los inputs---- */}
 
 								<div className='w-341 h-70 top-0 left-4 absolute flex flex-col items-start p-0 gap-1 md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
 									<label
@@ -273,7 +265,6 @@ const CreateProducts2 = () => {
 										value={form.nombre}
 										onBlur={handleBlur}
 										onChange={handleChange}
-										required
 										className='w-341 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border md:w-556
 						'
 									></input>
@@ -298,7 +289,6 @@ const CreateProducts2 = () => {
 											value={form.cantidad}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
 										></input>
 									</div>
 									{errors.cantidad && (
@@ -353,7 +343,6 @@ const CreateProducts2 = () => {
 											value={form.costo}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
 										></input>
 										{errors.costo && (
 											<p className=' md:ml-2 pr-6' id='errorp'>
@@ -361,27 +350,27 @@ const CreateProducts2 = () => {
 											</p>
 										)}
 									</div>
-									<div className='md:hidden'>
+									<div className=''>
 										<div id='divInput' className='top-178 left-200 md:left-305'>
 											<label id='labelInput' htmlFor='' className='w-107'>
-												costo Total
+												categorias
 											</label>
 											<input
-												type='number'
+												type='texto'
 												id='inputForm'
-												name='total'
-												value={form.total}
+												name='categorias'
+												value={form.categorias}
 												onBlur={handleBlur}
 												onChange={handleChange}
 											></input>
-											{errors.total && (
+											{errors.categorias && (
 												<p className='pr-6' id='errorp'>
-													{errors.total}
+													{errors.categorias}
 												</p>
 											)}
 										</div>
 									</div>
-									<div className='hidden md:left-305 md:w-555  md:h-52 md:top-214 md:gap-8 md:flex md:flex-col md:p-0 md:absolute'>
+									{/* <div className='hidden md:left-305 md:w-555  md:h-52 md:top-214 md:gap-8 md:flex md:flex-col md:p-0 md:absolute'>
 										<div className='md:text-start'>
 											<label
 												htmlFor=''
@@ -405,7 +394,7 @@ const CreateProducts2 = () => {
 												</p>
 											)}
 										</div>
-									</div>
+									</div> */}
 								</div>
 
 								{/* ----------aca va el tercer grupo----------- */}
@@ -421,7 +410,6 @@ const CreateProducts2 = () => {
 											value={form.precio}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
 										></input>
 										{errors.precio && (
 											<p className='pr-6' id='errorp'>
@@ -441,7 +429,6 @@ const CreateProducts2 = () => {
 											value={form.alerta}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
 										></input>
 										{errors.alerta && (
 											<p className='pr-6' id='errorp'>
@@ -452,58 +439,29 @@ const CreateProducts2 = () => {
 								</div>
 								{/* -------------aca va el 4 grupo----------------- */}
 								<div className=''>
-									<button
-										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
-										onClick={() => setModal(true)}
-									>
-										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
-											Cargar Excel
-										</div>
-									</button>
+									<Link to={'/inventario'}>
+										<button
+											// onFocus={()=>setForm.length >6 ? handleSubmit() : <p id='errorp'>debes completar todos los campos</p>}
 
+											className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
+										>
+											<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0 '>
+												Eliminar
+											</div>
+										</button>
+									</Link>
 									<button
 										type='submit'
 										value='send'
 										onClick={() => setVisible(true)}
-										// onFocus={()=>setForm.length >6 ? handleSubmit() : <p id='errorp'>debes completar todos los campos</p>}
-
-										className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
+										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
 									>
-										<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0 '>
-											Continuar
+										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
+											Guardar
 										</div>
 									</button>
 
-									{visible ? <ModalProductocargado /> : null}
-
-									{modal && (
-										<section
-											id='modalExcel'
-											className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
-										>
-											<div
-												id='modal-containerExcel'
-												className='bg-primario3 m-auto w-371 h-60 rounded-lg pr-14'
-											>
-												<div className=' flex justify-end mb-8 mr-2'>
-													<button
-														className=' pr-2 pt-2'
-														onClick={() => setModal(false)}
-													>
-														<RiCloseCircleLine className='w-6 h-6 fill-secundario bottom-4' />
-													</button>
-												</div>
-
-												<p
-													id='modal-paragraph'
-													className=' w-82 h-52 left-6 not-italic  items-center flex-none order-none grow-0 py-12 px-10 text-center font-secundaria text-error top-4 text-xl'
-												>
-													Disponible solo en version Premiun
-												</p>
-											</div>
-										</section>
-									)}
-									{!modal && null}
+									{visible ? <ModalProductoModificado /> : null}
 								</div>
 							</div>
 						</form>
@@ -514,4 +472,4 @@ const CreateProducts2 = () => {
 	)
 }
 
-export default CreateProducts2
+export default ModifyProducts
