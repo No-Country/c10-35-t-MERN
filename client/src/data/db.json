@@ -1,100 +1,144 @@
 {
-	"data": [
-		{
-			"id": 1,
-			"nombre": "yerba mate",
-			"cantidad": 500,
-			"costo": 600,
-			"total": 625,
-			"precio": 675,
-			"alerta": 20,
-			"unidades": "unidades"
-		},
-		{
-			"id": 2,
-			"nombre": "cafe",
-			"cantidad": 750,
-			"costo": 850,
-			"total": 875,
-			"precio": 100,
-			"alerta": 30,
-			"unidades": "unidades"
-		},
-		{
-			"id": 3,
-			"nombre": "sal",
-			"cantidad": 750,
-			"costo": 850,
-			"total": 875,
-			"precio": 100,
-			"alerta": 30,
-			"unidades": "unidades"
-		},
-		{
-			"id": 4,
-			"nombre": "harina",
-			"cantidad": 200,
-			"costo": 100,
-			"total": 125,
-			"precio": 180,
-			"alerta": 35,
-			"unidades": "unidades"
-		},
-		{
-			"id": 5,
-			"nombre": "saquitosTe",
-			"cantidad": 150,
-			"costo": 75,
-			"total": 80,
-			"precio": 95,
-			"alerta": 10,
-			"unidades": "unidades"
-		},
-		{
-			"nombre": "fideos",
-			"cantidad": "7",
-			"costo": "89",
-			"total": "75",
-			"precio": "76",
-			"alerta": "10",
-			"id": 8
-		},
-		{
-			"nombre": "pasta dental",
-			"cantidad": "75",
-			"costo": "75",
-			"total": "78",
-			"precio": "65",
-			"alerta": "10",
-			"id": 9
-		},
-		{
-			"nombre": "pan lactal",
-			"cantidad": "50",
-			"costo": "54",
-			"total": "56",
-			"precio": "57",
-			"alerta": "10",
-			"id": 10,
-			"unidades": "unidades"
-		},
-		{
-			"id": 1681493315585,
-			"nombre": "polenta",
-			"cantidad": "78",
-			"costo": "95",
-			"total": "7",
-			"precio": "5",
-			"alerta": "10"
-		},
-		{
-			"id": 1681576115603,
-			"nombre": "tomate",
-			"cantidad": "600",
-			"costo": "540",
-			"total": "560",
-			"precio": "700",
-			"alerta": "10"
-		}
-	]
+  "data": [
+    {
+      "id": 1,
+      "nombre": "yerba mate",
+      "cantidad": 500,
+      "costo": 600,
+      "total": 625,
+      "precio": 675,
+      "alerta": 20,
+      "unidades": "unidades"
+    },
+    {
+      "id": 2,
+      "nombre": "cafe",
+      "cantidad": 750,
+      "costo": 850,
+      "total": 875,
+      "precio": 100,
+      "alerta": 30,
+      "unidades": "unidades"
+    },
+    {
+      "id": 3,
+      "nombre": "sal",
+      "cantidad": 750,
+      "costo": 850,
+      "total": 875,
+      "precio": 100,
+      "alerta": 30,
+      "unidades": "unidades"
+    },
+    {
+      "id": 4,
+      "nombre": "harina",
+      "cantidad": 200,
+      "costo": 100,
+      "total": 125,
+      "precio": 180,
+      "alerta": 35,
+      "unidades": "unidades"
+    },
+    {
+      "id": 5,
+      "nombre": "saquitosTe",
+      "cantidad": 150,
+      "costo": 75,
+      "total": 80,
+      "precio": 95,
+      "alerta": 10,
+      "unidades": "unidades"
+    },
+    {
+      "nombre": "fideos",
+      "cantidad": "7",
+      "costo": "89",
+      "total": "75",
+      "precio": "76",
+      "alerta": "10",
+      "id": 8
+    },
+    {
+      "nombre": "pasta dental",
+      "cantidad": "75",
+      "costo": "75",
+      "total": "78",
+      "precio": "65",
+      "alerta": "10",
+      "id": 9
+    },
+    {
+      "nombre": "pan lactal",
+      "cantidad": "50",
+      "costo": "54",
+      "total": "56",
+      "precio": "57",
+      "alerta": "10",
+      "id": 10,
+      "unidades": "unidades"
+    },
+    {
+      "id": 1681493315585,
+      "nombre": "polenta",
+      "cantidad": "78",
+      "costo": "95",
+      "total": "7",
+      "precio": "5",
+      "alerta": "10"
+    },
+    {
+      "id": 1681576115603,
+      "nombre": "tomate",
+      "cantidad": "600",
+      "costo": "540",
+      "total": "560",
+      "precio": "700",
+      "alerta": "10"
+    },
+    {
+      "id": 1681688779278,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681689090505,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681690738429,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681691746374,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    }
+  ]
 }
