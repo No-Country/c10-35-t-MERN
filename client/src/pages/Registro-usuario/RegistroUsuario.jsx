@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import logo from '../../assets/logo_Stocker.png'
 import usePostData from '../../hooks/UseFetch/usePostData'
 function RegistroUsuario() {
-	const URL = 'https://stocker-api.fly.dev/api/v1/users/login'
+	const URL = 'https://stocker-api.fly.dev/api/v1/users/register'
 	const { error, isLoading, responseData, handlePost } = usePostData()
 	const navigate = useNavigate()
 	const [data, setData] = useState({})
@@ -24,7 +24,7 @@ function RegistroUsuario() {
 	}, [nameCheck, mailCheck, passCheck, repeatPassCheck])
 
 	const handleNameBLur = e => {
-		const nameFormatTest = /^[A-Z]+$/i
+		const nameFormatTest = /^[a-zA-Z\s]+$/
 		const verifiedName = data[e.target.name]
 		if (!nameFormatTest.test(verifiedName) || e.target.value === '') {
 			errorName.classList.remove('hidden')
@@ -44,6 +44,7 @@ function RegistroUsuario() {
 			errorMail.classList.add('hidden')
 			setMailCheck(false)
 		}
+		setMailCheck(false)
 	}
 	const handlePassBLur = e => {
 		if (e.target.value === '') {
@@ -66,18 +67,16 @@ function RegistroUsuario() {
 	}
 	const handleSubmit = async e => {
 		e.preventDefault()
-
 		await handlePost(URL, data, e)
 	}
 
 	useEffect(() => {
-		if ((responseData !== null) & (responseData?.message !== ''))
-			return window.alert(responseData.message)
+		if ((responseData !== null) & (responseData?.length > 0))
+			return window.alert(responseData[0].message)
 		if ((responseData !== null) & (error !== null))
-			return window.alert(error.toString())
-		if ((responseData !== null) & (responseData?.token !== undefined)) {
-			sessionStorage.setItem('token', responseData.token)
-			navigate('/inicio')
+			return window.alert('error: ' + error.toString())
+		if ((responseData !== null) & (responseData?.message !== '')) {
+			return window.alert(responseData.message)
 		}
 	}, [responseData, error])
 	return (

@@ -7,7 +7,9 @@ html {
 body {
 	@apply h-full;
 }
-
+#root {
+	@apply flex flex-col h-full;
+}
 h1 {
 	@apply font-primaria text-4xl font-normal;
 }

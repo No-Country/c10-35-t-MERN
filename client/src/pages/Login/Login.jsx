@@ -55,6 +55,9 @@ function Login() {
 		e.preventDefault()
 		await handlePost(URL, data, e)
 	}
+	const handleRegister = () => {
+		navigate('/registro-usuario')
+	}
 	useEffect(() => {
 		if ((responseData !== null) & (responseData?.message !== ''))
 			return window.alert(responseData.message)
@@ -68,10 +71,9 @@ function Login() {
 	return (
 		<>
 			<Onboarding />
-
 			<main
 				id='login'
-				className='hidden flex flex-col justify-start h-screen w-full px-4 pt-90 pb-4 text-center box-border'
+				className='flex flex-col justify-start h-screen w-full px-4 pt-90 pb-4 text-center box-border'
 			>
 				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>

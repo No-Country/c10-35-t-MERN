@@ -2,7 +2,7 @@ import ListRoutes from './components/Routes/ListRoutes'
 
 function App() {
 	return (
-		<div className='h-full text-center'>
+		<div className='h-full flex flex-col max-h-full flex-grow text-center'>
 			<ListRoutes />
 		</div>
 	)
