@@ -104,7 +104,7 @@ const CreateProducts2 = () => {
 	// const costoTotal = costoUNit * unidadesTotales
 
 	const crud = helpFetch()
-	const urlGet = 'http://localhost:3000/daa'
+	const urlGet = 'http://localhost:3000/data'
 
 	useEffect(() => {
 
@@ -235,7 +235,7 @@ const CreateProducts2 = () => {
 					<div className=''>
 						<form onSubmit={handleSubmit}>
 							{/* -------contenerdor de inputs----- */}
-							<div className='w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4  md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'>
+							<div className='w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'>
 								{/* ------desde aca empiezan los inputs---- */}
 
 								<div className='w-341 h-70 top-0 left-4 absolute flex flex-col items-start p-0 gap-1 md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
@@ -252,7 +252,7 @@ const CreateProducts2 = () => {
 										value={form.nombre}
 										onBlur={handleBlur}
 										onChange={handleChange}
-										required
+										
 										className='w-341 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl order-1 grow-0 px-3 py-4 gap-2.5 box-border md:w-556
 						'
 									></input>
@@ -277,7 +277,7 @@ const CreateProducts2 = () => {
 											value={form.cantidad}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
+										
 										></input>
 									</div>
 									{errors.cantidad && (
@@ -332,7 +332,7 @@ const CreateProducts2 = () => {
 											value={form.costo}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
+									
 										></input>
 										{errors.costo && (
 											<p className=' md:ml-2 pr-6' id='errorp'>
@@ -400,7 +400,7 @@ const CreateProducts2 = () => {
 											value={form.precio}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
+										
 										></input>
 										{errors.precio && (
 											<p className='pr-6' id='errorp'>
@@ -420,7 +420,7 @@ const CreateProducts2 = () => {
 											value={form.alerta}
 											onBlur={handleBlur}
 											onChange={handleChange}
-											required
+										
 										></input>
 										{errors.alerta && (
 											<p className='pr-6' id='errorp'>

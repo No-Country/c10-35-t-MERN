@@ -205,6 +205,17 @@
       "alerta": "3",
       "unidades": "Lts",
       "categorias": "perrito"
+    },
+    {
+      "id": 1681767599181,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
     }
   ]
 }

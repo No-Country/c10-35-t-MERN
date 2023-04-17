@@ -352,31 +352,7 @@ const ModifyProducts = () => {
 											)}
 										</div>
 									</div>
-									{/* <div className='hidden md:left-305 md:w-555  md:h-52 md:top-214 md:gap-8 md:flex md:flex-col md:p-0 md:absolute'>
-										<div className='md:text-start'>
-											<label
-												htmlFor=''
-												className='md:w-200 md:text-start md:h-8 md:pt-8  md:font-secundaria md:text-lg md:font-normal md:text-labeltexto md:flex-none md:grow-0 md:order-none'
-											>
-												categoria
-											</label>
-											<input
-												type='text'
-												name='categorias'
-												value={form.categorias}
-												onBlur={handleBlur}
-												onChange={handleChange}
-												className='md:w-266
-											md:h-h48 
-											md:bg-white md:border-solid md:border-1 md:border-secundario3 md:rounded-xl md:flex-none md:order-1 md:grow-0 md:px-3 md:py-4 md:gap-2.5 md:box-border'
-											></input>
-											{<errors className='categoria'></errors> && (
-												<p className='md:font-secundaria md:text-xs md:font-normalmd: text-error md:w-48 md:h-4 md:flex-none md:grow-0 md:order-2'>
-													{errors.categorias}
-												</p>
-											)}
-										</div>
-									</div> */}
+									
 								</div>
 
 								{/* ----------aca va el tercer grupo----------- */}
