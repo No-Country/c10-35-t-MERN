@@ -1,4 +1,3 @@
-import React from 'react'
 import verdura from '../../assets/verdura.png'
 import verdura0 from '../../assets/verdura-0.png'
 
