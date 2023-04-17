@@ -7,6 +7,7 @@ import { CategoryListContainer } from '../../components/CategoryProducts/Categor
 import { ProductsContainer } from '../../components/Product/ProductsContainer'
 import { RiFilter2Fill } from 'react-icons/ri'
 import { CategoryData } from '../../components/CategoryCard/CategoryData'
+import { BtnAddProduct } from '../../components/Botons/BtnAddProduct'
 
 const categories = [
 	{
@@ -72,12 +73,15 @@ export const Inventary = () => {
 			<Navbar navBarTile='Inventario' />
 
 			<div className='flex px-4 w-full'>
-				<div className='w-full'>
+				<div className='w-full lg:w-pr80'>
 					<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
 					<CategoryData categoryNumber={8} totalUnits={960} totalPrice={580000}/>
 				</div>
-				<div className='h-48  flex justify-center items-center pl-3.5 pr-3'>
+				<div className='h-48 flex justify-center items-center pl-3.5 pr-3 lg:w-pr10'>
 					<RiFilter2Fill />
+				</div>
+				<div className='invisible lg:visible'>
+					<BtnAddProduct />
 				</div>
 			</div>
 

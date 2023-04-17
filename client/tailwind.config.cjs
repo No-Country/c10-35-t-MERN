@@ -32,6 +32,7 @@ module.exports = {
 			spacing: {
 				l2:'2px',
 				px4: '4px',
+				pr10: '10%',
 				7: '7px',
 				8.3:'8.33%',
 				9: '9px',

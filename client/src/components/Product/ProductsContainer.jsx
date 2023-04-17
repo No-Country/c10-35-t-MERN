@@ -19,7 +19,7 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 	}
 
 	return (
-		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120'>
+		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120 lg:bg-white'>
 			<div className='w-full flex justify-between'>
 				<div className='mt-22'>
 					<div>
@@ -36,7 +36,7 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 						</div>
 					</div>
 				</div>
-				<div className='mt-23 mb-49'>
+				<div className='mt-23 mb-49 lg:invisible'>
 					<BtnAddProduct />
 				</div>
 			</div>
