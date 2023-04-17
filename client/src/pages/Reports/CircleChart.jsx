@@ -42,6 +42,7 @@ function CircleChart({ charData }) {
 	})
 	const options = {
 		maintainAspectRatio: false,
+		cutout: 48,
 		plugins: {
 			legend: {
 				display: false,
