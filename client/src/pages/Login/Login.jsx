@@ -165,7 +165,7 @@ function Login() {
 						className='bg-secundario text-primario  disabled:bg-desactivado disabled:text-secundario3 py-3 rounded-xl w-full font-bold mt-auto'
 					/>
 				</form>
-				<NavLink to='/reportes'>
+				<NavLink to='/registro-usuario'>
 					<p className='text-f12'>¿Aún no tienes cuenta?</p>
 				</NavLink>
 			</main>
