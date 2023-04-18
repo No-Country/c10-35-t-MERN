@@ -21,11 +21,11 @@ function Onboarding() {
 	}
 
 	return (
-		<section id='onboarding' className='w-10/12 ml-auto mr-auto h-full '>
-			<header className='flex flex-row-reverse mb-12'>
+		<section id='onboarding' className='py-14 w-10/12 ml-auto mr-auto h-full '>
+			<header className='flex flex-row-reverse mb-61'>
 				<button
 					onClick={handldeSkip}
-					className='bg-secundario py-2 px-4 rounded-xl text-primario'
+					className='bg-secundario py-3 w-100 rounded-xl text-primario text-f16'
 				>
 					Saltar
 				</button>
