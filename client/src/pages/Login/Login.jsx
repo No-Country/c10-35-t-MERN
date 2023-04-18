@@ -71,11 +71,11 @@ function Login() {
 		responseData !== null && console.log(responseData)
 	}, [responseData, error])
 	return (
-		<>
+		<div className='lg:flex lg:flex-row lg:justify-center lg:items-center lg:mt-auto lg:mb-auto'>
 			<Onboarding />
 			<main
 				id='login'
-				className='hidden flex h-full flex-col justify-start w-full px-4 py-16 text-center box-border'
+				className='sm:hidden h-full lg:flex flex-col justify-start w-full px-4 py-16 text-center box-border lg:w-480 lg:h-865 lg:px-6'
 			>
 				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>
@@ -189,7 +189,7 @@ function Login() {
 					<p className='text-f12'>¿Aún no tienes cuenta?</p>
 				</NavLink>
 			</main>
-		</>
+		</div>
 	)
 }
 
