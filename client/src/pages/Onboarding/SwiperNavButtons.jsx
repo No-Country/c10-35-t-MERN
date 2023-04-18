@@ -13,7 +13,7 @@ const SwiperNavButtons = ({ index }) => {
 		<>
 			{index < 2 ? (
 				<button
-					className='absolute right-0 bottom-0 w-10 h-10 rounded-full mb-2  bg-secundario text-primario  flex items-center justify-center'
+					className='absolute right-0 bottom-0 w-11 h-11 rounded-full mb-2  bg-secundario text-primario  flex items-center justify-center'
 					onClick={() => swipe.slideNext()}
 				>
 					<RiArrowRightSLine className='text-3xl' />
