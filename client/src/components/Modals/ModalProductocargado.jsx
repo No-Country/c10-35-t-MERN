@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
 import pollo from '../../assets/pollo.png'
-const ModalProductocargado = ({texto}) => {
+const ModalProductocargado = ({texto,idProduct}) => {
 	return (
 		<section
 			id='modal'
@@ -22,7 +22,9 @@ const ModalProductocargado = ({texto}) => {
 					alt='imagenExitosa'
 					className='w-16 h-93 ml-14 flex-none order-1 grow-0'
 				/>
-				<Link to={'/inicio'} className='flex-none order-2 grow-0'>
+				<Link 
+				state={{idProduct}}
+				to={'/inventario'} className='flex-none order-2 grow-0'>
 					<button className='w-40 h-h48  ml-14 top-200 left-67 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center'>
 						<div className='text-white w-16 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0 order-none '>
 							aceptar

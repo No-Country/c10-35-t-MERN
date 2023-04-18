@@ -84,8 +84,9 @@ const validationsForm = (form, name) => {
 	return errors
 }
 const ModifyProducts = () => {
+	
 	const [visible, setVisible] = useState(false)
-	const [form, setForm] = useState(initialForm)
+	const [form, setForm] = useState({...initialForm,nombre:"yesi",cantidad:2,unidades:"Kg",id:3})
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState(null)
@@ -167,7 +168,9 @@ const ModifyProducts = () => {
 	}
 
 	const updateData = data => {
-		let endpoint = `${urlGet}/${data.id}`	
+		<ModalProductoModificado idProduct={1}/>
+		let endpoint = `${urlGet}/${data.id}`;
+
 
 		crud
 			.put(endpoint, {
@@ -185,7 +188,9 @@ const ModifyProducts = () => {
 	}
 
 	const deleteData = id => {
-		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
+		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`);
+
+		<ModalProductoModificado idProduct={1}/>
 
 		if (isDelete) {
 			let endpoint = `${urlGet}/${id}`
@@ -291,6 +296,7 @@ const ModifyProducts = () => {
 											className='w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-2 gap-2.5 box-border text-base font-secundaria  text-secundario items-center  md:w-266'
 											name='unidades'
 											onChange={handleChange}
+											defaultValue={form.unidades}
 										>
 											<option id='' value=''>
 												Seleciona unidad
@@ -408,7 +414,7 @@ const ModifyProducts = () => {
 									<button
 										type='submit'
 										value='send'
-										onClick={() => updateData()}
+										onClick={() =>updateData()										}
 										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
 									>
 										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
@@ -416,7 +422,7 @@ const ModifyProducts = () => {
 										</div>
 									</button>
 
-									{visible ? <ModalProductoModificado /> : null}
+									{/* {visible ? <ModalProductoModificado /> : null} */}
 								</div>
 							</div>
 						</form>
