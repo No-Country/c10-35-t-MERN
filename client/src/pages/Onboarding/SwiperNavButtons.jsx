@@ -21,7 +21,7 @@ const SwiperNavButtons = ({ index }) => {
 			) : (
 				<button
 					onClick={handleSkip}
-					className='absolute right-0 bottom-0 bg-secundario py-2 px-4 mb-2 rounded-xl text-primario'
+					className='absolute right-0 bottom-0 bg-secundario py-3 w-100 mb-2 rounded-xl text-primario'
 				>
 					listo!
 				</button>

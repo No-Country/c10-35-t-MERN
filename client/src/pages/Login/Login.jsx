@@ -75,7 +75,7 @@ function Login() {
 			<Onboarding />
 			<main
 				id='login'
-				className='hidden flex h-full flex-col justify-start w-full px-4 text-center box-border'
+				className='hidden flex h-full flex-col justify-start w-full px-4 py-16 text-center box-border'
 			>
 				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>
@@ -89,7 +89,7 @@ function Login() {
 					className='h-full flex flex-col items-center w-full gap-y-2'
 				>
 					<div className='w-full'>
-						<div className='flex flex-col w-full justify-between gap-y-1'>
+						<div className='flex flex-col w-full justify-between gap-y-1 mb-5'>
 							<label
 								htmlFor='user'
 								className='text-left text-xs text-labeltexto'
@@ -113,7 +113,7 @@ function Login() {
 								Ingrese dirección de correo válida
 							</span>
 						</div>
-						<div className='flex flex-col w-full justify-between gap-y-1'>
+						<div className='flex flex-col w-full justify-between gap-y-1 mb-5'>
 							<label
 								htmlFor='password'
 								className='text-left text-xs text-labeltexto'
@@ -137,7 +137,7 @@ function Login() {
 								Formato de contraseña incorrecto
 							</span>
 						</div>
-						<div className='flex flex-col w-full justify-between gap-y-1'>
+						<div className='flex flex-col w-full justify-between gap-y-1 mb-5'>
 							<label
 								htmlFor='password'
 								className='text-left text-xs text-labeltexto'
@@ -161,7 +161,7 @@ function Login() {
 							</span>
 						</div>
 					</div>
-					<div className='bg-secundario w-full mt-auto rounded-xl'>
+					<div className='bg-secundario w-full mt-auto rounded-xl mb-4'>
 						{isLoading ? (
 							<div className='flex items-center justify-center py-2 w-full bg-secundario rounded-xl'>
 								<div
