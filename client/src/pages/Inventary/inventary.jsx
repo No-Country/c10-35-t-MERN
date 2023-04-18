@@ -31,6 +31,8 @@ const products = [
 		stock: '12',
 		price: '1600',
 		idCategory: 2,
+		nameCategory: 'Bebidas',
+		minStock: 30
 	},
 	{
 		id: 2,
@@ -38,6 +40,8 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 20
 	},
 	{
 		id: 3,
@@ -45,6 +49,8 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 10
 	},
 	{
 		id: 4,
@@ -52,6 +58,8 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 5
 	},
 	{
 		id: 5,
@@ -59,6 +67,8 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 7
 	},
 ]
 
@@ -73,7 +83,7 @@ export const Inventary = () => {
 			<Navbar navBarTile='Inventario' />
 
 			<div className='grid grid-cols-6 grid-rows-1 gap-1 px-4 h-160 w-full md:grid-cols-12 md:grid-rows-2'>
-				<div className='col-span-5 row-span-1 w-full h-48 md:col-span-9'>
+				<div className='col-span-5 row-span-1 w-full h-48 md:col-span-8 xl:col-span-9'>
 					<div>
 					<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
 					<CategoryData
@@ -90,7 +100,7 @@ export const Inventary = () => {
 						<RiFilter2Fill />
 					</div>
 				</div>
-				<div className='hidden h-48 md:block md:row-span-1 md:col-span-2'>
+				<div className='hidden h-48 md:block md:row-span-1 md:col-span-3 xl:col-span-2'>
 
 					<div className='flex justify-center items-center'>
 						<BtnAddProductResponsive />

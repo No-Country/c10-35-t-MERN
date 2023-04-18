@@ -19,7 +19,7 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 	}
 
 	return (
-		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120 md:bg-white md:pb-0'>
+		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120 md:bg-white lg:pb-0'>
 			<div className='w-full flex justify-between'>
 				<div className='mt-22'>
 					<div>
@@ -50,6 +50,8 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 							price={product.price}
 							stock={product.stock}
 							type={i === 0 ? 1 : 0}
+							nameCategory={product.nameCategory}
+							minStock={product.minStock}
 						/>
 					)
 				})}
