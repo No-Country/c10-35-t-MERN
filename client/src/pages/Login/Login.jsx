@@ -59,7 +59,8 @@ function Login() {
 		navigate('/registro-usuario')
 	}
 	useEffect(() => {
-		if ((responseData !== null) & (responseData?.message !== ''))
+		console.log('login')
+		if ((responseData !== null) & (responseData?.message !== undefined))
 			return window.alert(responseData.message)
 		if ((responseData !== null) & (error !== null))
 			return window.alert(error.toString())
@@ -67,6 +68,7 @@ function Login() {
 			sessionStorage.setItem('token', responseData.token)
 			navigate('/inicio')
 		}
+		responseData !== null && console.log(responseData)
 	}, [responseData, error])
 	return (
 		<>
