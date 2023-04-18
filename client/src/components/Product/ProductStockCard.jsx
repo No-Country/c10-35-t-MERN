@@ -73,8 +73,6 @@ export const ProductStockCard = ({ title, price, stock, type, nameCategory, minS
 										<p className={`${textColor}`}>{minStock}</p>
 									</div>
 								</div>
-
-
 							</div>
 						</div>
 					</div>

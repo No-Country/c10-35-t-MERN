@@ -3,7 +3,7 @@ import { BtnAddProduct } from '../Buttons/BtnAddProduct'
 import { ProductStockCard } from './ProductStockCard'
 import { RiArrowDownSFill } from 'react-icons/ri';
 
-export const ProductsContainer = ({ productsList, filterProduct }) => {
+export const ProductsContainer = ({ productsList, filterProduct, idProduct }) => {
 	const filteredProduct = () => {
 		return productsList
 			.filter(product => {
@@ -49,7 +49,7 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 							title={product.title}
 							price={product.price}
 							stock={product.stock}
-							type={i === 0 ? 1 : 0}
+							type={idProduct === product.id? 1:0}
 							nameCategory={product.nameCategory}
 							minStock={product.minStock}
 						/>

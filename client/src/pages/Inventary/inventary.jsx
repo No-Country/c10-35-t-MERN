@@ -72,11 +72,14 @@ const products = [
 	},
 ]
 
-export const Inventary = () => {
+export const Inventary = ({idProduct}) => {
 	const [filter, setFilter] = useState({
 		search: '',
 		category: '',
 	})
+
+	
+	
 
 	return (
 		<div className='flex flex-col w-full gap-5'>
@@ -124,6 +127,7 @@ export const Inventary = () => {
 			<ProductsContainer
 				productsList={products}
 				filterProduct={{ ...filter }}
+				idProduct={idProduct}
 			/>
 
 			<NavbarMobile />
