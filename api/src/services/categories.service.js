@@ -8,117 +8,125 @@ const CategoryUser = db.Category_Users;
 const { AppError } = require('../utils/errors');
 
 const create = async (category) => {
-    const { category_name, userId } = category;
+  const { category_name, userId } = category;
 
-    if (!category_name || !userId) {
-        throw new AppError('Mandatory data is missing', 400);
-    }
+  if (!category_name || !userId) {
+    throw new AppError('Mandatory data is missing', 400);
+  }
 
-    const userFound = await User.findOne({ where: { id: userId , isAvailable: true} });
+  const userFound = await User.findOne({
+    where: { id: userId, isAvailable: true },
+  });
 
-    if (!userFound) {
-        throw new AppError('User not found', 404);
-    }
+  if (!userFound) {
+    throw new AppError('User not found', 404);
+  }
 
-    const categoryNameUpperCase = category_name.toUpperCase();
-    
-    
-    // find or create
-    const [categoryFound, CategoryCreated] = await Category.findOrCreate({
-        where: { category_name: categoryNameUpperCase , isAvailable: true },
-    });
+  const categoryNameUpperCase = category_name.toUpperCase();
 
-    const [categoryUser, RelationCreated] = await CategoryUser.findOrCreate({
-        where: { userId: userId, categoryId: categoryFound.id , isAvailable: true },
-    });
+  // find or create
+  const [categoryFound, CategoryCreated] = await Category.findOrCreate({
+    where: { category_name: categoryNameUpperCase, isAvailable: true },
+  });
 
-    return {
-        category: categoryFound.category_name,
-    };
+  const [categoryUser, RelationCreated] = await CategoryUser.findOrCreate({
+    where: { userId: userId, categoryId: categoryFound.id, isAvailable: true },
+  });
+
+  return {
+    category: categoryFound.category_name,
+  };
 };
 
 const findAll = async () => {
-    return await Category.findAll({
-        where: { isAvailable: true},
-    }
-    );
+  return await Category.findAll({
+    where: { isAvailable: true },
+  });
 };
 
 const findAllByUserId = async (userId) => {
-    return await CategoryUser.findAll({
-        where: { userId: userId , isAvailable: true},
-        include: [{ model: Category, as: 'category' }],
-    });
+  return await CategoryUser.findAll({
+    where: { userId: userId, isAvailable: true },
+    include: [{ model: Category, as: 'category' }],
+  });
 };
 
 const deleteCategory = async (category) => {
-    const { userId, categoryId } = category;
+  const { userId, categoryId } = category;
 
-    if (!userId || !categoryId) {
-        throw new AppError('Mandatory data is missing', 400);
-    }
+  if (!userId || !categoryId) {
+    throw new AppError('Mandatory data is missing', 400);
+  }
 
-    const userFound = await User.findOne({ where: { id: userId , isAvailable: true} });
+  const userFound = await User.findOne({
+    where: { id: userId, isAvailable: true },
+  });
 
-    if (!userFound) {
-        throw new AppError('User not found', 404);
-    }
+  if (!userFound) {
+    throw new AppError('User not found', 404);
+  }
 
-    const categoryFound = await Category.findOne({ where: { id: categoryId , isAvailable: true} });
+  const categoryFound = await Category.findOne({
+    where: { id: categoryId, isAvailable: true },
+  });
 
-    if (!categoryFound) {
-        throw new AppError('Category not found', 404);
-    }
+  if (!categoryFound) {
+    throw new AppError('Category not found', 404);
+  }
 
-    const categoryUserFound = await CategoryUser.findOne({
-        where: { userId: userId, categoryId: categoryId },
-    });
+  const categoryUserFound = await CategoryUser.findOne({
+    where: { userId: userId, categoryId: categoryId },
+  });
 
-    if (!categoryUserFound) {
-        throw new AppError('Category not found', 404);
-    }
+  if (!categoryUserFound) {
+    throw new AppError('Category not found', 404);
+  }
 
-    categoryUserFound.isAvailable = false;
+  categoryUserFound.isAvailable = false;
 
-    await categoryUserFound.save();
+  await categoryUserFound.save();
 };
 
 const updateCategory = async (category) => {
-    const { userId, categoryId, category_name } = category;
+  const { userId, categoryId, category_name } = category;
 
-    if (!userId || !categoryId || !category_name) {
-        throw new AppError('Mandatory data is missing', 400);
-    }
+  if (!userId || !categoryId || !category_name) {
+    throw new AppError('Mandatory data is missing', 400);
+  }
 
-    const userFound = await User.findOne({ where: { id: userId , isAvailable: true} });
+  const userFound = await User.findOne({
+    where: { id: userId, isAvailable: true },
+  });
 
-    if (!userFound) {
-        throw new AppError('User not found', 404);
-    }
+  if (!userFound) {
+    throw new AppError('User not found', 404);
+  }
 
-    const categoryFound = await Category.findOne({ where: { id: categoryId , isAvailable: true} });
+  const categoryFound = await Category.findOne({
+    where: { id: categoryId, isAvailable: true },
+  });
 
-    if (!categoryFound) {
-        throw new AppError('Category not found', 404);
-    }
+  if (!categoryFound) {
+    throw new AppError('Category not found', 404);
+  }
 
-    const categoryUserFound = await CategoryUser.findOne({
-        where: { userId: userId, categoryId: categoryId },
-    });
+  const categoryUserFound = await CategoryUser.findOne({
+    where: { userId: userId, categoryId: categoryId },
+  });
 
-    if (!categoryUserFound) {
-        throw new AppError('Category not found', 404);
-    }
+  if (!categoryUserFound) {
+    throw new AppError('Category not found', 404);
+  }
 
-    categoryFound.category_name = category_name;
+  categoryFound.category_name = category_name;
 
-    await categoryFound.save();
+  await categoryFound.save();
 };
 
 module.exports = {
-    create,
-    findAll,
-    findAllByUserId,
-    deleteCategory,
-    updateCategory,
+  create,
+  findAll,
+  findAllByUserId,
+  deleteCategory,
+  updateCategory,
 };
