@@ -19,13 +19,13 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 	}
 
 	return (
-		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120 lg:bg-white'>
+		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120 md:bg-white md:pb-0'>
 			<div className='w-full flex justify-between'>
 				<div className='mt-22'>
 					<div>
 						<h2 className='w-full text-secundario'>Lista de productos</h2>
 					</div>
-					<div className='flex h-w24 items-center'>
+					<div className='flex h-w24 items-center mt-23 mb-49'>
 						<div className='h-full'>
 							<p className='w-full text-secundario text-left text-f14'>
 								Orden de ingreso
@@ -36,7 +36,7 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 						</div>
 					</div>
 				</div>
-				<div className='mt-23 mb-49 lg:invisible'>
+				<div className='mt-23 mb-49 md:hidden'>
 					<BtnAddProduct />
 				</div>
 			</div>
