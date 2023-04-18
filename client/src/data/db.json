@@ -162,6 +162,160 @@
       "alerta": "3",
       "unidades": "Mts",
       "categorias": ""
+    },
+    {
+      "id": 1681775965435,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776462840,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776464488,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776468583,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776499806,
+      "nombre": "utb",
+      "cantidad": "98",
+      "costo": "78",
+      "total": "36",
+      "precio": "7",
+      "alerta": "3",
+      "unidades": "Kg",
+      "categorias": ""
+    },
+    {
+      "id": 1681776556472,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776671982,
+      "nombre": "falla",
+      "cantidad": "87",
+      "costo": "9",
+      "total": "5",
+      "precio": "3",
+      "alerta": "2",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776819302,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776941010,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681776943182,
+      "nombre": "pepe",
+      "cantidad": "9",
+      "costo": "9",
+      "total": "3",
+      "precio": "8",
+      "alerta": "1",
+      "unidades": "unidades",
+      "categorias": ""
+    },
+    {
+      "id": 1681783697561,
+      "nombre": "te",
+      "cantidad": "78",
+      "costo": "96",
+      "total": "6",
+      "precio": "7",
+      "alerta": "3",
+      "unidades": "Kg",
+      "categorias": ""
+    },
+    {
+      "id": 1681785860763,
+      "nombre": "masitas",
+      "cantidad": "7",
+      "costo": "78",
+      "total": "3",
+      "precio": "78",
+      "alerta": "9",
+      "unidades": "unidades",
+      "categorias": ""
+    },
+    {
+      "id": 1681786176233,
+      "nombre": "re",
+      "cantidad": "9",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "unidades",
+      "categorias": ""
+    },
+    {
+      "id": 1681787230244,
+      "nombre": "",
+      "cantidad": "585",
+      "costo": "2",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": "jssjs"
     }
   ]
 }

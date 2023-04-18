@@ -52,4 +52,20 @@ p {
 }
 #divInput{
 	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute  
+
+}
+#groupInput{
+	@apply flex flex-row w-full gap-2 items-center m-1 pl-2 bg-slate-100
+}
+#divPrueba{
+	@apply w-48 h-70 flex flex-col bg-yellow-300
+}
+#inputPrueba{
+	@apply flex w-44 h-h48  rounded-xl border-solid border-1 border-secundario2 
+}
+#labelPrueba{
+	@apply  w-48 h-6 text-start
+}
+#msgerror{
+	@apply w-48 h-6 font-secundaria text-xs font-normal text-error flex-none text-start
 }

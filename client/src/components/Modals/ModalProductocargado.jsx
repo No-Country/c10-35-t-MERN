@@ -19,7 +19,7 @@ const ModalProductocargado = ({texto}) => {
 				</h3>
 				<img
 					src={pollo}
-					alt='imagenEc¿xitosa'
+					alt='imagenExitosa'
 					className='w-16 h-93 ml-14 flex-none order-1 grow-0'
 				/>
 				<Link to={'/inicio'} className='flex-none order-2 grow-0'>

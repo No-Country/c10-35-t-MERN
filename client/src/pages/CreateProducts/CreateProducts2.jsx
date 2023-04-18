@@ -3,13 +3,14 @@
 import { useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
-import data from '../../data/db.json'
+import { Link } from 'react-router-dom'
 import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 import Subtitles from '../../components/CreateProducts/Subtitles'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import Headings from '../../components/CreateProducts/Headings'
 import ModalExcel from '../../components/Modals/ModalExcel'
-import Modal from 'react-modal'
+import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
+
 
 const initialForm = {
 	id: Date.now(),
@@ -102,15 +103,16 @@ const CreateProducts2 = () => {
 
 	const crud = helpFetch()
 	const urlGet = 'http://localhost:3000/data'
-
 	useEffect(() => {
 
-		 fetch(urlGet).then(res => {
+		fetch(urlGet).then(res => {
 
 			if (!res.err) {
+				console.log(res)
 				setDb(res)
 				setResponse(res)
 			} else {
+				
 				setDb(null)
 				setResponse(res)
 			}
@@ -450,6 +452,7 @@ const CreateProducts2 = () => {
 
 									{visible ? <ModalProductocargado texto={"Productos cargados exitosamente!"}/> : null}
 									{modal ? <ModalExcel setModal={setModal} /> : null}
+									{/* {response? null:  <ModalFallaCarga setVisible={setVisible}/>} */}
 								</div>
 							</div>
 						</form>

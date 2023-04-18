@@ -125,8 +125,7 @@ const ModifyProducts = () => {
 	
 		if (Object.keys(errors).length === 0) {
 			
-				helpFetch()
-				.post(urlGet, {
+				helpFetch().post(urlGet, {
 					body: form,
 					headers: {
 						'Content-Type': 'application/json',
