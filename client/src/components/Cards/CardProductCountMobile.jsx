@@ -39,7 +39,7 @@ export default function CardProductCountMobile() {
 
             <div className='flex flex-col gap-2 justify-around'>
                 <h3>Galleta Oreo Mobile </h3>
-                <div> 
+                <div>
                     <div className='flex gap-x-3 justify-end mb-2'>
                         <button onClick={decrement} className='bg-secundario text-white h-8 w-8 rounded-full font-bold text-3xl flex justify-center items-center'>-</button>
                         <input type="number" value={valor} onChange={handleInput} className='bg-primario text-center rounded-lg w-24'/>

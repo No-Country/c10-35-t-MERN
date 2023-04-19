@@ -1,61 +1,81 @@
 
-// // -------- Dependencies
-// import React, { useState } from 'react'
 
-// // -------- Images
-// import oreo from '../../assets/oreo.jpeg'
-// import { Link } from 'react-router-dom'
 
-// import { RiDeleteBinLine } from 'react-icons/ri';
+// -------- Dependencies
+import React, { useState } from 'react'
+
+// -------- Images
+import oreo from '../../assets/oreo.jpeg'
+import BtnIconTrash from '../Buttons/BtnIconTrash'
+import BtnCargar from '../Buttons/BtnCargar'
+
 
  
 
-//     // Función insertar valor
-//     const [valor, setValor] = useState(0)
-//     const handleInput = (e) => {
-//         e.preventDefault()
-//         const valorInsert = e.target.value
-//         setValor(parseInt(valorInsert))
-//     }
-//     const increment = () => {
-//         setValor(valor + 1)
-//     }
+export default function CardProductCountMobile() {
+
+    // Función insertar valor
+    const [valor, setValor] = useState(0)
+    const handleInput = (e) => {
+        e.preventDefault()
+        const valorInsert = e.target.value
+        setValor(parseInt(valorInsert))
+    }
+
+    const increment = () => {
+        setValor(valor + 1)
+    }
     
-
-// function CardProductCountDesktop() {
-//     return (
-            
-
-//         <div className='hidden md:flex h-40 bg-white shadow-2xl rounded-xl p-4 gap-x-4'>
-
-//             <div className='flex items-center max-w-full min-w-max overflow-hidden'>
-//                 <img src={oreo} alt="Producto" className='w-32'/>
-//             </div>
+    const decrement = () => {
+        setValor(valor - 1)
+    }        
 
 
-
-//             <div className='w-full flex flex-col justify-center'>
-
-//                 <div className='flex justify-between'>
-//                     <h3>Galleta Oreo Desktop </h3>
-//                     <p><span className='font-medium'>Total: </span>${valor}</p>
-//                     <RiDeleteBinLine className='text-xl'/>
-//                 </div>
+    return (
+        <div className='flex bg-white shadow-md h-40 p-3 gap-x-4 justify-between rounded-lg'>
 
 
-//                 <div className='flex justify-between mt-2'>
-//                     <p><span className='font-medium'>Stock Total: </span>{valor}</p>
-//                     <div className='flex'>
-//                         <input type="number" value={valor} onChange={handleInput} className='bg-primario w-28 text-center rounded-lg mr-4'/>
-//                         <button onClick={increment} className='text-4xl font-bold bg-secundario w-10 h-10 rounded-full flex justify-center items-center text-white'>+</button>
-//                     </div>
-//                     <button type="submit" className='block bg-label w-32 h-8 rounded-2xl'>Cargar</button>
-//                 </div>
-//             </div>
+            <div className='flex items-center max-w-full min-w-max overflow-hidden'>
+                <img src={oreo} alt="Producto" className='w-32'/>
+            </div>
 
-//         </div>
 
-//     )
-// }
 
-// export default CardProductCountDesktop
+            <div className='w-full mx-4 flex flex-col justify-between py-4'>
+                <h3 className='mb-2'>Galleta Oreo Desktop</h3>
+                <div className='flex justify-around'>
+
+                    <p className='font-bold'>Total: <span className='font-normal'>$ {54303}</span></p>
+                    <div>
+                        <p className='font-bold mb-2'>Stock Total: <span className='font-normal'>{valor}</span></p>
+                        <div className='flex gap-x-4 justify-end'>
+                            {/* <button onClick={decrement} className='bg-secundario text-white h-8 w-8 rounded-full font-bold text-3xl flex justify-center items-center'>-</button> */}
+                            <input type="number" value={valor} onChange={handleInput} className='bg-primario text-center rounded-lg w-24'/>
+                            <button onClick={increment} className='bg-secundario text-white h-8 w-8 rounded-full font-bold text-3xl flex justify-center items-center'>+</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div className='w-36 flex flex-col items-end justify-around'>
+                
+                <BtnIconTrash/>
+
+                <BtnCargar/>
+            </div>
+
+
+
+
+
+
+        </div>
+    )
+}
+
