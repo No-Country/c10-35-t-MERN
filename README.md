@@ -31,7 +31,7 @@
 - [Eugenia Olmedo](https://www.linkedin.com/in/eugenia-olmedo-8b665740/) - UX/UI - eugeniaolmedo@gmail.com
 - [Giancarlo Ahumada](https://www.linkedin.com/in/gianxjac) - UX/UI - gianxjac@gmail.com
 - [Javier Marquez](https://www.linkedin.com/mwlite/in/javier-marquez-web-front-end) - Frontend - hello.jmarquez@gmail.com
-- [Marcelo Yévenes marcelo](https://www.linkedin.com/in/marcelo-y%C3%A9venes-moreno) - Frontend - yevenes.moreno@gmail.com
+- [Marcelo Yévenes marcelo](https://www.linkedin.com/in/marcelo-y%C3%A9venes-moreno) - Frontend - marcelo.yevenes.moreno@gmail.com
 - [Yesica Fita](https://www.linkedin.com/in/yesica-fita-0aa447245) - Frontend - yesifita@gmail.com
 - [Henry Ramirez]()- Frontend - henrymilacprog@gmail.com
 - [Valentina Sánchez](https://www.linkedin.com/in/valentina-belen-sanchez) - Frontend - vbsanchez16@gmail.com
