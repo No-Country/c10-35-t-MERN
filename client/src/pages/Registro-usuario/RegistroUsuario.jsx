@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import logo from '../../assets/logo_Stocker.png'
 import usePostData from '../../hooks/UseFetch/usePostData'
 import ModalProductocargado from '../../components/Modals/ModalProductocargado'
+import registerImg from '../../assets/registerImage.png'
 function RegistroUsuario() {
 	const URL = 'https://stocker-api.fly.dev/api/v1/users/register'
 	const { error, isLoading, responseData, handlePost } = usePostData()
@@ -78,18 +79,21 @@ function RegistroUsuario() {
 		// }
 	}, [responseData, error])
 	return (
-		<>
+		<div className='h-full  lg:flex lg:items-center lg:justify-center'>
 			{responseData !== null && (
 				<ModalProductocargado texto={responseData.message} />
 			)}
+			<div className='hidden lg:flex lg:flex-col lg:box-border lg:pt-24 lg:px-7 lg:bg-primario  w-480 h-full lg:items-center'>
+				<img className='w-238 h-14 lg:mb-44' src={logo} alt='Stocker Logo' />
+				<img className='w-427 h-296' src={registerImg} alt='' />
+			</div>
 			<main
 				id='login'
-				className='flex flex-col h-full justify-start w-full px-4 pb-4 text-center box-border'
+				className='flex flex-col h-full justify-start w-full px-4 pb-4 text-center box-border lg:w-480 lg:h-865 lg:px-70 lg:py-10'
 			>
-				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>
-					<img className='' src={logo} alt='Stocker Logo' />
-					<h2>Crear tu cuenta</h2>
+					<img className='lg:hidden' src={logo} alt='Stocker Logo' />
+					<h2 className='lg:mb-12 lg:text-secundario'>Crear cuenta</h2>
 				</div>
 				<form
 					id='Form'
@@ -99,7 +103,7 @@ function RegistroUsuario() {
 					<div className='flex flex-col w-full justify-between gap-y-1'>
 						<label
 							htmlFor='user'
-							className='text-left text-f14 text-labeltexto'
+							className='text-left text-f14 text-labeltexto lg:text-secundario lg:font-secundaria lg:text-base lg:font-bold'
 						>
 							Ingresa tu nombre
 						</label>
@@ -121,7 +125,10 @@ function RegistroUsuario() {
 						</span>
 					</div>
 					<div className='flex flex-col w-full justify-between gap-y-1'>
-						<label htmlFor='user' className='text-left text-xs text-labeltexto'>
+						<label
+							htmlFor='user'
+							className='text-left text-xs text-labeltexto lg:text-secundario lg:font-secundaria lg:text-base lg:font-bold'
+						>
 							Ingresa tu correo
 						</label>
 						<input
@@ -144,7 +151,7 @@ function RegistroUsuario() {
 					<div className='flex flex-col w-full justify-between gap-y-1'>
 						<label
 							htmlFor='password'
-							className='text-left text-f14 text-labeltexto'
+							className='text-left text-f14 text-labeltexto lg:text-secundario lg:font-secundaria lg:text-base lg:font-bold'
 						>
 							Ingresa tu contraseña
 						</label>
@@ -168,7 +175,7 @@ function RegistroUsuario() {
 					<div className='flex flex-col w-full justify-between gap-y-1'>
 						<label
 							htmlFor='password'
-							className='text-left text-f14 text-labeltexto'
+							className='text-left text-f14 text-labeltexto lg:text-secundario lg:font-secundaria lg:text-base lg:font-bold'
 						>
 							Repite tu contraseña:
 						</label>
@@ -211,7 +218,7 @@ function RegistroUsuario() {
 					)}
 				</form>
 			</main>
-		</>
+		</div>
 	)
 }
 
