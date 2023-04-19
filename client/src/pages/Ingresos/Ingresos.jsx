@@ -27,6 +27,7 @@ export default function Ingresos() {
 	const iconBack = <FiChevronLeft/>
 
 
+
 	return (
 		<>
 			<NavBar 
@@ -34,7 +35,7 @@ export default function Ingresos() {
 				navBarTile="Ingresos"
 			/>
 
-			<div className='mx-8'>
+			<div className='mx-4 md:mx-8'>
 				<SectionFilter/>
 			</div>
 
@@ -46,7 +47,7 @@ export default function Ingresos() {
 					<div className='mt-5 mx-3 md:mx-0'>
 						<SectionCategory/>
 					</div>
-					<div className='mt-5 mb-2 bg-primario rounded-3xl pt-5 md:bg-white'>
+					<div className='mt-5 md:mb-10 bg-primario rounded-tl-3xl rounded-tr-120 pt-5 pb-44 md:pb-5 md:bg-white'>
 						<div className='mx-3 md:mx-0'>
 							<SectionListaProductos/>
 						</div>
@@ -57,7 +58,9 @@ export default function Ingresos() {
 				</div>
 			</div>
 			
-			<BtnContinuar/>
+			<div className='fixed bottom-0 right-0 bg-white p-4 w-full h-20 flex items-center mb-20 md:hidden'>
+				<BtnContinuar/>
+			</div>
 			<NavbarMobile/>
 		</>
 	)

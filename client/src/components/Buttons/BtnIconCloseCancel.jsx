@@ -10,8 +10,8 @@ import React from 'react'
 
 function IconCloseCancel() {
     return (
-        <button type="submit">
-            <AiOutlineCloseCircle className='text-2xl text-red-500'/>   
+        <button type="submit" className='text-2xl text-red-600'>
+            <AiOutlineCloseCircle className=''/>   
         </button>
     )
 }
