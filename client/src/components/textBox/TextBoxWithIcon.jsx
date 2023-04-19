@@ -13,7 +13,7 @@ export const TextBoxWithIcon = ({ setFilter, filter }) => {
 
 				<input
 					type='text'
-					className='h-48 w-pr80 ml-6 text-sm text-white rounded-md  focus:outline-none focus:bg-white focus:text-gray-900 inputSearch md:w-pr90'
+					className='h-48 w-pr80 ml-6 text-sm rounded-md  text-secundario focus:outline-none focus:text-gray-900 inputSearch md:w-pr90'
 					onChange={handleChange}
 					placeholder='Buscar Items'
 				/>
