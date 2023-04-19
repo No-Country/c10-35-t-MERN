@@ -10,7 +10,7 @@ export default function DashboardResume() {
     ]
 
     return (
-    <section className='mt-8 bg-primario rounded-t-3xl font-secundaria p-4 h-60 overflow-auto no-scrollbar'>
+    <section className='mt-8 bg-primario rounded-t-3xl font-secundaria p-4 h-240 overflow-auto no-scrollbar'>
         <h3 className='mb-4 pl-2 text-left'>
             Resumen de inventario
         </h3>
