@@ -21,21 +21,24 @@ function Onboarding() {
 	}
 
 	return (
-		<section id='onboarding' className='py-14 w-10/12 ml-auto mr-auto h-full '>
+		<section
+			id='onboarding'
+			className='py-14 w-10/12 ml-auto mr-auto h-full lg:w-480 lg:m-0 lg:bg-primario lg:h-865 lg:m-0 lg:py-3 lg:px-5 lg:box-border'
+		>
 			<header className='flex flex-row-reverse mb-61'>
 				<button
 					onClick={handldeSkip}
-					className='bg-secundario py-3 w-100 rounded-xl text-primario text-f16'
+					className='bg-secundario py-3 w-100 rounded-xl text-primario text-f16 lg:hidden'
 				>
 					Saltar
 				</button>
 			</header>
-			<main className='h-5/6 '>
-				<div className='flex justify-center mb-8'>
+			<div className='h-5/6 lg:h-fit lg:mt-40  '>
+				<div className='flex justify-center mb-8 lg:hidden'>
 					<img src={logo} alt='Stocker logo' />
 				</div>
 				<Swiper
-					className='pb-10 h-5/6 '
+					className='pb-10 h-5/6 lg:h-494 '
 					modules={[Navigation, Pagination, Scrollbar, A11y]}
 					spaceBetween={20}
 					slidesPerView={1}
@@ -82,7 +85,7 @@ function Onboarding() {
 					</SwiperSlide>
 					<SwiperNavButtons index={index} />
 				</Swiper>
-			</main>
+			</div>
 		</section>
 	)
 }

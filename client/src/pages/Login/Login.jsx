@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import logo from '../../assets/logo_Stocker.png'
 import Onboarding from '../Onboarding/Onboarding'
 import usePostData from '../../hooks/UseFetch/usePostData'
+import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 function Login() {
 	const URL = 'https://stocker-api.fly.dev/api/v1/users/login'
 	const { error, isLoading, responseData, handlePost } = usePostData()
@@ -60,10 +61,8 @@ function Login() {
 	}
 	useEffect(() => {
 		console.log('login')
-		if ((responseData !== null) & (responseData?.message !== undefined))
-			return window.alert(responseData.message)
-		if ((responseData !== null) & (error !== null))
-			return window.alert(error.toString())
+		if ((responseData !== null) & (responseData?.status !== 200)) return
+
 		if ((responseData !== null) & (responseData?.token !== undefined)) {
 			sessionStorage.setItem('token', responseData.token)
 			navigate('/inicio')
@@ -71,13 +70,16 @@ function Login() {
 		responseData !== null && console.log(responseData)
 	}, [responseData, error])
 	return (
-		<>
+		<div className='lg:flex lg:flex-row lg:justify-center lg:items-center lg:mt-auto lg:mb-auto'>
 			<Onboarding />
+			{responseData !== null && (
+				<ModalProductocargado texto={responseData.message} />
+			)}
+
 			<main
 				id='login'
-				className='hidden flex h-full flex-col justify-start w-full px-4 text-center box-border'
+				className='sm:hidden h-full lg:flex flex-col justify-start w-full px-4 py-16 text-center box-border lg:w-480 lg:h-865 lg:px-6'
 			>
-				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>
 					<h2>Bienvenidos a</h2>
 					<img className='my-8' src={logo} alt='Stocker Logo' />
@@ -89,7 +91,7 @@ function Login() {
 					className='h-full flex flex-col items-center w-full gap-y-2'
 				>
 					<div className='w-full'>
-						<div className='flex flex-col w-full justify-between gap-y-1'>
+						<div className='flex flex-col w-full justify-between gap-y-1 mb-5'>
 							<label
 								htmlFor='user'
 								className='text-left text-xs text-labeltexto'
@@ -113,7 +115,7 @@ function Login() {
 								Ingrese dirección de correo válida
 							</span>
 						</div>
-						<div className='flex flex-col w-full justify-between gap-y-1'>
+						<div className='flex flex-col w-full justify-between gap-y-1 mb-5'>
 							<label
 								htmlFor='password'
 								className='text-left text-xs text-labeltexto'
@@ -137,7 +139,7 @@ function Login() {
 								Formato de contraseña incorrecto
 							</span>
 						</div>
-						<div className='flex flex-col w-full justify-between gap-y-1'>
+						<div className='flex flex-col w-full justify-between gap-y-1 mb-5'>
 							<label
 								htmlFor='password'
 								className='text-left text-xs text-labeltexto'
@@ -161,7 +163,7 @@ function Login() {
 							</span>
 						</div>
 					</div>
-					<div className='bg-secundario w-full mt-auto rounded-xl'>
+					<div className='bg-secundario w-full mt-auto rounded-xl mb-4'>
 						{isLoading ? (
 							<div className='flex items-center justify-center py-2 w-full bg-secundario rounded-xl'>
 								<div
@@ -189,7 +191,7 @@ function Login() {
 					<p className='text-f12'>¿Aún no tienes cuenta?</p>
 				</NavLink>
 			</main>
-		</>
+		</div>
 	)
 }
 
