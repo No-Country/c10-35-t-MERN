@@ -5,10 +5,13 @@ import CakeChart from '../Reports/CakeChart'
 import CircleChart from '../Reports/CircleChart'
 import NavBar from '../../components/NavBar/NavBar'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
+import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 function Reports({ charData }) {
 	return (
-		<>
+		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
+			<NavbarDesktop />
+			<div>
 			<NavBar navBarTile='Reportes' />
 			<div className='flex flex-col justify-center items-center w-full py-5 '>
 				<div className='flex flex-col px-30 py-2.5 rounded-lg border-solid border-1 shadow-sombra border-black mb-5 text-center'>
@@ -80,9 +83,10 @@ function Reports({ charData }) {
 						</span>
 					</div>
 				</div>
+				</div>
 			</div>
 			<NavbarMobile />
-		</>
+		</div>
 	)
 }
 

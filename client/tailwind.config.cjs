@@ -65,6 +65,7 @@ module.exports = {
 				130: '130px',
 				133: '133px',
 				30: '30px',
+				130: '130px',					
 				61: '61px',
 				70: '70px',
 				100: '100px',
@@ -132,6 +133,7 @@ module.exports = {
 				1271: '1271px',
 				1310: '1310px',
 				4577: '4577px',
+				navbar: 'calc(100vh - 133px)'
 			},
 			fontSize: {
 				f40: '40px',
