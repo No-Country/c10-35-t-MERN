@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'orderId',
         as: 'order_details'
       })
+      Orders.belongsTo(models.Users, {
+        foreignKey: 'userId',
+        as: 'user'
+      })
     }
   }
   Orders.init({
@@ -24,7 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
-    }
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Orders',
