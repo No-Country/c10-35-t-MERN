@@ -99,13 +99,13 @@ function Reports({ charData }) {
 						</span>
 					</div>
 				</div>
-<<<<<<< HEAD
+
 				<button className='bg-secundario w-343 rounded-xl text-white h-14'>
 					Descargar registro
 				</button>
-=======
+
 				</div>
->>>>>>> ec2d00ebbfc5a927cbd5b03fc04dfc692832f41e
+
 			</div>
 			<NavbarMobile />
 		</div>
