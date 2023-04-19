@@ -42,9 +42,52 @@ function Reports({ charData }) {
 					</div>
 					<div className='flex relative justify-center items-center w-full bg-primario lg:bg-white'>
 						<div className='flex w-4/5 absolute -top-2 lg:-top-6 justify-center items-center gap-3 h-11 '>
-							<button
+							<button class='text-white'>
+								<input
+									class='hidden report-input-check'
+									type='radio'
+									id='dayReport'
+									name='row1'
+								/>
+								<label
+									class='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									for='dayReport'
+								>
+									Dia
+								</label>
+							</button>
+							<button class='text-white'>
+								<input
+									class='hidden report-input-check'
+									type='radio'
+									id='weekReport'
+									name='row1'
+								/>
+								<label
+									class='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									for='weekReport'
+								>
+									Semana
+								</label>
+							</button>
+							<button class='text-white'>
+								<input
+									class='hidden report-input-check'
+									type='radio'
+									id='monthReport'
+									name='row1'
+								/>
+								<label
+									class='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									for='monthReport'
+								>
+									Mes
+								</label>
+							</button>
+
+							{/* <button
 								href='#'
-								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario shadow-lg'
+								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario focus:bg-green-500 shadow-lg'
 							>
 								Dia
 							</button>
@@ -59,7 +102,7 @@ function Reports({ charData }) {
 								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario shadow-lg'
 							>
 								Año
-							</button>
+							</button> */}
 						</div>
 						<div className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'>
 							<div className='w-36 lg:w-446'>
@@ -94,7 +137,7 @@ function Reports({ charData }) {
 						</article>
 					</main>
 					<div className='flex bg-primario w-full py-5 justify-center lg:hidden'>
-						<div className='flex justify-between items-center p-2 rounded-sm bg-white rounded-xl shadow-sombra mb-2 w-11/12'>
+						<div className='flex justify-between items-center p-2 bg-white rounded-12 shadow-sombra mb-2 w-11/12'>
 							<h5 className='text-left text-secundario'>
 								Productos baja rotación
 							</h5>
@@ -103,7 +146,7 @@ function Reports({ charData }) {
 							</span>
 						</div>
 					</div>
-					<button className='bg-secundario w-343 rounded-xl text-white h-14'>
+					<button className='bg-secundario w-343 rounded-xl text-white py-4 font-bold'>
 						Descargar registro
 					</button>
 				</div>
