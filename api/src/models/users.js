@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Users.hasMany(models.Tokens, {
         foreignKey: 'userId',
         as: 'tokens'
+
       })
       Users.hasMany(models.Category_Users, {
         foreignKey: 'userId',
@@ -21,6 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'orders'
       })
+
+      });
     }
   }
   Users.init({

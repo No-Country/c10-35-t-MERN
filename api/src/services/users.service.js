@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { AppError } = require('../utils/errors');
 
-
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || 'stocker_3ko1osja';
 
 const validateEmail = (email) => {
@@ -11,7 +10,6 @@ const validateEmail = (email) => {
   console.log(re.test(email));
   return re.test(email);
 };
-
 
 const register = async (user) => {
   const { full_name, email, password, repeatedPassword } = user;
@@ -28,18 +26,19 @@ const register = async (user) => {
   // agregar verificacion que el email sea en formato email
   if (!validateEmail(email)) {
     throw new AppError('Email is not valid', 400);
-  } 
+  }
   const password_hash = await bcrypt.hash(password, 8);
   user.password_hash = password_hash;
   const userCreated = await User.create(user);
-  return [
-    { message: 'User successfully created' },
-    {
+  return {
+    message: 'User successfully created',
+    status: 200,
+    response: {
       id: userCreated.id,
       full_name: userCreated.full_name,
       email: userCreated.email,
     },
-  ];
+  };
 };
 
 const findAll = async () => {
@@ -66,7 +65,7 @@ const login = async (user) => {
     expiresIn: '15m',
   });
 
-  return { token: accessToken };
+  return { token: accessToken, userId: userFound.id, status: 200 };
 };
 
 module.exports = {
