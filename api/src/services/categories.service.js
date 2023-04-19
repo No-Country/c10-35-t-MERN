@@ -24,10 +24,9 @@ const create = async (category) => {
 };
 
 const findAll = async () => {
-    return await Category.findAll({
-        where: { isAvailable: true},
-    }
-    );
+  return await Category.findAll({
+    where: { isAvailable: true },
+  });
 };
 
 const findAllByCategoryId = async (categoryId) => {
@@ -46,9 +45,9 @@ const deleteCategory = async (category) => {
 
     const categoryFound = await Category.findOne({ where: { id: categoryId , isAvailable: true} });
 
-    if (!categoryFound) {
-        throw new AppError('Category not found', 404);
-    }
+  if (!categoryFound) {
+    throw new AppError('Category not found', 404);
+  }
 
 
     categoryFound.isAvailable = false;
@@ -65,9 +64,9 @@ const updateCategory = async (category) => {
 
     const categoryFound = await Category.findOne({ where: { id: categoryId , isAvailable: true} });
 
-    if (!categoryFound) {
-        throw new AppError('Category not found', 404);
-    }
+  if (!categoryFound) {
+    throw new AppError('Category not found', 404);
+  }
 
     categoryFound.category_name = category_name.toUpperCase();
 
