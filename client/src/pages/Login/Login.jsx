@@ -55,11 +55,12 @@ function Login() {
 		e.preventDefault()
 		await handlePost(URL, data, e)
 	}
-	const handleRegister = () => {
+	const handleGoRegister = () => {
 		navigate('/registro-usuario')
 	}
 	useEffect(() => {
-		if ((responseData !== null) & (responseData?.message !== ''))
+		console.log('login')
+		if ((responseData !== null) & (responseData?.message !== undefined))
 			return window.alert(responseData.message)
 		if ((responseData !== null) & (error !== null))
 			return window.alert(error.toString())
@@ -67,13 +68,14 @@ function Login() {
 			sessionStorage.setItem('token', responseData.token)
 			navigate('/inicio')
 		}
+		responseData !== null && console.log(responseData)
 	}, [responseData, error])
 	return (
 		<>
 			<Onboarding />
 			<main
 				id='login'
-				className='flex flex-col justify-start h-screen w-full px-4 pt-90 pb-4 text-center box-border'
+				className='hidden flex h-full flex-col justify-start w-full px-4 text-center box-border'
 			>
 				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>
@@ -84,88 +86,106 @@ function Login() {
 				<form
 					id='Form'
 					action=''
-					className=' flex flex-col items-center w-full min-h-full gap-y-2'
+					className='h-full flex flex-col items-center w-full gap-y-2'
 				>
-					<div className='flex flex-col w-full justify-between gap-y-1'>
-						<label htmlFor='user' className='text-left text-xs text-labeltexto'>
-							Ingresa tu correo
-						</label>
-						<input
-							className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
-							type='email'
-							name='email'
-							id='email'
-							onChange={handleChange}
-							onBlur={handleEmailBLur}
-							placeholder='Ingrese usuario'
-							required
-						/>
-						<span
-							id='errorUserName'
-							className='hidden text-f12 text-error text-left'
-						>
-							Ingrese dirección de correo válida
-						</span>
+					<div className='w-full'>
+						<div className='flex flex-col w-full justify-between gap-y-1'>
+							<label
+								htmlFor='user'
+								className='text-left text-xs text-labeltexto'
+							>
+								Ingresa tu correo
+							</label>
+							<input
+								className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
+								type='email'
+								name='email'
+								id='email'
+								onChange={handleChange}
+								onBlur={handleEmailBLur}
+								placeholder='Ingrese usuario'
+								required
+							/>
+							<span
+								id='errorUserName'
+								className='hidden text-f12 text-error text-left'
+							>
+								Ingrese dirección de correo válida
+							</span>
+						</div>
+						<div className='flex flex-col w-full justify-between gap-y-1'>
+							<label
+								htmlFor='password'
+								className='text-left text-xs text-labeltexto'
+							>
+								Ingresa tu contraseña
+							</label>
+							<input
+								className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
+								type='password'
+								name='password'
+								id='password'
+								onChange={handleChange}
+								onBlur={handlePassBLur}
+								placeholder='Ingrese contraseña'
+								required
+							/>
+							<span
+								id='errorUserPass'
+								className='hidden text-f12 text-error text-left'
+							>
+								Formato de contraseña incorrecto
+							</span>
+						</div>
+						<div className='flex flex-col w-full justify-between gap-y-1'>
+							<label
+								htmlFor='password'
+								className='text-left text-xs text-labeltexto'
+							>
+								Repite tu contraseña:
+							</label>
+							<input
+								className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
+								type='password'
+								name='repeatedPassword'
+								id='repeatedPassword'
+								onChange={handleChange}
+								onBlur={handleRepeatPassBLur}
+								placeholder='Ingrese contraseña'
+							/>
+							<span
+								id='errorRepeatedPass'
+								className='hidden text-f12 text-error text-left'
+							>
+								Las contraseñas no coinciden
+							</span>
+						</div>
 					</div>
-					<div className='flex flex-col w-full justify-between gap-y-1'>
-						<label
-							htmlFor='password'
-							className='text-left text-xs text-labeltexto'
-						>
-							Ingresa tu contraseña
-						</label>
-						<input
-							className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
-							type='password'
-							name='password'
-							id='password'
-							onChange={handleChange}
-							onBlur={handlePassBLur}
-							placeholder='Ingrese contraseña'
-							required
-						/>
-						<span
-							id='errorUserPass'
-							className='hidden text-f12 text-error text-left'
-						>
-							Formato de contraseña incorrecto
-						</span>
+					<div className='bg-secundario w-full mt-auto rounded-xl'>
+						{isLoading ? (
+							<div className='flex items-center justify-center py-2 w-full bg-secundario rounded-xl'>
+								<div
+									className='animate-spin inline-block w-8 h-8  border-[3px] border-current border-t-transparent text-primario rounded-full relative'
+									role='status'
+									aria-label='loading'
+								>
+									<span className='sr-only'>Loading...</span>
+								</div>
+							</div>
+						) : (
+							<input
+								type='submit'
+								name=''
+								id='submit'
+								value='Iniciar sesión'
+								onClick={handleSubmit}
+								disabled={isActive}
+								className='bg-secundario text-primario  disabled:bg-desactivado disabled:text-secundario3 py-3 rounded-xl w-full font-bold'
+							/>
+						)}
 					</div>
-					<div className='flex flex-col w-full justify-between gap-y-1'>
-						<label
-							htmlFor='password'
-							className='text-left text-xs text-labeltexto'
-						>
-							Repite tu contraseña:
-						</label>
-						<input
-							className='py-3 pl-3 box-border border-1 border-solid border-black rounded-xl placeholder-black'
-							type='password'
-							name='repeatedPassword'
-							id='repeatedPassword'
-							onChange={handleChange}
-							onBlur={handleRepeatPassBLur}
-							placeholder='Ingrese contraseña'
-						/>
-						<span
-							id='errorRepeatedPass'
-							className='hidden text-f12 text-error text-left'
-						>
-							Las contraseñas no coinciden
-						</span>
-					</div>
-
-					<input
-						type='submit'
-						name=''
-						id='submit'
-						value='Iniciar sesión'
-						onClick={handleSubmit}
-						disabled={isActive}
-						className='bg-secundario text-primario  disabled:bg-desactivado disabled:text-secundario3 py-3 rounded-xl w-full font-bold mt-auto'
-					/>
 				</form>
-				<NavLink to='/reportes'>
+				<NavLink onClick={handleGoRegister} to='/registro-usuario'>
 					<p className='text-f12'>¿Aún no tienes cuenta?</p>
 				</NavLink>
 			</main>

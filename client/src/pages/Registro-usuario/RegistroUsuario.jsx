@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router'
 import logo from '../../assets/logo_Stocker.png'
 import usePostData from '../../hooks/UseFetch/usePostData'
+import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 function RegistroUsuario() {
 	const URL = 'https://stocker-api.fly.dev/api/v1/users/register'
 	const { error, isLoading, responseData, handlePost } = usePostData()
@@ -44,7 +45,6 @@ function RegistroUsuario() {
 			errorMail.classList.add('hidden')
 			setMailCheck(false)
 		}
-		setMailCheck(false)
 	}
 	const handlePassBLur = e => {
 		if (e.target.value === '') {
@@ -71,20 +71,20 @@ function RegistroUsuario() {
 	}
 
 	useEffect(() => {
-		if ((responseData !== null) & (responseData?.length > 0))
-			return window.alert(responseData[0].message)
-		if ((responseData !== null) & (error !== null))
-			return window.alert('error: ' + error.toString())
-		if ((responseData !== null) & (responseData?.message !== '')) {
-			return window.alert(responseData.message)
-		}
+		responseData !== null && console.log(responseData)
+		if ((responseData !== null) & (responseData?.status !== 200)) return
+		if ((responseData !== null) & (error !== null)) return
+		if ((responseData !== null) & (responseData?.status === 200)) navigate('/')
+		// }
 	}, [responseData, error])
 	return (
 		<>
-			/{' '}
+			{responseData !== null && (
+				<ModalProductocargado texto={responseData.message} />
+			)}
 			<main
 				id='login'
-				className='flex flex-col flex-grow-2 justify-start w-full px-4 pb-4 text-center box-border h-full min-h-full '
+				className='flex flex-col h-full justify-start w-full px-4 pb-4 text-center box-border'
 			>
 				{isLoading && <h1>Cargando...</h1>}
 				<div className='w-238.33 h-fit flex flex-col items-center'>
@@ -94,7 +94,7 @@ function RegistroUsuario() {
 				<form
 					id='Form'
 					action=''
-					className=' flex flex-col items-center w-full min-h-full gap-y-2'
+					className='h-full flex flex-col items-center w-full gap-y-2'
 				>
 					<div className='flex flex-col w-full justify-between gap-y-1'>
 						<label
@@ -189,16 +189,26 @@ function RegistroUsuario() {
 							Las contraseñas no coinciden
 						</span>
 					</div>
-
-					<input
-						type='submit'
-						name=''
-						disabled={isActive}
-						value='Crear cuenta'
-						onClick={handleSubmit}
-						className='bg-secundario disabled:bg-desactivado disabled:text-secundario3 text-primario py-3 rounded-xl w-full font-bold mt-auto'
-					/>
-					<p className='text-f12'>¿Aún no tienes cuenta?</p>
+					<div className='flex items-center justify-center py-2 w-full bg-secundario rounded-xl mt-auto'>
+						{isLoading ? (
+							<div
+								className='animate-spin inline-block w-8 h-8  border-[3px] border-current border-t-transparent text-primario rounded-full relative'
+								role='status'
+								aria-label='loading'
+							>
+								<span className='sr-only'>Loading...</span>
+							</div>
+						) : (
+							<input
+								type='submit'
+								name=''
+								disabled={isActive}
+								value='Crear cuenta'
+								onClick={handleSubmit}
+								className='bg-secundario disabled:bg-desactivado disabled:text-secundario3 text-primario h-10 rounded-xl w-full font-bold mt-auto'
+							/>
+						)}
+					</div>
 				</form>
 			</main>
 		</>
