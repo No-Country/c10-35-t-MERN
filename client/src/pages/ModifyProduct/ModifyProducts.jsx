@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import ModalProductoModificado from '../../components/Modals/ModalProductoModificado'
 import HeadingsModify from '../../components/ModifyProduct/HeadingsModify'
@@ -84,9 +84,12 @@ const validationsForm = (form, name) => {
 	return errors
 }
 const ModifyProducts = () => {
-	
+
+	const location=useLocation();
+    console.log(location.state)
+
 	const [visible, setVisible] = useState(false)
-	const [form, setForm] = useState({...initialForm,nombre:"yesi",cantidad:2,unidades:"Kg",id:3})
+	const [form, setForm] = useState({...initialForm,nombre:location.state.title,cantidad:location.state.stock,unidades:location.state.unidades,id:3})
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState(null)

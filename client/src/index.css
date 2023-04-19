@@ -84,17 +84,18 @@ p {
 } */
 
 #groupInput{
-	@apply flex flex-row w-full gap-10 items-center m-1 pl-2 bg-red-400 justify-around
+	@apply grid grid-cols-2 w-full h-28 gap-10 items-center  p-1 pl-4  justify-around
 }
 #divPrueba{
-	@apply w-full h-70 flex flex-col }
+	@apply w-full h-20 grid grid-rows-3
+}
 
 #inputPrueba{
-	@apply flex w-44 h-h48  rounded-xl border-solid border-1 border-secundario2 
+	@apply  w-full h-h48  rounded-xl border-solid border-1 border-secundario2 pl-3
 }
 #labelPrueba{
-	@apply  w-48 h-6 text-start
+	@apply  w-full h-6 text-start
 }
 #msgerror{
-	@apply w-48 h-6 font-secundaria text-xs font-normal text-error flex-none text-start
+	@apply w-full h-6 font-secundaria text-xs font-normal text-error text-start
 }

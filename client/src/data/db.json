@@ -316,6 +316,39 @@
       "alerta": "",
       "unidades": "",
       "categorias": "jssjs"
+    },
+    {
+      "id": 1681917213156,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681921319919,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681922126358,
+      "nombre": "prueba stilo",
+      "cantidad": "78",
+      "costo": "9",
+      "total": "8",
+      "precio": "7",
+      "alerta": "",
+      "unidades": "Kg",
+      "categorias": "Limpieza"
     }
   ]
 }
