@@ -22,10 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'orders'
       })
-
-      });
+      }
     }
-  }
   Users.init({
     full_name: {
       type: DataTypes.STRING,
