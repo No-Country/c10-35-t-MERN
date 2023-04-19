@@ -151,7 +151,7 @@ const CreateProducts2 = () => {
 		} else {
 			return updateData(form)
 		}
-		// handleReset()
+		
 	}
 
 	const createData = data => {
@@ -203,17 +203,17 @@ const CreateProducts2 = () => {
 				})
 		}
 	}
-	const handleReset = e => {
-		setForm(initialForm)
-		setDataToEdit(null)
-	}
+	// const handleReset = e => {
+	// 	setForm(initialForm)
+	// 	setDataToEdit(null)
+	// }
 
 	return (
 		<>
-			<div className=' w-373 h-fit  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'>
+			<div className=' w-373 h-fit md:absolute md:w-full md:h-920 md:ml-24 md:bg-fondoT'>
 
-				<div className='
-				md:absolute md:w-714 md:h-920 md:top-52 md:left-297 '>
+				<div className='md:bg-white
+				md:absolute md:w-714 md:top-4 md:h-850 md:botton-4 md:ml-408'>
 
 					<Headings/>
 
@@ -234,15 +234,15 @@ const CreateProducts2 = () => {
 
 			// {/* ----------esto engloba impus de nombre y grupo-------- */} 
 			className='
-		w-full h-full bg-primario mt-335 pr-2 pt-4	
-		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'
+		w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4	
+		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16 md:mt-240'
 		>		
 	
 			{/* --------------input nombre------------- */}
 			<div className=' w-full h-24 items-start '>
-				<div className='h-24'>
-					<div className='grid pr-1 pl-3'>
-						<label className='w-full h-6 text-start'>Nombre</label>
+				<div className='h-24 md:h-20'>
+					<div className='grid pr-1 pl-3 '>
+						<label className='w-full h-6  md:h-5 md:mb-1 text-start'>Nombre</label>
 						<input
 							type='text'
 							id='nombre'
@@ -258,9 +258,7 @@ const CreateProducts2 = () => {
 							{errors.nombre}
 						</p>
 					)}
-					{/* <p id='msgerror' className='ml-4'>
-						parrafo error
-					</p> */}
+					
 				</div>
 			</div>
 			<div className='flex flex-col justify-center items-center w-full'>

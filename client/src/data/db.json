@@ -12,13 +12,13 @@
     },
     {
       "id": 3,
-      "nombre": "sal",
-      "cantidad": 750,
-      "costo": 850,
-      "total": 875,
-      "precio": 100,
-      "alerta": 30,
-      "unidades": "unidades"
+      "nombre": "Leche",
+      "cantidad": "12",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "categorias": ""
     },
     {
       "id": 4,
@@ -349,6 +349,28 @@
       "alerta": "",
       "unidades": "Kg",
       "categorias": "Limpieza"
+    },
+    {
+      "id": 1681929131220,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1681929297348,
+      "nombre": "arroz",
+      "cantidad": "78",
+      "costo": "96",
+      "total": "96",
+      "precio": "400",
+      "alerta": "",
+      "unidades": "Kg",
+      "categorias": "Snacks"
     }
   ]
 }

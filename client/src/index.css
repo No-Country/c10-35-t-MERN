@@ -84,10 +84,10 @@ p {
 } */
 
 #groupInput{
-	@apply grid grid-cols-2 w-full h-28 gap-10 items-center  p-1 pl-4  justify-around
+	@apply grid grid-cols-2 w-full h-28 gap-10 items-center  p-1 pl-4  justify-around md:h-24 
 }
 #divPrueba{
-	@apply w-full h-20 grid grid-rows-3
+	@apply w-full h-20 grid grid-rows-3 md:h-70
 }
 
 #inputPrueba{
@@ -97,5 +97,5 @@ p {
 	@apply  w-full h-6 text-start
 }
 #msgerror{
-	@apply w-full h-6 font-secundaria text-xs font-normal text-error text-start
+	@apply w-full h-6 font-secundaria text-xs font-normal text-error text-start md:h-5
 }

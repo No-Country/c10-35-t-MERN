@@ -1,32 +1,40 @@
 /* eslint-disable react/prop-types */
-import { RiCloseCircleLine } from "react-icons/ri"
 
-const ModalExcel = ({setModal}) => {
+import polloPremiun from '../../assets/pollopremiun.png'
+
+const ModalExcel = ({ setModal }) => {
 	return (
-<section
-	id='modalExcel'
-	className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 flex transition-all ease-out duration-300 '
->
-	<div
-		id='modal-containerExcel'
-		className='bg-primario3 m-auto w-371 h-60 rounded-lg pr-14'
-	>
-		<div className=' flex justify-end mb-8 mr-2'>
-			<button className=' pr-2 pt-2' onClick={() => setModal(false)}>
-				<RiCloseCircleLine className='w-6 h-6 fill-secundario bottom-4' />
-			</button>
-		</div>
-
-		<p
-			id='modal-paragraph'
-			className=' w-82 h-52 left-6 not-italic  items-centerqa<A order-none grow-0 py-12 px-10 text-center font-secundaria text-error top-4 text-xl'
+		<section
+			id='modal'
+			className='bg-primario2 fixed top-0 left-0 right-0 bottom-0 md:bg-fondoT'
 		>
-			Disponible solo en version Premiun
-		</p>
-	</div>
-</section>
+			<div
+				id='modal-container'
+				className='w-295 h-300 right-4 rounded-xl flex flex-col items-center pr-20 p-6 mt-64 gap-4 relative  md:bg-primario md:right-1 md:w-335 md:left-614 md:pl-10 md:h-335' 
+			>
+				<h3
+					id='modal-paragraph'
+					className='w-72 ml-8 mb-2 left-6 not-italic text-center text-acento'
+				>
+					¡Hazte premium y disfruta de muchas funciones más!
+				</h3>
+				<img
+					src={polloPremiun}
+					alt='imagenExitosa'
+					className='w-20 h-28 ml-10 mb-2 flex-none'
+				/>
 
-    )
+				<button
+					onClick={() => setModal(false)}
+					className='w-40 h-h48  ml-10 left-67 rounded-xl p-2.5 bg-secundario flex flex-row justify-center items-center'
+				>
+					<div className='text-white w-16 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0 order-none '>
+						aceptar
+					</div>
+				</button>
+			</div>
+		</section>
+	)
 }
 
 export default ModalExcel
