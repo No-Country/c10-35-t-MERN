@@ -32,6 +32,7 @@ const ListRoutes = () => {
 					<Route path='/egresos' element={<Egresos />} />
 					<Route path='/productoMover' element={<ProductosMover />} />
 					<Route path='/modificar-productos' element={<ModifyProducts />} />
+					<Route path='/prueba' element={<Prueba />} />
 					
 				</Routes>
 			</div>

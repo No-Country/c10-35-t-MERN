@@ -55,11 +55,10 @@ p {
 
 }
 #groupInput{
-	@apply flex flex-row w-full gap-2 items-center m-1 pl-2 bg-slate-100
+	@apply flex flex-row w-full gap-2 items-center m-1 pl-2
 }
 #divPrueba{
-	@apply w-48 h-70 flex flex-col bg-yellow-300
-}
+	@apply w-48 h-70 flex flex-col }
 #inputPrueba{
 	@apply flex w-44 h-h48  rounded-xl border-solid border-1 border-secundario2 
 }
