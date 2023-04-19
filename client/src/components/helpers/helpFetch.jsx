@@ -2,7 +2,7 @@
 
 export const helpFetch = () => {
 
-	const customFetch = (endopoint, options) => {
+	const customFetch = (url, options) => {
 
 		const defaultHeader = {
 			accept: 'application/json'
@@ -22,7 +22,7 @@ export const helpFetch = () => {
 		setTimeout(() => controller.abort(), 3000)
 
 
-		return fetch(endopoint, options)
+		return fetch(url, options)
 			.then((res) =>
 				res.ok
 					? res.json()
@@ -35,7 +35,12 @@ export const helpFetch = () => {
 			.catch((err) => err);
 	};
 
-	const get = (url, options = {}) => customFetch(url, options);
+	const get = (url, options = {}) =>{
+		options.method='GET';
+		return customFetch(url, options);
+	}
+		
+		
 
 	const post = (url, options = {}) => {
 		options.method = 'POST';

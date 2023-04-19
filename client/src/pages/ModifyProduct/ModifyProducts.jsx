@@ -84,33 +84,30 @@ const validationsForm = (form, name) => {
 	return errors
 }
 const ModifyProducts = () => {
+	
 	const [visible, setVisible] = useState(false)
-	const [form, setForm] = useState(initialForm)
+	const [form, setForm] = useState({...initialForm,nombre:"yesi",cantidad:2,unidades:"Kg",id:3})
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
-	const [db, setDb] = useState({})
-
+	const [db, setDb] = useState(null)
 	const [dataToEdit, setDataToEdit] = useState(null)
-	const [modal, setModal] = useState(false)
+	
 
-	const costoUNit = form.costo
-	const unidadesTotales = form.unidades
-	const costoTotal = costoUNit * unidadesTotales
 
 	const crud = helpFetch()
-	let url = 'http://localhost:3000/data'
+	let urlGet = 'http://localhost:3000/data'
 
 	useEffect(() => {
-		crud.get(url).then(res => {
+		fetch(urlGet).then(res => {
 			if (!res.err) {
 				setDb(res)
-				setErrors({})
+				setResponse(res)
 			} else {
 				setDb(null)
-				setErrors(res)
+				setResponse(res)
 			}
 		})
-	}, [url])
+	}, [urlGet])
 
 	const handleChange = e => {
 		setForm({
@@ -126,13 +123,10 @@ const ModifyProducts = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
-
-		// if(Object.keys(errors).length !==0){
-		//  return alert('debes completar todos los campos')
-		// }else
+	
 		if (Object.keys(errors).length === 0) {
-			helpFetch()
-				.post('http://localhost:3000/data', {
+			
+				helpFetch().post(urlGet, {
 					body: form,
 					headers: {
 						'Content-Type': 'application/json',
@@ -151,15 +145,15 @@ const ModifyProducts = () => {
 		if (form.id === null) {
 			return createData(form)
 		} else {
-			console.log('updateData')
+			
 			return updateData(form)
 		}
-        // handleReset()
+    //   handleReset()
 	}
 
 	const createData = data => {
 		crud
-			.post(url, {
+			.post(urlGet, {
 				body: data,
 				headers: { 'content-type': 'application/json' },
 			})
@@ -167,12 +161,16 @@ const ModifyProducts = () => {
 				console.log(res)
 				if (!res.err) {
 					setDb([...db, res])
-				}
+				}else(
+					setResponse(res)
+				)
 			})
 	}
 
 	const updateData = data => {
-		let endpoint = `${url}/${data.id}`
+		<ModalProductoModificado idProduct={1}/>
+		let endpoint = `${urlGet}/${data.id}`;
+
 
 		crud
 			.put(endpoint, {
@@ -183,23 +181,28 @@ const ModifyProducts = () => {
 				if (!res.err) {
 					let newData = db.map(el => (el.id === data.id ? data : el))
 					setDb(newData)
+				}else{
+					setResponse(res);
 				}
 			})
 	}
 
 	const deleteData = id => {
-		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
+		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`);
+
+		<ModalProductoModificado idProduct={1}/>
 
 		if (isDelete) {
-			let endpoint = `${url}/${id}`
+			let endpoint = `${urlGet}/${id}`
 
 			crud
 				.del(endpoint, { headers: { 'content-type': 'application/json' } })
 				.then(res => {
 					if (!res.err) {
 						let newData = db.filter(el => el.id !== id)
-
 						setDb(newData)
+					}else{
+						setResponse(res);
 					}
 				})
 		}
@@ -293,6 +296,7 @@ const ModifyProducts = () => {
 											className='w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-2 gap-2.5 box-border text-base font-secundaria  text-secundario items-center  md:w-266'
 											name='unidades'
 											onChange={handleChange}
+											defaultValue={form.unidades}
 										>
 											<option id='' value=''>
 												Seleciona unidad
@@ -352,31 +356,7 @@ const ModifyProducts = () => {
 											)}
 										</div>
 									</div>
-									{/* <div className='hidden md:left-305 md:w-555  md:h-52 md:top-214 md:gap-8 md:flex md:flex-col md:p-0 md:absolute'>
-										<div className='md:text-start'>
-											<label
-												htmlFor=''
-												className='md:w-200 md:text-start md:h-8 md:pt-8  md:font-secundaria md:text-lg md:font-normal md:text-labeltexto md:flex-none md:grow-0 md:order-none'
-											>
-												categoria
-											</label>
-											<input
-												type='text'
-												name='categorias'
-												value={form.categorias}
-												onBlur={handleBlur}
-												onChange={handleChange}
-												className='md:w-266
-											md:h-h48 
-											md:bg-white md:border-solid md:border-1 md:border-secundario3 md:rounded-xl md:flex-none md:order-1 md:grow-0 md:px-3 md:py-4 md:gap-2.5 md:box-border'
-											></input>
-											{<errors className='categoria'></errors> && (
-												<p className='md:font-secundaria md:text-xs md:font-normalmd: text-error md:w-48 md:h-4 md:flex-none md:grow-0 md:order-2'>
-													{errors.categorias}
-												</p>
-											)}
-										</div>
-									</div> */}
+									
 								</div>
 
 								{/* ----------aca va el tercer grupo----------- */}
@@ -421,21 +401,20 @@ const ModifyProducts = () => {
 								</div>
 								{/* -------------aca va el 4 grupo----------------- */}
 								<div className=''>
-									<Link to={'/inventario'}>
-										<button
-											// onFocus={()=>setForm.length >6 ? handleSubmit() : <p id='errorp'>debes completar todos los campos</p>}
-
+									
+										<button				
+                                           onClick={()=>deleteData()}
 											className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
 										>
 											<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0 '>
 												Eliminar
 											</div>
 										</button>
-									</Link>
+								
 									<button
 										type='submit'
 										value='send'
-										onClick={() => setVisible(true)}
+										onClick={() =>updateData()										}
 										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
 									>
 										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
@@ -443,7 +422,7 @@ const ModifyProducts = () => {
 										</div>
 									</button>
 
-									{visible ? <ModalProductoModificado /> : null}
+									{/* {visible ? <ModalProductoModificado /> : null} */}
 								</div>
 							</div>
 						</form>
