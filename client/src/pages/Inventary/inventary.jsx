@@ -7,7 +7,7 @@ import { CategoryListContainer } from '../../components/CategoryProducts/Categor
 import { ProductsContainer } from '../../components/Product/ProductsContainer'
 import { RiFilter2Fill } from 'react-icons/ri'
 import { CategoryData } from '../../components/CategoryCard/CategoryData'
-import { BtnAddProduct } from '../../components/Botons/BtnAddProduct'
+import { BtnAddProduct } from '../../components/Buttons/BtnAddProduct'
 
 const categories = [
 	{

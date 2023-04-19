@@ -1,103 +1,67 @@
 
 
 
-
-import React, { useState } from 'react'
-
+import React from 'react'
 
 // -------- Components
 import NavBar from '../../components/NavBar/NavBar'
+import SectionProductosMover from '../../components/Sections/SectionProductosMover';
+import SectionFilter from '../../components/Sections/SectionFilter';
+import SectionResumenCatTotVal from '../../components/Sections/SectionResumenCatTotVal';
+import SectionCategory from '../../components/Sections/SectionCategory';
+import SectionListaProductos from '../../components/Sections/SectionListaProductos';
+import BtnContinuar from '../../components/Buttons/BtnContinuar';
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
-import ProductCount from '../../components/ProductCount/ProductCount';
-import { CategoryCardFilter } from '../../components/CategoryCard/CategoryCardFilter';
-import BtnContinuar from '../../components/Botons/BtnContinuar';
 
-// -------- Files
-import '../../index.css'
 
 // -------- Icons
-import { AiFillCaretDown } from 'react-icons/ai';
-import { HiOutlineFilter } from 'react-icons/hi';
 import { FiChevronLeft } from 'react-icons/fi';
 
 
+// -------- Files
+import '../../index.css'
+// -------- 
 
 
 
-
-export default function Egresos() {
+export default function Ingresos() {
 
 	// Botón dinámico de retro para el Nav
 	const iconBack = <FiChevronLeft/>
 
 
-
 	return (
 		<>
-			{/* --------------------------------- Higher Navegator */}
 			<NavBar 
 				iconBack={iconBack}
 				navBarTile="Egresos"
 			/>
 
-
-			{/* --------------------------------- Filtros */}
-			<div className='flex justify-between items-center p-4'>
-				<input type="text" placeholder='Buscar items' className='w-full'/>
-				<div className='ml-4 '><HiOutlineFilter className='text-xl'/></div>
+			<div className='mx-8'>
+				<SectionFilter/>
 			</div>
 
-
-
-			{/* --------------------------------- Categorías */}
-			<div>
-				<h2 className='flex start p-4'>Categorías</h2>
-				<div className='flex gap-x-4 p-4'>
-					<button type="submit" className='px-7 py-2 text-base shadow-xl rounded-xl bg-secundario text-acento'>Lácteos</button>
-					<CategoryCardFilter/>
-					<CategoryCardFilter/>
-				</div>
-			</div>
-
-
-
-
-			{/* --------------------------------- Lista de productos */}
-			<div className='bg-primario py-6 px-4 mt-6 rounded-tl-3xl rounded-tr-3xl'>
-				<div className='flex justify-between mb-6'>
-					<div className='flex flex-col'>
-						<h2 className='flex start'>Lista de productos:</h2>
-						<p className='flex items-center gap-2'>Orden de ingreso <AiFillCaretDown/> </p>
+			<div className='flex md:mt-5 gap-x-5 md:mx-8'>
+				<div className='w-full'>
+					<div className='hidden md:block'>
+						<SectionResumenCatTotVal/>
 					</div>
-					<a href="crear-producto" className='w-14 h-14 rounded-full flex justify-center text-5xl font-medium bg-acento text-white'>+</a>
+					<div className='mt-5 mx-3 md:mx-0'>
+						<SectionCategory/>
+					</div>
+					<div className='mt-5 mb-2 bg-primario rounded-3xl pt-5 md:bg-white'>
+						<div className='mx-3 md:mx-0'>
+							<SectionListaProductos/>
+						</div>
+					</div>
 				</div>
-
-				<div className='flex flex-col gap-y-4'>
-					<ProductCount/>
-					<ProductCount/>
-					<ProductCount/>
-					<ProductCount/>
+				<div className='hidden md:block'>
+					<SectionProductosMover/>
 				</div>
 			</div>
-
-			<div className='mb-20 p-4'>
-				<BtnContinuar/>
-			</div>
-
-
-
-			{/* --------------------------------- Lower Navegator */}
+			
+			<BtnContinuar/>
 			<NavbarMobile/>
-
-
-
-
-
-
-
-
-
-
 		</>
 	)
 }

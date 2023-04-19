@@ -1,5 +1,5 @@
 import React from 'react'
-import { BtnAddProduct } from '../Botons/BtnAddProduct'
+import { BtnAddProduct } from '../Buttons/BtnAddProduct'
 import { ProductStockCard } from './ProductStockCard'
 import { RiArrowDownSFill } from 'react-icons/ri';
 

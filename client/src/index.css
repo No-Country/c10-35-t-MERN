@@ -1,21 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body,
+html,
+.root {
+	@apply h-full min-h-full;
+}
 
 h1 {
-	@apply font-primaria text-4xl font-normal
+	@apply font-primaria text-4xl font-normal;
 }
 h2 {
-	@apply font-secundaria text-2xl font-bold
+	@apply font-secundaria text-2xl font-bold;
 }
 h3 {
-	@apply font-secundaria text-xl font-bold 
+	@apply font-secundaria text-xl font-bold;
 }
 h4 {
-	@apply font-secundaria text-base font-bold
+	@apply font-secundaria text-base font-bold;
 }
 h5 {
-	@apply font-secundaria text-sm font-bold
+	@apply font-secundaria text-sm font-bold;
 }
 p {
 	@apply font-secundaria;
@@ -41,24 +46,49 @@ p {
 .form-verificacion {
 	@apply font-secundaria text-xs;
 }
-  #errorp {
-	@apply font-secundaria text-xs font-normal text-error w-48 h-4 flex-none grow-0 order-2 
- }
-#labelInput{
-	@apply w-40 h-18 text-start  md:h-8 md:pt-8  font-secundaria  text-sm md:text-lg font-normal text-labeltexto flex-none grow-0 order-none
+
+.swiper-pagination {
+	@apply max-w-fit;
 }
-#inputForm{
-	@apply  w-40 h-h48 md:w-266 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border
+.swiper-pagination-bullet {
+	@apply bg-secundario transition-[width] opacity-100;
 }
 #divInput{
-	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute  
+	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute }
 
+.swiper-pagination-bullet-active {
+	@apply w-7 bg-yellow-500 rounded-lg;
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+/* #errorp {
+	@apply font-secundaria text-xs font-normal text-error w-48 h-4 flex-none grow-0 order-2;
+} */
+/* #labelInput {
+	@apply w-40 h-18 text-start  md:h-8 md:pt-8  font-secundaria  text-sm md:text-lg font-normal text-labeltexto flex-none grow-0 order-none;
+}
+#inputForm {
+	@apply w-40 h-h48 md:w-266 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border;
+}
+#divInput {
+	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute;
+} */
+
 #groupInput{
-	@apply flex flex-row w-full gap-2 items-center m-1 pl-2
+	@apply flex flex-row w-full gap-10 items-center m-1 pl-2 bg-red-400 justify-around
 }
 #divPrueba{
-	@apply w-48 h-70 flex flex-col }
+	@apply w-full h-70 flex flex-col }
+
 #inputPrueba{
 	@apply flex w-44 h-h48  rounded-xl border-solid border-1 border-secundario2 
 }

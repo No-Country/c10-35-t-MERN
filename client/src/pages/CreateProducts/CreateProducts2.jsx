@@ -208,10 +208,15 @@ const CreateProducts2 = () => {
 		setDataToEdit(null)
 	}
 
+	
 	return (
 		<>
-			<div className='w-373 h-812  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'>
-				<div className='md:absolute md:w-714 md:h-920 md:top-52 md:left-297 bg-white '>
+			<div 
+			className='w-373 h-812  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'
+			>
+				<div
+				 className='md:absolute md:w-714 md:h-920 md:top-52 md:left-297 bg-white '
+				>
 					<Headings />
 
 					{/* -----------subtitulos en desktop----------- */}
@@ -225,15 +230,16 @@ const CreateProducts2 = () => {
 					{/* --------------contenedor de fomulario--------------- */}
 
 					<div className=''>
+
 						<form onSubmit={handleSubmit}>
 							{/* -------contenerdor de inputs----- */}
 
 							<div
 								className='
-		w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'
+		w-full h-469  mt-343 left-0 bg-orange-500 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280 '
 							>
 								{/* --------------input nombre------------- */}
-								<div className=' w-341 h-88 flex flex-col m-1 pl-2 gap-2 items-center md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
+								<div className=' w-full h-88 flex flex-col m-1 pl-2 gap-2 items-center md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
 									<div>
 										<div className='flex flex-col ml-25 pl-2'>
 											<label className='w-48 h-6 text-start'>Nombre</label>
@@ -254,7 +260,7 @@ const CreateProducts2 = () => {
 										)}
 									</div>
 								</div>
-								<div className='flex flex-col justify-center items-center w-screen'>
+								<div className='flex flex-col justify-center items-center w-full bg-white'>
 									{/* -------------------primer grupo--------------- */}
 
 									<div id='groupInput'>
@@ -419,6 +425,7 @@ const CreateProducts2 = () => {
 					</div>
 				</div>
 			</div>
+		
 		</>
 	)
 }
