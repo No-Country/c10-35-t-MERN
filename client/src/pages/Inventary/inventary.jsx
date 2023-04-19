@@ -12,16 +12,33 @@ import { useLocation } from 'react-router'
 
 const categories = [
 	{
-		id: 1,
-		title: 'Verduras',
-		stock: '12',
+		id: 'Vegetales',
+		title: 'Vegetales',
+		stock: '20',
 		price: '1600',
-		
 	},
 	{
-		id: 2,
+		id: 'Snacks',
+		title: 'Snacks',
+		stock: '17',
+		price: '1500',
+	},
+	{
+		id: 'Lacteos',
+		title: 'Lacteos',
+		stock: '11',
+		price: '1500',
+	},
+	{
+		id: 'Limpieza',
+		title: 'Limpieza',
+		stock: '11',
+		price: '1500',
+	},
+	{
+		id: 'Bebidas',
 		title: 'Bebidas',
-		stock: '13',
+		stock: '11',
 		price: '1500',
 	},
 ]
@@ -35,7 +52,7 @@ const products = [
 		idCategory: 2,
 		nameCategory: 'Bebidas',
 		minStock: 30,
-		unidades: 'Lts'
+		unidades: 'Lts',
 	},
 	{
 		id: 2,
@@ -45,7 +62,7 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 20,
-		unidades: 'unidades'
+		unidades: 'unidades',
 	},
 	{
 		id: 3,
@@ -55,7 +72,7 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 10,
-		unidades: 'unidades'
+		unidades: 'unidades',
 	},
 	{
 		id: 4,
@@ -65,7 +82,7 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 5,
-		unidades: 'unidades'
+		unidades: 'unidades',
 	},
 	{
 		id: 5,
@@ -75,7 +92,7 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 7,
-		unidades: 'unidades'
+		unidades: 'unidades',
 	},
 ]
 
@@ -85,15 +102,9 @@ export const Inventary = () => {
 		category: '',
 	})
 
-	const location=useLocation();
+	const location = useLocation()
 
-	const idProduct = location.state===null? 0 : location.state.idProduct;
-
-	
-    
-
-	
-	
+	const idProduct = location.state === null ? 0 : location.state.idProduct
 
 	return (
 		<div className='flex flex-col w-full gap-5'>
@@ -102,14 +113,13 @@ export const Inventary = () => {
 			<div className='grid grid-cols-6 grid-rows-1 gap-1 px-4 h-160 w-full md:grid-cols-12 md:grid-rows-2'>
 				<div className='col-span-5 row-span-1 w-full h-48 md:col-span-8 xl:col-span-9'>
 					<div>
-					<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
-					<CategoryData
-						categoryNumber={8}
-						totalUnits={960}
-						totalPrice={580000}
-					/> 
+						<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
+						<CategoryData
+							categoryNumber={8}
+							totalUnits={960}
+							totalPrice={580000}
+						/>
 					</div>
-					
 				</div>
 
 				<div className='col-span-1 row-span-1 md:col-span-1'>
@@ -118,11 +128,9 @@ export const Inventary = () => {
 					</div>
 				</div>
 				<div className='hidden h-48 md:block md:row-span-1 md:col-span-3 xl:col-span-2'>
-
 					<div className='flex justify-center items-center'>
 						<BtnAddProductResponsive />
 					</div>
-					
 				</div>
 			</div>
 
