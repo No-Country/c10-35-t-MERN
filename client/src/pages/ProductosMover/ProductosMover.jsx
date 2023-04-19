@@ -31,7 +31,7 @@ function ProductosMover() {
 
 
 			{/* --------------------------------- Cards de movimiento */}
-			<div className='flex flex-col items-center gap-y-5 mb-2'>
+			<div className='flex flex-col items-center gap-y-5 mb-44 md:mb-24'>
 				<CardProductConfirmMovimiento/>
 				<CardProductConfirmMovimiento/>
 				<CardProductConfirmMovimiento/>
@@ -41,8 +41,10 @@ function ProductosMover() {
 			</div>
 
 
+			<div className='fixed bottom-0 right-0 bg-white p-4 w-full h-20 flex items-center mb-20 md:mb-0'>
+				<BtnConfirmarMovimiento/>
+			</div>
 
-			<BtnConfirmarMovimiento/>
 			<NavbarMobile/>
 
 

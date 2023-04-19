@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom'
 import  polloFallo from '../../assets/polloFallo.png'
-const ModalFallaCarga = () => {
+const ModalFallaCarga = (setVisible) => {
   return (
     <section
     id='modal'
@@ -17,16 +17,17 @@ const ModalFallaCarga = () => {
         >
             ¡Ups algo salio mal!
         </h3>
+        <p className='font-secundaria font-normal text-sm  text-secundario'>
+        Los productos no pudieron ser creados , por favor revisa si todos los campos del formato están correctamente llenados.
+        </p>
         <img
             src={polloFallo}
             alt='imagenEc¿xitosa'
             className='w-16 h-93 flex-none order-1 grow-0'
         />
-        <p className='font-secundaria font-normal text-sm  text-secundario'>
-        Los productos no pudieron ser creados , por favor revisa si todos los campos del formato están correctamente llenados.
-        </p>
         <Link to={'/inicio'} className='flex-none order-2 grow-0'>
-            <button className='w-40 h-h48 top-200 left-67 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center'>
+            <button onClick={()=>setVisible(false)}
+            className='w-40 h-h48 top-200 left-67 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center'>
                 <div className='text-white w-16 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0 order-none '>
                     aceptar
                 </div>

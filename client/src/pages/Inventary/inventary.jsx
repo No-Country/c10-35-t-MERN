@@ -7,7 +7,8 @@ import { CategoryListContainer } from '../../components/CategoryProducts/Categor
 import { ProductsContainer } from '../../components/Product/ProductsContainer'
 import { RiFilter2Fill } from 'react-icons/ri'
 import { CategoryData } from '../../components/CategoryCard/CategoryData'
-import { BtnAddProduct } from '../../components/Buttons/BtnAddProduct'
+import { BtnAddProductResponsive } from '../../components/Buttons/BtnAddProductResponsive'
+import { useLocation } from 'react-router'
 
 const categories = [
 	{
@@ -15,6 +16,7 @@ const categories = [
 		title: 'Verduras',
 		stock: '12',
 		price: '1600',
+		
 	},
 	{
 		id: 2,
@@ -31,6 +33,9 @@ const products = [
 		stock: '12',
 		price: '1600',
 		idCategory: 2,
+		nameCategory: 'Bebidas',
+		minStock: 30,
+		unidades: 'Lts'
 	},
 	{
 		id: 2,
@@ -38,6 +43,9 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 20,
+		unidades: 'unidades'
 	},
 	{
 		id: 3,
@@ -45,6 +53,9 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 10,
+		unidades: 'unidades'
 	},
 	{
 		id: 4,
@@ -52,6 +63,9 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 5,
+		unidades: 'unidades'
 	},
 	{
 		id: 5,
@@ -59,6 +73,9 @@ const products = [
 		stock: '10',
 		price: '20',
 		idCategory: 1,
+		nameCategory: 'Verduras',
+		minStock: 7,
+		unidades: 'unidades'
 	},
 ]
 
@@ -68,24 +85,53 @@ export const Inventary = () => {
 		category: '',
 	})
 
+	const location=useLocation();
+
+	const idProduct = location.state===null? 0 : location.state.idProduct;
+
+	
+    
+
+	
+	
+
 	return (
 		<div className='flex flex-col w-full gap-5'>
 			<Navbar navBarTile='Inventario' />
 
-			<div className='flex px-4 w-full'>
-				<div className='w-full lg:w-pr80'>
+			<div className='grid grid-cols-6 grid-rows-1 gap-1 px-4 h-160 w-full md:grid-cols-12 md:grid-rows-2'>
+				<div className='col-span-5 row-span-1 w-full h-48 md:col-span-8 xl:col-span-9'>
+					<div>
 					<TextBoxWithIcon setFilter={setFilter} filter={{ ...filter }} />
-					<CategoryData categoryNumber={8} totalUnits={960} totalPrice={580000}/>
+					<CategoryData
+						categoryNumber={8}
+						totalUnits={960}
+						totalPrice={580000}
+					/> 
+					</div>
+					
 				</div>
-				<div className='h-48 flex justify-center items-center pl-3.5 pr-3 lg:w-pr10'>
-					<RiFilter2Fill />
+
+				<div className='col-span-1 row-span-1 md:col-span-1'>
+					<div className='h-48 w-full flex justify-center items-center pl-3.5 pr-3 lg:w-pr10'>
+						<RiFilter2Fill />
+					</div>
 				</div>
-				<div className='invisible lg:visible'>
-					<BtnAddProduct />
+				<div className='hidden h-48 md:block md:row-span-1 md:col-span-3 xl:col-span-2'>
+
+					<div className='flex justify-center items-center'>
+						<BtnAddProductResponsive />
+					</div>
+					
 				</div>
 			</div>
 
-			<h2 className='w-full text-left ml-4 text-secundario'>Categorías</h2>
+			{/* 	*/}
+
+			<div className='ml-4'>
+				<h2 className='w-full text-left  text-secundario'>Categorías</h2>
+			</div>
+
 			<CategoryListContainer
 				categoriesList={categories}
 				setFilter={setFilter}
@@ -95,6 +141,7 @@ export const Inventary = () => {
 			<ProductsContainer
 				productsList={products}
 				filterProduct={{ ...filter }}
+				idProduct={idProduct}
 			/>
 
 			<NavbarMobile />

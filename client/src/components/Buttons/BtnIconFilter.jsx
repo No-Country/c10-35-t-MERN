@@ -6,7 +6,7 @@ import React from 'react'
 
 function BtnIconFilter() {
     return (
-        <button type="submit">
+        <button type="">
             <HiOutlineFilter className='text-xl'/>
         </button>
     )

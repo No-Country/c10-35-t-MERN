@@ -2,7 +2,7 @@
 
 
 const Subtitles = ({formData}) => {
-	const {cantidad,categorias}=formData
+	const {cantidad,categorias,costo}=formData
 	
 
 
@@ -24,7 +24,7 @@ const Subtitles = ({formData}) => {
 							<h3 className='text-acento md:h-5 md:flex md:items-center'>
 								valor total
 							</h3>
-							<div className='text-secundario md:h-4'> {}</div>
+							<div className='text-secundario md:h-4'>$ {cantidad * costo}</div>
 						</div>
 					</div>
   )

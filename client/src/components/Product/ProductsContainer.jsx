@@ -3,7 +3,7 @@ import { BtnAddProduct } from '../Buttons/BtnAddProduct'
 import { ProductStockCard } from './ProductStockCard'
 import { RiArrowDownSFill } from 'react-icons/ri';
 
-export const ProductsContainer = ({ productsList, filterProduct }) => {
+export const ProductsContainer = ({ productsList, filterProduct, idProduct }) => {
 	const filteredProduct = () => {
 		return productsList
 			.filter(product => {
@@ -19,24 +19,24 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 	}
 
 	return (
-		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120 lg:bg-white'>
+		<div className='w-full bg-primario pb-24 px-18 rounded-tl-24 rounded-tr-120 md:bg-white lg:pb-0'>
 			<div className='w-full flex justify-between'>
 				<div className='mt-22'>
 					<div>
 						<h2 className='w-full text-secundario'>Lista de productos</h2>
 					</div>
-					<div className='flex h-24 items-center'>
+					<div className='flex h-w24 items-center mt-23 mb-49'>
 						<div className='h-full'>
 							<p className='w-full text-secundario text-left text-f14'>
 								Orden de ingreso
 							</p>
 						</div>
-						<div className='flex text-f14  items-center w-24 h-24 ml-16 text-f20'>
+						<div className='flex items-center w-w24 h-w24 ml-4 '>
 							<RiArrowDownSFill className='text-secundario '/>
 						</div>
 					</div>
 				</div>
-				<div className='mt-23 mb-49 lg:invisible'>
+				<div className='mt-23 mb-49 md:hidden'>
 					<BtnAddProduct />
 				</div>
 			</div>
@@ -49,7 +49,10 @@ export const ProductsContainer = ({ productsList, filterProduct }) => {
 							title={product.title}
 							price={product.price}
 							stock={product.stock}
-							type={i === 0 ? 1 : 0}
+							type={idProduct === product.id? 1:0}
+							nameCategory={product.nameCategory}
+							minStock={product.minStock}
+							unidades={product.unidades}
 						/>
 					)
 				})}

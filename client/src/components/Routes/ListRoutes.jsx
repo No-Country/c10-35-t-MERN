@@ -12,6 +12,7 @@ import ProductosMover from '../../pages/ProductosMover/ProductosMover'
 import { data } from '../../data'
 import RegistroUsuario from '../../pages/Registro-usuario/RegistroUsuario'
 import ModifyProducts from '../../pages/ModifyProduct/ModifyProducts'
+import Prueba from '../CreateProducts/Prueba'
 const ListRoutes = () => {
 	return (
 		<>

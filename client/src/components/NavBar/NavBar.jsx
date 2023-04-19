@@ -1,21 +1,21 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { IoCloseSharp } from 'react-icons/io5'
 import { RiMenuLine } from 'react-icons/ri'
 
-export default function NavBar({iconBack, navBarTile }) {
+export default function NavBar({ iconBack, navBarTile }) {
 	const [navbar, setNavbar] = useState(false)
 
 	return (
-		<nav className='sticky h-16 w-full top-0 left-0 z-50 bg-white text-secundario'>
+		<nav className='sticky h-16 w-full top-0 left-0 z-40 bg-white text-secundario'>
 			<div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8'>
-
-
-
 				<div className='flex items-center justify-between py-3 md:py-5 md:block'>
 					<div className='flex items-center'>
-						<Link to="#" onClick={() => window.history.back()}  className='text-2xl mr-2'>
+						<Link
+							to='#'
+							onClick={() => window.history.back()}
+							className='text-2xl mr-2'
+						>
 							{iconBack}
 						</Link>
 						<Link to={'/inicio'}>
@@ -28,9 +28,6 @@ export default function NavBar({iconBack, navBarTile }) {
 						</button>
 					</div>
 				</div>
-
-
-
 
 				<div>
 					<div
