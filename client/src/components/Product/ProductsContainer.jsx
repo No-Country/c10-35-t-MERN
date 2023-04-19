@@ -52,6 +52,7 @@ export const ProductsContainer = ({ productsList, filterProduct, idProduct }) =>
 							type={idProduct === product.id? 1:0}
 							nameCategory={product.nameCategory}
 							minStock={product.minStock}
+							unidades={product.unidades}
 						/>
 					)
 				})}

@@ -8,6 +8,7 @@ import { ProductsContainer } from '../../components/Product/ProductsContainer'
 import { RiFilter2Fill } from 'react-icons/ri'
 import { CategoryData } from '../../components/CategoryCard/CategoryData'
 import { BtnAddProductResponsive } from '../../components/Buttons/BtnAddProductResponsive'
+import { useLocation } from 'react-router'
 
 const categories = [
 	{
@@ -15,6 +16,7 @@ const categories = [
 		title: 'Verduras',
 		stock: '12',
 		price: '1600',
+		
 	},
 	{
 		id: 2,
@@ -32,7 +34,8 @@ const products = [
 		price: '1600',
 		idCategory: 2,
 		nameCategory: 'Bebidas',
-		minStock: 30
+		minStock: 30,
+		unidades: 'Lts'
 	},
 	{
 		id: 2,
@@ -41,7 +44,8 @@ const products = [
 		price: '20',
 		idCategory: 1,
 		nameCategory: 'Verduras',
-		minStock: 20
+		minStock: 20,
+		unidades: 'unidades'
 	},
 	{
 		id: 3,
@@ -50,7 +54,8 @@ const products = [
 		price: '20',
 		idCategory: 1,
 		nameCategory: 'Verduras',
-		minStock: 10
+		minStock: 10,
+		unidades: 'unidades'
 	},
 	{
 		id: 4,
@@ -59,7 +64,8 @@ const products = [
 		price: '20',
 		idCategory: 1,
 		nameCategory: 'Verduras',
-		minStock: 5
+		minStock: 5,
+		unidades: 'unidades'
 	},
 	{
 		id: 5,
@@ -68,15 +74,23 @@ const products = [
 		price: '20',
 		idCategory: 1,
 		nameCategory: 'Verduras',
-		minStock: 7
+		minStock: 7,
+		unidades: 'unidades'
 	},
 ]
 
-export const Inventary = ({idProduct}) => {
+export const Inventary = () => {
 	const [filter, setFilter] = useState({
 		search: '',
 		category: '',
 	})
+
+	const location=useLocation();
+
+	const idProduct = location.state===null? 0 : location.state.idProduct;
+
+	
+    
 
 	
 	

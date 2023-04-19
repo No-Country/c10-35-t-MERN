@@ -1,8 +1,9 @@
 import React from 'react'
 import leche from '../../assets/leche.png'
 import { RiEdit2Line } from 'react-icons/ri'
+import { Link } from 'react-router-dom'
 
-export const ProductStockCard = ({ title, price, stock, type, nameCategory, minStock }) => {
+export const ProductStockCard = ({ title, price, stock, type, nameCategory, minStock, unidades }) => {
 	const bgColorCard = type === 1 ? 'bg-acento2' : 'bg-white'
 	const textColor = type === 1 ? 'text-white' : 'text-secundario'
 	const textoColorSecondary = type === 1 ? 'text-acento' : 'text-secundario'
@@ -22,9 +23,22 @@ export const ProductStockCard = ({ title, price, stock, type, nameCategory, minS
 								<h3 className={`font-bold text-xl w-full ${textColor}`}>
 									{title}
 								</h3>
+								<Link 
+									state={{
+										title,
+										price,
+										stock, 
+										type, 
+										nameCategory, 
+										minStock
+									}}
+									to={'/modificar-productos'}
+								>
 								<div className={`text-f20 ${iconColor}`}>
 									<RiEdit2Line />
 								</div>
+								</Link>
+								
 							</div>
 
 							<div className='w-full grid grid-cols-4 grid-rows-1 gap-1 lg:grid-cols-12'>
