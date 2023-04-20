@@ -7,9 +7,11 @@ import NavBar from '../../components/NavBar/NavBar'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 import { useEffect, useState } from 'react'
+import useGetData from '../../hooks/UseFetch/UseGetData'
 
 function Reports({ charData }) {
 	const [name, setName] = useState('')
+	const URL = `https://pokeapi.co/api/v2/pokemon/${name || 'pikachu'}`
 
 	return (
 		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
@@ -52,6 +54,7 @@ function Reports({ charData }) {
 									id='pikachu'
 									onClick={e => setName(e.target.id)}
 									name='row1'
+									defaultChecked='true'
 								/>
 								<label
 									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
@@ -95,13 +98,13 @@ function Reports({ charData }) {
 							<div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
-									<CakeChart charData={charData} />
+									<CakeChart charData={charData} url={URL} />
 								</div>
 							</div>
 							<div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white w-full rounded-xl h-16 lg:h-157 p-2 shadow-sombra'>
-									<CakeChart charData={charData} />
+									{/* <CakeChart charData={charData} /> */}
 								</div>
 							</div>
 						</div>
@@ -113,7 +116,7 @@ function Reports({ charData }) {
 								<BarChart charData={charData} />
 							</div>
 							<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
-								<CakeChart charData={charData} />
+								{/* <CakeChart charData={charData} /> */}
 							</div>
 						</article>
 						<article className=' flex flex-col justify-center  text-center w-1/2 lg:w-446'>
