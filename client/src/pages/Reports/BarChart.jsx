@@ -29,25 +29,25 @@ function BarChart({ charData }) {
 			},
 		},
 	]
-	const [userData, setData] = useState({
-		labels: charData.map(el => el.name),
+	const data = {
+		labels: 'data',
 		datasets: [
 			{
 				label: '',
-				data: charData.map(el => el.money),
+				data: charData?.stats?.map(el => el?.base_stat),
 				backgroundColor: '#5507E0',
 				barPercentaje: '0.2',
 				borderWidth: '0',
 			},
 			{
 				label: '',
-				data: charData.map(el => el.money),
+				data: charData?.stats?.map(el => el?.base_stat),
 				backgroundColor: '#C331E3',
 				barPercentaje: '0.2',
 				borderWidth: '0',
 			},
 		],
-	})
+	}
 	const options = {
 		maintainAspectRatio: false,
 		plugins: {
@@ -68,7 +68,7 @@ function BarChart({ charData }) {
 			},
 		},
 	}
-	return <Bar data={userData} options={options} plugins={plugins} />
+	return <Bar data={data} options={options} plugins={plugins} />
 }
 
 export default BarChart

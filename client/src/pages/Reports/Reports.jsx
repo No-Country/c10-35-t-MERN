@@ -11,7 +11,13 @@ import useGetData from '../../hooks/UseFetch/UseGetData'
 
 function Reports({ charData }) {
 	const [name, setName] = useState('')
-	const URL = `https://pokeapi.co/api/v2/pokemon/${name || 'pikachu'}`
+	const URL = `https://pokeapi.co/api/v2/pokemon/${name || 'ditto'}`
+	const URL2 = `https://pokeapi.co/api/v2/pokemon/${name || 'pikachu'}`
+	const { getData, isGetLoading, getError } = useGetData(URL)
+	// const ditto = useGetData(URL)
+	// const pikachu = useGetData(URL2)
+	// console.log(ditto.getData)
+	// console.log(pikachu.getData)
 
 	return (
 		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
@@ -98,31 +104,28 @@ function Reports({ charData }) {
 							<div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
-									<CakeChart charData={charData} url={URL} />
+									<CakeChart charData={getData} url={URL} />
 								</div>
 							</div>
 							<div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white w-full rounded-xl h-16 lg:h-157 p-2 shadow-sombra'>
-									{/* <CakeChart charData={charData} /> */}
+									<CakeChart charData={getData} />
 								</div>
 							</div>
 						</div>
 					</div>
 					<main className='flex bg-primario justify-evenly items-start w-full  gap-2 px-4 py-3 lg:justify-between lg:p-0 lg:bg-white mb-10'>
-						<article className='flex flex-col text-center w-1/2 lg:w-447 '>
+						<article className='flex flex-col text-center w-1/2 lg:w-447 lg:h-300 bg-red-200 '>
 							<h3 className='lg:text-left'>Ingresos y egresos</h3>
-							<div className='bg-white shadow-sombra w-full lg:hidden '>
-								<BarChart charData={charData} />
-							</div>
-							<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
-								{/* <CakeChart charData={charData} /> */}
+							<div className='bg-white shadow-sombra w-full lg:h-full'>
+								<BarChart charData={getData} />
 							</div>
 						</article>
-						<article className=' flex flex-col justify-center  text-center w-1/2 lg:w-446'>
+						<article className=' flex flex-col justify-center  text-center w-1/2 lg:w-446 lg:h-300'>
 							<h3 className='lg:text-left'>Categorias y unidades</h3>
-							<div className='bg-white shadow-sombra w-full '>
-								<CircleChart charData={charData} />
+							<div className='bg-white shadow-sombra w-full lg:h-full  '>
+								<CircleChart charData={getData} />
 							</div>
 						</article>
 					</main>

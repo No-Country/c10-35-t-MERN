@@ -5,8 +5,7 @@ import { Line } from 'react-chartjs-2'
 import useGetData from '../../hooks/UseFetch/UseGetData'
 
 Chartjs.register(LineElement)
-function CakeChart({ url, charData }) {
-	const { getData, isGetLoading, getError } = useGetData(url)
+function CakeChart({ charData }) {
 	const [initialValue, setInitialValue] = useState([10, 20, 15, 30])
 
 	const data = {
@@ -15,7 +14,7 @@ function CakeChart({ url, charData }) {
 		datasets: [
 			{
 				label: '',
-				data: getData?.stats?.map(el => el?.base_stat),
+				data: charData?.stats?.map(el => el?.base_stat),
 				borderCapStyle: 'round',
 				borderWidth: '1',
 				borderColor: function (context) {
