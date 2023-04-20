@@ -24,11 +24,11 @@ export const CategoryListContainer = ({
 		<div className='flex w-full gap-4 my-4 px-4'>
 			<Swiper
 				className='w-full py-2 px-2'
-				modules={[Navigation, Scrollbar, A11y]}
+				modules={[Navigation, A11y]}
 				breakpoints={{
 					350: {
 						slidesPerView: 2,
-						spaceBetween: 5
+						
 					},
 
 					520: {
