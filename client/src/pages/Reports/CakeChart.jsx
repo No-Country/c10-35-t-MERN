@@ -8,7 +8,7 @@ function CakeChart({ charData }) {
 		labels: charData.map(el => el.name),
 		datasets: [
 			{
-				label: '',
+				label: charData.map(el => el.label),
 				data: charData.map(el => el.money),
 				borderCapStyle: 'round',
 				borderWidth: '1',
