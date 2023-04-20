@@ -56,7 +56,7 @@ export const CategoryCard = ({
 	const colorTitle = type === 1 ? 'text-acento' : 'text-secundario'
 
 	return (
-		<motion className='group'>
+		<div className='group'>
 			<div 
 				className={`${bgColorCard} h-176 w-140 rounded-12 p-3 shadow-sombra group-hover:bg-secundario`}
 				onClick={() => {
@@ -95,6 +95,6 @@ export const CategoryCard = ({
 					</div>
 				</div>
 			</div>
-		</motion>
+		</div>
 	)
 }

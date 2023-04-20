@@ -9,7 +9,7 @@ import Subtitles from '../../components/CreateProducts/Subtitles'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 const initialForm = {
-	id: Date.now(),
+	id:'',
 	nombre: '',
 	cantidad: '',
 	costo: '',
@@ -95,12 +95,12 @@ const ModifyProducts = () => {
 		id:location.state.id,
 		nombre: location.state.title,
 		cantidad: location.state.stock,
-		costo:location.state.cost,
-		total:location.state.total,
+		costo:location.state.cost ,
+		total:parseInt(location.state.cost) +500,
 		precio:location.state.price,
-		alerta:location.state.minStock,
+		alerta:location.state.alerta,
 		unidades: location.state.unidades,
-		categorias:location.state.nameCategory,
+		categorias:location.state.idCategory,
 		
 	})
 	const [errors, setErrors] = useState({})
@@ -179,7 +179,7 @@ const ModifyProducts = () => {
 			})
 	}
 
-	const updateData = ()=> {
+	const updateData =()=> {
 		
 		let endpoint = `${urlGet}/${form.id}`
 		
@@ -189,10 +189,11 @@ const ModifyProducts = () => {
 			headers: { 'content-type': 'application/json' },
 		})
 		.then(res => {
+			console.log(form.id)
 			setVisible(true)
 			if (!res.err) {					
-					let newData = db.map(el => (el.id === form.id ? form : el))
-					setDb(newData);					
+					// let newData = db.map(el => (el.id === form.id ? form : el))
+					// setDb(newData);					
 				} else {
 					setResponse(res)
 				}
@@ -210,8 +211,8 @@ const ModifyProducts = () => {
 				.del(endpoint, { headers: { 'content-type': 'application/json' } })
 				.then(res => {
 					if (!res.err) {
-						let newData = db.filter(el => el.id !== id)
-						setDb(newData);
+						// let newData = db.filter(el => el.id !== id)
+						// setDb(newData);
 
 						<ModalProductoModificado idProduct={1} />
 					} else {
@@ -385,20 +386,20 @@ const ModifyProducts = () => {
 													id='inputPrueba'
 													name='categorias'
 													type='text'
-													value={form.categorias}
+													defaultValue={form.categorias}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												>
 													<option id='' value=''>
 														Seleciona Categoria
 													</option>
-													<option id='Vegetales' value=''>
+													<option id='Vegetales' value='Vegetales'>
 														Vegetales
 													</option>
 													<option id='Snacks' value='Snacks'>
 														Snacks
 													</option>
-													<option id='Lacteos' value='	Lacteos'>
+													<option id='Lacteos' value='Lacteos'>
 														Lacteos
 													</option>
 													<option id='Limpieza' value='Limpieza'>
@@ -437,7 +438,7 @@ const ModifyProducts = () => {
 												Guardar
 											</div>
 										</button>
-										{visible ? <ModalProductoModificado idProduct={1} /> : null}
+										{visible ? <ModalProductoModificado idProduct={location.state.id} /> : null}
 
 										{/* {response ? null : (
 										<ModalFallaCarga setVisible={setVisible} />

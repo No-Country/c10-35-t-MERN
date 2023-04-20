@@ -2,22 +2,24 @@
   "data": [
     {
       "id": 1,
-      "nombre": "yerba mate",
-      "cantidad": 500,
-      "costo": 600,
-      "total": 625,
-      "precio": 675,
-      "alerta": 20,
-      "unidades": "unidades"
+      "nombre": "Leche",
+      "cantidad": "12",
+      "costo": "1000",
+      "total": 1500,
+      "precio": "1600",
+      "alerta": "10",
+      "unidades": "Lts",
+      "categorias": "Lacteos"
     },
     {
       "id": 3,
-      "nombre": "Leche",
-      "cantidad": "12",
-      "costo": "",
-      "total": "",
-      "precio": "",
-      "alerta": "",
+      "nombre": "Lechugas",
+      "cantidad": "10",
+      "costo": "9",
+      "total": 509,
+      "precio": "20",
+      "alerta": "10",
+      "unidades": "unidades",
       "categorias": ""
     },
     {
@@ -32,13 +34,14 @@
     },
     {
       "id": 5,
-      "nombre": "saquitosTe",
-      "cantidad": 150,
-      "costo": 75,
-      "total": 80,
-      "precio": 95,
-      "alerta": 10,
-      "unidades": "unidades"
+      "nombre": "Lechuguin",
+      "cantidad": "10",
+      "costo": "13",
+      "total": 513,
+      "precio": "20",
+      "alerta": "10",
+      "unidades": "unidades",
+      "categorias": "Vegetales"
     },
     {
       "nombre": "fideos",
@@ -602,6 +605,61 @@
       "unidades": "Lts",
       "categorias": "Bebidas",
       "id": 1681947583036
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "12",
+      "costo": "1000",
+      "total": 1500,
+      "precio": "1600",
+      "alerta": "10",
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583037
+    },
+    {
+      "nombre": "Lechuga",
+      "cantidad": "10",
+      "costo": "10",
+      "total": 510,
+      "precio": "20",
+      "alerta": "10",
+      "unidades": "unidades",
+      "categorias": "Vegetales",
+      "id": 1681947583038
+    },
+    {
+      "nombre": "Lechuga-1",
+      "cantidad": "10",
+      "costo": "9",
+      "total": 509,
+      "precio": "20",
+      "alerta": "10",
+      "unidades": "unidades",
+      "categorias": "\tLacteos",
+      "id": 1681947583039
+    },
+    {
+      "nombre": "Lechuga-2",
+      "cantidad": "10",
+      "costo": "8",
+      "total": 508,
+      "precio": "20",
+      "alerta": "10",
+      "unidades": "unidades",
+      "categorias": "\tLacteos",
+      "id": 1681947583040
+    },
+    {
+      "id": 2,
+      "nombre": "Lechuga",
+      "cantidad": "10",
+      "costo": "10",
+      "total": 510,
+      "precio": "20",
+      "alerta": "10",
+      "unidades": "unidades",
+      "categorias": "Vegetales"
     }
   ]
 }

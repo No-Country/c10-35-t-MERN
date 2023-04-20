@@ -4,7 +4,7 @@ import { RiEdit2Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
 export const ProductStockCard = ({
-	key,
+	id,
 	title,
 	stock,
 	cost,
@@ -36,7 +36,7 @@ export const ProductStockCard = ({
 								</h3>
 								<Link
 									state={{
-										key,
+										id,
 										title,
 										stock,
 										unidades,
