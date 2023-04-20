@@ -5,6 +5,9 @@ import React, { useState } from 'react'
 // -------- Images
 import oreo from '../../assets/oreo.jpeg'
 
+import { BiPlusMedical } from 'react-icons/bi';
+import { ImMinus } from 'react-icons/im';
+import BtnCargar from '../Buttons/BtnCargar';
 
  
 
@@ -37,22 +40,36 @@ export default function CardProductCountMobile() {
 
 
 
-            <div className='flex flex-col gap-2 justify-around'>
-                <h3>Galleta Oreo Mobile </h3>
-                <div>
-                    <div className='flex gap-x-3 justify-end mb-2'>
-                        <button onClick={decrement} className='bg-secundario text-white h-8 w-8 rounded-full font-bold text-3xl flex justify-center items-center'>-</button>
-                        <input type="number" value={valor} onChange={handleInput} className='bg-primario text-center rounded-lg w-24'/>
-                        <button onClick={increment} className='bg-secundario text-white h-8 w-8 rounded-full font-bold text-3xl flex justify-center items-center'>+</button>
+
+            <div className='flex flex-col justify-center md:flex-row md:justify-between items-center w-full'>
+
+
+                <div className='w-full flex flex-col items-end md:items-start mb-4 md:mb-0'>
+                    <h3 className=''>Galleta Oreo</h3>
+                    <div className='flex justify-end md:justify-between w-full'>
+                        <p className='hidden md:block'><span className='font-bold mr-2'>Total:</span>$ {valor}</p>
+                        <p className=''><span className='font-bold mr-2'>Total unid:</span>{valor}</p>
                     </div>
-                    <p className='flex justify-end'><span className='font-bold mr-2'>Total:</span>${valor}</p>
+                </div>
+
+
+                <div className='w-full flex justify-end md:flex-col md:items-end'>
+                    <div className='flex'>
+                        <button onClick={decrement} className='bg-secundario text-white h-8 w-8 rounded-full font-bold text-xl flex justify-center items-center md:mt-7'><ImMinus/></button>
+                        <div className=''>
+                            <p className='font-bold mb-1 hidden md:block'>Ingresos</p>
+                            <input type="number" value={valor} onChange={handleInput} className='bg-primario text-center rounded-lg w-24 mx-2 py-1'/>
+                        </div>
+                        <button onClick={increment} className='bg-secundario text-white h-8 w-8 rounded-full font-bold text-xl flex justify-center items-center md:mt-7'><BiPlusMedical/></button>
+                    </div>
+                    <div className='hidden w-24 md:flex md:mr-10 md:mt-2'>
+                        <BtnCargar/>
+                    </div>
                 </div>
             </div>
 
 
 
-            
         </div>
     )
 }
-

@@ -5,7 +5,6 @@ import React from 'react'
 import { AiFillCaretDown } from 'react-icons/ai';
 
 import CardProductCountMobile from '../Cards/CardProductCountMobile'
-import CardProductCountDesktop from '../Cards/CardProductCountDesktop';
 import BtnIconAddProduct from '../Buttons/BtnIconAddProduct';
 
 function SectionListaProductos() {
@@ -22,20 +21,10 @@ function SectionListaProductos() {
             </div>
 
 
-            {/* ----- Cards */}
-            <div className='flex flex-col gap-y-5 md:hidden'>
+            <div className='flex flex-col gap-y-5'>
                 <CardProductCountMobile/>
                 <CardProductCountMobile/>
                 <CardProductCountMobile/>
-                <CardProductCountMobile/>
-                <CardProductCountMobile/>
-            </div>
-            <div className='hidden md:flex flex-col gap-y-5 '>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
             </div>
         </>
     )
