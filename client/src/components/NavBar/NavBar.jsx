@@ -8,8 +8,8 @@ export default function NavBar({ iconBack, navBarTile }) {
 
 	return (
 		<nav className='sticky h-16 w-full top-0 left-0 z-40 bg-white text-secundario'>
-			<div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8'>
-				<div className='flex items-center justify-between py-3 md:py-5 md:block'>
+			<div className='justify-between mx-auto lg:max-w-7xl md:items-center md:flex md:pr-8'>
+				<div className='flex items-center justify-between px-4 py-3 md:py-5 md:block md:px-8'>
 					<div className='flex items-center'>
 						<Link
 							to='#'
@@ -31,64 +31,61 @@ export default function NavBar({ iconBack, navBarTile }) {
 
 				<div>
 					<div
-						className={`flex-1 justify-self-center  pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+						className={`flex-1 justify-self-center pb-3 md:block md:pb-0 ${
 							navbar ? 'h-screen' : 'hidden'
 						}`}
 					>
-						<ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
-							<li className='text-gray-600 hover:text-blue-600'>
+						<ul className='items-center justify-center space-y-8 text-secundario bg-white md:flex md:space-x-6 md:space-y-0'>
+							<li className='hover:text-acento transition delay-75'>
 								<NavLink
 									className={({ isActive }) => {
-										return isActive ? 'text-red-500' : undefined
+										return isActive ? 'text-acento' : undefined
 									}}
 									to='/perfil'
 									onClick={() => setNavbar(!navbar)}
 								>
-									Perfil
+									<h4>
+										Perfil
+									</h4>
 								</NavLink>
 							</li>
-							<li className='text-gray-600 hover:text-blue-600'>
+							<li className='hover:text-acento transition delay-75'>
 								<NavLink
 									className={({ isActive }) => {
-										return isActive ? 'text-red-500' : undefined
-									}}
-									to='/reportes'
-									onClick={() => setNavbar(!navbar)}
-								>
-									Reportes
-								</NavLink>
-							</li>
-							<li className='text-gray-600 hover:text-blue-600'>
-								<NavLink
-									className={({ isActive }) => {
-										return isActive ? 'text-red-500' : undefined
+										return isActive ? 'text-acento' : undefined
 									}}
 									to='/configuracion'
 									onClick={() => setNavbar(!navbar)}
 								>
-									Configuración
+									<h4>
+										Configuración
+									</h4>
 								</NavLink>
 							</li>
-							<li className='text-gray-600 hover:text-blue-600'>
+							<li className='hover:text-acento transition delay-75'>
 								<NavLink
 									className={({ isActive }) => {
-										return isActive ? 'text-red-500' : undefined
+										return isActive ? 'text-acento' : undefined
 									}}
 									to='/detalles'
 									onClick={() => setNavbar(!navbar)}
 								>
-									Detalle compañia
+									<h4>
+										Nosotros
+									</h4>
 								</NavLink>
 							</li>
-							<li className='text-gray-600 hover:text-blue-600'>
+							<li className='hover:text-acento transition delay-75 pb-6 md:pb-0'>
 								<NavLink
 									className={({ isActive }) => {
-										return isActive ? 'text-red-500' : undefined
+										return isActive ? 'text-acento' : undefined
 									}}
 									to='/logout'
 									onClick={() => setNavbar(!navbar)}
 								>
-									Cerrar sesión
+									<h4>
+										Cerrar sesión
+									</h4>
 								</NavLink>
 							</li>
 						</ul>
