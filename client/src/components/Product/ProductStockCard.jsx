@@ -3,7 +3,7 @@ import leche from '../../assets/leche.png'
 import { RiEdit2Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
-export const ProductStockCard = ({ title, price, stock, type, nameCategory, minStock, unidades }) => {
+export const ProductStockCard = ({ title, price, stock, type, nameCategory, minStock, unidades,cost,total }) => {
 	const bgColorCard = type === 1 ? 'bg-acento2' : 'bg-white'
 	const textColor = type === 1 ? 'text-white' : 'text-secundario'
 	const textoColorSecondary = type === 1 ? 'text-acento' : 'text-secundario'
@@ -30,7 +30,10 @@ export const ProductStockCard = ({ title, price, stock, type, nameCategory, minS
 										stock, 
 										type, 
 										nameCategory, 
-										minStock
+										minStock,
+										unidades,
+										cost,
+										total
 									}}
 									to={'/modificar-productos'}
 								>

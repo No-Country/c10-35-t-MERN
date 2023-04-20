@@ -53,6 +53,8 @@ export const ProductsContainer = ({ productsList, filterProduct, idProduct }) =>
 							nameCategory={product.nameCategory}
 							minStock={product.minStock}
 							unidades={product.unidades}
+							cost={product.cost}
+							total={product.total}
 						/>
 					)
 				})}

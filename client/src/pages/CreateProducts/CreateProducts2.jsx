@@ -1,15 +1,17 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
 import { useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 import Subtitles from '../../components/CreateProducts/Subtitles'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import Headings from '../../components/CreateProducts/Headings'
 import ModalExcel from '../../components/Modals/ModalExcel'
 import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
+import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 const initialForm = {
 	id: Date.now(),
@@ -89,18 +91,23 @@ const validationsForm = (form, name) => {
 	return errors
 }
 
+
 const CreateProducts2 = () => {
+
+	const location=useLocation();
+	const idProduct = location.state===null? 0 : location.state.idProduct;
+
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState(null)
-
-	const [dataToEdit, setDataToEdit] = useState(null)
+	// const [dataToEdit, setDataToEdit] = useState(null)
 	const [modal, setModal] = useState(false)
 
 	const crud = helpFetch()
-	const urlGet = 'http://localhost:3000/data'
+	const urlGet = 'http://localhost:3000/data';
+
 	useEffect(() => {
 		fetch(urlGet).then(res => {
 			if (!res.err) {
@@ -141,7 +148,8 @@ const CreateProducts2 = () => {
 				.then(res => {
 					console.log(res)
 					setResponse(true)
-					setForm(initialForm)
+					setForm(initialForm);
+					<ModalFallaCarga setVisble={setVisible}/>
 				})
 
 			return
@@ -151,10 +159,10 @@ const CreateProducts2 = () => {
 		} else {
 			return updateData(form)
 		}
-		
 	}
 
 	const createData = data => {
+
 		crud
 			.post(urlGet, {
 				body: data,
@@ -162,282 +170,284 @@ const CreateProducts2 = () => {
 			})
 			.then(res => {
 				if (!res.err) {
-					setDb([...db, res])
-				} else setResponse(res)
-			})
-	}
+					setDb([...db, res]);
 
-	const updateData = data => {
-		let endpoint = `${urlGet}/${data.id}`
-
-		crud
-			.put(endpoint, {
-				body: data,
-				headers: { 'content-type': 'application/json' },
-			})
-			.then(res => {
-				if (!res.err) {
-					let newData = db.map(el => (el.id === data.id ? data : el))
-					setDb(newData)
+					<ModalProductocargado
+					texto={'Productos cargados exitosamente!'}
+					idProduct={idProduct}
+				/>
 				} else {
-					setResponse(res)
+					setResponse(res);
+					<ModalFallaCarga/>
 				}
+
+				// duda los modales los pongo en la funcion de peticiones o las pongo como rendercond -response?modalcragadp:modalfallacarga 
 			})
 	}
 
-	const deleteData = id => {
-		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
+	// const updateData = data => {
+	// 	let endpoint = `${urlGet}/${data.id}`
 
-		if (isDelete) {
-			let endpoint = `${urlGet}/${id}`
-
-			crud
-				.del(endpoint, { headers: { 'content-type': 'application/json' } })
-				.then(res => {
-					if (!res.err) {
-						let newData = db.filter(el => el.id !== id)
-						setDb(newData)
-					} else {
-						setResponse(res)
-					}
-				})
-		}
-	}
-	// const handleReset = e => {
-	// 	setForm(initialForm)
-	// 	setDataToEdit(null)
+	// 	crud
+	// 		.put(endpoint, {
+	// 			body: data,
+	// 			headers: { 'content-type': 'application/json' },
+	// 		})
+	// 		.then(res => {
+	// 			if (!res.err) {
+	// 				let newData = db.map(el => (el.id === data.id ? data : el))
+	// 				setDb(newData)
+	// 			} else {
+	// 				setResponse(res)
+	// 			}
+	// 		})
 	// }
+
+	// const deleteData = id => {
+	// 	let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
+
+	// 	if (isDelete) {
+	// 		let endpoint = `${urlGet}/${id}`
+
+	// 		crud
+	// 			.del(endpoint, { headers: { 'content-type': 'application/json' } })
+	// 			.then(res => {
+	// 				if (!res.err) {
+	// 					let newData = db.filter(el => el.id !== id)
+	// 					setDb(newData)
+	// 				} else {
+	// 					setResponse(res)
+	// 				}
+	// 			})
+	// 	}
+	// }
+	
 
 	return (
 		<>
-			<div className=' w-373 h-fit md:absolute md:w-full md:h-920 md:ml-24 md:bg-fondoT'>
+			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
+				<NavbarDesktop/>
+				<div className='w-373 h-full md:absolute md:w-full md:h-1024 md:flex md:justify-center md:bg-fondoT'>
+					<div
+						className='md:bg-white
+				md:absolute md:w-714 md:top-4 md:h-888 md:botton-4 md:ml-408'
+					>
+						<Headings />
 
-				<div className='md:bg-white
-				md:absolute md:w-714 md:top-4 md:h-850 md:botton-4 md:ml-408'>
+						{/* -----------subtitulos en desktop----------- */}
 
-					<Headings/>
+						<Subtitles formData={form} />
 
-					{/* -----------subtitulos en desktop----------- */}
+						{/* ----------------contendor de imagen------------ */}
 
-					<Subtitles formData={form} />
+						<BoxImage />
 
-					{/* ----------------contendor de imagen------------ */}
+						{/* --------------contenedor de fomulario--------------- */}
 
-					<BoxImage />
-
-					{/* --------------contenedor de fomulario--------------- */}
-
-					
-						<form onSubmit={handleSubmit} className='' >
-							
+						<form onSubmit={handleSubmit} className=''>
 							<div
-
-			// {/* ----------esto engloba impus de nombre y grupo-------- */} 
-			className='
+								// {/* ----------esto engloba impus de nombre y grupo-------- */}
+								className='
 		w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4	
 		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16 md:mt-240'
-		>		
-	
-			{/* --------------input nombre------------- */}
-			<div className=' w-full h-24 items-start '>
-				<div className='h-24 md:h-20'>
-					<div className='grid pr-1 pl-3 '>
-						<label className='w-full h-6  md:h-5 md:mb-1 text-start'>Nombre</label>
-						<input
-							type='text'
-							id='nombre'
-							name='nombre'
-							value={form.nombre}
-							onBlur={handleBlur}
-							onChange={handleChange}
-							className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
-						></input>
-					</div>
-					{errors.nombre && (
-						<p id='msgerror' className='ml-4'>
-							{errors.nombre}
-						</p>
-					)}
-					
-				</div>
-			</div>
-			<div className='flex flex-col justify-center items-center w-full'>
-				{/* -------------------primer grupo--------------- */}
-
-				<div id='groupInput'>
-					<div className=' h-32'>
-						<div id='divPrueba' className=''>
-							<label id='labelPrueba'>Cantidad</label>
-							<input
-								id='inputPrueba'
-								type='number'
-								name='cantidad'
-								value={form.cantidad}
-								onBlur={handleBlur}
-								onChange={handleChange}
-							></input>
-						</div>
-						{errors.cantidad && <p id='msgerror'>{errors.cantidad}</p>}
-					
-					</div>
-					<div className=' h-32'>
-						<div id='divPrueba'>
-							<label id='labelPrueba'>Seleciona la unidad</label>
-							<select
-								id='inputPrueba'
-								name='unidades'
-								onChange={handleChange}
 							>
-								<option id='' value=''>
-									Seleciona unidad
-								</option>
-								<option id='unidades' value='unidades'>
-									Unidades
-								</option>
-								<option id='Kg' value='Kg'>
-									Kg
-								</option>
-								<option id='Mts' value='Mts'>
-									Mts
-								</option>
-								<option id='Lts' value='Lts'>
-									Lts
-								</option>
-							</select>
-						</div>
-						{errors.unidades && <p id='msgerror'>{errors.unidades}</p>}
-						
-					</div>
-				</div>
+								{/* --------------input nombre------------- */}
+								<div className=' w-full h-24 items-start '>
+									<div className='h-24 md:h-20'>
+										<div className='grid pr-1 pl-3 '>
+											<label className='w-full h-6  md:h-5 md:mb-1 text-start'>
+												Nombre
+											</label>
+											<input
+												type='text'
+												id='nombre'
+												name='nombre'
+												value={form.nombre}
+												onBlur={handleBlur}
+												onChange={handleChange}
+												className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
+											></input>
+										</div>
+										{errors.nombre && (
+											<p id='msgerror' className='ml-4'>
+												{errors.nombre}
+											</p>
+										)}
+									</div>
+								</div>
+								<div className='flex flex-col justify-center items-center w-full'>
+									{/* -------------------primer grupo--------------- */}
 
-				{/* -------------------segundo grupo--------------- */}
+									<div id='groupInput'>
+										<div className=' h-32'>
+											<div id='divPrueba' className=''>
+												<label id='labelPrueba'>Cantidad</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='cantidad'
+													value={form.cantidad}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.cantidad && (
+												<p id='msgerror'>{errors.cantidad}</p>
+											)}
+										</div>
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Seleciona la unidad</label>
+												<select
+													id='inputPrueba'
+													name='unidades'
+													onChange={handleChange}
+												>
+													<option id='' value=''>
+														Seleciona unidad
+													</option>
+													<option id='unidades' value='unidades'>
+														Unidades
+													</option>
+													<option id='Kg' value='Kg'>
+														Kg
+													</option>
+													<option id='Mts' value='Mts'>
+														Mts
+													</option>
+													<option id='Lts' value='Lts'>
+														Lts
+													</option>
+												</select>
+											</div>
+											{errors.unidades && (
+												<p id='msgerror'>{errors.unidades}</p>
+											)}
+										</div>
+									</div>
 
-				<div id='groupInput' className=''>
-					<div className=' h-32'>
-						<div id='divPrueba'>
-							<label id='labelPrueba'>Costo unitario</label>
-							<input
-								id='inputPrueba'
-								type='number'
-								name='costo'
-								value={form.costo}
-								onBlur={handleBlur}
-								onChange={handleChange}
-							></input>
-						</div>
-						{errors.costo && <p id='msgerror'>{errors.costo}</p>}
-						
-					</div>
-					<div className='h-32'>
-						<div id='divPrueba'>
-							<label id='labelPrueba'>Costo total</label>
-							<input
-								id='inputPrueba'
-								type='number'
-								name='total'
-								value={form.total}
-								onBlur={handleBlur}
-								onChange={handleChange}
-							></input>
-						</div>
-						{errors.total && <p id='msgerror'>{errors.total}</p>}						
-					</div>
-				</div>
-				{/* -------------------tercer grupo--------------- */}
+									{/* -------------------segundo grupo--------------- */}
 
-				<div id='groupInput'>
-					<div className=' h-32'>
-						<div id='divPrueba'>
-							<label id='labelPrueba'>Precio</label>
-							<input id='inputPrueba'
-							type='number'
-							name='precio'
-							value={form.precio}
-							onBlur={handleBlur}
-							onChange={handleChange}	>
-								
-							</input>
-						</div>
-						{errors.precio && <p id='msgerror'>{errors.precio}</p>}
-						
-					</div>
+									<div id='groupInput' className=''>
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Costo unitario</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='costo'
+													value={form.costo}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.costo && <p id='msgerror'>{errors.costo}</p>}
+										</div>
+										<div className='h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Costo total</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='total'
+													value={form.total}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.total && <p id='msgerror'>{errors.total}</p>}
+										</div>
+									</div>
+									{/* -------------------tercer grupo--------------- */}
 
-					<div className=' h-32'>
-						<div id='divPrueba'>
-							<label id='labelPrueba'>Categoria</label>
+									<div id='groupInput'>
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Precio</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='precio'
+													value={form.precio}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.precio && <p id='msgerror'>{errors.precio}</p>}
+										</div>
 
-							<select
-								id='inputPrueba'
-								name='categorias'
-								type='text'
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Categoria</label>
 
-								value={form.categorias}
-								onBlur={handleBlur}
-								onChange={handleChange}
-							>
-								<option id='' value=''>
-									Seleciona Categoria
-								</option>
-								<option id='Vegetales' value=''>
-									Vegetales
-								</option>
-								<option id='Snacks' value='Snacks'>
-									Snacks
-								</option>
-								<option id='Lacteos' value='	Lacteos'>
-									Lacteos
-								</option>
-								<option id='Limpieza' value='Limpieza'>
-									Limpieza
-								</option>
-								<option id='Bebidas' value='Bebidas'>
-									Bebidas
-								</option>
-							</select>
-						</div>
-						{errors.categoria && <p id='msgerror'>{errors.categoria}</p>}
-						
-					</div>
-				</div>
+												<select
+													id='inputPrueba'
+													name='categorias'
+													type='text'
+													value={form.categorias}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												>
+													<option id='' value=''>
+														Seleciona Categoria
+													</option>
+													<option id='Vegetales' value=''>
+														Vegetales
+													</option>
+													<option id='Snacks' value='Snacks'>
+														Snacks
+													</option>
+													<option id='Lacteos' value='Lacteos'>
+														Lacteos
+													</option>
+													<option id='Limpieza' value='Limpieza'>
+														Limpieza
+													</option>
+													<option id='Bebidas' value='Bebidas'>
+														Bebidas
+													</option>
+												</select>
+											</div>
+											{errors.categoria && (
+												<p id='msgerror'>{errors.categoria}</p>
+											)}
+										</div>
+									</div>
 
-				{/* --------------------cuarto grupo---------------- */}
-				<div id='groupInput'>
-				<button
-						id='inputPrueba'
-						className='bg-acento2'						
-						onClick={() => setModal(true)}
-					>
-						<div className=' text-primario w-full h-22 font-secundaria not-italic font-bold text-base '>
-							Cargar Excel
-						</div>
-					</button>
+									{/* --------------------cuarto grupo---------------- */}
+									<div id='groupInput'>
+										<button
+											id='inputPrueba'
+											className='bg-acento2'
+											onClick={() => setModal(true)}
+										>
+											<div className=' text-primario w-full h-22 font-secundaria not-italic font-bold text-base '>
+												Cargar Excel
+											</div>
+										</button>
 
-					<button
-						id='inputPrueba'
-						type='submit'
-						value='send'
-						onClick={() => setVisible(true)}
-						className='bg-secundario'
-											>
-						<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
-							Continuar
-						</div>
-					</button>
+										<button
+											id='inputPrueba'
+											type='submit'
+											value='send'
+											onClick={()=>createData()}										
+											className='bg-secundario'
+										>
+											<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
+												Continuar
+											</div>
+										</button>
 
-					{visible ? (
-										<ModalProductocargado
-											texto={'Productos cargados exitosamente!'}
-										/>
-									) : null}
-									{modal ? <ModalExcel setModal={setModal} /> : null} 
-					 {response? null:  <ModalFallaCarga setVisible={setVisible}/>}
-				</div>
-			</div>
-		</div>
-							
-
+									
+										{modal ? <ModalExcel setModal={setModal} /> : null}
+										{/* {setResponse ? null : (
+											<ModalFallaCarga setVisible={setVisible} />
+										)} */}
+									</div>
+								</div>
+							</div>
 						</form>
-					
+					</div>
 				</div>
 			</div>
 		</>

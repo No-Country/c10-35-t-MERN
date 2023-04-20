@@ -35,7 +35,9 @@ const products = [
 		idCategory: 2,
 		nameCategory: 'Bebidas',
 		minStock: 30,
-		unidades: 'Lts'
+		unidades: 'Lts',
+		cost:'1000',
+		total:'6000'
 	},
 	{
 		id: 2,
@@ -45,7 +47,9 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 20,
-		unidades: 'unidades'
+		unidades: 'unidades',
+		cost:'160',
+		total:'320'
 	},
 	{
 		id: 3,
@@ -55,7 +59,9 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 10,
-		unidades: 'unidades'
+		unidades: 'unidades',
+		cost:'200',
+		total:'4000'
 	},
 	{
 		id: 4,
@@ -65,7 +71,9 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 5,
-		unidades: 'unidades'
+		unidades: 'unidades',
+		cost:'150',
+		total:'1500'
 	},
 	{
 		id: 5,
@@ -75,7 +83,9 @@ const products = [
 		idCategory: 1,
 		nameCategory: 'Verduras',
 		minStock: 7,
-		unidades: 'unidades'
+		unidades: 'unidades',
+		cost:'400',
+		total:'14000'
 	},
 ]
 
@@ -88,7 +98,8 @@ export const Inventary = () => {
 	const location=useLocation();
 
 	const idProduct = location.state===null? 0 : location.state.idProduct;
-
+	console.log(useLocation)
+console.log(idProduct)
 	
     
 

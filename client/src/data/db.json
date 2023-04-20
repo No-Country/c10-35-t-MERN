@@ -371,6 +371,237 @@
       "alerta": "",
       "unidades": "Kg",
       "categorias": "Snacks"
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "14",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681929297349
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "14",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681929297350
+    },
+    {
+      "id": 1681942029324,
+      "nombre": "puflitos",
+      "cantidad": "8",
+      "costo": "500",
+      "total": "560",
+      "precio": "600",
+      "alerta": "",
+      "unidades": "unidades",
+      "categorias": "Snacks"
+    },
+    {
+      "id": 1681942209516,
+      "nombre": "puflitos",
+      "cantidad": "8",
+      "costo": "400",
+      "total": "425",
+      "precio": "500",
+      "alerta": "",
+      "unidades": "Kg",
+      "categorias": "Snacks"
+    },
+    {
+      "id": 1681944167693,
+      "nombre": "gaseosa",
+      "cantidad": "78",
+      "costo": "200",
+      "total": "225",
+      "precio": "300",
+      "alerta": "",
+      "unidades": "Lts",
+      "categorias": "Bebidas"
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "17",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Kg",
+      "categorias": "\tLacteos",
+      "id": 1681944167694
+    },
+    {
+      "nombre": "Lechugaprueba",
+      "cantidad": "10",
+      "costo": "200",
+      "total": "4000",
+      "precio": "20",
+      "alerta": 10,
+      "unidades": "Kg",
+      "categorias": "",
+      "id": 1681944167695
+    },
+    {
+      "id": 1681947583023,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "14",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "\tLacteos",
+      "id": 1681947583024
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "17",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583025
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "13",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583026
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "17",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583027
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "19",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583028
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "13",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583029
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "17",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583030
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "19",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583031
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "13",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583032
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "13",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583033
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "19",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583034
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "16",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583035
+    },
+    {
+      "nombre": "Leche",
+      "cantidad": "11",
+      "costo": "1000",
+      "total": "6000",
+      "precio": "1600",
+      "alerta": 30,
+      "unidades": "Lts",
+      "categorias": "Bebidas",
+      "id": 1681947583036
     }
   ]
 }
