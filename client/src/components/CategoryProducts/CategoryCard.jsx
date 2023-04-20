@@ -1,5 +1,14 @@
-import verdura from '../../assets/verdura.png'
-import verdura0 from '../../assets/verdura-0.png'
+import vegetal0 from '../../assets/category/vegetal0.svg';
+import gaseosa0 from '../../assets/category/gaseosa0.svg';
+import lacteos0 from '../../assets/category/Lacteos0.svg';
+import snack0 from '../../assets/category/snack0.svg';
+import limpieza0 from '../../assets/category/Limpieza0.svg';
+
+import vegetal1 from '../../assets/category/vegetal1.svg';
+import gaseosa1 from '../../assets/category/gaseosa1.svg';
+import lacteos1 from '../../assets/category/Lacteos1.svg';
+import snack1 from '../../assets/category/snacks1.svg';
+import limpieza1 from '../../assets/category/Limpieza1.svg';
 
 export const CategoryCard = ({
 	id,
@@ -12,6 +21,35 @@ export const CategoryCard = ({
 	type,
 }) => {
 	
+
+	const categories = [
+		{
+			id: 'Vegetales',
+			img0: vegetal0,
+			img1: vegetal1,
+			
+		},
+		{
+			id: 'Snacks',
+			img0: snack0,
+			img1: snack1,
+		},
+		{
+			id: 'Lacteos',
+			img0: lacteos0,
+			img1: lacteos1,
+		},
+		{
+			id: 'Limpieza',
+			img0: limpieza0,
+			img1: limpieza1,
+		},
+		{
+			id: 'Bebidas',
+			img0: gaseosa0,
+			img1: gaseosa1,
+		},
+	]
 
 	const bgColorCard = type === 1 ? 'bg-secundario' : 'white'
 	const textColor = type === 1 ? 'text-white' : 'text-secundario'
@@ -32,7 +70,7 @@ export const CategoryCard = ({
 
 					<div>
 						<img
-							src={type === 1 ? verdura : verdura0}
+							src={type === 0?  categories.find(e => e.id === id).img0 :   categories.find(e => e.id === id).img1}
 							alt='img'
 							className='mb-12 w-46.03 h-50'
 						/>
