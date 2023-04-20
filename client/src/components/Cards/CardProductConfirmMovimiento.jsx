@@ -28,22 +28,20 @@ export default function CardProductConfirmMovimiento() {
                 <img src={oreo} alt="Producto" className='w-32'/>
             </div>
 
-            <div className='w-full text-start'>
-                <div className='text-end mr-4'>
+            <div className='w-full text-start clear-both'>
+                <div className='text-end mr-4 mt-2 float-right'>
                     <IconCloseCancel/>
                 </div>
-                <h3 className='mb-2'>Galleta oreo fdfdss </h3>
-                <div className='flex flex-col gap-y-1'>
-                    <p className=''><span className='font-bold mr-2'>Unid. Total: </span>${0}</p>
-                    <p className=''><span className='font-bold mr-2'>Precio:</span>${0}</p>
+                <div className='mt-2 flex flex-col justify-around'>
+                    <h3 className='mb-2'>Galleta oreo</h3>
+                    <div className='flex flex-col gap-y-1'>
+                        <p className=''><span className='font-bold mr-2'>Unid. Total: </span>${0}</p>
+                        <p className=''><span className='font-bold mr-2'>Precio:</span>${0}</p>
+                    </div>
                 </div>
 
-            </div>
 
-            <div>
             </div>
-
-          
         </div>
     )
 }
