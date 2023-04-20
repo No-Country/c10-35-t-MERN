@@ -6,8 +6,18 @@ import CircleChart from '../Reports/CircleChart'
 import NavBar from '../../components/NavBar/NavBar'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
+import { useEffect, useState } from 'react'
 
 function Reports({ charData }) {
+	const [name, setName] = useState('')
+	const [pokemon, setPokemon] = useState([])
+	const URL = `https://pokeapi.co/api/v2/pokemon/${name}`
+	useEffect(() => {
+		fetch(URL)
+			.then(res => res.json())
+			.then(res => setPokemon(res.stats))
+		console.log(pokemon)
+	}, [name, URL])
 	return (
 		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 			<NavbarDesktop />
@@ -42,23 +52,50 @@ function Reports({ charData }) {
 					</div>
 					<div className='flex relative justify-center items-center w-full bg-primario lg:bg-white'>
 						<div className='flex w-4/5 absolute -top-2 lg:-top-6 justify-center items-center gap-3 h-11 '>
-							<button
-								href='#'
-								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario shadow-lg'
-							>
-								Dia
+							<button className='text-white'>
+								<input
+									className='hidden report-input-check'
+									type='radio'
+									id='pikachu'
+									onClick={e => setName(e.target.id)}
+									name='row1'
+								/>
+								<label
+									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									htmlFor='pikachu'
+								>
+									Dia
+								</label>
 							</button>
-							<button
-								href='#'
-								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario shadow-lg'
-							>
-								Mes
+							<button className='text-white'>
+								<input
+									className='hidden report-input-check'
+									type='radio'
+									id='charmander'
+									name='row1'
+									onClick={e => setName(e.target.id)}
+								/>
+								<label
+									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									htmlFor='charmander'
+								>
+									Semana
+								</label>
 							</button>
-							<button
-								href='#'
-								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario shadow-lg'
-							>
-								Año
+							<button className='text-white'>
+								<input
+									className='hidden report-input-check'
+									type='radio'
+									id='bulbasaur'
+									onClick={e => setName(e.target.id)}
+									name='row1'
+								/>
+								<label
+									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									htmlFor='bulbasaur'
+								>
+									Mes
+								</label>
 							</button>
 						</div>
 						<div className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'>
@@ -94,7 +131,7 @@ function Reports({ charData }) {
 						</article>
 					</main>
 					<div className='flex bg-primario w-full py-5 justify-center lg:hidden'>
-						<div className='flex justify-between items-center p-2 rounded-sm bg-white rounded-xl shadow-sombra mb-2 w-11/12'>
+						<div className='flex justify-between items-center p-2 bg-white rounded-12 shadow-sombra mb-2 w-11/12'>
 							<h5 className='text-left text-secundario'>
 								Productos baja rotación
 							</h5>
@@ -103,7 +140,7 @@ function Reports({ charData }) {
 							</span>
 						</div>
 					</div>
-					<button className='bg-secundario w-343 rounded-xl text-white h-14'>
+					<button className='bg-secundario w-343 rounded-xl text-white py-4 font-bold'>
 						Descargar registro
 					</button>
 				</div>
