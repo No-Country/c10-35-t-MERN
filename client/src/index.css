@@ -84,19 +84,25 @@ p {
 	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute;
 } */
 
-#groupInput{
-	@apply grid grid-cols-2 w-full h-28 gap-10 items-center  p-1 pl-4  justify-around md:h-24 
+#groupInput {
+	@apply grid grid-cols-2 w-full h-28 gap-10 items-center  p-1 pl-4  justify-around md:h-24;
 }
-#divPrueba{
-	@apply w-full h-20 grid grid-rows-3 md:h-70
+#divPrueba {
+	@apply w-full h-20 grid grid-rows-3 md:h-70;
 }
 
-#inputPrueba{
-	@apply  w-full h-h48  rounded-xl border-solid border-1 border-secundario2 pl-3
+#inputPrueba {
+	@apply w-full h-h48  rounded-xl border-solid border-1 border-secundario2 pl-3;
 }
-#labelPrueba{
-	@apply  w-full h-6 text-start
+#labelPrueba {
+	@apply w-full h-6 text-start;
 }
-#msgerror{
-	@apply w-full h-6 font-secundaria text-xs font-normal text-error text-start md:h-5
+#msgerror {
+	@apply w-full h-6 font-secundaria text-xs font-normal text-error text-start md:h-5;
+}
+.report-input-check + label {
+	@apply cursor-pointer;
+}
+.report-input-check:checked + label {
+	@apply bg-secundario text-white cursor-pointer;
 }
