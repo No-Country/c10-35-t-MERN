@@ -7,7 +7,10 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import CardProductCountMobile from '../Cards/CardProductCountMobile'
 import BtnIconAddProduct from '../Buttons/BtnIconAddProduct';
 
-function SectionListaProductos() {
+function SectionListaProductos({productsList, filterProduct, idProduct}) {
+
+    console.log(productsList)
+    
     return (
         <>
             {/* ----- Titulo y boton + */}
@@ -19,13 +22,18 @@ function SectionListaProductos() {
 
                 <BtnIconAddProduct/>
             </div>
+            
+            {productsList.map((product, i) => {
+                return(
+                    <div className='flex flex-col '>
+                        <CardProductCountMobile
+                            product = {product}
+                            key={i}
+                        />
+                    </div>
+                )
+            })}
 
-
-            <div className='flex flex-col gap-y-5'>
-                <CardProductCountMobile/>
-                <CardProductCountMobile/>
-                <CardProductCountMobile/>
-            </div>
         </>
     )
 }
