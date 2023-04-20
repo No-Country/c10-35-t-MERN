@@ -113,7 +113,7 @@ export const Inventary = () => {
 	const idProduct = location.state === null ? 0 : location.state.idProduct
 
 	return (
-		<div className='lg:grid lg:relative lg:grid-cols-[130px_1fr] lg:gap-x-8'>
+		<div className='lg:grid lg:relative lg:relative lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 			<NavbarDesktop />
 			<div className='flex flex-col w-full gap-5'>
 				<Navbar navBarTile='Inventario' />
