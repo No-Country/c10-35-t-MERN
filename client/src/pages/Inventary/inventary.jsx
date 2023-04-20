@@ -9,6 +9,7 @@ import { RiFilter2Fill } from 'react-icons/ri'
 import { CategoryData } from '../../components/CategoryCard/CategoryData'
 import { BtnAddProductResponsive } from '../../components/Buttons/BtnAddProductResponsive'
 import { useLocation } from 'react-router'
+import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 const categories = [
 	{
@@ -112,6 +113,8 @@ export const Inventary = () => {
 	const idProduct = location.state === null ? 0 : location.state.idProduct
 
 	return (
+		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
+			<NavbarDesktop />
 		<div className='flex flex-col w-full gap-5'>
 			<Navbar navBarTile='Inventario' />
 
@@ -158,6 +161,7 @@ export const Inventary = () => {
 			/>
 
 			<NavbarMobile />
+		</div>
 		</div>
 	)
 }
