@@ -6,8 +6,18 @@ import CircleChart from '../Reports/CircleChart'
 import NavBar from '../../components/NavBar/NavBar'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
+import { useEffect, useState } from 'react'
 
 function Reports({ charData }) {
+	const [name, setName] = useState('')
+	const [pokemon, setPokemon] = useState([])
+	const URL = `https://pokeapi.co/api/v2/pokemon/${name}`
+	useEffect(() => {
+		fetch(URL)
+			.then(res => res.json())
+			.then(res => setPokemon(res.stats))
+		console.log(pokemon)
+	}, [name, URL])
 	return (
 		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 			<NavbarDesktop />
@@ -42,67 +52,51 @@ function Reports({ charData }) {
 					</div>
 					<div className='flex relative justify-center items-center w-full bg-primario lg:bg-white'>
 						<div className='flex w-4/5 absolute -top-2 lg:-top-6 justify-center items-center gap-3 h-11 '>
-							<button class='text-white'>
+							<button className='text-white'>
 								<input
-									class='hidden report-input-check'
+									className='hidden report-input-check'
 									type='radio'
-									id='dayReport'
+									id='pikachu'
+									onClick={e => setName(e.target.id)}
 									name='row1'
 								/>
 								<label
-									class='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
-									for='dayReport'
+									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									htmlFor='pikachu'
 								>
 									Dia
 								</label>
 							</button>
-							<button class='text-white'>
+							<button className='text-white'>
 								<input
-									class='hidden report-input-check'
+									className='hidden report-input-check'
 									type='radio'
-									id='weekReport'
+									id='charmander'
 									name='row1'
+									onClick={e => setName(e.target.id)}
 								/>
 								<label
-									class='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
-									for='weekReport'
+									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									htmlFor='charmander'
 								>
 									Semana
 								</label>
 							</button>
-							<button class='text-white'>
+							<button className='text-white'>
 								<input
-									class='hidden report-input-check'
+									className='hidden report-input-check'
 									type='radio'
-									id='monthReport'
+									id='bulbasaur'
+									onClick={e => setName(e.target.id)}
 									name='row1'
 								/>
 								<label
-									class='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
-									for='monthReport'
+									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
+									htmlFor='bulbasaur'
 								>
 									Mes
 								</label>
 							</button>
-
-							{/* <button
-								href='#'
-								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario focus:bg-green-500 shadow-lg'
-							>
-								Dia
-							</button>
-							<button
-								href='#'
-								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario shadow-lg'
-							>
-								Mes
-							</button>
-							<button
-								href='#'
-								className='text-f16 font-secundaria text-xl font-bold text-primario px-8 rounded-xl h-full bg-secundario shadow-lg'
-							>
-								Año
-							</button> */}
 						</div>
 						<div className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'>
 							<div className='w-36 lg:w-446'>
