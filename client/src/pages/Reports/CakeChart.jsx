@@ -62,31 +62,31 @@ function CakeChart({ charData }) {
 
 		return gradient
 	}
-	useEffect(() => {
-		console.log(userData[0].base_stat)
-		setData({
-			datasets: [
-				{
-					label: '',
-					data: charData.map(el => el.base_stat),
-					borderCapStyle: 'round',
-					borderWidth: '1',
-					borderColor: function (context) {
-						const chart = context.chart
-						const { ctx, chartArea } = chart
-						if (!chartArea) {
-							return
-						}
-						return getGradient(ctx, chartArea)
-					},
-					backgroundColor: 'rgb(255, 255, 255)',
-					pointBorderWidth: 2,
-					fill: 'origin',
-					responsive: false,
-				},
-			],
-		})
-	}, [charData])
+	// useEffect(() => {
+	// 	console.log(userData[0].base_stat)
+	// 	setData({
+	// 		datasets: [
+	// 			{
+	// 				label: '',
+	// 				data: charData.map(el => el.base_stat),
+	// 				borderCapStyle: 'round',
+	// 				borderWidth: '1',
+	// 				borderColor: function (context) {
+	// 					const chart = context.chart
+	// 					const { ctx, chartArea } = chart
+	// 					if (!chartArea) {
+	// 						return
+	// 					}
+	// 					return getGradient(ctx, chartArea)
+	// 				},
+	// 				backgroundColor: 'rgb(255, 255, 255)',
+	// 				pointBorderWidth: 2,
+	// 				fill: 'origin',
+	// 				responsive: false,
+	// 			},
+	// 		],
+	// 	})
+	// }, [charData])
 	return <Line data={userData} options={options} />
 }
 
