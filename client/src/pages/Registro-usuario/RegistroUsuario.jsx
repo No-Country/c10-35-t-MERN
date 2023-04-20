@@ -189,26 +189,26 @@ function RegistroUsuario() {
 							Las contraseñas no coinciden
 						</span>
 					</div>
-					<div className='flex items-center justify-center py-2 w-full bg-secundario rounded-xl mt-auto'>
-						{isLoading ? (
+					{isLoading ? (
+						<div className='flex items-center py-2 justify-center w-full bg-secundario rounded-xl mt-auto'>
 							<div
-								className='animate-spin inline-block w-8 h-8  border-[3px] border-current border-t-transparent text-primario rounded-full relative'
+								className='animate-spin inline-block w-8 h-8 pt-2 pb-2   border-[3px] border-current border-t-transparent text-primario rounded-full relative'
 								role='status'
 								aria-label='loading'
 							>
 								<span className='sr-only'>Loading...</span>
 							</div>
-						) : (
-							<input
-								type='submit'
-								name=''
-								disabled={isActive}
-								value='Crear cuenta'
-								onClick={handleSubmit}
-								className='bg-secundario disabled:bg-desactivado disabled:text-secundario3 text-primario h-10 rounded-xl w-full font-bold mt-auto'
-							/>
-						)}
-					</div>
+						</div>
+					) : (
+						<input
+							type='submit'
+							name=''
+							disabled={isActive}
+							value='Crear cuenta'
+							onClick={handleSubmit}
+							className='bg-secundario disabled:bg-desactivado disabled:text-secundario3 text-primario h-11 rounded-xl w-full font-bold mt-auto'
+						/>
+					)}
 				</form>
 			</main>
 		</>
