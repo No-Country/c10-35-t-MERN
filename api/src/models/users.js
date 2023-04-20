@@ -11,46 +11,48 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Users.hasMany(models.Tokens, {
         foreignKey: 'userId',
-        as: 'tokens'
-
-      })
-      Users.hasMany(models.Category_Users, {
-        foreignKey: 'userId',
-        as: 'category_users'
-      })
+        as: 'tokens',
+      });
       Users.hasMany(models.Orders, {
         foreignKey: 'userId',
-        as: 'orders'
-      })
-      }
+        as: 'orders',
+      });
+      Users.hasMany(models.Product_Users, {
+        foreignKey: 'userId',
+        as: 'productUser',
+      });
     }
-  Users.init({
-    full_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  }
+  Users.init(
+    {
+      full_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      password_hash: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isAvailable: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+      //,
+      // rol:{
+      //   type: DataTypes.ENUM('ADMIN', 'EMPLOYEE'),
+      //   defaultValue: 'ADMIN'
+      // }
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password_hash: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    isAvailable: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
+    {
+      sequelize,
+      timestamps: true,
+      modelName: 'Users',
     }
-    //,
-    // rol:{
-    //   type: DataTypes.ENUM('ADMIN', 'EMPLOYEE'),
-    //   defaultValue: 'ADMIN'
-    // }
-  }, {
-    sequelize,
-    timestamps: true,
-    modelName: 'Users',
-  });
+  );
   return Users;
 };

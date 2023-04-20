@@ -3,6 +3,7 @@ const {
   getAll,
   createProduct,
   modifyProduct,
+  update,
   getByCategoryId,
 } = require('../controllers/products.controller');
 
@@ -13,5 +14,7 @@ router.get('/filter/:categoryId/:userId', getByCategoryId); //ruta para enviar p
 router.post('/create', createProduct); //ruta para crear producto
 
 router.put('/modify', modifyProduct); //ruta para agregar o restar productos de stock
+
+router.put('/update', update); //ruta para actualizar producto
 
 module.exports = router;

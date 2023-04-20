@@ -213,9 +213,100 @@ const updateStock = async (products) => {
   }
 };
 
+const update = async (product) => {
+  let transaction;
+
+  try {
+    transaction = await db.sequelize.transaction();
+
+    const {
+      id,
+      product_name,
+      image,
+      price,
+      cost,
+      minimum_stock,
+      categoryId,
+      userId,
+    } = product;
+
+    if (!id || !userId) {
+      throw new AppError('Mandatory data is missing', 400);
+    }
+
+    const userFound = await User.findOne({
+      where: { id: userId, isAvailable: true },
+      transaction,
+    });
+
+    if (!userFound) {
+      throw new AppError('User not found', 404);
+    }
+
+    const productFound = await Products.findOne({
+      where: { id: id, isAvailable: true },
+      transaction,
+    });
+
+    const userProducts = await Product_Users.findOne({
+      where: { userId, productId: id, isAvailable: true },
+      transaction,
+    });
+
+    if (!userProducts || !productFound) {
+      throw new AppError('Product not found', 404);
+    }
+
+    if (product_name) {
+      productFound.product_name = product_name.toUpperCase();
+    }
+
+    if (image) {
+      userProducts.image = image;
+    }
+
+    if (price) {
+      userProducts.price = price;
+    }
+
+    if (cost) {
+      userProducts.cost = cost;
+    }
+
+    if (minimum_stock) {
+      userProducts.minimum_stock = minimum_stock;
+    }
+
+    if (categoryId) {
+      userProducts.categoryId = categoryId;
+    }
+
+    await productFound.save({ transaction });
+
+    await userProducts.save({ transaction });
+
+    await transaction.commit();
+
+    return {
+      message: `The product ${productFound.product_name} has been successfully updated  `,
+      product: productFound,
+      productUser: userProducts,
+    };
+  } catch (error) {
+    if (transaction) await transaction.rollback();
+
+    throw error;
+  }
+};
+
+
+
+
+
 module.exports = {
   findAll,
   createProduct,
   updateStock,
+  update,
   findByCategoryId,
 };

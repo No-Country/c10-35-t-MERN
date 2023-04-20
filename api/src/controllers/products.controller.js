@@ -40,9 +40,18 @@ const modifyProduct = async (req, res) => {
     errorHandler(error, res);
   }
 };
+
+const update = async (req, res) => {
+  try {
+    return res.status(200).json(await service.update(req.body));
+  } catch (error) {
+    errorHandler(error, res);
+  }
+};
 module.exports = {
   getAll,
   createProduct,
   modifyProduct,
+  update,
   getByCategoryId
 };
