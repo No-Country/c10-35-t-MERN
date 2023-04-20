@@ -53,8 +53,9 @@ p {
 .swiper-pagination-bullet {
 	@apply bg-secundario transition-[width] opacity-100;
 }
-#divInput{
-	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute }
+#divInput {
+	@apply w-40 h-70 md:gap-8 gap-1 flex flex-col items-start p-0 absolute;
+}
 
 .swiper-pagination-bullet-active {
 	@apply w-7 bg-yellow-500 rounded-lg;

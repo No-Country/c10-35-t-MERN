@@ -47,14 +47,14 @@ export const ProductsContainer = ({ productsList, filterProduct, idProduct }) =>
 						<ProductStockCard
 							key={product.id}
 							title={product.title}
-							price={product.price}
 							stock={product.stock}
+							cost = {product.cost}
+							price={product.price}
+							idCategory = {product.idCategory}
 							type={idProduct === product.id? 1:0}
-							nameCategory={product.nameCategory}
 							minStock={product.minStock}
 							unidades={product.unidades}
-							cost={product.cost}
-							total={product.total}
+							alerta = {product.alerta}
 						/>
 					)
 				})}

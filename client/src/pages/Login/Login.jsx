@@ -15,6 +15,17 @@ function Login() {
 	const [passCheck, setPassCheck] = useState(true)
 	const [repeatPassCheck, setrepeatPassCheck] = useState(true)
 	const [isActive, setIsActive] = useState(false)
+	const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
+
+    const updateMedia = () => {
+        setIsDesktop(window.innerWidth > 1024);
+    };
+    
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+    });
+
 	const handleChange = e => {
 		setData({ ...data, [e.target.name]: e.target.value })
 	}
@@ -65,7 +76,7 @@ function Login() {
 
 		if ((responseData !== null) & (responseData?.token !== undefined)) {
 			sessionStorage.setItem('token', responseData.token)
-			navigate('/inicio')
+			isDesktop ? navigate('/inventario') : navigate('/inicio')
 		}
 		responseData !== null && console.log(responseData)
 	}, [responseData, error])
@@ -105,7 +116,7 @@ function Login() {
 								id='email'
 								onChange={handleChange}
 								onBlur={handleEmailBLur}
-								placeholder='Ingrese usuario'
+								placeholder='Ingrese correo'
 								required
 							/>
 							<span
