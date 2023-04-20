@@ -1,4 +1,5 @@
 import crearProductoUrl from './icon-crear-producto.svg'
+import defaultImg from '../../assets/ProdXDefecto.png'
 
 export default function DashboardResume() {
     const dashboardResumeProducts = [
@@ -10,18 +11,19 @@ export default function DashboardResume() {
     ]
 
     return (
-    <section className='mt-8 bg-primario rounded-t-3xl font-secundaria p-4 h-240 overflow-auto no-scrollbar'>
+    <section className='mt-8 bg-primario rounded-t-3xl font-secundaria p-4 h-240 overflow-auto no-scrollbar md:h-537'>
         <h3 className='mb-4 pl-2 text-left'>
             Resumen de inventario
         </h3>
+        <div className='md:flex md:flex-wrap md:gap-x-8 md:justify-center'>
         {
             dashboardResumeProducts
             ? dashboardResumeProducts.map((product) => (
-                <section key={product.id} className='shadow-sombra my-2 rounded-xl flex items-center p-2.5 w-w343 h-h72 bg-white'>
+                <section key={product.id} className='shadow-sombra my-2 rounded-xl flex items-center p-2.5 w-w343 h-h72 bg-white md:block md:w-355'>
                     <img 
-                        src={product.img} 
+                        src={defaultImg} 
                         alt='Ícono de crear producto' 
-                        className='flex-1 mr-2 w-16 h-11 object-stretch rounded border-2 border-acento2'
+                        className='flex-1 mr-2 w-16 h-11 object-stretch rounded border-2 border-acento2 md:h-20 md:w-120 md:inline'
                     />
                     <div className='flex-2'>
                         <h4 className='mb-1 text-left'>
@@ -44,8 +46,9 @@ export default function DashboardResume() {
                     </div>
                 </section>
             ))
-            : <p>Loading... </p>
+            : <p>You have no products</p>
         }
+        </div>
     </section>
     )
 }
