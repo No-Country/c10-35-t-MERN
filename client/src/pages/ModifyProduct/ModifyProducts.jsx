@@ -190,25 +190,18 @@ const ModifyProducts = () => {
 		})
 		.then(res => {
 			setVisible(true)
-			if (!res.err) {
-					
+			if (!res.err) {					
 					let newData = db.map(el => (el.id === form.id ? form : el))
-					setDb(newData);
-
-					
+					setDb(newData);					
 				} else {
 					setResponse(res)
 				}
 			})
 	}
 
-	const deleteData = id => {
+	const deleteData =()=> {		
 
-		
-
-		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
-
-		
+		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)		
 
 		if (isDelete) {
 			let endpoint = `${urlGet}/${id}`
