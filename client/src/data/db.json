@@ -2,13 +2,14 @@
   "data": [
     {
       "id": 1,
-      "nombre": "yerba mate",
-      "cantidad": 500,
-      "costo": 600,
-      "total": 625,
-      "precio": 675,
-      "alerta": 20,
-      "unidades": "unidades"
+      "nombre": "Leche",
+      "cantidad": "12",
+      "costo": "1000",
+      "total": 1500,
+      "precio": "1600",
+      "alerta": "10",
+      "unidades": "Lts",
+      "categorias": "Lacteos"
     },
     {
       "id": 3,
@@ -648,6 +649,17 @@
       "unidades": "unidades",
       "categorias": "\tLacteos",
       "id": 1681947583040
+    },
+    {
+      "id": 2,
+      "nombre": "Lechuga",
+      "cantidad": "10",
+      "costo": "10",
+      "total": 510,
+      "precio": "20",
+      "alerta": "10",
+      "unidades": "unidades",
+      "categorias": "Vegetales"
     }
   ]
 }

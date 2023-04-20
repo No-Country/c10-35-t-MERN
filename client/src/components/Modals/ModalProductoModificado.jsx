@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import pollo from '../../assets/pollo.png'
 
 const ModalProductoModificado = ({idProduct}) => {
-	console.log(idProduct)
+	console.log('hola' , idProduct)
 	return (
 		<section
 			id='modal'

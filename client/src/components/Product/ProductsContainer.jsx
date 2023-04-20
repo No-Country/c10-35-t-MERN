@@ -45,7 +45,7 @@ export const ProductsContainer = ({ productsList, filterProduct, idProduct }) =>
 				{filteredProduct().map((product, i) => {
 					return (
 						<ProductStockCard
-						key={product.id}
+						    key={i}
 							id={product.id}
 							title={product.title}
 							stock={product.stock}

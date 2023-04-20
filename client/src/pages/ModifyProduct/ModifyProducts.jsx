@@ -179,7 +179,7 @@ const ModifyProducts = () => {
 			})
 	}
 
-	const updateData = ()=> {
+	const updateData =()=> {
 		
 		let endpoint = `${urlGet}/${form.id}`
 		
@@ -189,10 +189,11 @@ const ModifyProducts = () => {
 			headers: { 'content-type': 'application/json' },
 		})
 		.then(res => {
+			console.log(form.id)
 			setVisible(true)
 			if (!res.err) {					
-					let newData = db.map(el => (el.id === form.id ? form : el))
-					setDb(newData);					
+					// let newData = db.map(el => (el.id === form.id ? form : el))
+					// setDb(newData);					
 				} else {
 					setResponse(res)
 				}
@@ -437,7 +438,7 @@ const ModifyProducts = () => {
 												Guardar
 											</div>
 										</button>
-										{visible ? <ModalProductoModificado idProduct={form.id} /> : null}
+										{visible ? <ModalProductoModificado idProduct={location.state.id} /> : null}
 
 										{/* {response ? null : (
 										<ModalFallaCarga setVisible={setVisible} />
