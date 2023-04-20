@@ -229,7 +229,7 @@ const ModifyProducts = () => {
 		<>
 			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 				<NavbarDesktop/>
-				<div className=' w-373 h-full md:absolute md:w-full md:h-920 md:ml-116 md:bg-fondoT'>
+				<div className=' w-373 h-full md:absolute md:w-full md:h-920 md:ml-130 md:bg-fondoT'>
 					<div
 						className='md:bg-white
 		md:absolute md:w-714 md:top-4 md:h-850 md:botton-4 md:ml-408'
