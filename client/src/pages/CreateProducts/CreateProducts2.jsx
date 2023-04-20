@@ -91,11 +91,9 @@ const validationsForm = (form, name) => {
 	return errors
 }
 
-
 const CreateProducts2 = () => {
-
-	const location=useLocation();
-	const idProduct = location.state===null? 0 : location.state.idProduct;
+	const location = useLocation()
+	const idProduct = location.state === null ? 0 : location.state.idProduct
 
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
@@ -106,7 +104,7 @@ const CreateProducts2 = () => {
 	const [modal, setModal] = useState(false)
 
 	const crud = helpFetch()
-	const urlGet = 'http://localhost:3000/data';
+	const urlGet = 'http://localhost:3000/data'
 
 	useEffect(() => {
 		fetch(urlGet).then(res => {
@@ -148,8 +146,8 @@ const CreateProducts2 = () => {
 				.then(res => {
 					console.log(res)
 					setResponse(true)
-					setForm(initialForm);
-					<ModalFallaCarga setVisble={setVisible}/>
+					setForm(initialForm)
+					;<ModalFallaCarga setVisble={setVisible} />
 				})
 
 			return
@@ -162,7 +160,6 @@ const CreateProducts2 = () => {
 	}
 
 	const createData = data => {
-
 		crud
 			.post(urlGet, {
 				body: data,
@@ -170,18 +167,17 @@ const CreateProducts2 = () => {
 			})
 			.then(res => {
 				if (!res.err) {
-					setDb([...db, res]);
-
-					<ModalProductocargado
-					texto={'Productos cargados exitosamente!'}
-					idProduct={idProduct}
-				/>
+					setDb([...db, res])
+					;<ModalProductocargado
+						texto={'Productos cargados exitosamente!'}
+						idProduct={idProduct}
+					/>
 				} else {
-					setResponse(res);
-					<ModalFallaCarga/>
+					setResponse(res)
+					;<ModalFallaCarga />
 				}
 
-				// duda los modales los pongo en la funcion de peticiones o las pongo como rendercond -response?modalcragadp:modalfallacarga 
+				// duda los modales los pongo en la funcion de peticiones o las pongo como rendercond -response?modalcragadp:modalfallacarga
 			})
 	}
 
@@ -221,12 +217,11 @@ const CreateProducts2 = () => {
 	// 			})
 	// 	}
 	// }
-	
 
 	return (
 		<>
 			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
-				<NavbarDesktop/>
+				<NavbarDesktop />
 				<div className='w-373 h-full md:absolute md:w-full md:h-1024 md:flex md:justify-center md:bg-fondoT'>
 					<div
 						className='md:bg-white
@@ -430,7 +425,7 @@ const CreateProducts2 = () => {
 											id='inputPrueba'
 											type='submit'
 											value='send'
-											onClick={()=>createData()}										
+											onClick={() => createData()}
 											className='bg-secundario'
 										>
 											<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
@@ -438,7 +433,6 @@ const CreateProducts2 = () => {
 											</div>
 										</button>
 
-									
 										{modal ? <ModalExcel setModal={setModal} /> : null}
 										{/* {setResponse ? null : (
 											<ModalFallaCarga setVisible={setVisible} />
