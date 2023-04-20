@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import {data} from '../../data/db.json'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import ModalProductoModificado from '../../components/Modals/ModalProductoModificado'
 import HeadingsModify from '../../components/ModifyProduct/HeadingsModify'
 import Subtitles from '../../components/CreateProducts/Subtitles'
+import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 const initialForm = {
 	id: Date.now(),
@@ -84,18 +86,31 @@ const validationsForm = (form, name) => {
 	return errors
 }
 const ModifyProducts = () => {
-	
+	const location = useLocation()
+	console.log(location.state)
+
 	const [visible, setVisible] = useState(false)
-	const [form, setForm] = useState({...initialForm,nombre:"yesi",cantidad:2,unidades:"Kg",id:3})
+	const [form, setForm] = useState({
+		...initialForm,
+		id:location.state.id,
+		nombre: location.state.title,
+		cantidad: location.state.stock,
+		costo:location.state.cost,
+		total:location.state.total,
+		precio:location.state.price,
+		alerta:location.state.minStock,
+		unidades: location.state.unidades,
+		categorias:location.state.nameCategory,
+		
+	})
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState(null)
-	const [dataToEdit, setDataToEdit] = useState(null)
-	
-
+	// const [dataToEdit, setDataToEdit] = useState(null)
 
 	const crud = helpFetch()
-	let urlGet = 'http://localhost:3000/data'
+	// eslint-disable-next-line prefer-const
+	const urlGet = 'http://localhost:3000/data'
 
 	useEffect(() => {
 		fetch(urlGet).then(res => {
@@ -123,10 +138,10 @@ const ModifyProducts = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
-	
+
 		if (Object.keys(errors).length === 0) {
-			
-				helpFetch().post(urlGet, {
+			helpFetch()
+				.post(urlGet, {
 					body: form,
 					headers: {
 						'Content-Type': 'application/json',
@@ -134,7 +149,7 @@ const ModifyProducts = () => {
 					},
 				})
 				.then(res => {
-					// setForm(res);
+					
 					setResponse(true)
 					setForm(initialForm)
 				})
@@ -145,10 +160,9 @@ const ModifyProducts = () => {
 		if (form.id === null) {
 			return createData(form)
 		} else {
-			
 			return updateData(form)
 		}
-    //   handleReset()
+		
 	}
 
 	const createData = data => {
@@ -161,36 +175,33 @@ const ModifyProducts = () => {
 				console.log(res)
 				if (!res.err) {
 					setDb([...db, res])
-				}else(
-					setResponse(res)
-				)
+				} else setResponse(res)
 			})
 	}
 
-	const updateData = data => {
-		<ModalProductoModificado idProduct={1}/>
-		let endpoint = `${urlGet}/${data.id}`;
-
-
+	const updateData = ()=> {
+		
+		let endpoint = `${urlGet}/${form.id}`
+		
 		crud
-			.put(endpoint, {
-				body: data,
-				headers: { 'content-type': 'application/json' },
-			})
-			.then(res => {
-				if (!res.err) {
-					let newData = db.map(el => (el.id === data.id ? data : el))
-					setDb(newData)
-				}else{
-					setResponse(res);
+		.put(endpoint, {
+			body: form,
+			headers: { 'content-type': 'application/json' },
+		})
+		.then(res => {
+			setVisible(true)
+			if (!res.err) {					
+					let newData = db.map(el => (el.id === form.id ? form : el))
+					setDb(newData);					
+				} else {
+					setResponse(res)
 				}
 			})
 	}
 
-	const deleteData = id => {
-		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`);
+	const deleteData =()=> {		
 
-		<ModalProductoModificado idProduct={1}/>
+		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)		
 
 		if (isDelete) {
 			let endpoint = `${urlGet}/${id}`
@@ -200,229 +211,238 @@ const ModifyProducts = () => {
 				.then(res => {
 					if (!res.err) {
 						let newData = db.filter(el => el.id !== id)
-						setDb(newData)
-					}else{
-						setResponse(res);
+						setDb(newData);
+
+						<ModalProductoModificado idProduct={1} />
+					} else {
+						setResponse(res)
 					}
 				})
 		}
 	}
-	const handleReset = e => {
-		setForm(initialForm);
-        setDataToEdit(null);
-	}
-    
+	
+	
+
 	return (
 		<>
-			<div className='w-373 h-812  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'>
-				<div className='md:absolute md:w-714 md:h-920 md:top-52 md:left-297 bg-white '>
-					{/* ----------------headings------------ */}
-					<HeadingsModify />
+			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
+				<NavbarDesktop/>
+				<div className=' w-373 h-full md:absolute md:w-full md:h-920 md:ml-116 md:bg-fondoT'>
+					<div
+						className='md:bg-white
+		md:absolute md:w-714 md:top-4 md:h-850 md:botton-4 md:ml-408'
+					>
+						{/* ----------------headings------------ */}
+						<HeadingsModify />
 
-					{/* -----------contenedor de subtittles desktop----------- */}
-					
-					<Subtitles formData={form}/>
+						{/* -----------contenedor de subtittles desktop----------- */}
 
-				
+						<Subtitles formData={form} />
 
-					{/* ----------------contendor de imagen------------ */}
+						{/* ----------------contendor de imagen------------ */}
 
-					<BoxImage />
+						<BoxImage />
 
-					{/* --------------contenedor de fomulario--------------- */}
-					<div className=''>
-						<form onSubmit={handleSubmit}>
-							{/* -------contenedor de inputs----- */}
-							<div className='w-375 h-469  mt-343 left-0 bg-primario3 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280'>
-								{/* ------aca empiezan los inputs---- */}
+						<form onSubmit={handleSubmit} className=''>
+							<div
+								// {/* ----------esto engloba impus de nombre y grupo-------- */}
+								className='
+		w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4	
+		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16 md:mt-240'
+							>
+								{/* --------------input nombre------------- */}
 
-								<div className='w-341 h-70 top-0 left-4 absolute flex flex-col items-start p-0 gap-1 md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
-									<label
-										id='labelInput'
-										className='w-40 h-18 md:h-20 md:mb-4 md:pb-1'
-									>
-										nombre
-									</label>
-									<input
-										type='text'
-										id='nombre'
-										name='nombre'
-										value={form.nombre}
-										onBlur={handleBlur}
-										onChange={handleChange}
-										className='w-341 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-4 gap-2.5 box-border md:w-556
-						'
-									></input>
-									{errors.nombre && (
-										<p className='md:mb-1 mr-2' id='errorp'>
-											{errors.nombre}
-										</p>
-									)}
-								</div>
-
-								{/* ----------------aca va el primer grupo-------- */}
-								<div className='md:w-72 '>
-									<div id='divInput' className='left-4 top-24  md:top-84'>
-										<label id='labelInput' htmlFor='' className='w-122 h-18'>
-											cantidad
-										</label>
-
-										<input
-											type='number'
-											id='inputForm'
-											name='cantidad'
-											value={form.cantidad}
-											onBlur={handleBlur}
-											onChange={handleChange}
-										></input>
-									</div>
-									{errors.cantidad && (
-										<p
-											id='errorp'
-											className='md:mt-195 md:ml-2 mt-164 ml-3 pt-1'
-										>
-											{errors.cantidad}
-										</p>
-									)}
-
-									<div
-										id='divInput'
-										className='left-200 top-24 md:left-305 md:top-84 '
-									>
-										<label id='labelInput' className='w-133'>
-											unidades
-										</label>
-										<select
-											className='w-40 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl flex-none order-1 grow-0 px-3 py-2 gap-2.5 box-border text-base font-secundaria  text-secundario items-center  md:w-266'
-											name='unidades'
-											onChange={handleChange}
-											defaultValue={form.unidades}
-										>
-											<option id='' value=''>
-												Seleciona unidad
-											</option>
-											<option id='unidades' value='unidades'>
-												Unidades
-											</option>
-											<option id='Kg' value='Kg'>
-												Kg
-											</option>
-											<option id='Mts' value='Mts'>
-												Mts
-											</option>
-											<option id='Lts' value='Lts'>
-												Lts
-											</option>
-										</select>
-									</div>
-								</div>
-								{/* ---------------aca va el segundo grupo---------- */}
-								<div>
-									<div id='divInput' className='left-4 top-178'>
-										<label id='labelInput' htmlFor='' className='w-102'>
-											costo
-										</label>
-										<input
-											type='number'
-											id='inputForm'
-											name='costo'
-											value={form.costo}
-											onBlur={handleBlur}
-											onChange={handleChange}
-										></input>
-										{errors.costo && (
-											<p className=' md:ml-2 pr-6' id='errorp'>
-												{errors.costo}
+								<div className=' w-full h-24 items-start '>
+									<div className='h-24 md:h-20'>
+										<div className='grid pr-1 pl-3 '>
+											<label className='w-full h-6  md:h-5 md:mb-1 text-start'>
+												Nombre
+											</label>
+											<input
+												type='text'
+												id='nombre'
+												name='nombre'
+												value={form.nombre}
+												onBlur={handleBlur}
+												onChange={handleChange}
+												className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
+											></input>
+										</div>
+										{errors.nombre && (
+											<p id='msgerror' className='ml-4'>
+												{errors.nombre}
 											</p>
 										)}
 									</div>
-									<div className=''>
-										<div id='divInput' className='top-178 left-200 md:left-305'>
-											<label id='labelInput' htmlFor='' className='w-107'>
-												categorias
-											</label>
-											<input
-												type='texto'
-												id='inputForm'
-												name='categorias'
-												value={form.categorias}
-												onBlur={handleBlur}
-												onChange={handleChange}
-											></input>
-											{errors.categorias && (
-												<p className='pr-6' id='errorp'>
-													{errors.categorias}
-												</p>
+								</div>
+								<div className='flex flex-col justify-center items-center w-full'>
+									{/* -------------------primer grupo--------------- */}
+
+									<div id='groupInput'>
+										<div className=' h-32'>
+											<div id='divPrueba' className=''>
+												<label id='labelPrueba'>Cantidad</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='cantidad'
+													value={form.cantidad}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.cantidad && (
+												<p id='msgerror'>{errors.cantidad}</p>
+											)}
+										</div>
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Seleciona la unidad</label>
+												<select
+													id='inputPrueba'
+													name='unidades'
+													defaultValue={form.unidades}
+													onChange={handleChange}
+												>
+													<option id='' value=''>
+														Seleciona unidad
+													</option>
+													<option id='unidades' value='unidades'>
+														Unidades
+													</option>
+													<option id='Kg' value='Kg'>
+														Kg
+													</option>
+													<option id='Mts' value='Mts'>
+														Mts
+													</option>
+													<option id='Lts' value='Lts'>
+														Lts
+													</option>
+												</select>
+											</div>
+											{errors.unidades && (
+												<p id='msgerror'>{errors.unidades}</p>
 											)}
 										</div>
 									</div>
-									
-								</div>
 
-								{/* ----------aca va el tercer grupo----------- */}
-								<div>
-									<div id='divInput' className='left-4 top-266'>
-										<label id='labelInput' className='w-107' htmlFor=''>
-											precio
-										</label>
-										<input
-											type='number'
-											id='inputForm'
-											name='precio'
-											value={form.precio}
-											onBlur={handleBlur}
-											onChange={handleChange}
-										></input>
-										{errors.precio && (
-											<p className='pr-6' id='errorp'>
-												{errors.precio}
-											</p>
-										)}
-									</div>
+									{/* -------------------segundo grupo--------------- */}
 
-									<div id='divInput' className='top-266 left-200 md:left-305'>
-										<label id='labelInput' className='w-156' htmlFor=''>
-											alerta
-										</label>
-										<input
-											type='number'
-											id='inputForm'
-											name='alerta'
-											value={form.alerta}
-											onBlur={handleBlur}
-											onChange={handleChange}
-										></input>
-										{errors.alerta && (
-											<p className='pr-6' id='errorp'>
-												{errors.alerta}
-											</p>
-										)}
+									<div id='groupInput' className=''>
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Costo unitario</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='costo'
+													value={form.costo}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.costo && <p id='msgerror'>{errors.costo}</p>}
+										</div>
+										<div className='h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Costo total</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='total'
+													value={form.total}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.total && <p id='msgerror'>{errors.total}</p>}
+										</div>
 									</div>
-								</div>
-								{/* -------------aca va el 4 grupo----------------- */}
-								<div className=''>
-									
-										<button				
-                                           onClick={()=>deleteData()}
-											className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
+									{/* -------------------tercer grupo--------------- */}
+
+									<div id='groupInput'>
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Precio</label>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='precio'
+													value={form.precio}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
+											</div>
+											{errors.precio && <p id='msgerror'>{errors.precio}</p>}
+										</div>
+
+										<div className=' h-32'>
+											<div id='divPrueba'>
+												<label id='labelPrueba'>Categoria</label>
+
+												<select
+													id='inputPrueba'
+													name='categorias'
+													type='text'
+													value={form.categorias}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												>
+													<option id='' value=''>
+														Seleciona Categoria
+													</option>
+													<option id='Vegetales' value=''>
+														Vegetales
+													</option>
+													<option id='Snacks' value='Snacks'>
+														Snacks
+													</option>
+													<option id='Lacteos' value='	Lacteos'>
+														Lacteos
+													</option>
+													<option id='Limpieza' value='Limpieza'>
+														Limpieza
+													</option>
+													<option id='Bebidas' value='Bebidas'>
+														Bebidas
+													</option>
+												</select>
+											</div>
+											{errors.categoria && (
+												<p id='msgerror'>{errors.categoria}</p>
+											)}
+										</div>
+									</div>
+									{/* -------------aca va el 4 grupo----------------- */}
+									<div id='groupInput'>
+										<button
+											id='inputPrueba'
+											className='bg-acento2'
+											onClick={() => deleteData()}
 										>
-											<div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  flex-none order-0 grow-0 '>
+											<div className=' text-primario w-full h-22 font-secundaria not-italic font-bold text-base '>
 												Eliminar
 											</div>
 										</button>
-								
-									<button
-										type='submit'
-										value='send'
-										onClick={() =>updateData()										}
-										className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
-									>
-										<div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base flex-none grow-0order-0 '>
-											Guardar
-										</div>
-									</button>
 
-									{/* {visible ? <ModalProductoModificado /> : null} */}
+										<button
+											id='inputPrueba'
+											type='submit'
+											value='send'
+											onClick={() => updateData()}
+											className='bg-secundario'
+										>
+											<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
+												Guardar
+											</div>
+										</button>
+										{visible ? <ModalProductoModificado idProduct={1} /> : null}
+
+										{/* {response ? null : (
+										<ModalFallaCarga setVisible={setVisible} />
+									)} */}
+									</div>
 								</div>
 							</div>
 						</form>

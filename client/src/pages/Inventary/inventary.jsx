@@ -154,7 +154,7 @@ export const Inventary = () => {
 				filter={{ ...filter }}
 			/>
 
-			<ProductsContainer
+			<ProductsContainer 
 				productsList={products}
 				filterProduct={{ ...filter }}
 				idProduct={idProduct}

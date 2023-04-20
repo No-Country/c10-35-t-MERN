@@ -1,15 +1,17 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
 import { useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 import Subtitles from '../../components/CreateProducts/Subtitles'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import Headings from '../../components/CreateProducts/Headings'
 import ModalExcel from '../../components/Modals/ModalExcel'
 import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
+import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 const initialForm = {
 	id: Date.now(),
@@ -89,18 +91,23 @@ const validationsForm = (form, name) => {
 	return errors
 }
 
+
 const CreateProducts2 = () => {
+
+	const location=useLocation();
+	const idProduct = location.state===null? 0 : location.state.idProduct;
+
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState(null)
-
-	const [dataToEdit, setDataToEdit] = useState(null)
+	// const [dataToEdit, setDataToEdit] = useState(null)
 	const [modal, setModal] = useState(false)
 
 	const crud = helpFetch()
-	const urlGet = 'http://localhost:3000/data'
+	const urlGet = 'http://localhost:3000/data';
+
 	useEffect(() => {
 		fetch(urlGet).then(res => {
 			if (!res.err) {
@@ -141,7 +148,8 @@ const CreateProducts2 = () => {
 				.then(res => {
 					console.log(res)
 					setResponse(true)
-					setForm(initialForm)
+					setForm(initialForm);
+					<ModalFallaCarga setVisble={setVisible}/>
 				})
 
 			return
@@ -151,10 +159,10 @@ const CreateProducts2 = () => {
 		} else {
 			return updateData(form)
 		}
-		// handleReset()
 	}
 
 	const createData = data => {
+
 		crud
 			.post(urlGet, {
 				body: data,
@@ -162,87 +170,94 @@ const CreateProducts2 = () => {
 			})
 			.then(res => {
 				if (!res.err) {
-					setDb([...db, res])
-				} else setResponse(res)
-			})
-	}
+					setDb([...db, res]);
 
-	const updateData = data => {
-		let endpoint = `${urlGet}/${data.id}`
-
-		crud
-			.put(endpoint, {
-				body: data,
-				headers: { 'content-type': 'application/json' },
-			})
-			.then(res => {
-				if (!res.err) {
-					let newData = db.map(el => (el.id === data.id ? data : el))
-					setDb(newData)
+					<ModalProductocargado
+					texto={'Productos cargados exitosamente!'}
+					idProduct={idProduct}
+				/>
 				} else {
-					setResponse(res)
+					setResponse(res);
+					<ModalFallaCarga/>
 				}
+
+				// duda los modales los pongo en la funcion de peticiones o las pongo como rendercond -response?modalcragadp:modalfallacarga 
 			})
 	}
 
-	const deleteData = id => {
-		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
+	// const updateData = data => {
+	// 	let endpoint = `${urlGet}/${data.id}`
 
-		if (isDelete) {
-			let endpoint = `${urlGet}/${id}`
+	// 	crud
+	// 		.put(endpoint, {
+	// 			body: data,
+	// 			headers: { 'content-type': 'application/json' },
+	// 		})
+	// 		.then(res => {
+	// 			if (!res.err) {
+	// 				let newData = db.map(el => (el.id === data.id ? data : el))
+	// 				setDb(newData)
+	// 			} else {
+	// 				setResponse(res)
+	// 			}
+	// 		})
+	// }
 
-			crud
-				.del(endpoint, { headers: { 'content-type': 'application/json' } })
-				.then(res => {
-					if (!res.err) {
-						let newData = db.filter(el => el.id !== id)
-						setDb(newData)
-					} else {
-						setResponse(res)
-					}
-				})
-		}
-	}
-	const handleReset = e => {
-		setForm(initialForm)
-		setDataToEdit(null)
-	}
+	// const deleteData = id => {
+	// 	let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)
 
+	// 	if (isDelete) {
+	// 		let endpoint = `${urlGet}/${id}`
+
+	// 		crud
+	// 			.del(endpoint, { headers: { 'content-type': 'application/json' } })
+	// 			.then(res => {
+	// 				if (!res.err) {
+	// 					let newData = db.filter(el => el.id !== id)
+	// 					setDb(newData)
+	// 				} else {
+	// 					setResponse(res)
+	// 				}
+	// 			})
+	// 	}
+	// }
 	
+
 	return (
 		<>
-			<div 
-			className='w-373 h-812  md:absolute md:w-1310 md:h-1024 md:left-130 md:top-0 md:bg-fondoT'
-			>
-				<div
-				 className='md:absolute md:w-714 md:h-920 md:top-52 md:left-297 bg-white '
-				>
-					<Headings />
+			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
+				<NavbarDesktop/>
+				<div className='w-373 h-full md:absolute md:w-full md:h-1024 md:flex md:justify-center md:bg-fondoT'>
+					<div
+						className='md:bg-white
+				md:absolute md:w-714 md:top-4 md:h-888 md:botton-4 md:ml-408'
+					>
+						<Headings />
 
-					{/* -----------subtitulos en desktop----------- */}
+						{/* -----------subtitulos en desktop----------- */}
 
-					<Subtitles formData={form} />
+						<Subtitles formData={form} />
 
-					{/* ----------------contendor de imagen------------ */}
+						{/* ----------------contendor de imagen------------ */}
 
-					<BoxImage />
+						<BoxImage />
 
-					{/* --------------contenedor de fomulario--------------- */}
+						{/* --------------contenedor de fomulario--------------- */}
 
-					<div className=''>
-
-						<form onSubmit={handleSubmit}>
-							{/* -------contenerdor de inputs----- */}
-
+						<form onSubmit={handleSubmit} className=''>
 							<div
+								// {/* ----------esto engloba impus de nombre y grupo-------- */}
 								className='
-		w-full h-469  mt-343 left-0 bg-orange-500 absolute rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16  md:bg-white md:mt-280 '
+		w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4	
+		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16 md:mt-240'
 							>
 								{/* --------------input nombre------------- */}
-								<div className=' w-full h-88 flex flex-col m-1 pl-2 gap-2 items-center md:w-607 md:mt-0 md:mb-0 md:h-18 md:pb-2'>
-									<div>
-										<div className='flex flex-col ml-25 pl-2'>
-											<label className='w-48 h-6 text-start'>Nombre</label>
+								<div className=' w-full h-24 items-start '>
+									<div className='h-24 md:h-20'>
+										<div className='grid pr-1 pl-3 '>
+											<label className='w-full h-6  md:h-5 md:mb-1 text-start'>
+												Nombre
+											</label>
 											<input
 												type='text'
 												id='nombre'
@@ -250,21 +265,21 @@ const CreateProducts2 = () => {
 												value={form.nombre}
 												onBlur={handleBlur}
 												onChange={handleChange}
-												className='w-375 h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
+												className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
 											></input>
 										</div>
 										{errors.nombre && (
-											<p id='msgerror' className='ml-34'>
+											<p id='msgerror' className='ml-4'>
 												{errors.nombre}
 											</p>
 										)}
 									</div>
 								</div>
-								<div className='flex flex-col justify-center items-center w-full bg-white'>
+								<div className='flex flex-col justify-center items-center w-full'>
 									{/* -------------------primer grupo--------------- */}
 
 									<div id='groupInput'>
-										<div>
+										<div className=' h-32'>
 											<div id='divPrueba' className=''>
 												<label id='labelPrueba'>Cantidad</label>
 												<input
@@ -280,7 +295,7 @@ const CreateProducts2 = () => {
 												<p id='msgerror'>{errors.cantidad}</p>
 											)}
 										</div>
-										<div>
+										<div className=' h-32'>
 											<div id='divPrueba'>
 												<label id='labelPrueba'>Seleciona la unidad</label>
 												<select
@@ -314,7 +329,7 @@ const CreateProducts2 = () => {
 									{/* -------------------segundo grupo--------------- */}
 
 									<div id='groupInput' className=''>
-										<div>
+										<div className=' h-32'>
 											<div id='divPrueba'>
 												<label id='labelPrueba'>Costo unitario</label>
 												<input
@@ -326,9 +341,9 @@ const CreateProducts2 = () => {
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.costo && <p id='msgerror'>{errors.total}</p>}
+											{errors.costo && <p id='msgerror'>{errors.costo}</p>}
 										</div>
-										<div>
+										<div className='h-32'>
 											<div id='divPrueba'>
 												<label id='labelPrueba'>Costo total</label>
 												<input
@@ -343,27 +358,33 @@ const CreateProducts2 = () => {
 											{errors.total && <p id='msgerror'>{errors.total}</p>}
 										</div>
 									</div>
-
 									{/* -------------------tercer grupo--------------- */}
 
-									<div id='groupInput' className=''>
-										<div>
+									<div id='groupInput'>
+										<div className=' h-32'>
 											<div id='divPrueba'>
 												<label id='labelPrueba'>Precio</label>
-												<input id='inputPrueba'></input>
+												<input
+													id='inputPrueba'
+													type='number'
+													name='precio'
+													value={form.precio}
+													onBlur={handleBlur}
+													onChange={handleChange}
+												></input>
 											</div>
 											{errors.precio && <p id='msgerror'>{errors.precio}</p>}
 										</div>
-										<div>
+
+										<div className=' h-32'>
 											<div id='divPrueba'>
 												<label id='labelPrueba'>Categoria</label>
 
 												<select
 													id='inputPrueba'
 													name='categorias'
-													// type='text'
-
-													// value={form.categorias}
+													type='text'
+													value={form.categorias}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												>
@@ -376,7 +397,7 @@ const CreateProducts2 = () => {
 													<option id='Snacks' value='Snacks'>
 														Snacks
 													</option>
-													<option id='Lacteos' value='	Lacteos'>
+													<option id='Lacteos' value='Lacteos'>
 														Lacteos
 													</option>
 													<option id='Limpieza' value='Limpieza'>
@@ -392,40 +413,43 @@ const CreateProducts2 = () => {
 											)}
 										</div>
 									</div>
+
+									{/* --------------------cuarto grupo---------------- */}
+									<div id='groupInput'>
+										<button
+											id='inputPrueba'
+											className='bg-acento2'
+											onClick={() => setModal(true)}
+										>
+											<div className=' text-primario w-full h-22 font-secundaria not-italic font-bold text-base '>
+												Cargar Excel
+											</div>
+										</button>
+
+										<button
+											id='inputPrueba'
+											type='submit'
+											value='send'
+											onClick={()=>createData()}										
+											className='bg-secundario'
+										>
+											<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
+												Continuar
+											</div>
+										</button>
+
+									
+										{modal ? <ModalExcel setModal={setModal} /> : null}
+										{/* {setResponse ? null : (
+											<ModalFallaCarga setVisible={setVisible} />
+										)} */}
+									</div>
 								</div>
-								{/* -------------cuarto grupo----------------- */}
-    <div className=''>
-        <button
-            className='w-40 h-h48  top-96   md:top-418 md:w-266 left-4 rounded-xl p-2.5 gap-2.5 bg-acento2 flex flex-row justify-center items-center absolute'
-            onClick={() =>setModal(true)}
-        >
-            <div className=' text-primario w-120 h-22 font-secundaria not-italic font-bold text-base  grow-0order-0 '>
-                Cargar Excel
-            </div>
-        </button>
-
-        <button
-            type='submit'
-            value='send'
-            onClick={() => setVisible(true)}
-            className='w-40 h-h48 top-96 md:top-418 md:w-266 left-200 md:left-305 rounded-xl p-2.5 gap-2.5 bg-secundario flex flex-row justify-center items-center absolute'
-        >
-            <div className=' text-primario font-secundaria w-78 h-22 font-bold text-base not-italic  order-0 grow-0 '>
-                Continuar
-            </div>
-        </button>
-
-        {visible ? <ModalProductocargado texto={"Productos cargados exitosamente!"}/> : null}
-        {modal ? <ModalExcel setModal={setModal} /> : null}
-        {/* {response? null:  <ModalFallaCarga setVisible={setVisible}/>} */}
-    </div>
 							</div>
-
 						</form>
 					</div>
 				</div>
 			</div>
-		
 		</>
 	)
 }
