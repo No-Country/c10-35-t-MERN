@@ -10,14 +10,7 @@ import { useEffect, useState } from 'react'
 
 function Reports({ charData }) {
 	const [name, setName] = useState('')
-	const [pokemon, setPokemon] = useState([])
-	const URL = `https://pokeapi.co/api/v2/pokemon/${name}`
-	useEffect(() => {
-		fetch(URL)
-			.then(res => res.json())
-			.then(res => setPokemon(res.stats))
-		console.log(pokemon)
-	}, [name, URL])
+
 	return (
 		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 			<NavbarDesktop />

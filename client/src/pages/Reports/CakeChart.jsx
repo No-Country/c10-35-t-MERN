@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
-import { Line } from 'react-chartjs-2'
 import { useEffect, useState } from 'react'
+
+import { Line } from 'react-chartjs-2'
+
 import { Chart as Chartjs } from 'chart.js/auto'
 
 function CakeChart({ charData }) {
 	const [userData, setData] = useState({
+		labels: charData.map(el => el.name),
 		datasets: [
 			{
 				label: '',
-				data: charData.map(el => el.base_stat),
+				data: charData.map(el => el.money),
 				borderCapStyle: 'round',
 				borderWidth: '1',
 				borderColor: function (context) {
@@ -23,6 +26,7 @@ function CakeChart({ charData }) {
 				pointBorderWidth: 2,
 				fill: 'origin',
 				responsive: false,
+				tension: 0.1,
 			},
 		],
 	})
@@ -62,32 +66,6 @@ function CakeChart({ charData }) {
 
 		return gradient
 	}
-	// useEffect(() => {
-	// 	console.log(userData[0].base_stat)
-	// 	setData({
-	// 		datasets: [
-	// 			{
-	// 				label: '',
-	// 				data: charData.map(el => el.base_stat),
-	// 				borderCapStyle: 'round',
-	// 				borderWidth: '1',
-	// 				borderColor: function (context) {
-	// 					const chart = context.chart
-	// 					const { ctx, chartArea } = chart
-	// 					if (!chartArea) {
-	// 						return
-	// 					}
-	// 					return getGradient(ctx, chartArea)
-	// 				},
-	// 				backgroundColor: 'rgb(255, 255, 255)',
-	// 				pointBorderWidth: 2,
-	// 				fill: 'origin',
-	// 				responsive: false,
-	// 			},
-	// 		],
-	// 	})
-	// }, [charData])
 	return <Line data={userData} options={options} />
 }
-
 export default CakeChart
