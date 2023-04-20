@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nombre": "Leche",
-      "cantidad": "12",
+      "cantidad": "17",
       "costo": "1000",
       "total": 1500,
       "precio": "1600",
@@ -660,6 +660,28 @@
       "alerta": "10",
       "unidades": "unidades",
       "categorias": "Vegetales"
+    },
+    {
+      "id": 1682019587341,
+      "nombre": "",
+      "cantidad": "",
+      "costo": "",
+      "total": "",
+      "precio": "",
+      "alerta": "",
+      "unidades": "",
+      "categorias": ""
+    },
+    {
+      "id": 1682019869194,
+      "nombre": "PEPAS",
+      "cantidad": "78",
+      "costo": "96",
+      "total": "36",
+      "precio": "78",
+      "alerta": "",
+      "unidades": "Kg",
+      "categorias": "Lacteos"
     }
   ]
 }

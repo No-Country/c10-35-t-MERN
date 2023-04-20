@@ -7,6 +7,7 @@ import ModalProductoModificado from '../../components/Modals/ModalProductoModifi
 import HeadingsModify from '../../components/ModifyProduct/HeadingsModify'
 import Subtitles from '../../components/CreateProducts/Subtitles'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
+import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
 
 const initialForm = {
 	id:'',
@@ -440,9 +441,9 @@ const ModifyProducts = () => {
 										</button>
 										{visible ? <ModalProductoModificado idProduct={location.state.id} /> : null}
 
-										{/* {response ? null : (
+										{response ? null : (
 										<ModalFallaCarga setVisible={setVisible} />
-									)} */}
+									)}
 									</div>
 								</div>
 							</div>
