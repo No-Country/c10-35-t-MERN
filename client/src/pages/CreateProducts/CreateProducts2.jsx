@@ -164,15 +164,15 @@ const CreateProducts2 = () => {
 				setVisible(true);
 				if (!res.err) {
 					setDb([...db, res])
-				} else {
-					setResponse(res)
-					;
-					<ModalFallaCarga />
+<<<<<<< HEAD
+					;<ModalProductocargado
+						texto={'Productos cargados exitosamente!'}
+						idProduct={idProduct}
 				}
+>>>>>>> 0dcaf1e99aa6a249b19f78246ed769976ba61b10
 			})
 	}
 
-	// const updateData = data => {
 	// 	let endpoint = `${urlGet}/${data.id}`
 
 	// 	crud
@@ -213,7 +213,11 @@ const CreateProducts2 = () => {
 		<>
 			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 				<NavbarDesktop />
+<<<<<<< HEAD
+				<div className='w-373 h-full md:absolute md:w-full md:h-1024 md:flex md:justify-center md:bg-fondoT'>
+=======
 				<div className='w-373 h-full md:absolute md:w-full md:h-1024  md:ml-130 md:flex md:justify-center md:bg-fondoT'>
+>>>>>>> 0dcaf1e99aa6a249b19f78246ed769976ba61b10
 					<div
 						className='md:bg-white
 				md:absolute md:w-714 md:top-4 md:h-888 md:botton-4 md:ml-408'
@@ -427,12 +431,15 @@ const CreateProducts2 = () => {
 											</div>
 										</button>
 
+<<<<<<< HEAD
+=======
 										{visible ? (
 											<ModalProductocargado
 												texto={'Productos cargados exitosamente!'}
 												idProduct={idProduct}
 											/>
 										) : null}
+>>>>>>> 0dcaf1e99aa6a249b19f78246ed769976ba61b10
 										{modal ? <ModalExcel setModal={setModal} /> : null}
 										{/* {setResponse ? null : (
 											<ModalFallaCarga setVisible={setVisible} />

@@ -1,15 +1,35 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
 import BarChart from '../Reports/BarChart'
 import CakeChart from '../Reports/CakeChart'
 import CircleChart from '../Reports/CircleChart'
 import NavBar from '../../components/NavBar/NavBar'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import useGetData from '../../hooks/UseFetch/UseGetData'
 
 function Reports({ charData }) {
 	const [name, setName] = useState('')
+	const URL = `https://pokeapi.co/api/v2/pokemon/${name || 'ditto'}`
+	const URL2 = `https://pokeapi.co/api/v2/pokemon/${name || 'pikachu'}`
+	const { getData, isGetLoading, getError } = useGetData(URL)
+	const printRef = useRef()
+	const handleDownloadPdf = async () => {
+		const element = printRef.current
+		const canvas = await html2canvas(element)
+		const data = canvas.toDataURL('image/png')
+
+		const pdf = new jsPDF()
+		const imgProperties = pdf.getImageProperties(data)
+		const pdfWidth = pdf.internal.pageSize.getWidth()
+		const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width
+
+		pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight)
+		pdf.save('print.pdf')
+	}
 
 	return (
 		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
@@ -52,6 +72,7 @@ function Reports({ charData }) {
 									id='pikachu'
 									onClick={e => setName(e.target.id)}
 									name='row1'
+									defaultChecked='true'
 								/>
 								<label
 									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
@@ -91,35 +112,35 @@ function Reports({ charData }) {
 								</label>
 							</button>
 						</div>
-						<div className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'>
+						<div
+							ref={printRef}
+							className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'
+						>
 							<div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
-									<CakeChart charData={charData} />
+									<CakeChart charData={getData} url={URL} />
 								</div>
 							</div>
 							<div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white w-full rounded-xl h-16 lg:h-157 p-2 shadow-sombra'>
-									<CakeChart charData={charData} />
+									<CakeChart charData={getData} />
 								</div>
 							</div>
 						</div>
 					</div>
 					<main className='flex bg-primario justify-evenly items-start w-full  gap-2 px-4 py-3 lg:justify-between lg:p-0 lg:bg-white mb-10'>
-						<article className='flex flex-col text-center w-1/2 lg:w-447 '>
+						<article className='flex flex-col text-center w-1/2 lg:w-447 lg:h-300 bg-red-200 '>
 							<h3 className='lg:text-left'>Ingresos y egresos</h3>
-							<div className='bg-white shadow-sombra w-full lg:hidden '>
-								<BarChart charData={charData} />
-							</div>
-							<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
-								<CakeChart charData={charData} />
+							<div className='bg-white shadow-sombra w-full lg:h-full'>
+								<BarChart charData={getData} />
 							</div>
 						</article>
-						<article className=' flex flex-col justify-center  text-center w-1/2 lg:w-446'>
+						<article className=' flex flex-col justify-center  text-center w-1/2 lg:w-446 lg:h-300'>
 							<h3 className='lg:text-left'>Categorias y unidades</h3>
-							<div className='bg-white shadow-sombra w-full '>
-								<CircleChart charData={charData} />
+							<div className='bg-white shadow-sombra w-full lg:h-full  '>
+								<CircleChart charData={getData} />
 							</div>
 						</article>
 					</main>
@@ -133,7 +154,10 @@ function Reports({ charData }) {
 							</span>
 						</div>
 					</div>
-					<button className='bg-secundario w-343 rounded-xl text-white py-4 font-bold'>
+					<button
+						onClick={handleDownloadPdf}
+						className='bg-secundario w-343 rounded-xl text-white py-4 font-bold'
+					>
 						Descargar registro
 					</button>
 				</div>
