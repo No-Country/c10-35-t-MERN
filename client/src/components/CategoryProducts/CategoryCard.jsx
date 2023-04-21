@@ -24,28 +24,28 @@ export const CategoryCard = ({
 
 	const categories = [
 		{
-			id: 'Vegetales',
+			id:1,
 			img0: vegetal0,
 			img1: vegetal1,
 			
 		},
 		{
-			id: 'Snacks',
+			id: 2,
 			img0: snack0,
 			img1: snack1,
 		},
 		{
-			id: 'Lacteos',
+			id: 3,
 			img0: lacteos0,
 			img1: lacteos1,
 		},
 		{
-			id: 'Limpieza',
+			id: 4,
 			img0: limpieza0,
 			img1: limpieza1,
 		},
 		{
-			id: 'Bebidas',
+			id: 5,
 			img0: gaseosa0,
 			img1: gaseosa1,
 		},

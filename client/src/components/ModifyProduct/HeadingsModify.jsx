@@ -15,9 +15,10 @@ const HeadingsModify = () => {
                 <RiArrowLeftSLine className='w-8 h-8' />
             </Link>
 
-            <p className=' w-271 h-43 left-l52 flex items-end font-primaria font-normal text-3xl md:top-0.5 md:w-56 md:h-31 md:flex-none md:order-none md:grow-0  md:font-secundaria md:text-2xl md:font-bold md:ml-64 md:mt-0'>
+            <h1             
+            className=' w-335 h-43 left-l52 flex items-end font-primaria font-normal text-3xl md:top-0.5 md:w-56 md:h-31 md:flex-none md:order-none md:grow-0  md:font-secundaria md:text-2xl md:font-bold md:ml-64 md:mt-0'>
                 Modificar Producto
-            </p>
+            </h1>
 
             <Link to={'/inventario'}>
                 <div className='ml-14 mr-3'>

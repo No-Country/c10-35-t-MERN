@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-undef */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
@@ -14,15 +15,15 @@ import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 const initialForm = {
-	id: Date.now(),
-	nombre: '',
-	cantidad: '',
-	costo: '',
-	total: '',
-	precio: '',
-	alerta: '',
-	unidades: '',
-	categorias: '',
+	id:'',
+	product_name: '',
+	stock:'',
+	cost: '',	
+	price: '',
+	minimum_stock: '',
+	userId:19,
+	categoryId: '',
+	units:''
 }
 
 const validationsForm = (form, name) => {
@@ -30,72 +31,63 @@ const validationsForm = (form, name) => {
 
 	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
 	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
-	const { nombre, cantidad, precio, costo, total, alerta, categorias } = form
+	const { product_name, stock, price, cost, minimum_stock, categoryId,userId } = form
 
-	if ((nombre === '') & (name === 'nombre')) {
-		errors.nombre = 'El campo nombre es requerido'
+	if ((product_name === '') & (name === 'product_name')) {
+		errors.product_name = 'El campo nombre es requerido'
 		return errors
-	} else if (!letters.test(nombre) & (name === 'nombre')) {
-		errors.nombre = 'el campo solo acepta letras'
+	} else if (!letters.test(product_name) & (name === 'product_name')) {
+		errors.product_name = 'el campo solo acepta letras'
 		return errors
 	}
 
-	if ((cantidad === '') & (name === 'cantidad')) {
-		errors.cantidad = 'El campo cantidad es requerido'
+	if ((stock === '') & (stock === 'stock')) {
+		errors.stock = 'El campo cantidad es requerido'
 		return errors
-	} else if (!number.test(cantidad) & (name === 'cantidad')) {
-		errors.cantidad = 'el campo solo acepta numeros'
-		return errors
-	}
-
-	if ((precio === '') & (name === 'precio')) {
-		errors.precio = 'El campo precio es requerido'
-		return errors
-	} else if (!number.test(precio) & (name === 'precio')) {
-		errors.precio = 'el campo solo acepta numeros'
-
+	} else if (!number.test(stock) & (name === 'stock')) {
+		errors.stock = 'el campo solo acepta numeros'
 		return errors
 	}
 
-	if ((costo === '') & (name === 'costo')) {
-		errors.costo = 'El campo costo es requerido'
+	if ((price === '') & (name === 'price')) {
+		errors.price = 'El campo precio es requerido'
 		return errors
-	} else if (!number.test(costo) & (name === 'costo')) {
-		errors.costo = 'el campo solo acepta numeros'
+	} else if (!number.test(price) & (name === 'price')) {
+		errors.price = 'el campo solo acepta numeros'
+
 		return errors
 	}
 
-	if ((total === '') & (name === 'total')) {
-		errors.total = 'El campo total es requerido'
+	if ((cost === '') & (name === 'cost')) {
+		errors.cost = 'El campo costo es requerido'
 		return errors
-	} else if (!number.test(total) & (name === 'total')) {
-		errors.total = 'el campo solo acepta numeros'
+	} else if (!number.test(cost) & (name === 'cost')) {
+		errors.cost = 'el campo solo acepta numeros'
 		return errors
 	}
+	
 
-	if ((alerta === '') & (name === 'alerta')) {
-		errors.alerta = 'El campo alerta es requerido'
+	if ((minimum_stock === '') & (name === 'minimum_stock')) {
+		errors.minimum_stock = 'El campo es requerido'
 		return errors
-	} else if (!number.test(alerta) & (name === 'alerta')) {
-		errors.alerta = 'el campo solo acepta numeros'
+	} else if (!number.test(minimum_stock) & (name === 'minimum_stock')) {
+		errors.minimum_stock = 'el campo solo acepta numeros'
 		return errors
 	}
-	if ((categorias === '') & (name === 'categorias')) {
-		errors.categorias = 'El campo categoria es requerido'
+	if ((categoryId === '') & (name === 'categoriId')) {
+		errors.categoryId = 'El campo categoria es requerido'
 		return errors
-	} else if (!letters.test(categorias) & (name === 'categorias')) {
-		errors.categorias = 'el campo solo acepta letras'
+	} else if (!letters.test(categoryId) & (name === 'categoryId')) {
+		errors.categoryId = 'el campo solo acepta letras'
 		return errors
 	}
 
 	return errors
 }
 
-
 const CreateProducts2 = () => {
-
-	const location=useLocation();
-	const idProduct = location.state===null? 0 : location.state.idProduct;
+	const location = useLocation()
+	const idProduct = location.state === null ? 0 : location.state.idProduct
 
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
@@ -106,7 +98,8 @@ const CreateProducts2 = () => {
 	const [modal, setModal] = useState(false)
 
 	const crud = helpFetch()
-	const urlGet = 'http://localhost:3000/data';
+	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/:19'
+	const urlPost= 'https://stocker-api.fly.dev/api/v1/products/create'
 
 	useEffect(() => {
 		fetch(urlGet).then(res => {
@@ -138,7 +131,7 @@ const CreateProducts2 = () => {
 
 		if (Object.keys(errors).length === 0) {
 			helpFetch()
-				.post(urlGet, {
+				.post(urlPost, {
 					body: form,
 					headers: {
 						'Content-Type': 'application/json',
@@ -148,8 +141,8 @@ const CreateProducts2 = () => {
 				.then(res => {
 					console.log(res)
 					setResponse(true)
-					setForm(initialForm);
-					<ModalFallaCarga setVisble={setVisible}/>
+					setForm(initialForm)
+					;<ModalFallaCarga setVisble={setVisible} />
 				})
 
 			return
@@ -161,27 +154,21 @@ const CreateProducts2 = () => {
 		}
 	}
 
-	const createData = data => {
-
+	const createData = () => {
 		crud
-			.post(urlGet, {
-				body: data,
+			.post(urlPost, {
+				body: form,
 				headers: { 'content-type': 'application/json' },
 			})
 			.then(res => {
+				setVisible(true);
 				if (!res.err) {
-					setDb([...db, res]);
-
-					<ModalProductocargado
-					texto={'Productos cargados exitosamente!'}
-					idProduct={idProduct}
-				/>
+					setDb([...db, res])
 				} else {
-					setResponse(res);
-					<ModalFallaCarga/>
+					setResponse(res)
+					;
+					<ModalFallaCarga />
 				}
-
-				// duda los modales los pongo en la funcion de peticiones o las pongo como rendercond -response?modalcragadp:modalfallacarga 
 			})
 	}
 
@@ -221,13 +208,12 @@ const CreateProducts2 = () => {
 	// 			})
 	// 	}
 	// }
-	
 
 	return (
 		<>
 			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
-				<NavbarDesktop/>
-				<div className='w-373 h-full md:absolute md:w-full md:h-1024 md:flex md:justify-center md:bg-fondoT'>
+				<NavbarDesktop />
+				<div className='w-373 h-full md:absolute md:w-full md:h-1024  md:ml-130 md:flex md:justify-center md:bg-fondoT'>
 					<div
 						className='md:bg-white
 				md:absolute md:w-714 md:top-4 md:h-888 md:botton-4 md:ml-408'
@@ -261,16 +247,16 @@ const CreateProducts2 = () => {
 											<input
 												type='text'
 												id='nombre'
-												name='nombre'
-												value={form.nombre}
+												name='product_name'
+												value={form.product_name}
 												onBlur={handleBlur}
 												onChange={handleChange}
 												className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
 											></input>
 										</div>
-										{errors.nombre && (
+										{errors.product_name && (
 											<p id='msgerror' className='ml-4'>
-												{errors.nombre}
+												{errors.product_name}
 											</p>
 										)}
 									</div>
@@ -285,28 +271,31 @@ const CreateProducts2 = () => {
 												<input
 													id='inputPrueba'
 													type='number'
-													name='cantidad'
-													value={form.cantidad}
+													name='stock'
+													value={form.stock}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.cantidad && (
-												<p id='msgerror'>{errors.cantidad}</p>
-											)}
+											{errors.stock && (
+											<p id='msgerror'>
+												{errors.stock}
+											</p>
+										)}
 										</div>
 										<div className=' h-32'>
 											<div id='divPrueba'>
 												<label id='labelPrueba'>Seleciona la unidad</label>
 												<select
 													id='inputPrueba'
-													name='unidades'
+													name='units'
 													onChange={handleChange}
+													defaultValue={form.units}
 												>
 													<option id='' value=''>
 														Seleciona unidad
 													</option>
-													<option id='unidades' value='unidades'>
+													<option id='units' value='unidades'>
 														Unidades
 													</option>
 													<option id='Kg' value='Kg'>
@@ -320,9 +309,9 @@ const CreateProducts2 = () => {
 													</option>
 												</select>
 											</div>
-											{errors.unidades && (
+											{/* {errors.unidades && (
 												<p id='msgerror'>{errors.unidades}</p>
-											)}
+											)} */}
 										</div>
 									</div>
 
@@ -335,27 +324,27 @@ const CreateProducts2 = () => {
 												<input
 													id='inputPrueba'
 													type='number'
-													name='costo'
-													value={form.costo}
+													name='cost'
+													value={form.cost}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.costo && <p id='msgerror'>{errors.costo}</p>}
+											{errors.cost && <p id='msgerror'>{errors.cost}</p>}
 										</div>
 										<div className='h-32'>
 											<div id='divPrueba'>
-												<label id='labelPrueba'>Costo total</label>
+												<label id='labelPrueba'>Cantidad min de Stock</label>
 												<input
 													id='inputPrueba'
 													type='number'
-													name='total'
-													value={form.total}
+													name='minimum_stock'
+													value={form.minimum_stock}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.total && <p id='msgerror'>{errors.total}</p>}
+											{errors.minimum_stock && <p id='msgerror'>{errors.minimum_stock}</p>}
 										</div>
 									</div>
 									{/* -------------------tercer grupo--------------- */}
@@ -367,13 +356,13 @@ const CreateProducts2 = () => {
 												<input
 													id='inputPrueba'
 													type='number'
-													name='precio'
-													value={form.precio}
+													name='price'
+													value={form.price}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.precio && <p id='msgerror'>{errors.precio}</p>}
+											{errors.price && <p id='msgerror'>{errors.price}</p>}
 										</div>
 
 										<div className=' h-32'>
@@ -382,9 +371,9 @@ const CreateProducts2 = () => {
 
 												<select
 													id='inputPrueba'
-													name='categorias'
+													name='categoryId'
 													type='text'
-													value={form.categorias}
+													value={form.categoryId}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												>
@@ -408,8 +397,8 @@ const CreateProducts2 = () => {
 													</option>
 												</select>
 											</div>
-											{errors.categoria && (
-												<p id='msgerror'>{errors.categoria}</p>
+											{errors.categoryId && (
+												<p id='msgerror'>{errors.categoryId}</p>
 											)}
 										</div>
 									</div>
@@ -430,7 +419,7 @@ const CreateProducts2 = () => {
 											id='inputPrueba'
 											type='submit'
 											value='send'
-											onClick={()=>createData()}										
+											onClick={() => createData()}
 											className='bg-secundario'
 										>
 											<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
@@ -438,7 +427,12 @@ const CreateProducts2 = () => {
 											</div>
 										</button>
 
-									
+										{visible ? (
+											<ModalProductocargado
+												texto={'Productos cargados exitosamente!'}
+												idProduct={idProduct}
+											/>
+										) : null}
 										{modal ? <ModalExcel setModal={setModal} /> : null}
 										{/* {setResponse ? null : (
 											<ModalFallaCarga setVisible={setVisible} />
