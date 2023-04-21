@@ -10,6 +10,7 @@ import { BtnAddProductResponsive } from '../../components/Buttons/BtnAddProductR
 import { useLocation } from 'react-router'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 import { helpFetch } from '../../components/helpers/helpFetch'
+import {data} from '../../data/data'
 
 const categories = [
 	{
@@ -44,63 +45,63 @@ const categories = [
 	},
 ]
 
-const products = [
-	{
-		id: 1,
-		title: 'Leche',
-		stock: '12',
-		cost: '1000',
-		price: '1600',
-		idCategory: 3,
-		minStock: 30,
-		unidades: 'Lts',
-		alerta: '10',
-	},
-	{
-		id: 2,
-		title: 'Lechuga',
-		stock: '10',
-		cost: '10',
-		price: '20',
-		idCategory: 1,
-		minStock: 20,
-		unidades: 'unidades',
-		alerta: '10',
-	},
-	{
-		id: 3,
-		title: 'Lechuga-1',
-		stock: '10',
-		cost: '9',
-		price: '20',
-		idCategory: 1,
-		minStock: 10,
-		unidades: 'unidades',
-		alerta: '10',
-	},
-	{
-		id: 4,
-		title: 'Lechuga-2',
-		stock: '10',
-		cost: '8',
-		price: '20',
-		idCategory: 1,
-		minStock: 5,
-		unidades: 'unidades',
-		alerta: '10',
-	},
-	{
-		id: 5,
-		title: 'Lechuga-3',
-		stock: '10',
-		cost: '13',
-		price: '20',
-		idCategory: 1,
-		minStock: 7,
-		unidades: 'unidades',
-		alerta: '10',
-	},
-]
+// const products = [
+// 	{
+// 		id: 1,
+// 		title: 'Leche',
+// 		stock: '12',
+// 		cost: '1000',
+// 		price: '1600',
+// 		idCategory: 3,
+// 		minStock: 30,
+// 		unidades: 'Lts',
+// 		alerta: '10',
+// 	},
+// 	{
+// 		id: 2,
+// 		title: 'Lechuga',
+// 		stock: '10',
+// 		cost: '10',
+// 		price: '20',
+// 		idCategory: 1,
+// 		minStock: 20,
+// 		unidades: 'unidades',
+// 		alerta: '10',
+// 	},
+// 	{
+// 		id: 3,
+// 		title: 'Lechuga-1',
+// 		stock: '10',
+// 		cost: '9',
+// 		price: '20',
+// 		idCategory: 1,
+// 		minStock: 10,
+// 		unidades: 'unidades',
+// 		alerta: '10',
+// 	},
+// 	{
+// 		id: 4,
+// 		title: 'Lechuga-2',
+// 		stock: '10',
+// 		cost: '8',
+// 		price: '20',
+// 		idCategory: 1,
+// 		minStock: 5,
+// 		unidades: 'unidades',
+// 		alerta: '10',
+// 	},
+// 	{
+// 		id: 5,
+// 		title: 'Lechuga-3',
+// 		stock: '10',
+// 		cost: '13',
+// 		price: '20',
+// 		idCategory: 1,
+// 		minStock: 7,
+// 		unidades: 'unidades',
+// 		alerta: '10',
+// 	},
+// ]
 
 export const Inventary = () => {
 	const [filter, setFilter] = useState({
@@ -187,7 +188,7 @@ export const Inventary = () => {
 				/>
 
 				<ProductsContainer
-					productsList={products}
+					productsList={data}
 					filterProduct={{ ...filter }}
 					idProduct={idProduct}
 				/>
