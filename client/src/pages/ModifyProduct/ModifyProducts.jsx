@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable camelcase */
 import { useEffect, useState } from 'react'
 import { helpFetch } from '../../components/helpers/helpFetch'
 import { Link, useLocation } from 'react-router-dom'
@@ -11,76 +13,70 @@ import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
 
 const initialForm = {
 	id:'',
-	nombre: '',
-	cantidad: '',
-	costo: '',
-	total: '',
-	precio: '',
-	alerta: '',
-	unidades: '',
-	categorias: '',
+	product_name: '',
+	stock: '',
+	cost: '',	
+	price: '',
+	minimum_stock: '',
+	userId: '',
+	categoryId: '',
+	units:''
 }
 
 const validationsForm = (form, name) => {
+	console.log(form)
+	// eslint-disable-next-line prefer-const
 	let errors = {}
 
 	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
 	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
-	const { nombre, cantidad, precio, costo, total, alerta, categorias } = form
+	const { product_name, stock, price, cost, minimum_stock, categoryId,userId } = form
 
-	if ((nombre === '') & (name === 'nombre')) {
-		errors.nombre = 'El campo nombre es requerido'
+	if ((product_name === '') & (name === 'product_name')) {
+		errors.product_name = 'El campo nombre es requerido'
 		return errors
-	} else if (!letters.test(nombre) & (name === 'nombre')) {
-		errors.nombre = 'el campo solo acepta letras'
+	} else if (!letters.test(product_name) & (name === 'product_name')) {
+		errors.product_name = 'el campo solo acepta letras'
 		return errors
 	}
 
-	if ((cantidad === '') & (name === 'cantidad')) {
-		errors.cantidad = 'El campo cantidad es requerido'
+	if ((stock === '') & (name === 'stock')) {
+		errors.stock=  'El campo cantidad es requerido'
 		return errors
-	} else if (!number.test(cantidad) & (name === 'cantidad')) {
-		errors.cantidad = 'el campo solo acepta numeros'
-		return errors
-	}
-
-	if ((precio === '') & (name === 'precio')) {
-		errors.precio = 'El campo precio es requerido'
-		return errors
-	} else if (!number.test(precio) & (name === 'precio')) {
-		errors.precio = 'el campo solo acepta numeros'
-
+	} else if (!number.test(stock) & (name === 'stock')) {
+		errors.stock= 'el campo solo acepta numeros'
 		return errors
 	}
 
-	if ((costo === '') & (name === 'costo')) {
-		errors.costo = 'El campo costo es requerido'
+	if ((price === '') & (name === 'price')) {
+		errors.price = 'El campo precio es requerido'
 		return errors
-	} else if (!number.test(costo) & (name === 'costo')) {
-		errors.costo = 'el campo solo acepta numeros'
+	} else if (!number.test(price) & (name === 'price')) {
+		errors.price = 'el campo solo acepta numeros'
+
 		return errors
 	}
 
-	if ((total === '') & (name === 'total')) {
-		errors.total = 'El campo total es requerido'
+	if ((cost === '') & (name === 'cost')) {
+		errors.cost = 'El campo costo es requerido'
 		return errors
-	} else if (!number.test(total) & (name === 'total')) {
-		errors.total = 'el campo solo acepta numeros'
+	} else if (!number.test(cost) & (name === 'cost')) {
+		errors.cost = 'el campo solo acepta numeros'
 		return errors
 	}
 
-	if ((alerta === '') & (name === 'alerta')) {
-		errors.alerta = 'El campo alerta es requerido'
+	if ((minimum_stock === '') & (name === 'minimum_stock')) {
+		errors.minimum_stock = 'El campo es requerido'
 		return errors
-	} else if (!number.test(alerta) & (name === 'alerta')) {
-		errors.alerta = 'el campo solo acepta numeros'
+	} else if (!number.test(minimum_stock) & (name === 'minimum_stock')) {
+		errors.minimum_stock = 'el campo solo acepta numeros'
 		return errors
 	}
-	if ((categorias === '') & (name === 'categorias')) {
-		errors.categorias = 'El campo categoria es requerido'
+	if ((categoryId === '') & (name === 'categoryId')) {
+		errors.categoryId = 'El campo categoria es requerido'
 		return errors
-	} else if (!letters.test(categorias) & (name === 'categorias')) {
-		errors.categorias = 'el campo solo acepta letras'
+	} else if (!letters.test(categoryId) & (name === 'categoriId')) {
+		errors.categoryId = 'el campo solo acepta letras'
 		return errors
 	}
 
@@ -88,30 +84,30 @@ const validationsForm = (form, name) => {
 }
 const ModifyProducts = () => {
 	const location = useLocation()
-	console.log(location.state)
+	
 
 	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState({
 		...initialForm,
 		id:location.state.id,
-		nombre: location.state.title,
-		cantidad: location.state.stock,
-		costo:location.state.cost ,
-		total:parseInt(location.state.cost) +500,
-		precio:location.state.price,
-		alerta:location.state.alerta,
-		unidades: location.state.unidades,
-		categorias:location.state.idCategory,
+		product_name: location.state.title,
+		stock: location.state.stock,
+		cost:location.state.cost ,		
+		price:location.state.price,
+		minimum_stock:location.state.alerta,
+		units: location.state.unidades,
+		categoryId:location.state.idCategory,
 		
 	})
 	const [errors, setErrors] = useState({})
 	const [response, setResponse] = useState(null)
 	const [db, setDb] = useState(null)
-	// const [dataToEdit, setDataToEdit] = useState(null)
+	
 
 	const crud = helpFetch()
 	// eslint-disable-next-line prefer-const
-	const urlGet = 'http://localhost:3000/data'
+	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/:19'
+	const urlPut= 'https://stocker-api.fly.dev/api/v1/products/update'
 
 	useEffect(() => {
 		fetch(urlGet).then(res => {
@@ -142,7 +138,7 @@ const ModifyProducts = () => {
 
 		if (Object.keys(errors).length === 0) {
 			helpFetch()
-				.post(urlGet, {
+				.put(urlPut, {
 					body: form,
 					headers: {
 						'Content-Type': 'application/json',
@@ -166,23 +162,23 @@ const ModifyProducts = () => {
 		
 	}
 
-	const createData = data => {
-		crud
-			.post(urlGet, {
-				body: data,
-				headers: { 'content-type': 'application/json' },
-			})
-			.then(res => {
-				console.log(res)
-				if (!res.err) {
-					setDb([...db, res])
-				} else setResponse(res)
-			})
-	}
+	// const createData = () => {
+	// 	crud
+	// 		.post(urlGet, {
+	// 			body: form,
+	// 			headers: { 'content-type': 'application/json' },
+	// 		})
+	// 		.then(res => {
+	// 			console.log(res)
+	// 			if (!res.err) {
+	// 				setDb([...db, res])
+	// 			} else setResponse(res)
+	// 		})
+	// }
 
 	const updateData =()=> {
 		
-		let endpoint = `${urlGet}/${form.id}`
+		let endpoint = `${urlPut}/${form.id}`
 		
 		crud
 		.put(endpoint, {
@@ -206,7 +202,7 @@ const ModifyProducts = () => {
 		let isDelete = confirm(`¿Estas seguro que quieres eliminar ${id}?`)		
 
 		if (isDelete) {
-			let endpoint = `${urlGet}/${id}`
+			let endpoint = `${urlPut}/${id}`
 
 			crud
 				.del(endpoint, { headers: { 'content-type': 'application/json' } })
@@ -263,16 +259,16 @@ const ModifyProducts = () => {
 											<input
 												type='text'
 												id='nombre'
-												name='nombre'
-												value={form.nombre}
+												name='product_name'
+												value={form.product_name}
 												onBlur={handleBlur}
 												onChange={handleChange}
 												className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
 											></input>
 										</div>
-										{errors.nombre && (
+										{errors.product_name && (
 											<p id='msgerror' className='ml-4'>
-												{errors.nombre}
+												{errors.product_name}
 											</p>
 										)}
 									</div>
@@ -287,14 +283,14 @@ const ModifyProducts = () => {
 												<input
 													id='inputPrueba'
 													type='number'
-													name='cantidad'
-													value={form.cantidad}
+													name='stock'
+													value={form.stock}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.cantidad && (
-												<p id='msgerror'>{errors.cantidad}</p>
+											{errors.stock && (
+												<p id='msgerror'>{errors.stock}</p>
 											)}
 										</div>
 										<div className=' h-32'>
@@ -302,14 +298,14 @@ const ModifyProducts = () => {
 												<label id='labelPrueba'>Seleciona la unidad</label>
 												<select
 													id='inputPrueba'
-													name='unidades'
-													defaultValue={form.unidades}
+													name='units'
+													defaultValue={form.units}
 													onChange={handleChange}
 												>
 													<option id='' value=''>
 														Seleciona unidad
 													</option>
-													<option id='unidades' value='unidades'>
+													<option id='units' value='unidades'>
 														Unidades
 													</option>
 													<option id='Kg' value='Kg'>
@@ -323,8 +319,8 @@ const ModifyProducts = () => {
 													</option>
 												</select>
 											</div>
-											{errors.unidades && (
-												<p id='msgerror'>{errors.unidades}</p>
+											{errors.units && (
+												<p id='msgerror'>{errors.units}</p>
 											)}
 										</div>
 									</div>
@@ -338,27 +334,27 @@ const ModifyProducts = () => {
 												<input
 													id='inputPrueba'
 													type='number'
-													name='costo'
-													value={form.costo}
+													name='cost'
+													value={form.cost}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.costo && <p id='msgerror'>{errors.costo}</p>}
+											{errors.cost && <p id='msgerror'>{errors.cost}</p>}
 										</div>
 										<div className='h-32'>
 											<div id='divPrueba'>
-												<label id='labelPrueba'>Costo total</label>
+												<label id='labelPrueba'>Cantidad min de stock</label>
 												<input
 													id='inputPrueba'
 													type='number'
-													name='total'
-													value={form.total}
+													name='minimum_stock'
+													value={form.minimum_stock}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.total && <p id='msgerror'>{errors.total}</p>}
+											{errors.minimum_stock && <p id='msgerror'>{errors.minimum_stock}</p>}
 										</div>
 									</div>
 									{/* -------------------tercer grupo--------------- */}
@@ -370,13 +366,13 @@ const ModifyProducts = () => {
 												<input
 													id='inputPrueba'
 													type='number'
-													name='precio'
-													value={form.precio}
+													name='price'
+													value={form.price}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.precio && <p id='msgerror'>{errors.precio}</p>}
+											{errors.price && <p id='msgerror'>{errors.price}</p>}
 										</div>
 
 										<div className=' h-32'>
@@ -385,34 +381,34 @@ const ModifyProducts = () => {
 
 												<select
 													id='inputPrueba'
-													name='categorias'
+													name='categoryId'
 													type='text'
-													defaultValue={form.categorias}
+													defaultValue={form.categoryId}
 													onBlur={handleBlur}
 													onChange={handleChange}
 												>
 													<option id='' value=''>
 														Seleciona Categoria
 													</option>
-													<option id='Vegetales' value='Vegetales'>
+													<option id='Vegetales' value={1}>
 														Vegetales
 													</option>
-													<option id='Snacks' value='Snacks'>
+													<option id='Snacks' value={2}>
 														Snacks
 													</option>
-													<option id='Lacteos' value='Lacteos'>
+													<option id='Lacteos' value={3}>
 														Lacteos
 													</option>
-													<option id='Limpieza' value='Limpieza'>
+													<option id='Limpieza' value={4}>
 														Limpieza
 													</option>
-													<option id='Bebidas' value='Bebidas'>
+													<option id='Bebidas' value={5}>
 														Bebidas
 													</option>
 												</select>
 											</div>
-											{errors.categoria && (
-												<p id='msgerror'>{errors.categoria}</p>
+											{errors.categoryId && (
+												<p id='msgerror'>{errors.categoryId}</p>
 											)}
 										</div>
 									</div>
@@ -441,9 +437,9 @@ const ModifyProducts = () => {
 										</button>
 										{visible ? <ModalProductoModificado idProduct={location.state.id} /> : null}
 
-										{response ? null : (
+										{/* {response ? null : (
 										<ModalFallaCarga setVisible={setVisible} />
-									)}
+									)} */}
 									</div>
 								</div>
 							</div>
