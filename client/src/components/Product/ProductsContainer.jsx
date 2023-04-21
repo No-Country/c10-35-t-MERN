@@ -55,6 +55,7 @@ export const ProductsContainer = ({ productsList, filterProduct, idProduct }) =>
 							minStock={product.minStock}
 							unidades={product.unidades}
 							alerta = {product.alerta}
+							img = {product.img}
 						/>
 					)
 				})}

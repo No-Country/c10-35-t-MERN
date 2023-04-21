@@ -144,11 +144,11 @@ export const Inventary = () => {
 				setProducts(res)
 			})
 	}
-	console.log(products)
+	// console.log(products)
 	return (
 		<div className='lg:grid lg:relative lg:relative lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 			<NavbarDesktop />
-			<div className='flex flex-col w-full gap-5'>
+			<div className='flex flex-col w-full gap-5 h-screen overflow-auto no-scrollbar'>
 				<Navbar navBarTile='Inventario' />
 
 				<div className='grid grid-cols-6 grid-rows-1 gap-1 px-4 h-160 w-full md:grid-cols-12 md:grid-rows-2'>
