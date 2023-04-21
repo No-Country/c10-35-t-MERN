@@ -17,7 +17,6 @@ function SectionProductosMover() {
                 <CardProductConfirmMovimiento/>
                 <CardProductConfirmMovimiento/>
                 <CardProductConfirmMovimiento/>
-                <CardProductConfirmMovimiento/>
             </div>
 
             <div className='w-80 mx-auto py-8'>

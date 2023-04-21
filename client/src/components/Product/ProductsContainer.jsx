@@ -5,8 +5,7 @@ import { RiArrowDownSFill } from 'react-icons/ri';
 
 export const ProductsContainer = ({ productsList, filterProduct, idProduct }) => {
 	const filteredProduct = () => {
-		return productsList
-			.filter(product => {
+		return productsList.filter(product => {
 				if (filterProduct.search === '') return product
 				return product.title
 					.toLowerCase()
@@ -45,14 +44,17 @@ export const ProductsContainer = ({ productsList, filterProduct, idProduct }) =>
 				{filteredProduct().map((product, i) => {
 					return (
 						<ProductStockCard
-							key={product.id}
+						    key={i}
+							id={product.id}
 							title={product.title}
-							price={product.price}
 							stock={product.stock}
+							cost = {product.cost}
+							price={product.price}
+							idCategory = {product.idCategory}
 							type={idProduct === product.id? 1:0}
-							nameCategory={product.nameCategory}
 							minStock={product.minStock}
 							unidades={product.unidades}
+							alerta = {product.alerta}
 						/>
 					)
 				})}

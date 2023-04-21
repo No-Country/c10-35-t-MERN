@@ -5,10 +5,12 @@ import React from 'react'
 import { AiFillCaretDown } from 'react-icons/ai';
 
 import CardProductCountMobile from '../Cards/CardProductCountMobile'
-import CardProductCountDesktop from '../Cards/CardProductCountDesktop';
 import BtnIconAddProduct from '../Buttons/BtnIconAddProduct';
 
-function SectionListaProductos() {
+function SectionListaProductos({productsList, filterProduct, idProduct}) {
+
+    console.log(productsList)
+    
     return (
         <>
             {/* ----- Titulo y boton + */}
@@ -18,25 +20,20 @@ function SectionListaProductos() {
                     <p className='flex items-center gap-2'>Orden de ingreso <AiFillCaretDown/> </p>
                 </div>
 
-                <BtnIconAddProduct/>
+            {/* <BtnIconAddProduct/> */}
             </div>
+            
+            {productsList.map((product, i) => {
+                return(
+                    <div className='flex flex-col '>
+                        <CardProductCountMobile
+                            product = {product}
+                            key={i}
+                        />
+                    </div>
+                )
+            })}
 
-
-            {/* ----- Cards */}
-            <div className='flex flex-col gap-y-5 md:hidden'>
-                <CardProductCountMobile/>
-                <CardProductCountMobile/>
-                <CardProductCountMobile/>
-                <CardProductCountMobile/>
-                <CardProductCountMobile/>
-            </div>
-            <div className='hidden md:flex flex-col gap-y-5 '>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
-                <CardProductCountDesktop/>
-            </div>
         </>
     )
 }

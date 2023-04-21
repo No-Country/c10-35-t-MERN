@@ -8,9 +8,9 @@ const Headings = () => {
 						{/* --------contenedor general de barra superior -------- */}
 						<div className='order-1 grow-0 md:mt-3'>
 							{/* --------contenedor de items h1 y botones------- */}
-							<div className='w-373 h-43  mt-2 top-31 left-0 px-0 py-4 gap-3 flex flex-row items-center  flex-none order-1 grow-0 md:pt-8  '>
+							<div className='w-373 h-43 md:h-10  mt-2 top-31 left-0 px-0 py-4 gap-3 flex flex-row items-center  flex-none order-1 grow-0 md:pt-8  '>
 								<Link
-									to={'/inicio'}
+									to={'/inventario'}
 									className='flex-none order-0 grow-0 w-6 h-6 top-2.5 left-4 md:hidden'
 								>
 									<RiArrowLeftSLine className='w-8 h-8 ' />
@@ -20,7 +20,7 @@ const Headings = () => {
 									Crear Producto
 								</h1>
 
-								<Link to={'/inicio'}>
+								<Link to={'/inventario'}>
 									<div className='ml-14 mr-3'>
 										<RiCloseCircleFill className='w-6 h-6 top-2.5 left-335 flex-none order-2 grow-0 ml-6 md:w-9 md:h-9 md:order-1 md:ml-156 md:mb-2 ' />
 									</div>
