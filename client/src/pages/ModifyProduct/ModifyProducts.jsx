@@ -94,7 +94,7 @@ const ModifyProducts = () => {
 		stock: location.state.stock,
 		cost:location.state.cost ,		
 		price:location.state.price,
-		minimum_stock:location.state.alerta,
+		minimum_stock:location.state.minimum_stock,
 		units: location.state.unidades,
 		categoryId:location.state.idCategory,
 		
