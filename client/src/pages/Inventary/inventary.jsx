@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-
+import React, { useState, useEffect } from 'react'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import Navbar from '../../components/NavBar/NavBar'
 import { TextBoxWithIcon } from '../../components/textBox/TextBoxWithIcon'
@@ -10,34 +9,35 @@ import { CategoryData } from '../../components/CategoryCard/CategoryData'
 import { BtnAddProductResponsive } from '../../components/Buttons/BtnAddProductResponsive'
 import { useLocation } from 'react-router'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
+import { helpFetch } from '../../components/helpers/helpFetch'
 
 const categories = [
 	{
-		id: 'Vegetales',
+		id: 1,
 		title: 'Vegetales',
 		stock: '20',
 		price: '1600',
 	},
 	{
-		id: 'Snacks',
+		id: 2,
 		title: 'Snacks',
 		stock: '17',
 		price: '1500',
 	},
 	{
-		id: 'Lacteos',
+		id: 3,
 		title: 'Lacteos',
 		stock: '11',
 		price: '1500',
 	},
 	{
-		id: 'Limpieza',
+		id: 4,
 		title: 'Limpieza',
 		stock: '11',
 		price: '1500',
 	},
 	{
-		id: 'Bebidas',
+		id: 5,
 		title: 'Bebidas',
 		stock: '11',
 		price: '1500',
@@ -51,7 +51,7 @@ const products = [
 		stock: '12',
 		cost: '1000',
 		price: '1600',
-		idCategory: 'Bebidas',
+		idCategory: 3,
 		minStock: 30,
 		unidades: 'Lts',
 		alerta: '10',
@@ -62,7 +62,7 @@ const products = [
 		stock: '10',
 		cost: '10',
 		price: '20',
-		idCategory: 'Vegetales',
+		idCategory: 1,
 		minStock: 20,
 		unidades: 'unidades',
 		alerta: '10',
@@ -73,7 +73,7 @@ const products = [
 		stock: '10',
 		cost: '9',
 		price: '20',
-		idCategory: 'Vegetales',
+		idCategory: 1,
 		minStock: 10,
 		unidades: 'unidades',
 		alerta: '10',
@@ -84,7 +84,7 @@ const products = [
 		stock: '10',
 		cost: '8',
 		price: '20',
-		idCategory: 'Vegetales',
+		idCategory: 1,
 		minStock: 5,
 		unidades: 'unidades',
 		alerta: '10',
@@ -95,7 +95,7 @@ const products = [
 		stock: '10',
 		cost: '13',
 		price: '20',
-		idCategory: 'Vegetales',
+		idCategory: 1,
 		minStock: 7,
 		unidades: 'unidades',
 		alerta: '10',
@@ -107,11 +107,43 @@ export const Inventary = () => {
 		search: '',
 		category: '',
 	})
+	const [products, setProducts] = useState([])
 
 	const location = useLocation()
 
 	const idProduct = location.state === null ? 0 : location.state.idProduct
 
+	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/:19'
+	const urlPost = 'https://stocker-api.fly.dev/api/v1/products/update'
+
+	// useEffect(() => {
+
+	//  fetch(urlGet).then(res => {
+
+	// 		if (!res.err) {
+	// 			console.log(res.body)
+	// 			setProducts(res)
+	// 		} else {
+	// 			setProducts([])
+	// 		}
+	// 	})
+
+	//   }
+	// , [urlGet])
+
+	const getProducts = () => {
+		helpFetch()
+			.put(urlGet, {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
+			})
+			.then(res => {
+				setProducts(res)
+			})
+	}
+	console.log(products)
 	return (
 		<div className='lg:grid lg:relative lg:relative lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 			<NavbarDesktop />
