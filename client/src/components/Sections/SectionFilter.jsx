@@ -9,11 +9,11 @@ import { CiSearch } from 'react-icons/ci'
 
 
 
-function SectionFilter({setFilter, filter}) {
+function SectionFilter() {
 
-    const handleChange = e => {
-        setFilter({...filter, search: e.target.value})
-    }
+    // const handleChange = e => {
+    //     setFilter({...filter, search: e.target.value})
+    // }
 
     return (
         <div className='flex gap-x-4'>
@@ -22,9 +22,9 @@ function SectionFilter({setFilter, filter}) {
                 <CiSearch className='w-6 h-6 absolute top-2 left-2 '/>
                 <input 
                     type="text" 
-                    placeholder={`Buscar productos`} 
+                    placeholder={'Buscar productos'} 
                     className='border border-black w-full py-2 pl-10 rounded-lg'
-                    onChange={handleChange}
+                    onChange={null}
                 />
             </div>
                 <BtnIconFilter/>
