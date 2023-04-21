@@ -107,7 +107,7 @@ export const Inventary = () => {
 		search: '',
 		category: '',
 	})
-	const [products, setProducts] = useState([])
+	// const [products, setProducts] = useState([])
 
 	const location = useLocation()
 
