@@ -151,9 +151,13 @@ export default function Ingresos() {
 
 	return (
 		<div className='flex'>
-			<NavbarDesktop/>
+			<div className='relative z-50'>
+				<div className='fixed top-0 '>
+					<NavbarDesktop/>
+				</div>
+			</div>
 
-			<div className='w-full'>
+			<div className='w-full md:ml-32'>
 
 				<NavBar 
 					iconBack={iconBack}

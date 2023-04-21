@@ -20,7 +20,7 @@ function SectionListaProductos({productsList, filterProduct, idProduct}) {
                     <p className='flex items-center gap-2'>Orden de ingreso <AiFillCaretDown/> </p>
                 </div>
 
-                <BtnIconAddProduct/>
+                {/* <BtnIconAddProduct/> */}
             </div>
             
             {productsList.map((product, i) => {
