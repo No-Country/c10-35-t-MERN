@@ -1,10 +1,16 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { IoCloseSharp } from 'react-icons/io5'
 import { RiMenuLine } from 'react-icons/ri'
 
 export default function NavBar({ iconBack, navBarTile }) {
 	const [navbar, setNavbar] = useState(false)
+	const navigate = useNavigate()
+	const handleLogOut = () => {
+		setNavbar(!navbar)
+		sessionStorage.removeItem('token')
+		navigate('/')
+	}
 
 	return (
 		<nav className='sticky h-16 w-full top-0 left-0 z-40 bg-white text-secundario'>
@@ -80,8 +86,8 @@ export default function NavBar({ iconBack, navBarTile }) {
 									className={({ isActive }) => {
 										return isActive ? 'text-acento' : undefined
 									}}
-									to='/logout'
-									onClick={() => setNavbar(!navbar)}
+									to='/'
+									onClick={handleLogOut}
 								>
 									<h4>
 										Cerrar sesión

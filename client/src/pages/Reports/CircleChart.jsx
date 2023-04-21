@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { Doughnut } from 'react-chartjs-2'
-
 import { Chart as Chartjs } from 'chart.js/auto'
 
 function CircleChart({ charData }) {
@@ -29,17 +28,17 @@ function CircleChart({ charData }) {
 			},
 		},
 	]
-	const [userData, setData] = useState({
-		labels: charData.map(el => el.name),
+	const data = {
+		labels: ['n1', 'n2'],
 		datasets: [
 			{
 				label: 'user amount of money',
-				data: charData.map(el => el.money),
-				responsive: false,
+				data: charData?.stats?.map(el => el?.base_stat),
+				responsive: true,
 				backgroundColor: ['#F47E34', '#C331E3', '#5507E0'],
 			},
 		],
-	})
+	}
 	const options = {
 		maintainAspectRatio: false,
 		cutout: 48,
@@ -61,7 +60,8 @@ function CircleChart({ charData }) {
 			},
 		},
 	}
-	return <Doughnut data={userData} options={options} />
+
+	return <Doughnut data={data} options={options} plugins={plugins} />
 }
 
 export default CircleChart

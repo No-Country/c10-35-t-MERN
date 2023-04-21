@@ -8,7 +8,7 @@ import reportesUrl from '../../assets/icon-reportes-white.svg'
 
 export default function NavbarDesktop() {
 	return (
-		<nav className='h-screen w-130 text-white bg-secundario max-md:hidden lg:block'>
+		<nav className='h-screen w-130 text-white bg-secundario max-lg:hidden lg:block'>
 			<NavLink to='/inventario'>
 				<img className='py-8 mx-auto' src={stockerLogo} alt='Stocker logo' />
 			</NavLink>

@@ -38,7 +38,7 @@ export default function DashboardMenu() {
 			{dashboardCategories ? (
 				dashboardCategories.map(category => (
 					<Link to={`/${category.route}`} key={category.id}>
-						<button className='group shadow-sombra flex flex-col items-center justify-center h-40 w-40 text-center py-8 px-4 bg-white rounded-xl hover:bg-secundario delay-75'>
+						<button className='group shadow-sombra flex flex-col items-center justify-center h-40 w-40 text-center py-8 px-4 bg-white rounded-xl hover:bg-secundario delay-75 md:w-full'>
 							<img
 								src={category.img}
 								alt={`Ícono de ${category.name}`}
