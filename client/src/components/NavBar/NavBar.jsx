@@ -9,7 +9,7 @@ export default function NavBar({ iconBack, navBarTile }) {
 	return (
 		<nav className='sticky h-16 w-full top-0 left-0 z-40 bg-white text-secundario'>
 			<div className='justify-between mx-auto lg:max-w-7xl md:items-center md:flex md:pr-8'>
-				<div className='flex items-center justify-between px-4 py-3 md:py-5 md:block md:px-8'>
+				<div className='flex items-center justify-between px-4 py-3 md:block md:px-8'>
 					<div className='flex items-center'>
 						<Link
 							to='#'
