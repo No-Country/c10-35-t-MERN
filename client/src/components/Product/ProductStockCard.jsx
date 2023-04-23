@@ -14,13 +14,14 @@ export const ProductStockCard = ({
 	minStock,
 	unidades,
 	alerta,
+	img
 }) => {
 	const bgColorCard = type === 1 ? 'bg-acento2' : 'bg-white'
 	const textColor = type === 1 ? 'text-white' : 'text-secundario'
 	const textoColorSecondary = type === 1 ? 'text-acento' : 'text-secundario'
 	const iconColor = type === 1 ? 'text-acento' : 'text-secundario'
 	const barColor = type === 1 ? 'bg-white' : 'bg-acento2_10'
-
+	console.log(alerta)
 	return (
 		<div className='w-full h-36'>
 			<div
@@ -28,7 +29,7 @@ export const ProductStockCard = ({
 			>
 				<div className='flex-row'>
 					<div className='w-full flex gap-7 items-center justify-center h-full flex-column'>
-						<img src={leche} alt='imagen' className='object-cover w-85 h-62' />
+						<img src={img} alt='imagen' className='object-cover w-85 h-62' />
 						<div className='w-full h-62 flex flex-col justify-between'>
 							<div className='flex justify-between w-full text-left'>
 								<h3 className={`font-bold text-xl w-full ${textColor}`}>
@@ -43,7 +44,8 @@ export const ProductStockCard = ({
 										cost,
 										idCategory,
 										price,
-										alerta,
+										minimum_stock: minStock
+										
 									}}
 									to={'/modificar-productos'}
 								>

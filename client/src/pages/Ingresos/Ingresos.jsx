@@ -10,7 +10,7 @@ import SectionListaProductos from '../../components/Sections/SectionListaProduct
 import BtnContinuar from '../../components/Buttons/BtnContinuar';
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
-
+import {data} from '../../data/data'
 
 // -------- Icons
 import { FiChevronLeft } from 'react-icons/fi';
@@ -18,6 +18,7 @@ import { FiChevronLeft } from 'react-icons/fi';
 
 // -------- Files
 import '../../index.css'
+import BtnConfirmarMovimiento from '../../components/Buttons/BtnConfirmarMovimiento';
 // -------- 
 
 
@@ -57,7 +58,6 @@ const categories = [
 		price: '1500',
 	},
 ]
-
 const products = [
 	{
 		id: 1,
@@ -123,7 +123,6 @@ const products = [
 
 
 export default function Ingresos() {
-
 	// Botón dinámico de retro para el Nav
 	const iconBack = <FiChevronLeft/>
 
@@ -159,18 +158,20 @@ export default function Ingresos() {
 						<div className='mt-5 md:mb-10 bg-primario rounded-tl-3xl rounded-tr-120 pt-5 pb-44 md:pb-5 md:bg-white'>
 							<div className='mx-3 md:mx-0'>
 								<SectionListaProductos
-									productsList = {products}
+									productsList = {data}
 								/>
 							</div>
 						</div>
 					</div>
-					<div className='hidden lg:block'>
+					{/* <div className='hidden lg:block'>
 						<SectionProductosMover/>
-					</div>
+					</div> */}
 				</div>
 				
-				<div className='fixed bottom-0 right-0 bg-white p-4 w-full h-20 flex items-center mb-20 lg:hidden'>
-					<BtnContinuar/>
+				{/* <div className='fixed bottom-0 right-0 bg-white p-4 w-full h-20 flex items-center mb-20 '> */}
+				<div className=' bg-white p-4 w-full h-20 flex items-center mb-20 '>
+					{/* <BtnContinuar/> */}
+					<BtnConfirmarMovimiento/>
 				</div>
 				<NavbarMobile/>
 			</div>
