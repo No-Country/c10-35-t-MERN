@@ -1,11 +1,11 @@
-import './App.css'
-
+import Reports from './pages/Reports/Reports'
+import { Route, Routes } from 'react-router'
+import { data } from './data'
+import ListRoutes from './components/Routes/ListRoutes'
 function App() {
 	return (
-		<div className='App'>
-			<h1 className='text-yellow-300'>www.stoker.com</h1>
-			<h2>Sitio en construcción</h2>
-			<p>Próximamente...</p>
+		<div className='h-full flex flex-col max-h-full flex-grow text-center'>
+			<ListRoutes />
 		</div>
 	)
 }
