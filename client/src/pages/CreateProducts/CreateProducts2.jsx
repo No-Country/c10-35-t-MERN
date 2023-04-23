@@ -209,7 +209,7 @@ const CreateProducts2 = () => {
 								// {/* ----------esto engloba impus de nombre y grupo-------- */}
 								className='
 								w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4 md:pt-2	
-								rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418  md:flex-none  md:flex md:flex-col md:ml-16 md:mt-240'
+								rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418  md:flex-none  md:flex md:flex-col md:ml-16 md:mt-240 z-10'
 							>
 								{/* --------------input nombre------------- */}
 								<div className=' w-full h-24 items-start '>
@@ -398,7 +398,7 @@ const CreateProducts2 = () => {
 												Continuar
 											</div>
 										</button>
-										{modal ? <ModalExcel setModal={setModal} /> : null}
+										{modal === true && <ModalExcel setModal={setModal} />}
 										{/* {modal && <ModalExcel setModal={setModal}  />}
 										 */}
 									</div>

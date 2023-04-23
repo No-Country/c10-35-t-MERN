@@ -80,9 +80,7 @@ function RegistroUsuario() {
 	}, [responseData, error])
 	return (
 		<div className='h-full  lg:flex lg:items-center lg:justify-center'>
-			{responseData !== null && (
-				<ModalProductocargado texto={responseData.message} />
-			)}
+			{responseData !== null && window.alert(responseData.message)}
 			<div className='hidden lg:flex lg:flex-col lg:box-border lg:pt-24 lg:px-7 lg:bg-primario  w-480 h-full lg:items-center'>
 				<img className='w-238 h-14 lg:mb-44' src={logo} alt='Stocker Logo' />
 				<img className='w-427 h-296' src={registerImg} alt='' />

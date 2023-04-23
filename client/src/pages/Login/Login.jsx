@@ -71,21 +71,22 @@ function Login() {
 		navigate('/registro-usuario')
 	}
 	useEffect(() => {
-		console.log('login')
-		if ((responseData !== null) & (responseData?.status !== 200)) return
+		const userLogin = async () => {
+			if ((responseData !== null) & (responseData?.status !== 200))
+				return window.alert(responseData.message)
 
-		if ((responseData !== null) & (responseData?.token !== undefined)) {
-			sessionStorage.setItem('token', responseData.token)
-			isDesktop ? navigate('/inventario') : navigate('/inicio')
+			if ((responseData !== null) & (responseData?.token !== undefined)) {
+				await sessionStorage.setItem('userId', responseData.userId)
+				console.log(responseData.userId)
+				await sessionStorage.setItem('token', responseData.token)
+				isDesktop ? navigate('/inventario') : navigate('/inicio')
+			}
 		}
-		responseData !== null && console.log(responseData)
+		userLogin()
 	}, [responseData, error])
 	return (
 		<div className='lg:flex lg:flex-row lg:justify-center lg:items-center lg:mt-auto lg:mb-auto'>
 			<Onboarding />
-			{responseData !== null && (
-				<ModalProductocargado texto={responseData.message} />
-			)}
 
 			<main
 				id='login'

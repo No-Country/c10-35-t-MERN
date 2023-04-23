@@ -2,15 +2,15 @@
 
 import polloPremiun from '../../assets/pollopremiun.png'
 
-const ModalExcel = ({ setModal}) => {
+const ModalExcel = ({ setModal }) => {
 	return (
 		<section
 			id='modal'
-			className='w-screen h-full fixed top-0 left-0 right-0 m-0 flex justify-center items-center bg-fondoT'
+			className='w-screen h-full fixed top-0 left-0 right-0 m-0 flex justify-center items-center bg-fondoT z-50'
 		>
 			<div
 				id='modal-container'
-				className='w-300 h-300 rounded-xl flex flex-col justify-center items-center p-6 gap-4  bg-primario md:right-1 md:w-335 md:left-614 md:pl-10 md:h-335' 
+				className='w-300 h-300 rounded-xl flex flex-col justify-center items-center p-6 gap-4  bg-primario md:right-1 md:w-335 md:left-614 md:pl-10 md:h-335'
 			>
 				<h3
 					id='modal-paragraph'
