@@ -12,8 +12,9 @@
 - Valentina Belén Sánchez - https://github.com/ValentinaBS
 - Pablo Swistoniuk - https://github.com/Pabloswis
 - Marcelo Yévenes - https://github.com/MarceloYevenesM
-- [Yesica fita] - https://github.com/yesifita
-- 
+- Yesica fita - https://github.com/yesifita
+- Eugenia Olmedo - https://github.com/eugeolmedo
+- Maria Alejandra Gaitan Alferez - https://github.com/Maga8005
 
 ## Título de Proyecto
 
