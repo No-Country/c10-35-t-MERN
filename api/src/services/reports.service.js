@@ -1,4 +1,5 @@
 const db = require('../models/index');
+const { Op } = require('sequelize');
 const { AppError } = require('../utils/errors');
 
 const Categories = db.Categories;
@@ -56,7 +57,7 @@ const totalQuantitySales = async (userId) => {
   const orders = await Orders.findAll({ where: { userId, isAvailable: true } });
 
   const ordersDetails = await Order_Details.findAll({
-    where: { isAvailable: true },
+    where: { isAvailable: true, quantity: { [Op.lt]: 0} },
   });
 
   const totalQuantitySales = orders.reduce((acc, order) => {
@@ -67,7 +68,7 @@ const totalQuantitySales = async (userId) => {
       (acc, orderDetail) => acc + orderDetail.quantity,
       0
     );
-    return acc + quantity;
+    return acc + (quantity * -1);
   }, 0);
 
   return totalQuantitySales;
@@ -85,7 +86,7 @@ const totalSales = async (userId) => {
   const orders = await Orders.findAll({ where: { userId, isAvailable: true } });
 
   const ordersDetails = await Order_Details.findAll({
-    where: { isAvailable: true },
+    where: { isAvailable: true, quantity: { [Op.lt]: 0}},
   });
 
   const totalSales = orders.reduce((acc, order) => {
@@ -100,10 +101,70 @@ const totalSales = async (userId) => {
       (acc, orderDetail) => acc + orderDetail.price,
       0
     );
-    return acc + quantity * price;
+    return acc + (quantity * -1) * price;
   }, 0);
 
   return totalSales;
+};
+const earnings = async (userId) => {
+  const userFound = await Users.findOne({
+    where: { id: userId, isAvailable: true },
+  });
+
+  if (!userFound) {
+    throw new AppError('User not found', 404);
+  }
+
+  const orders = await Orders.findAll({ where: { userId, isAvailable: true } });
+
+  let sales = 0;
+  let expenses = 0;
+
+  for (const order of orders) {
+    const ordersDetails = await Order_Details.findAll({
+      where: { isAvailable: true, orderId: order.id },
+    });
+
+    const salesDetails = ordersDetails.filter(
+      (orderDetail) => orderDetail.quantity < 0
+    );
+
+    const salesQuantity = salesDetails.reduce(
+      (acc, orderDetail) => acc + orderDetail.quantity,
+      0
+    );
+
+    const salesPrice = salesDetails.reduce(
+      (acc, orderDetail) => acc + orderDetail.price,
+      0
+    );
+
+    sales += salesQuantity * salesPrice;
+
+    const expensesDetails = ordersDetails.filter(
+      (orderDetail) => orderDetail.quantity > 0
+    );
+
+    const expensesQuantity = expensesDetails.reduce(
+      (acc, orderDetail) => acc + orderDetail.quantity,
+      0
+    );
+
+    const expensesPrice = expensesDetails.reduce(
+      (acc, orderDetail) => acc + orderDetail.price,
+      0
+    );
+
+    expenses += expensesQuantity * expensesPrice;
+  }
+
+  sales = sales * -1;
+
+  return {
+    sales,
+    expenses,
+    earnings: sales - expenses,
+  };
 };
 
 const productRotation = async (userId) => {
@@ -154,4 +215,5 @@ module.exports = {
   totalQuantitySales,
   totalSales,
   productRotation,
+  earnings
 };

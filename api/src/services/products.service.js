@@ -2,6 +2,8 @@ const db = require('../models/index');
 const Products = db.Products;
 const Product_Users = db.Product_Users;
 const User = db.Users;
+const Orders = db.Orders;
+const Order_Details = db.Order_Details;
 const { AppError } = require('../utils/errors');
 
 const findAll = async (idUser) => {
@@ -130,7 +132,10 @@ const createProduct = async (products) => {
 
     await transaction.commit();
 
-    return createdProducts;
+    return {
+      status: 201,
+      createProduct: createdProducts,
+    };
   } catch (error) {
     if (transaction) await transaction.rollback();
 
@@ -149,9 +154,9 @@ const updateStock = async (products) => {
   try {
     const results = await Promise.all(
       products.map(async (product) => {
-        const { productId, userId, quantity } = product;
+        const { productId, userId, quantity, price } = product;
 
-        if (!quantity || !userId || !productId) {
+        if (!quantity || !userId || !productId || !price) {
           throw new AppError('Mandatory data is missing', 400);
         }
 
@@ -189,12 +194,35 @@ const updateStock = async (products) => {
 
         userProducts.stock = newStock;
 
+        const order = await Orders.create(
+          {
+            order_date: new Date(),
+            userId,
+          },
+          { transaction }
+        );
+
+        await Order_Details.create(
+          {
+            orderId: order.id,
+            productId,
+            quantity,
+            price,
+          },
+          { transaction }
+        );
+
         await userProducts.save({ transaction });
 
         return {
           id: productFound.id,
           product_name: productFound.product_name,
-          userProducts,
+          order: order.id,
+          order_details: {
+            productId,
+            quantity,
+            price,
+          },
         };
       })
     );
@@ -299,7 +327,39 @@ const update = async (product) => {
   }
 };
 
+const deleteProduct = async (id, userId) => {
+  if (!id || !userId) {
+    throw new AppError('Mandatory data is missing', 400);
+  }
 
+  const userFound = await User.findOne({
+    where: { id: userId, isAvailable: true },
+  });
+
+  if (!userFound) {
+    throw new AppError('User not found', 404);
+  }
+
+  const productFound = await Products.findOne({
+    where: { id: id, isAvailable: true },
+  });
+
+  const userProducts = await Product_Users.findOne({
+    where: { userId, productId: id, isAvailable: true },
+  });
+
+  if (!userProducts || !productFound) {
+    throw new AppError('Product not found', 404);
+  }
+
+  userProducts.isAvailable = false;
+
+  await userProducts.save();
+
+  return {
+    message: `The product ${productFound.product_name} has been successfully deleted  `
+  };
+};
 
 
 
@@ -309,4 +369,5 @@ module.exports = {
   updateStock,
   update,
   findByCategoryId,
+  deleteProduct
 };
