@@ -12,6 +12,10 @@
 - Valentina Belén Sánchez - https://github.com/ValentinaBS
 - Pablo Swistoniuk - https://github.com/Pabloswis
 - Marcelo Yévenes - https://github.com/MarceloYevenesM
+- Yesica fita - https://github.com/yesifita
+- Eugenia Olmedo - https://github.com/eugeolmedo
+- Maria Alejandra Gaitan Alferez - https://github.com/Maga8005
+- Pablo Gutierrez - https://github.com/Xch4rt
 
 ## Título de Proyecto
 
@@ -35,7 +39,7 @@
 - [Yesica Fita](https://www.linkedin.com/in/yesica-fita-0aa447245) - Frontend - yesifita@gmail.com
 - [Henry Ramirez]()- Frontend - henrymilacprog@gmail.com
 - [Valentina Sánchez](https://www.linkedin.com/in/valentina-belen-sanchez) - Frontend - vbsanchez16@gmail.com
-- [Pablo Gutierrez]() - Backend - pab203.guti@gmail.com
+- [Pablo Gutierrez](https://www.linkedin.com/in/pablo-gutierrez-dev/recent-activity/all/) - Backend - pab203.guti@gmail.com
 - [Pablo Swustoniuk](https://www.linkedin.com/in/pablo-swistoniuk) - Backend - swistoniukpablo@gmail.com
 - [Alben Bustamante](https://www.linkedin.com/in/alben-bustamante) - Backend - albenbustamante@gmail.com
 
