@@ -5,7 +5,7 @@ const ModalProductocargado = ({texto,idProduct}) => {
 	return (
 		<section
 		id='modal'
-			className=' w-screen h-full top-0 m-0 left-0 right-0 fixed flex justify-center items-center bg-fondoT'
+			className=' w-screen h-full top-0 m-0 left-0 right-0 fixed flex justify-center items-center bg-fondoT z-50'
 		>
 			<div
 				id='modal-container'
