@@ -5,7 +5,7 @@ const HeadingsModify = () => {
   return (
     <div>
     {/* --------contenedor general de barra superior -------- */}
-    <div className='flex-none order-1 grow-0 md:mt-3'>
+    <div className='flex-none'>
         {/* --------contenedor de items h1 y botones------- */}
         <div className='w-373 h-43  mt-2 top-31 left-0 px-0 py-4 gap-3 flex flex-row items-center  flex-none order-1 grow-0 md:pt-8  '>
             <Link
