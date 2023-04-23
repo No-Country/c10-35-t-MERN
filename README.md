@@ -12,6 +12,8 @@
 - Valentina Belén Sánchez - https://github.com/ValentinaBS
 - Pablo Swistoniuk - https://github.com/Pabloswis
 - Marcelo Yévenes - https://github.com/MarceloYevenesM
+- [Yesica fita] - https://github.com/yesifita
+- 
 
 ## Título de Proyecto
 
