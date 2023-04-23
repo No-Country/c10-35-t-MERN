@@ -49,3 +49,4 @@
 - Backend: https://stocker-api.fly.dev/api/v1/docs
 - Repositorio: https://github.com/No-Country/c10-35-t-MERN
 - Figma : https://www.figma.com/file/Vu2xOKIu45DwSKj7pNarnV/6.-Stocker.-App-gesti%C3%B3n-inventarios?node-id=154-2644&t=WAFdFNyb49XQe5wo-0
+
