@@ -5,20 +5,20 @@ import { helpFetch } from '../../components/helpers/helpFetch'
 import { Link, useLocation } from 'react-router-dom'
 import {data} from '../../data/db.json'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
-import ModalProductoModificado from '../../components/Modals/ModalProductoModificado'
 import HeadingsModify from '../../components/ModifyProduct/HeadingsModify'
 import Subtitles from '../../components/CreateProducts/Subtitles'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
+import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 
 const initialForm = {
-	id:'',
 	product_name: '',
 	stock: '',
 	cost: '',	
 	price: '',
 	minimum_stock: '',
 	userId: '',
+	image:'',
 	categoryId: '',
 	units:''
 }
@@ -106,11 +106,13 @@ const ModifyProducts = () => {
 
 	const crud = helpFetch()
 	// eslint-disable-next-line prefer-const
-	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/:19'
+	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/20'
 	const urlPut= 'https://stocker-api.fly.dev/api/v1/products/update'
 
 	useEffect(() => {
-		fetch(urlGet).then(res => {
+		crud
+		.get (urlGet)
+		.then(res => {
 			if (!res.err) {
 				setDb(res)
 				setResponse(res)
@@ -211,7 +213,7 @@ const ModifyProducts = () => {
 						// let newData = db.filter(el => el.id !== id)
 						// setDb(newData);
 
-						<ModalProductoModificado idProduct={1} />
+						// <ModalProductocargado texto={'Producto Eliminado'} idProduct={1} />
 					} else {
 						setResponse(res)
 					}
@@ -225,10 +227,10 @@ const ModifyProducts = () => {
 		<>
 			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 				<NavbarDesktop/>
-				<div className=' w-373 h-full md:absolute md:w-full md:h-920 md:ml-130 md:bg-fondoT'>
+				<div className=' w-373 h-full md:absolute md:w-full md:h-screen md:ml-130 md:bg-fondoT md:overflow-auto md:no-scrollbar'>
 					<div
 						className='md:bg-white
-		md:absolute md:w-714 md:top-4 md:h-850 md:botton-4 md:ml-408'
+		md:absolute md:w-714 md:top-1 md:h-812 md:botton-4 md:pb-2 md:ml-200 lg:ml-300 lg:h-812'
 					>
 						{/* ----------------headings------------ */}
 						<HeadingsModify />
@@ -245,8 +247,8 @@ const ModifyProducts = () => {
 							<div
 								// {/* ----------esto engloba impus de nombre y grupo-------- */}
 								className='
-		w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4	
-		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16 md:mt-240'
+		w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4 md:pt-2	
+		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418  md:flex-none  md:flex md:flex-col md:ml-16 md:mt-240'
 							>
 								{/* --------------input nombre------------- */}
 
@@ -263,7 +265,7 @@ const ModifyProducts = () => {
 												value={form.product_name}
 												onBlur={handleBlur}
 												onChange={handleChange}
-												className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border md:w-556'
+												className='w-full h-h48 bg-white border-solid border-1 border-secundario3 rounded-xl px-3 py-4 box-border '
 											></input>
 										</div>
 										{errors.product_name && (
@@ -435,7 +437,12 @@ const ModifyProducts = () => {
 												Guardar
 											</div>
 										</button>
-										{visible ? <ModalProductoModificado idProduct={location.state.id} /> : null}
+										{visible ? (
+										<ModalProductocargado 
+										idProduct={location.state.id} 
+										texto={"¡Movimiento Exitoso!"}
+										/>) 
+										: null}
 
 										{/* {response ? null : (
 										<ModalFallaCarga setVisible={setVisible} />
