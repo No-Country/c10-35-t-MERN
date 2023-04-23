@@ -11,15 +11,24 @@
 		"lint": "eslint --fix . --ext .js,.jsx"
 	},
 	"dependencies": {
+		"chart.js": "^4.2.1",
+		"html2canvas": "^1.4.1",
+		"jspdf": "^2.5.1",
+		"npm": "^9.6.4",
 		"react": "18.0.0",
+		"react-chartjs-2": "^5.2.0",
 		"react-dom": "18.0.0",
-		"react-icons": "^4.8.0"
+		"react-icons": "^4.8.0",
+		"react-modal": "^3.16.1",
+		"react-router": "^6.10.0",
+		"react-router-dom": "^6.10.0",
+		"swiper": "9.2.0"
 	},
 	"devDependencies": {
 		"@types/react": "18.0.0",
 		"@types/react-dom": "18.0.0",
 		"@vitejs/plugin-react": "3.1.0",
-		"autoprefixer": "^10.4.14",
+		"autoprefixer": "10.4.14",
 		"eslint": "8.36.0",
 		"eslint-config-prettier": "8.8.0",
 		"eslint-config-standard": "17.0.0",
@@ -27,9 +36,9 @@
 		"eslint-plugin-n": "15.6.1",
 		"eslint-plugin-promise": "6.1.1",
 		"eslint-plugin-react": "7.32.2",
-		"postcss": "^8.4.21",
+		"postcss": "8.4.21",
 		"prettier": "2.8.7",
-		"tailwindcss": "^3.2.7",
+		"tailwindcss": "3.2.7",
 		"vite": "4.2.0"
 	}
 }
