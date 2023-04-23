@@ -3,27 +3,27 @@
 /* eslint-disable import/no-duplicates */
 /* eslint-disable prefer-const */
 import { useState } from 'react'
-import { helpFetch } from '../../components/helpers/helpFetch'
+
 import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import ModalProductocargado from '../../components/Modals/ModalProductocargado'
 import Subtitles from '../../components/CreateProducts/Subtitles'
 import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import Headings from '../../components/CreateProducts/Headings'
 import ModalExcel from '../../components/Modals/ModalExcel'
-import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
+import usePostData from '../../hooks/UseFetch/usePostData'
 
 const initialForm = {
-	id: '',
 	product_name: '',
 	stock: '',
 	cost: '',
 	price: '',
 	minimum_stock: '',
-	userId: 19,
+	userId: 20,
 	categoryId: '',
 	units: '',
+	image: '',
 }
 
 const validationsForm = (form, name) => {
@@ -31,15 +31,7 @@ const validationsForm = (form, name) => {
 
 	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
 	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
-	const {
-		product_name,
-		stock,
-		price,
-		cost,
-		minimum_stock,
-		categoryId,
-		userId,
-	} = form
+	const { product_name, stock, price, cost, minimum_stock, categoryId } = form
 
 	if ((product_name === '') & (name === 'product_name')) {
 		errors.product_name = 'El campo nombre es requerido'
@@ -95,30 +87,15 @@ const validationsForm = (form, name) => {
 const CreateProducts2 = () => {
 	const location = useLocation()
 	const idProduct = location.state === null ? 0 : location.state.idProduct
-
-	const [visible, setVisible] = useState(false)
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
-	const [response, setResponse] = useState(null)
-	const [db, setDb] = useState(null)
-	// const [dataToEdit, setDataToEdit] = useState(null)
 	const [modal, setModal] = useState(false)
 
-	const crud = helpFetch()
-	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/:19'
+	// const urlGet = 'https://stocker-api.fly.dev/api/v1/products/20'
 	const urlPost = 'https://stocker-api.fly.dev/api/v1/products/create'
+	const { error, responseData, handlePost } = usePostData()
 
-	useEffect(() => {
-		fetch(urlGet).then(res => {
-			if (!res.err) {
-				setDb(res)
-				setResponse(res)
-			} else {
-				setDb(null)
-				setResponse(res)
-			}
-		})
-	}, [urlGet])
+	// const { getData } = useGetData(urlGet)
 
 	const handleChange = e => {
 		setForm({
@@ -131,51 +108,37 @@ const CreateProducts2 = () => {
 		setErrors(validationsForm(form, e.target.name))
 	}
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault()
 		setErrors(validationsForm(form))
 
 		if (Object.keys(errors).length === 0) {
-			helpFetch()
-				.post(urlPost, {
-					body: form,
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json',
-					},
-				})
-				.then(res => {
-					setResponse(true)
-					setForm(initialForm)
-					;<ModalFallaCarga setVisble={setVisible} />
-				})
+			const arr = [form]
 
-			return
-		}
-		if (form.id === null) {
-			return createData(form)
-		} else {
-			return updateData(form)
+			await handlePost(urlPost, arr, e)
 		}
 	}
 
-	const createData = () => {
-		crud
-			.post(urlPost, {
-				body: form,
-				headers: { 'content-type': 'application/json' },
-			})
-			.then(res => {
-				setVisible(true)
-				if (!res.err) {
-					setDb([...db, res])
-					;<ModalProductocargado
-						texto={'Productos cargados exitosamente!'}
-						idProduct={idProduct}
-					/>
-				}
-			})
-	}
+	useEffect(() => {
+		responseData !== null && console.log(responseData)
+	}, [responseData, error])
+
+	// const createData = () => {
+	// 	crud
+	// 		.post(urlPost, {
+	// 			body: form,
+	// 			headers: { 'content-type': 'application/json' },
+	// 		})
+	// 		.then(res => {
+	// 			if (!res.err) {
+	// 				setDb([...db, res])
+	// 				setVisible(true)
+	// 			} else {
+	// 				// <ModalFallaCarga />
+	// 				setResponse(res)
+	// 			}
+	// 		})
+	// }
 
 	// 	let endpoint = `${urlGet}/${data.id}`
 
@@ -215,12 +178,19 @@ const CreateProducts2 = () => {
 
 	return (
 		<>
-			<div className='lg:relative '>
+			{responseData !== null && (
+				<ModalProductocargado
+					texto={'Productos cargados exitosamente!'}
+					idProduct={idProduct}
+				/>
+			)}
+
+			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 				<NavbarDesktop />
-				<div className='w-373 lg:absolute h-full md:w-full md:flex md:justify-center md:bg-fondoT'>
+				<div className='w-full h-full md:absolute md:w-full md:h-screen md:ml-130  md:bg-fondoT overflow-auto no-scrollbar'>
 					<div
 						className='md:bg-white
-				 md:w-714 md:top-4 md:h-888 md:botton-4 md:ml-408'
+						md:absolute md:w-714 md:top-1 md:h-812 md:botton-4 md:pb-2 md:ml-200 lg:ml-300 lg:h-812'
 					>
 						<Headings />
 
@@ -234,12 +204,12 @@ const CreateProducts2 = () => {
 
 						{/* --------------contenedor de fomulario--------------- */}
 
-						<form onSubmit={handleSubmit} className=''>
+						<form>
 							<div
 								// {/* ----------esto engloba impus de nombre y grupo-------- */}
 								className='
-		w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4	
-		rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418 md:gap-4 md:flex-none md:grow-0 md:order-none md:flex md:flex-col md:ml-16 md:mt-240'
+								w-full h-full bg-primario md:bg-white mt-335 pr-2 pt-4 md:pt-2	
+								rounded-tr-3xl rounded-tl-3xl md:w-566 md:h-418  md:flex-none  md:flex md:flex-col md:ml-16 md:mt-240'
 							>
 								{/* --------------input nombre------------- */}
 								<div className=' w-full h-24 items-start '>
@@ -382,19 +352,19 @@ const CreateProducts2 = () => {
 													<option id='' value=''>
 														Seleciona Categoria
 													</option>
-													<option id='Vegetales' value=''>
+													<option id='Vegetales' value={1}>
 														Vegetales
 													</option>
-													<option id='Snacks' value='Snacks'>
+													<option id='Snacks' value={2}>
 														Snacks
 													</option>
-													<option id='Lacteos' value='Lacteos'>
+													<option id='Lacteos' value={3}>
 														Lacteos
 													</option>
-													<option id='Limpieza' value='Limpieza'>
+													<option id='Limpieza' value={4}>
 														Limpieza
 													</option>
-													<option id='Bebidas' value='Bebidas'>
+													<option id='Bebidas' value={5}>
 														Bebidas
 													</option>
 												</select>
@@ -421,24 +391,16 @@ const CreateProducts2 = () => {
 											id='inputPrueba'
 											type='submit'
 											value='send'
-											onClick={() => createData()}
+											onClick={handleSubmit}
 											className='bg-secundario'
 										>
 											<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
 												Continuar
 											</div>
 										</button>
-
-										{visible ? (
-											<ModalProductocargado
-												texto={'Productos cargados exitosamente!'}
-												idProduct={idProduct}
-											/>
-										) : null}
 										{modal ? <ModalExcel setModal={setModal} /> : null}
-										{/* {setResponse ? null : (
-											<ModalFallaCarga setVisible={setVisible} />
-										)} */}
+										{/* {modal && <ModalExcel setModal={setModal}  />}
+										 */}
 									</div>
 								</div>
 							</div>

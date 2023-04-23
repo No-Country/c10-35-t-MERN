@@ -85,14 +85,14 @@ body, .no-scrollbar {
 } */
 
 #groupInput {
-	@apply grid grid-cols-2 w-full h-28 gap-10 items-center  p-1 pl-4  justify-around md:h-24;
+	@apply grid grid-cols-2 w-full h-28 gap-10 items-center  p-1 pl-4 justify-around md:h-20 ;
 }
 #divPrueba {
 	@apply w-full h-20 grid grid-rows-3 md:h-70;
 }
 
 #inputPrueba {
-	@apply w-full h-h48  rounded-xl border-solid border-1 border-secundario2 pl-3;
+	@apply w-full h-h48  rounded-xl border-solid border-1 border-secundario2 pl-3 md:h-48;
 }
 #labelPrueba {
 	@apply w-full h-6 text-start;
