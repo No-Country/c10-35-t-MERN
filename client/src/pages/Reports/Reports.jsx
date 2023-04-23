@@ -112,10 +112,7 @@ function Reports({ charData }) {
 								</label>
 							</button>
 						</div>
-						<div
-							ref={printRef}
-							className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'
-						>
+						<div className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'>
 							<div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
@@ -130,10 +127,10 @@ function Reports({ charData }) {
 							</div>
 						</div>
 					</div>
-					<main className='flex bg-primario justify-evenly items-start w-full  gap-2 px-4 py-3 lg:justify-between lg:p-0 lg:bg-white mb-10'>
-						<article className='flex flex-col text-center w-1/2 lg:w-447 lg:h-300 bg-red-200 '>
+					<main className='flex bg-primario justify-evenly items-start w-full  gap-2 px-4 py-3 lg:justify-between lg:p-0 lg:bg-white mb-10 lg:gap-4'>
+						<article className='flex flex-col text-center w-1/2 lg:w-447 lg:h-300'>
 							<h3 className='lg:text-left'>Ingresos y egresos</h3>
-							<div className='bg-white shadow-sombra w-full lg:h-full'>
+							<div className='bg-white shadow-sombra w-full lg:h-full '>
 								<BarChart charData={getData} />
 							</div>
 						</article>
@@ -154,10 +151,7 @@ function Reports({ charData }) {
 							</span>
 						</div>
 					</div>
-					<button
-						onClick={handleDownloadPdf}
-						className='bg-secundario w-343 rounded-xl text-white py-4 font-bold'
-					>
+					<button className='bg-secundario w-343 rounded-xl text-white py-4 font-bold'>
 						Descargar registro
 					</button>
 				</div>

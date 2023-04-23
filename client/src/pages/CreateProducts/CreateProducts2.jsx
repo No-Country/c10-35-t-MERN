@@ -15,15 +15,15 @@ import ModalFallaCarga from '../../components/Modals/ModalFallaCarga'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 
 const initialForm = {
-	id:'',
+	id: '',
 	product_name: '',
-	stock:'',
-	cost: '',	
+	stock: '',
+	cost: '',
 	price: '',
 	minimum_stock: '',
-	userId:19,
+	userId: 19,
 	categoryId: '',
-	units:''
+	units: '',
 }
 
 const validationsForm = (form, name) => {
@@ -31,7 +31,15 @@ const validationsForm = (form, name) => {
 
 	let letters = /^[a-zA-ZÀ-ÿ\s]+$/
 	let number = /(^[0-9]{1,7}$|^[0-9]{1,7}\.[0-9]{1,3}$)/
-	const { product_name, stock, price, cost, minimum_stock, categoryId,userId } = form
+	const {
+		product_name,
+		stock,
+		price,
+		cost,
+		minimum_stock,
+		categoryId,
+		userId,
+	} = form
 
 	if ((product_name === '') & (name === 'product_name')) {
 		errors.product_name = 'El campo nombre es requerido'
@@ -65,7 +73,6 @@ const validationsForm = (form, name) => {
 		errors.cost = 'el campo solo acepta numeros'
 		return errors
 	}
-	
 
 	if ((minimum_stock === '') & (name === 'minimum_stock')) {
 		errors.minimum_stock = 'El campo es requerido'
@@ -99,12 +106,11 @@ const CreateProducts2 = () => {
 
 	const crud = helpFetch()
 	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/:19'
-	const urlPost= 'https://stocker-api.fly.dev/api/v1/products/create'
+	const urlPost = 'https://stocker-api.fly.dev/api/v1/products/create'
 
 	useEffect(() => {
 		fetch(urlGet).then(res => {
 			if (!res.err) {
-				console.log(res)
 				setDb(res)
 				setResponse(res)
 			} else {
@@ -139,7 +145,6 @@ const CreateProducts2 = () => {
 					},
 				})
 				.then(res => {
-					console.log(res)
 					setResponse(true)
 					setForm(initialForm)
 					;<ModalFallaCarga setVisble={setVisible} />
@@ -161,16 +166,14 @@ const CreateProducts2 = () => {
 				headers: { 'content-type': 'application/json' },
 			})
 			.then(res => {
-				setVisible(true);
+				setVisible(true)
 				if (!res.err) {
 					setDb([...db, res])
-
-					;
-					<ModalProductocargado
+					;<ModalProductocargado
 						texto={'Productos cargados exitosamente!'}
-						idProduct={idProduct}/>
+						idProduct={idProduct}
+					/>
 				}
-
 			})
 	}
 
@@ -212,12 +215,12 @@ const CreateProducts2 = () => {
 
 	return (
 		<>
-			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
+			<div className='lg:relative '>
 				<NavbarDesktop />
-				<div className='w-373 h-full md:absolute md:w-full md:h-1024  md:ml-130 md:flex md:justify-center md:bg-fondoT'>
+				<div className='w-373 lg:absolute h-full md:w-full md:flex md:justify-center md:bg-fondoT'>
 					<div
 						className='md:bg-white
-				md:absolute md:w-714 md:top-4 md:h-888 md:botton-4 md:ml-408'
+				 md:w-714 md:top-4 md:h-888 md:botton-4 md:ml-408'
 					>
 						<Headings />
 
@@ -278,11 +281,7 @@ const CreateProducts2 = () => {
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.stock && (
-											<p id='msgerror'>
-												{errors.stock}
-											</p>
-										)}
+											{errors.stock && <p id='msgerror'>{errors.stock}</p>}
 										</div>
 										<div className=' h-32'>
 											<div id='divPrueba'>
@@ -345,7 +344,9 @@ const CreateProducts2 = () => {
 													onChange={handleChange}
 												></input>
 											</div>
-											{errors.minimum_stock && <p id='msgerror'>{errors.minimum_stock}</p>}
+											{errors.minimum_stock && (
+												<p id='msgerror'>{errors.minimum_stock}</p>
+											)}
 										</div>
 									</div>
 									{/* -------------------tercer grupo--------------- */}
