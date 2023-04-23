@@ -7,7 +7,6 @@ import NavBar from '../../components/NavBar/NavBar'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
 import useGetData from '../../hooks/UseFetch/UseGetData'
-import { useEffect, useState } from 'react'
 
 const Reports = ({ charData }) => {
 	const userId = sessionStorage.getItem('userId')
@@ -19,9 +18,6 @@ const Reports = ({ charData }) => {
 	const category = useGetData(categoryURL).getData
 	const sales = useGetData(salesUrl).getData
 	const ingEg = useGetData(ingEgUrl).getData
-	console.log(category)
-	console.log(sales)
-	console.log(ingEg)
 
 	return (
 		<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
@@ -59,7 +55,6 @@ const Reports = ({ charData }) => {
 									className='hidden report-input-check'
 									type='radio'
 									id='pikachu'
-									onClick={e => setName(e.target.id)}
 									name='row1'
 									defaultChecked='true'
 								/>
@@ -76,7 +71,6 @@ const Reports = ({ charData }) => {
 									type='radio'
 									id='charmander'
 									name='row1'
-									onClick={e => setName(e.target.id)}
 								/>
 								<label
 									className='text-f16 font-secundaria text-xl font-bold text-secundario px-8 rounded-xl py-3 bg-white shadow-lg'
@@ -90,7 +84,6 @@ const Reports = ({ charData }) => {
 									className='hidden report-input-check'
 									type='radio'
 									id='bulbasaur'
-									onClick={e => setName(e.target.id)}
 									name='row1'
 								/>
 								<label
@@ -102,13 +95,15 @@ const Reports = ({ charData }) => {
 							</button>
 						</div>
 						<div className='flex w-4/5 justify-center mt-14 gap-2 lg:w-full lg:justify-between'>
-							{/* <div className='w-36 lg:w-446'>
-								<h3 className='text-left hidden lg:block'>Ingresos</h3>
-								<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
-									<CakeChart charData={getData} url={URL} />
-								</div>
-							</div>
 							<div className='w-36 lg:w-446'>
+								<h3 className='text-left hidden lg:block'>Ingresos</h3>
+								{sales !== null && (
+									<div className='bg-white rounded-xl h-16 lg:h-157  p-2 shadow-sombra'>
+										<CakeChart charData={category} url={URL} />
+									</div>
+								)}
+							</div>
+							{/* <div className='w-36 lg:w-446'>
 								<h3 className='text-left hidden lg:block'>Ingresos</h3>
 								<div className='bg-white w-full rounded-xl h-16 lg:h-157 p-2 shadow-sombra'>
 									<CakeChart charData={getData} />
