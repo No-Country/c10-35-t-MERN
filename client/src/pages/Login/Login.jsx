@@ -15,16 +15,16 @@ function Login() {
 	const [passCheck, setPassCheck] = useState(true)
 	const [repeatPassCheck, setrepeatPassCheck] = useState(true)
 	const [isActive, setIsActive] = useState(false)
-	const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
+	const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024)
 
-    const updateMedia = () => {
-        setIsDesktop(window.innerWidth > 1024);
-    };
-    
-    useEffect(() => {
-        window.addEventListener("resize", updateMedia);
-        return () => window.removeEventListener("resize", updateMedia);
-    });
+	const updateMedia = () => {
+		setIsDesktop(window.innerWidth > 1024)
+	}
+
+	useEffect(() => {
+		window.addEventListener('resize', updateMedia)
+		return () => window.removeEventListener('resize', updateMedia)
+	})
 
 	const handleChange = e => {
 		setData({ ...data, [e.target.name]: e.target.value })
@@ -71,21 +71,22 @@ function Login() {
 		navigate('/registro-usuario')
 	}
 	useEffect(() => {
-		console.log('login')
-		if ((responseData !== null) & (responseData?.status !== 200)) return
+		const userLogin = async () => {
+			if ((responseData !== null) & (responseData?.status !== 200))
+				return window.alert(responseData.message)
 
-		if ((responseData !== null) & (responseData?.token !== undefined)) {
-			sessionStorage.setItem('token', responseData.token)
-			isDesktop ? navigate('/inventario') : navigate('/inicio')
+			if ((responseData !== null) & (responseData?.token !== undefined)) {
+				await sessionStorage.setItem('userId', responseData.userId)
+				console.log(responseData.userId)
+				await sessionStorage.setItem('token', responseData.token)
+				isDesktop ? navigate('/inventario') : navigate('/inicio')
+			}
 		}
-		responseData !== null && console.log(responseData)
+		userLogin()
 	}, [responseData, error])
 	return (
 		<div className='lg:flex lg:flex-row lg:justify-center lg:items-center lg:mt-auto lg:mb-auto'>
 			<Onboarding />
-			{responseData !== null && (
-				<ModalProductocargado texto={responseData.message} />
-			)}
 
 			<main
 				id='login'

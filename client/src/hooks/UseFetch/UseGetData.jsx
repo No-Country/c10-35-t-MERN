@@ -16,7 +16,6 @@ const useGetData = url => {
 				})
 
 				const result = await response.json()
-				console.log('montado')
 				setGetData(result)
 				setIsGetLoading(false)
 			} catch (error) {
