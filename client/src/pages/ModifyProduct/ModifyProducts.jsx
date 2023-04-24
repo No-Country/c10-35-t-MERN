@@ -164,20 +164,7 @@ const ModifyProducts = () => {
 		
 	}
 
-	// const createData = () => {
-	// 	crud
-	// 		.post(urlGet, {
-	// 			body: form,
-	// 			headers: { 'content-type': 'application/json' },
-	// 		})
-	// 		.then(res => {
-	// 			console.log(res)
-	// 			if (!res.err) {
-	// 				setDb([...db, res])
-	// 			} else setResponse(res)
-	// 		})
-	// }
-
+	
 	const updateData =()=> {
 		
 		let endpoint = `${urlPut}/${form.id}`

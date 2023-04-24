@@ -12,7 +12,6 @@ import { BoxImage } from '../../components/CreateProducts/BoxImage'
 import Headings from '../../components/CreateProducts/Headings'
 import ModalExcel from '../../components/Modals/ModalExcel'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
-import usePostData from '../../hooks/UseFetch/usePostData'
 import { helpFetch } from '../../components/helpers/helpFetch'
 
 const initialForm = {
@@ -95,15 +94,11 @@ const CreateProducts2 = () => {
 	const [db, setDb] = useState(null)
 	const [visible, setVisible] = useState(false)
 
-	const crud=helpFetch();
-	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/20';
-	const urlPost = 'https://stocker-api.fly.dev/api/v1/products/create';
+	const crud = helpFetch()
+	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/20'
+	const urlPost = 'https://stocker-api.fly.dev/api/v1/products/create'
 
-	// const { error, responseData, handlePost } = usePostData()
-
-	// const { getData } = useGetData(urlGet)
 	
-
 	useEffect(() => {
 		crud.get(urlGet).then(res => {
 			if (!res.err) {
@@ -133,48 +128,12 @@ const CreateProducts2 = () => {
 
 		if (Object.keys(errors).length === 0) {
 			createData()
-			// crud
-			// 	.post(urlPost, {
-			// 		body: [form],
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 			Accept: 'application/json',
-			// 		},
-			// 	},
-			// 	)
-			// 	.then(res => {
-			// 		console.log(res)
-			// 		setResponse(true)
-			// 		setForm(initialForm);
-			// 		// <ModalFallaCarga setVisble={setVisible}/>
-			// 	})
-
 			
 		}
-		// if (form.id === null) {
-		// 	return createData(form)
-		// } else {
-		// 	return updateData(form)
-		// }
+		
 	}
+	
 
-	// const handleSubmit = async e => {
-	// 	e.preventDefault()
-	// 	setErrors(validationsForm(form))
-
-	// 	if (Object.keys(errors).length === 0) {
-
-
-	// 		const arr = [form]
-
-	// 		await handlePost(urlPost, arr, e)
-	// 	}
-	// }
-
-
-	// useEffect(() => {
-	// 	responseData !== null && console.log(responseData)
-	// }, [responseData, error])
 
 	const createData = () => {
 		crud
@@ -186,8 +145,7 @@ const CreateProducts2 = () => {
 				if (!res.err) {
 					setDb([...db, res])
 					setVisible(true)
-				} else {
-					// <ModalFallaCarga />
+				} else {					
 					setResponse(res)
 					setForm(initialForm)
 				}
@@ -231,14 +189,7 @@ const CreateProducts2 = () => {
 	// }
 
 	return (
-		<>
-			{/* {responseData !== null && (
-				<ModalProductocargado
-					texto={'Productos cargados exitosamente!'}
-					idProduct={idProduct}
-				/>
-			)} */}
-
+		<>			
 			<div className='lg:grid lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 				<NavbarDesktop />
 				<div className='w-full h-full md:absolute md:w-full md:h-screen md:ml-130  md:bg-fondoT overflow-auto no-scrollbar'>
@@ -258,7 +209,7 @@ const CreateProducts2 = () => {
 
 						{/* --------------contenedor de fomulario--------------- */}
 
-						<form onSubmit={handleSubmit}> 
+						<form onSubmit={handleSubmit}>
 							<div
 								// {/* ----------esto engloba impus de nombre y grupo-------- */}
 								className='
@@ -445,19 +396,20 @@ const CreateProducts2 = () => {
 											id='inputPrueba'
 											type='submit'
 											value='send'
-											onClick={()=>createData()}
+											onClick={() => createData()}
 											className='bg-secundario'
 										>
 											<div className=' text-primario font-secundaria w-full h-22 font-bold text-base not-italic '>
 												Continuar
 											</div>
 										</button>
-										{visible ? <ModalProductocargado texto={'¡Productos creados exitosamente!'} 
-					idProduct={idProduct}/> : null }
+										{visible ? (
+											<ModalProductocargado
+												texto={'¡Productos creados exitosamente!'}
+												idProduct={idProduct}
+											/>
+										) : null}
 										{modal ? <ModalExcel setModal={setModal} /> : null}
-									
-									
-										
 									</div>
 								</div>
 							</div>
