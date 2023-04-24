@@ -1,19 +1,22 @@
+/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { BtnAddProduct } from '../Buttons/BtnAddProduct'
 import { ProductStockCard } from './ProductStockCard'
 import { RiArrowDownSFill } from 'react-icons/ri';
 
 export const ProductsContainer = ({ productsList, filterProduct, idProduct }) => {
+	const{id,product_name,price,cost,minimum_stock,categoryId,stock,units,image}=productsList
 	const filteredProduct = () => {
 		return productsList.filter(product => {
 				if (filterProduct.search === '') return product
-				return product.title
+				return product.product_name
 					.toLowerCase()
 					.includes(filterProduct.search.toLowerCase().trim())
 			})
 			.filter(product => {
 				if (filterProduct.category === '') return product
-				return product.idCategory === filterProduct.category
+				return product.categoryId === filterProduct.category
 			})
 	}
 
@@ -45,17 +48,16 @@ export const ProductsContainer = ({ productsList, filterProduct, idProduct }) =>
 					return (
 						<ProductStockCard
 						    key={i}
-							id={product.id}
-							title={product.title}
-							stock={product.stock}
-							cost = {product.cost}
-							price={product.price}
-							idCategory = {product.idCategory}
-							type={idProduct === product.id? 1:0}
-							minStock={product.minStock}
-							unidades={product.unidades}
-							alerta = {product.alerta}
-							img = {product.img}
+							id={id}							
+							product_name={product_name}
+							stock={stock}
+							cost = {cost}
+							price={price}
+							categoryId = {categoryId}
+							type={idProduct === id? 1:0}
+							minimum_stock={minimum_stock}
+							units={units}						
+							image = {image}
 						/>
 					)
 				})}
