@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
 import React from 'react'
 import leche from '../../assets/leche.png'
 import { RiEdit2Line } from 'react-icons/ri'
@@ -5,23 +7,22 @@ import { Link } from 'react-router-dom'
 
 export const ProductStockCard = ({
 	id,
-	title,
+	product_name,
 	stock,
 	cost,
 	price,
-	idCategory,
+	categoryId,
 	type,
-	minStock,
-	unidades,
-	alerta,
-	img
+	minimum_stock,
+	units,	
+	image
 }) => {
 	const bgColorCard = type === 1 ? 'bg-acento2' : 'bg-white'
 	const textColor = type === 1 ? 'text-white' : 'text-secundario'
 	const textoColorSecondary = type === 1 ? 'text-acento' : 'text-secundario'
 	const iconColor = type === 1 ? 'text-acento' : 'text-secundario'
 	const barColor = type === 1 ? 'bg-white' : 'bg-acento2_10'
-	console.log(alerta)
+	
 	return (
 		<div className='w-full h-36'>
 			<div
@@ -29,22 +30,23 @@ export const ProductStockCard = ({
 			>
 				<div className='flex-row'>
 					<div className='w-full flex gap-7 items-center justify-center h-full flex-column'>
-						<img src={img} alt='imagen' className='object-cover w-85 h-62' />
+						<img src={image} alt='imagen' className='object-cover w-85 h-62' />
 						<div className='w-full h-62 flex flex-col justify-between'>
 							<div className='flex justify-between w-full text-left'>
 								<h3 className={`font-bold text-xl w-full ${textColor}`}>
-									{title}
+									{product_name}
 								</h3>
 								<Link
 									state={{
 										id,
-										title,
+										product_name,
 										stock,
-										unidades,
 										cost,
-										idCategory,
 										price,
-										minimum_stock: minStock
+										units,
+										categoryId,
+										minimum_stock,
+										image
 										
 									}}
 									to={'/modificar-productos'}
@@ -93,7 +95,7 @@ export const ProductStockCard = ({
 
 								<div className='col-span-2  row-span-1 text-sm hidden lg:block'>
 									<div className='flex h-full justify-center items-center'>
-										<p className={`${textColor}`}>{idCategory}</p>
+										<p className={`${textColor}`}>{categoryId}</p>
 									</div>
 								</div>
 
@@ -105,7 +107,7 @@ export const ProductStockCard = ({
 
 								<div className='col-span-1  row-span-1 text-sm hidden lg:block'>
 									<div className='flex h-full justify-center items-center'>
-										<p className={`${textColor}`}>{minStock}</p>
+										<p className={`${textColor}`}>{minimum_stock}</p>
 									</div>
 								</div>
 							</div>

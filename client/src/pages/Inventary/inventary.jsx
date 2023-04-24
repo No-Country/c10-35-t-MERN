@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import NavbarMobile from '../../components/NavbarMobile/NavbarMobile'
 import Navbar from '../../components/NavBar/NavBar'
 import { TextBoxWithIcon } from '../../components/textBox/TextBoxWithIcon'
@@ -9,8 +9,8 @@ import { CategoryData } from '../../components/CategoryCard/CategoryData'
 import { BtnAddProductResponsive } from '../../components/Buttons/BtnAddProductResponsive'
 import { useLocation } from 'react-router'
 import NavbarDesktop from '../../components/NavbarDesktop/NavbarDesktop'
-import { helpFetch } from '../../components/helpers/helpFetch'
-import { data } from '../../data/data'
+import {helpFetch} from '../../components/helpers/helpFetch'
+// import {data} from '../../data/data'
 
 const categories = [
 	{
@@ -109,42 +109,34 @@ export const Inventary = () => {
 		category: '',
 	})
 	// const [products, setProducts] = useState([])
+const [response, setResponse] = useState(null)
+const [data, setData] = useState([])
 
 	const location = useLocation()
-
 	const idProduct = location.state === null ? 0 : location.state.idProduct
 
-	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/:19'
-	const urlPost = 'https://stocker-api.fly.dev/api/v1/products/update'
+const crud=helpFetch();
+	const urlGet = 'https://stocker-api.fly.dev/api/v1/products/20'
+	
 
-	// useEffect(() => {
+	useEffect(() => {
+		
+	 crud.get(urlGet)
+	 .then(res => {
+			if (!res.err) {
+				console.log(res)			
+				setData(res)
+				setResponse(res)
+			} else {
+			setData(null)
+			setResponse(res)
+			}
+		})
 
-	//  fetch(urlGet).then(res => {
+	  }
+	, [urlGet])
+	
 
-	// 		if (!res.err) {
-	// 			console.log(res.body)
-	// 			setProducts(res)
-	// 		} else {
-	// 			setProducts([])
-	// 		}
-	// 	})
-
-	//   }
-	// , [urlGet])
-
-	const getProducts = () => {
-		helpFetch()
-			.put(urlGet, {
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-			})
-			.then(res => {
-				setProducts(res)
-			})
-	}
-	// console.log(products)
 	return (
 		<div className='lg:grid lg:relative lg:relative lg:grid-cols-[130px_1fr] lg:gap-x-8'>
 			<NavbarDesktop />
@@ -186,6 +178,7 @@ export const Inventary = () => {
 					setFilter={setFilter}
 					filter={{ ...filter }}
 				/>
+
 
 				<ProductsContainer
 					productsList={data}

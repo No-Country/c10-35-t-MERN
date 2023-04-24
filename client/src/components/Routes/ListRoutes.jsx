@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router'
 import Reports from '../../pages/Reports/Reports'
 import Login from '../../pages/Login/Login'
@@ -12,6 +12,7 @@ import ProductosMover from '../../pages/ProductosMover/ProductosMover'
 import { data } from '../../data'
 import RegistroUsuario from '../../pages/Registro-usuario/RegistroUsuario'
 import ModifyProducts from '../../pages/ModifyProduct/ModifyProducts'
+import Prueba from '../CreateProducts/Prueba'
 const ListRoutes = () => {
 	return (
 		<>
