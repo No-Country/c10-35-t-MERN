@@ -1,11 +1,14 @@
-import { config } from "dotenv";
+const dotenv = require('dotenv');
 
-config();
+dotenv.config();
 
-export const DB_NAME = process.env.DB_NAME || "db_db";
-export const DB_USERNAME = process.env.DB_USERNAME || "root";
-export const DB_PASSWORD = process.env.DB_PASSWORD || "root";
-export const DB_HOST = process.env.DB_HOST || "localhost";
-export const DB_PORT = process.env.DB_PORT || "3306";
-export const DB_DIALECT = process.env.DB_DIALECT || "mysql";
-export const PORT = process.env.PORT || 3000;
+// Here will be all the env variables.
+const PORT = process.env.PORT || '5000';
+const API_PATH = process.env.API_PATH || '/api/v1';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+module.exports = {
+  PORT,
+  API_PATH,
+  NODE_ENV,
+};

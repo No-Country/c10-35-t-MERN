@@ -7,14 +7,14 @@ import useGetData from '../../hooks/UseFetch/UseGetData'
 Chartjs.register(LineElement)
 function CakeChart({ charData }) {
 	const [initialValue, setInitialValue] = useState([10, 20, 15, 30])
-
+	// console.log(charData)
 	const data = {
 		labels: 'line',
 		type: 'Line',
 		datasets: [
 			{
 				label: '',
-				data: charData?.stats?.map(el => el?.base_stat),
+				data: charData?.map(el => el?.quantity),
 				borderCapStyle: 'round',
 				borderWidth: '1',
 				borderColor: function (context) {
